@@ -1,0 +1,22 @@
+{
+  "name": "pomi-sdk",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "openapi-typescript": "^7.10.1",
+    "tsx": "^4.21.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "generate-specs": "openapi-typescript ./src/openapi/specs.json --properties-required-by-default true  >| ./src/openapi/specs.d.ts"
+  },
+  "dependencies": {
+    "i": "^0.3.7",
+    "openapi-fetch": "^0.15.0"
+  }
+}
