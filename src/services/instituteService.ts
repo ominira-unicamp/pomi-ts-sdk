@@ -1,7 +1,7 @@
-import { type ClientType } from "../client";
-import { invalidParamError, serverError, unknownError, type PomiError } from "../errors";
-import type { InstituteEntitySchema } from "../models";
-import { ResultErr, ResultOK, type Result } from "../result";
+import type { ClientType } from "../client.js";
+import { invalidParamError, serverError, unknownError, type PomiError } from "../errors.js";
+import type { InstituteEntitySchema } from "../models.js";
+import { ResultErr, ResultOK, type Result } from "../result.js";
 
 class InstituteService {
 	constructor(private client: ClientType) { }

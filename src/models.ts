@@ -1,4 +1,4 @@
-import type { components } from "./openapi/specs";
+import type { components } from "./openapi/specs.js";
 
 type ClassEntitySchema = components["schemas"]["ClassEntity"];
 type ClassScheduleEntitySchema = components["schemas"]["ClassScheduleEntity"];

@@ -1,8 +1,8 @@
-import type { ClientType } from "../client";
-import { invalidParamError, serverError, unknownError, type PomiError } from "../errors";
-import type { ProfessorEntitySchema } from "../models";
-import type { paths } from "../openapi/specs";
-import { ResultErr, ResultOK, type Result } from "../result";
+import type { ClientType } from "../client.js";
+import { invalidParamError, serverError, unknownError, type PomiError } from "../errors.js";
+import type { ProfessorEntitySchema } from "../models.js";
+import type { paths } from "../openapi/specs.js";
+import { ResultErr, ResultOK, type Result } from "../result.js";
 
 type ListFilters = paths["/professors"]["get"]["parameters"]["query"];
 

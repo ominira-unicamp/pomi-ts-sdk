@@ -1,22 +1,63 @@
 {
-  "name": "pomi-sdk",
-  "module": "index.ts",
+  "name": "@ominira/pomi-sdk",
+  "version": "0.1.2",
+  "description": "Planejador da Ominira SDK",
+  "homepage": "https://github.com/ominira-unicamp/pomi-ts-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/ominira-unicamp/pomi-ts-sdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ominira-unicamp/pomi-ts-sdk.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "goliasvictor",
   "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest",
-    "openapi-typescript": "^7.10.1",
-    "tsx": "^4.21.0"
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
   },
-  "peerDependencies": {
-    "typescript": "^5.9.3"
-  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "dev": "tsx watch index.ts",
-    "generate-specs": "openapi-typescript ./src/openapi/specs.json --properties-required-by-default true  >| ./src/openapi/specs.d.ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "generate-specs": "openapi-typescript ./src/openapi/specs.json --properties-required-by-default true >| ./src/openapi/specs.ts"
   },
   "dependencies": {
-    "i": "^0.3.7",
     "openapi-fetch": "^0.15.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.10.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "pomi",
+    "ominira",
+    "sdk",
+    "unicamp",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

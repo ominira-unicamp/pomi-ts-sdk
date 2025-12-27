@@ -1,8 +1,8 @@
-import type { ClientType } from "../client";
-import { invalidParamError as invalidParamError, serverError, unknownError, type PomiError } from "../errors";
-import type { ClassScheduleEntitySchema } from "../models";
-import type { paths } from "../openapi/specs";
-import { ResultErr, ResultOK, type Result } from "../result";
+import type { ClientType } from "../client.js";
+import { invalidParamError, serverError, unknownError, type PomiError } from "../errors.js";
+import type { ClassScheduleEntitySchema } from "../models.js";
+import type { paths } from "../openapi/specs.js";
+import { ResultErr, ResultOK, type Result } from "../result.js";
 
 type ListFilters = paths["/class-schedules"]["get"]["parameters"]["query"];
 

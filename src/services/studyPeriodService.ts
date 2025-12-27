@@ -1,7 +1,7 @@
-import type { ClientType } from "../client";
-import { invalidParamError, serverError, unknownError, type PomiError } from "../errors";
-import type { StudyPeriodEntitySchema } from "../models";
-import { ResultErr, ResultOK, type Result } from "../result";
+import type { ClientType } from "../client.js";
+import { invalidParamError, serverError, unknownError, type PomiError } from "../errors.js";
+import type { StudyPeriodEntitySchema } from "../models.js";
+import { ResultErr, ResultOK, type Result } from "../result.js";
 
 class StudyPeriodService {
 	constructor(private client: ClientType) { }
