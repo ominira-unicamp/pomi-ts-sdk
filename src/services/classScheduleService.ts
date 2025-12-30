@@ -1,19 +1,15 @@
-import type { ClientType } from "../client.js";
-import { invalidParamError, serverError, unknownError, type PomiError } from "../errors.js";
+import type { PomiError } from "../errors.js";
 import type { ClassScheduleEntitySchema } from "../models.js";
-import type { paths } from "../openapi/specs.js";
-import { ResultErr, ResultOK, type Result } from "../result.js";
+import type { components, paths } from "../openapi/specs.js";
+import { ResultOK, type Result } from "../result.js";
+import ResourceService from "./resourceService.js";
 
-type ListFilters = paths["/class-schedules"]["get"]["parameters"]["query"];
+export type ClassScheduleListFilters = paths["/class-schedules"]["get"]["parameters"]["query"];
+export type CreateClassScheduleSchema = components["schemas"]["CreateClassScheduleBody"];
+export type PatchClassScheduleSchema = components["schemas"]["PatchClassScheduleBody"];
 
-class ClassScheduleService {
-	constructor(private client: ClientType) { }
+export default class ClassScheduleService extends ResourceService {
 	async get(classScheduleId: number): Promise<Result<ClassScheduleEntitySchema | null, PomiError>> {
-		if (false && !Number.isInteger(classScheduleId) || classScheduleId <= 0) {
-			return ResultErr(invalidParamError("Invalid class schedule ID", [
-				{ path: ["classScheduleId"], message: "Must be a positive integer" }
-			]))
-		}
 		const { data, error, response } = await this.client.GET(`/class-schedules/{id}`, {
 			params: {
 				path: {
@@ -21,35 +17,49 @@ class ClassScheduleService {
 				}
 			}
 		});
-		if (error) {
-			if (response?.status === 404)
-				return ResultOK(null);
-			if (response?.status === 400)
-				return ResultErr(invalidParamError("Invalid class schedule ID", error.errors ?? [
-					{ path: ["classScheduleId"], message: "Must be a positive integer" }
-				], { originalError: error, response }));
-			if (response?.status === 500)
-				return ResultErr(serverError("Server error occurred", { originalError: error, response }));
-			return ResultErr(unknownError("An unknown error occurred", { originalError: error, response }));
-		}
+		if (response?.status === 404)
+			return ResultOK(null);
+		if (error || response.status !== 200)
+			return this.defaultError(response, error);
 		return ResultOK(data ?? null);
 	}
-	async list(listFilters?: ListFilters): Promise<Result<ClassScheduleEntitySchema[], PomiError>> {
+
+	async list(filters?: ClassScheduleListFilters): Promise<Result<ClassScheduleEntitySchema[], PomiError>> {
 		const { data, error, response } = await this.client.GET(`/class-schedules`, {
-			params: {
-				query: listFilters,
-			}
+			params: { query: filters },
 		});
-		if (response?.status === 400 )
-			return ResultErr(invalidParamError("Invalid query parameters", error?.errors ?? [], { originalError: error, response }));
-		if (response?.status != 200) {
-			if (response?.status === 500)
-				return ResultErr(serverError("Server error occurred", { originalError: error, response }));
-			return ResultErr(unknownError("An unknown error occurred", { originalError: error, response }));
-		}
+		if (error || response.status !== 200)
+			return this.defaultError(response, error);
 		return ResultOK(data ?? []);
 	}
-}
 
-export default ClassScheduleService
-export type { ListFilters as ClassScheduleListFilters }
+	async create(newClassSchedule: CreateClassScheduleSchema): Promise<Result<ClassScheduleEntitySchema, PomiError>> {
+		const { data, error, response } = await this.client.POST(`/class-schedules`, {
+			body: newClassSchedule,
+		});
+		if (error || response.status !== 201)
+			return this.defaultError(response, error);
+		return ResultOK(data!);
+	}
+
+	async update(classScheduleId: number, updatedClassSchedule: PatchClassScheduleSchema): Promise<Result<ClassScheduleEntitySchema, PomiError>> {
+		const { data, error, response } = await this.client.PATCH(`/class-schedules/{id}`, {
+			params: { path: { id: classScheduleId } },
+			body: updatedClassSchedule,
+		});
+		if (error || response.status !== 200)
+			return this.defaultError(response, error);
+		return ResultOK(data!);
+	}
+
+	async delete(classScheduleId: number): Promise<Result<boolean, PomiError>> {
+		const { error, response } = await this.client.DELETE(`/class-schedules/{id}`, {
+			params: { path: { id: classScheduleId } },
+		});
+		if (response?.status === 404)
+			return ResultOK(false);
+		if (error || response.status !== 204)
+			return this.defaultError(response, error);
+		return ResultOK(true);
+	}
+}

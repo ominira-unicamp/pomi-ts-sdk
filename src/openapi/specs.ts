@@ -4,6 +4,41 @@
  */
 
 export interface paths {
+    "/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Successful login response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["LoginResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/professors": {
         parameters: {
             query?: never;
@@ -37,7 +72,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Internal server error */
@@ -50,7 +85,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Professor to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateProfessorBody"];
+                };
+            };
+            responses: {
+                /** @description Professor created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ProfessorEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -90,7 +172,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -111,10 +193,115 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description No content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Professor fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchProfessorBody"];
+                };
+            };
+            responses: {
+                /** @description Professor updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ProfessorEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/institutes": {
@@ -152,7 +339,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Institute to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateInstituteBody"];
+                };
+            };
+            responses: {
+                /** @description Institute created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["InstituteEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -192,7 +426,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -213,10 +447,115 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description No content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Institute fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchInstituteBody"];
+                };
+            };
+            responses: {
+                /** @description Institute updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["InstituteEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/courses": {
@@ -254,7 +593,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Course to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateCourseBody"];
+                };
+            };
+            responses: {
+                /** @description Course created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CourseEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -294,7 +680,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -315,10 +701,115 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description No content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Course fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchCourseBody"];
+                };
+            };
+            responses: {
+                /** @description Course updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CourseEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/classes": {
@@ -332,11 +823,11 @@ export interface paths {
             parameters: {
                 query?: {
                     instituteId?: number | null;
-                    instituteName?: string;
+                    instituteCode?: string;
                     courseId?: number | null;
                     courseCode?: string;
-                    periodId?: number | null;
-                    periodName?: string;
+                    studyPeriodId?: number | null;
+                    studyPeriodCode?: string;
                     professorId?: number | null;
                     professorName?: string;
                 };
@@ -361,7 +852,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Internal server error */
@@ -374,7 +865,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Class to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateClassBody"];
+                };
+            };
+            responses: {
+                /** @description Class created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -414,7 +952,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -435,78 +973,7 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/course-offerings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: {
-                    instituteId?: number | null;
-                    instituteCode?: string;
-                    courseId?: number | null;
-                    courseCode?: string;
-                    periodId?: number | null;
-                    periodName?: string;
-                };
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description A list of course offerings */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["CourseOfferingEntity"][];
-                    };
-                };
-                /** @description Bad request */
-                400: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["ValidationError"];
-                    };
-                };
-                /** @description Internal server error */
-                500: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/course-offerings/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
+        delete: {
             parameters: {
                 query?: never;
                 header?: never;
@@ -517,14 +984,12 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description A course offering by id */
-                200: {
+                /** @description No content */
+                204: {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content: {
-                        "application/json": components["schemas"]["CourseOfferingEntity"];
-                    };
+                    content?: never;
                 };
                 /** @description Bad request */
                 400: {
@@ -532,8 +997,15 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
                 };
                 /** @description Not found */
                 404: {
@@ -551,12 +1023,65 @@ export interface paths {
                 };
             };
         };
-        put?: never;
-        post?: never;
-        delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Class fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchClassBody"];
+                };
+            };
+            responses: {
+                /** @description Class updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/class-schedules": {
@@ -569,10 +1094,10 @@ export interface paths {
         get: {
             parameters: {
                 query?: {
-                    periodId?: number | null;
-                    periodName?: string;
+                    studyPeriodId?: number | null;
+                    studyPeriodCode?: string;
                     instituteId?: number | null;
-                    instituteName?: string;
+                    instituteCode?: string;
                     courseId?: number | null;
                     courseCode?: string;
                     roomId?: number | null;
@@ -601,7 +1126,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Internal server error */
@@ -614,7 +1139,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Class schedule to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateClassScheduleBody"];
+                };
+            };
+            responses: {
+                /** @description Class schedule created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassScheduleEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -654,7 +1226,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -675,10 +1247,115 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description No content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Class schedule fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchClassScheduleBody"];
+                };
+            };
+            responses: {
+                /** @description Class schedule updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassScheduleEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/study-periods": {
@@ -716,7 +1393,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Study period to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateStudyPeriodBody"];
+                };
+            };
+            responses: {
+                /** @description Study period created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StudyPeriodEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -735,7 +1459,7 @@ export interface paths {
                 query?: never;
                 header?: never;
                 path: {
-                    id: number | null;
+                    id: number;
                 };
                 cookie?: never;
             };
@@ -756,7 +1480,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -777,10 +1501,115 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description No content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Study period fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchStudyPeriodBody"];
+                };
+            };
+            responses: {
+                /** @description Study period patched successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StudyPeriodEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/rooms": {
@@ -818,7 +1647,54 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Room to create */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CreateRoomBody"];
+                };
+            };
+            responses: {
+                /** @description Room created successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["RoomEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -858,7 +1734,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ValidationError"];
+                        "application/json": components["schemas"]["ApiError"];
                     };
                 };
                 /** @description Not found */
@@ -879,16 +1755,125 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description No content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
-        patch?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            /** @description Room fields to update */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["PatchRoomBody"];
+                };
+            };
+            responses: {
+                /** @description Room updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["RoomEntity"];
+                    };
+                };
+                /** @description Bad request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ApiError"];
+                    };
+                };
+                /** @description Unauthorized - Missing or invalid JWT token */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        LoginResponse: {
+            /** @description JWT access token to be used in Authorization header as Bearer token */
+            accessToken: string;
+        };
         ProfessorEntity: {
             id: number;
             name: string;
@@ -896,43 +1881,70 @@ export interface components {
                 entity: string;
             };
         };
-        ValidationError: {
+        /** @enum {string} */
+        ErrorCode: "INVALID_TYPE" | "INVALID_VALUE" | "REQUIRED" | "REFERENCE_NOT_FOUND" | "ALREADY_EXISTS";
+        ErrorField: {
+            code: components["schemas"]["ErrorCode"];
+            path: string[];
             message: string;
-            errors: {
-                path: string[];
-                message: string;
-            }[];
+        };
+        ApiError: {
+            message: string;
+            errors: components["schemas"]["ErrorField"][];
+        };
+        CreateProfessorBody: {
+            name: string;
+        };
+        PatchProfessorBody: {
+            name: string;
         };
         InstituteEntity: {
             id: number;
-            name: string;
+            code: string;
             _paths: {
                 classes: string;
-                coursesOfferings: string;
                 courses: string;
             };
+        };
+        CreateInstituteBody: {
+            code: string;
+        };
+        PatchInstituteBody: {
+            code: string;
         };
         CourseEntity: {
             id: number;
             code: string;
             name: string;
             credits: number;
+            instituteId: number;
             _paths: {
                 classes: string;
-                courseOfferings: string;
             };
+        };
+        CreateCourseBody: {
+            code: string;
+            name: string;
+            credits: number;
+            instituteId: number;
+        };
+        PatchCourseBody: {
+            code: string;
+            name: string;
+            credits: number;
+            instituteId: number;
         };
         ClassEntity: {
             id: number;
-            name: string;
+            code: string;
             reservations: number[];
-            courseOfferingId: number;
-            studyPeriodId: number;
-            studyPeriodName: string;
             courseId: number;
+            studyPeriodId: number;
+            professorIds: number[];
+            studyPeriodCode: string;
             courseCode: string;
             instituteId: number;
-            instituteName: string;
+            instituteCode: string;
             professors: {
                 id: number;
                 name: string;
@@ -941,26 +1953,25 @@ export interface components {
                 studyPeriod: string;
                 institute: string;
                 course: string;
-                courseOffering: string;
                 class: string;
                 classSchedules: string;
                 professors: string;
             };
         };
-        CourseOfferingEntity: {
-            id: number;
-            instituteId: number;
-            instituteName: string;
+        CreateClassBody: {
+            code: string;
+            reservations: number[];
             courseId: number;
-            courseCode: string;
             studyPeriodId: number;
-            studyPeriodName: string;
-            _paths: {
-                entity: string;
-                institute: string;
-                studyPeriod: string;
-                course: string;
-            };
+            professorIds: number[];
+        };
+        PatchClassBody: {
+            id: number;
+            code: string;
+            reservations: number[];
+            courseId: number;
+            studyPeriodId: number;
+            professorIds: number[];
         };
         /** @enum {string} */
         DaysOfWeekEnum: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
@@ -970,37 +1981,54 @@ export interface components {
             start: string;
             end: string;
             roomId: number;
-            roomCode: string;
             classId: number;
-            className: string;
+            roomCode: string;
+            classCode: string;
             instituteId: number;
-            instituteName: string;
+            instituteCode: string;
             courseId: number;
             courseCode: string;
-            courseOfferingId: number;
-            periodId: number;
-            periodName: string;
+            studyPeriodId: number;
+            studyPeriodCode: string;
             _paths: {
                 entity: string;
                 studyPeriod: string;
                 institute: string;
                 course: string;
-                courseOffering: string;
                 class: string;
             };
         };
+        CreateClassScheduleBody: {
+            dayOfWeek: components["schemas"]["DaysOfWeekEnum"];
+            start: string;
+            end: string;
+            roomId: number;
+            classId: number;
+        };
+        PatchClassScheduleBody: {
+            id: number;
+            dayOfWeek: components["schemas"]["DaysOfWeekEnum"];
+            start: string;
+            end: string;
+            roomId: number;
+            classId: number;
+        };
         StudyPeriodEntity: {
             id: number;
-            name: string;
-            /** Format: date */
+            code: string;
             startDate: string;
-            /** Format: date */
-            endDate: string;
             _paths: {
-                courseOfferings: string;
                 classes: string;
                 classSchedules: string;
             };
+        };
+        CreateStudyPeriodBody: {
+            code: string;
+            startDate: string;
+        };
+        PatchStudyPeriodBody: {
+            code: string;
+            startDate: string;
         };
         RoomEntity: {
             id: number;
@@ -1008,6 +2036,12 @@ export interface components {
             _paths: {
                 entity: string;
             };
+        };
+        CreateRoomBody: {
+            code: string;
+        };
+        PatchRoomBody: {
+            code: string;
         };
     };
     responses: never;
