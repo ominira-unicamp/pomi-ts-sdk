@@ -1,15 +1,15 @@
 # pomi-sdk
 
-To install dependencies:
-
+## Dependências
 ```bash
-bun install
+npm install
 ```
 
-To run:
+## Execução do ambiente de desenvolvimento
 
 ```bash
-bun run index.ts
+npm run dev
 ```
 
-This project was created using `bun init` in bun v1.3.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+## Licença
+Esse SDK está licenciado com a licença permissiva do MIT, para mais informações consulte o arquivo LICENSE.

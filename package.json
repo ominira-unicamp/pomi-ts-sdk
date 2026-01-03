@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/ominira-unicamp/pomi-ts-sdk.git"
   },
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "author": "goliasvictor",
   "type": "module",
   "main": "./dist/index.js",
