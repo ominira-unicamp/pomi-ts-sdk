@@ -35,9 +35,11 @@
     "generate-specs": "openapi-typescript ./src/openapi/specs.json --properties-required-by-default true >| ./src/openapi/specs.ts"
   },
   "dependencies": {
-    "openapi-fetch": "^0.15.0"
+    "@asteasolutions/zod-to-openapi": "^8.5.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/node": "^22.19.19",
     "openapi-typescript": "^7.10.1",
     "tsx": "^4.21.0",
     "typescript": "^5.7.2"
