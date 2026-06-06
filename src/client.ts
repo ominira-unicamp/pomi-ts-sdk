@@ -1,7 +1,4 @@
-import type { Client } from "openapi-fetch";
-import type { paths } from "./openapi/specs.js";
-
-export type ClientType = Client<paths>;
+export type Fetcher = typeof fetch;
 
 export type AuthData = {
 	accessToken?: string;
