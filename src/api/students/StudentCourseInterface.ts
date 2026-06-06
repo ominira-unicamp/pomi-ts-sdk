@@ -10,15 +10,15 @@ const basePath = [
     pathSeg.literal("student"),
     pathSeg.param("sid"),
     pathSeg.literal("courses")
-] 
+];
 const tags = ["student-courses"];
 const specBuilder = new SpecBuilder(basePath, tags, "courseId");
 
 export const StudentCourseStatus = {
-  ENROLLED: 'ENROLLED',
-  COMPLETED: 'COMPLETED',
-  DROPPED: 'DROPPED'
-} as const
+    ENROLLED: "ENROLLED",
+    COMPLETED: "COMPLETED",
+    DROPPED: "DROPPED"
+} as const;
 
 const res = Object.keys(StudentCourseStatus) as [
     keyof typeof StudentCourseStatus

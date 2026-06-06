@@ -1,12 +1,12 @@
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import z from "zod";
 import { type IO, OutputBuilder } from "../BuildHandler.js";
-import { SpecBuilder } from "../SpecBuilder.js";
 import { pathSeg } from "../PathSegment.js";
+import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("study-periods")]
+const basePath = [pathSeg.literal("study-periods")];
 const tags = ["study-periods"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
@@ -58,7 +58,10 @@ const list = {
     specs: specsBuilder.list(),
     input: z.object({}),
     output: new OutputBuilder()
-        .ok(z.array(studyPeriodEntity), "List of study periods retrieved successfully")
+        .ok(
+            z.array(studyPeriodEntity),
+            "List of study periods retrieved successfully"
+        )
         .build()
 } satisfies IO;
 

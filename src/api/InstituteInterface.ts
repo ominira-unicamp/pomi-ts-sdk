@@ -6,9 +6,9 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("institutes")] 
+const basePath = [pathSeg.literal("institutes")];
 const tags = ["institutes"];
-const specsBuilder = new SpecBuilder(basePath, tags, "id",);
+const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
 const instituteEntity = z
     .object({
@@ -57,7 +57,10 @@ const list = {
     specs: specsBuilder.list(),
     input: z.object({}),
     output: new OutputBuilder()
-        .ok(z.array(instituteEntity), "List of institutes retrieved successfully")
+        .ok(
+            z.array(instituteEntity),
+            "List of institutes retrieved successfully"
+        )
         .build()
 } satisfies IO;
 

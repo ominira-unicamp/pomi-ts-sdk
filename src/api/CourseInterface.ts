@@ -7,7 +7,7 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("courses")] 
+const basePath = [pathSeg.literal("courses")];
 const tags = ["courses"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
@@ -39,13 +39,13 @@ const courseBase = z.object({
 const listCourseQuery = paginationQuerySchema
     .extend({
         instituteId: z.coerce.number().int().optional(),
-        instituteCode: z.string().min(1).optional()
+        instituteCode: z.string().min(1).optional(),
+        courseCode: z.string().min(1).optional()
     })
     .openapi("ListCoursesQuery");
 
-const PageCoursesSchema = getPaginatedSchema(courseEntity).openapi(
-    "PageCourses"
-);
+const PageCoursesSchema =
+    getPaginatedSchema(courseEntity).openapi("PageCourses");
 
 const get = {
     specs: specsBuilder.get(),
@@ -102,7 +102,7 @@ const patch = {
         .notFound()
         .build()
 } satisfies IO;
-    
+
 const remove = {
     specs: specsBuilder.remove(),
     input: z.object({

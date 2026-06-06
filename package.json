@@ -42,7 +42,7 @@
     "@types/node": "^22.19.19",
     "openapi-typescript": "^7.10.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "typescript": ">=5.0.0"

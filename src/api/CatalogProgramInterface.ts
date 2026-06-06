@@ -6,20 +6,20 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("catalog-programs")] 
+const basePath = [pathSeg.literal("catalog-programs")];
 const tags = ["catalog-programs"];
-const specsBuilder = new SpecBuilder(basePath, tags, "id",);
+const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
 export const CourseBlockType = {
-  mandatory: 'mandatory',
-  elective: 'elective'
-} as const
+    mandatory: "mandatory",
+    elective: "elective"
+} as const;
 
 export const CourseRequirementType = {
-  any: 'any',
-  prefix: 'prefix',
-  specific: 'specific'
-} as const
+    any: "any",
+    prefix: "prefix",
+    specific: "specific"
+} as const;
 
 const courseRequirementSchema = z.object({
     id: z.number().int(),
@@ -40,7 +40,6 @@ const courseBlockSetSchema = z.object({
     mandatory: z.array(courseRequirementSchema),
     electives: z.array(electiveBlockSchema)
 });
-
 
 const catalogProgramEntity = z
     .object({
@@ -192,10 +191,7 @@ const list = {
             .object({
                 catalogId: z.string().pipe(z.coerce.number()).pipe(z.number()),
                 programId: z.string().pipe(z.coerce.number()).pipe(z.number()),
-                programCode: z
-                    .string()
-                    .pipe(z.coerce.number())
-                    .pipe(z.number())
+                programCode: z.string().pipe(z.coerce.number()).pipe(z.number())
             })
             .partial()
     }),
@@ -244,7 +240,7 @@ const create = {
         .build()
 } satisfies IO;
 
-const patch  = {
+const patch = {
     specs: specsBuilder.patch(),
     input: z.object({
         path: z.object({
@@ -266,7 +262,7 @@ const patch  = {
         .build()
 } satisfies IO;
 
-const remove   = {
+const remove = {
     specs: specsBuilder.remove(),
     input: z.object({
         path: z.object({

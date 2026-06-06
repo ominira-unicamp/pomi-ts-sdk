@@ -1,12 +1,12 @@
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import z from "zod";
 import { type IO, OutputBuilder } from "../BuildHandler.js";
-import { SpecBuilder } from "../SpecBuilder.js";
 import { pathSeg } from "../PathSegment.js";
+import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("programs")]
+const basePath = [pathSeg.literal("programs")];
 const tags = ["programs"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 

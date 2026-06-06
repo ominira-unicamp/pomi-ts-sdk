@@ -6,12 +6,12 @@ import {
     paginationQuerySchema,
     type PaginationQueryType
 } from "../pagination.js";
-import { SpecBuilder } from "../SpecBuilder.js";
 import { pathSeg } from "../PathSegment.js";
+import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("professors")]
+const basePath = [pathSeg.literal("professors")];
 const tags = ["professors"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
@@ -49,9 +49,8 @@ const listProfessorsQuery = paginationQuerySchema
     })
     .openapi("ListProfessorsQuery");
 
-const PageProfessorsSchema = getPaginatedSchema(professorEntity).openapi(
-    "PageProfessors"
-);
+const PageProfessorsSchema =
+    getPaginatedSchema(professorEntity).openapi("PageProfessors");
 
 const get = {
     specs: specsBuilder.get(),

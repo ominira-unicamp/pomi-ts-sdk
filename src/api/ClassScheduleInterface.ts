@@ -11,7 +11,7 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("class-schedules")] 
+const basePath = [pathSeg.literal("class-schedules")];
 const tags = ["class-schedules"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
@@ -98,9 +98,8 @@ const getClassSchedulesQuery = paginationQuerySchema
     })
     .openapi("GetClassSchedulesQuery");
 
-const ClassSchedulePageSchema = getPaginatedSchema(classScheduleEntity).openapi(
-    "PageClassSchedules"
-);
+const ClassSchedulePageSchema =
+    getPaginatedSchema(classScheduleEntity).openapi("PageClassSchedules");
 
 const get = {
     specs: specsBuilder.get(),

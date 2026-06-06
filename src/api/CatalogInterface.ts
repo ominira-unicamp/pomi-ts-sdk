@@ -6,7 +6,7 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("catalogs")] 
+const basePath = [pathSeg.literal("catalogs")];
 const tags = ["catalogs"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 

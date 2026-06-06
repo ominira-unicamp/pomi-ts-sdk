@@ -6,9 +6,9 @@ import { SpecBuilder } from "../../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("students")] 
+const basePath = [pathSeg.literal("students")];
 const tags = ["students"];
-const specsBuilder = new SpecBuilder(basePath, tags, "id",);
+const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
 const studentEntity = z
     .object({
@@ -105,7 +105,7 @@ const remove = {
         .noContent("Student deleted successfully")
         .notFound()
         .build()
-}satisfies IO;
+} satisfies IO;
 
 export default {
     schema: studentEntity,

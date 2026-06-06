@@ -11,7 +11,7 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("classes")] 
+const basePath = [pathSeg.literal("classes")];
 const tags = ["classes"];
 const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
@@ -68,6 +68,7 @@ const patchClassBody = classBaseSchema.partial().openapi("PatchClassBody");
 
 const listClassesQuery = paginationQuerySchema
     .extend({
+        classCode: z.string().optional(),
         instituteId: z.coerce.number().int().optional(),
         instituteCode: z.string().optional(),
         courseId: z.coerce.number().int().optional(),
@@ -114,7 +115,7 @@ const create = {
         .created(classEntity, "Class created successfully")
         .badRequest()
         .build()
-} satisfies IO; 
+} satisfies IO;
 
 const patch = {
     specs: specsBuilder.patch(),

@@ -6,9 +6,9 @@ import { SpecBuilder } from "../SpecBuilder.js";
 
 extendZodWithOpenApi(z);
 
-const basePath = [pathSeg.literal("languages")]
+const basePath = [pathSeg.literal("languages")];
 const tags = ["languages"];
-const specsBuilder = new SpecBuilder(basePath, tags, "id",);
+const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
 const schema = z
     .object({

@@ -9,9 +9,9 @@ const basePath = [
     pathSeg.literal("student"),
     pathSeg.param("sid"),
     pathSeg.literal("curricula")
-] 
+];
 const tags = ["curricula"];
-const specBuilder = new SpecBuilder(basePath, tags, "id",);
+const specBuilder = new SpecBuilder(basePath, tags, "id");
 
 const curriculumEntity = z
     .object({
@@ -54,7 +54,10 @@ const list = {
         })
     }),
     output: new OutputBuilder()
-        .ok(z.array(curriculumEntity), "List of curricula retrieved successfully")
+        .ok(
+            z.array(curriculumEntity),
+            "List of curricula retrieved successfully"
+        )
         .build()
 } satisfies IO;
 

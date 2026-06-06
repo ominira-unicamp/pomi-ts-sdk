@@ -10,9 +10,9 @@ const basePath = [
     pathSeg.literal("student"),
     pathSeg.param("sid"),
     pathSeg.literal("period-plannings")
-] 
+];
 const tags = ["period-plannings"];
-const specsBuilder = new SpecBuilder(basePath, tags, "id",);
+const specsBuilder = new SpecBuilder(basePath, tags, "id");
 
 const periodPlanningEntity = z
     .object({
