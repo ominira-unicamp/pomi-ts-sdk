@@ -15,6 +15,11 @@ import {
   type CreateClassCommand, type DeleteClassCommand, type GetClassCommand,
   type ListClasssCommand, type PatchClassCommand,
 
+  // ClassSchedule
+  createClassSchedule, deleteClassSchedule, getClassSchedule, listClassSchedules, patchClassSchedule,
+  type CreateClassScheduleCommand, type DeleteClassScheduleCommand, type GetClassScheduleCommand,
+  type ListClassSchedulesCommand, type PatchClassScheduleCommand,
+
   // Course
   createCourse, deleteCourse, getCourse, listCourses, patchCourse,
   type CreateCourseCommand, type DeleteCourseCommand, type GetCourseCommand,
@@ -56,9 +61,9 @@ import {
   type ListStudyPeriodsCommand, type PatchStudyPeriodCommand,
 
   // Curriculum (students)
-  createCurriculum, deleteCurriculum, getCurriculum, listCurriculums, patchCurriculum,
+  createCurriculum, deleteCurriculum, getCurriculum, listCurricula, patchCurriculum,
   type CreateCurriculumCommand, type DeleteCurriculumCommand, type GetCurriculumCommand,
-  type ListCurriculumsCommand, type PatchCurriculumCommand,
+  type ListCurriculaCommand, type PatchCurriculumCommand,
 
   // PeriodPlan (students)
   createPeriodPlan, deletePeriodPlan, getPeriodPlan, listPeriodPlans, patchPeriodPlan,
@@ -110,6 +115,15 @@ export class ClassClient {
   create = (command: CreateClassCommand) => createClass(this.pomiClient.fetch, command);
   patch = (command: PatchClassCommand) => patchClass(this.pomiClient.fetch, command);
   delete = (command: DeleteClassCommand) => deleteClass(this.pomiClient.fetch, command);
+}
+
+export class ClassScheduleClient {
+  constructor(private pomiClient: PomiClient) {}
+  get = (command: GetClassScheduleCommand) => getClassSchedule(this.pomiClient.fetch, command);
+  list = (command: ListClassSchedulesCommand) => listClassSchedules(this.pomiClient.fetch, command);
+  create = (command: CreateClassScheduleCommand) => createClassSchedule(this.pomiClient.fetch, command);
+  patch = (command: PatchClassScheduleCommand) => patchClassSchedule(this.pomiClient.fetch, command);
+  delete = (command: DeleteClassScheduleCommand) => deleteClassSchedule(this.pomiClient.fetch, command);
 }
 
 export class CourseClient {
@@ -187,7 +201,7 @@ export class StudyPeriodClient {
 export class CurriculumClient {
   constructor(private pomiClient: PomiClient) {}
   get = (command: GetCurriculumCommand) => getCurriculum(this.pomiClient.fetch, command);
-  list = (command: ListCurriculumsCommand) => listCurriculums(this.pomiClient.fetch, command);
+  list = (command: ListCurriculaCommand) => listCurricula(this.pomiClient.fetch, command);
   create = (command: CreateCurriculumCommand) => createCurriculum(this.pomiClient.fetch, command);
   patch = (command: PatchCurriculumCommand) => patchCurriculum(this.pomiClient.fetch, command);
   delete = (command: DeleteCurriculumCommand) => deleteCurriculum(this.pomiClient.fetch, command);
@@ -233,6 +247,7 @@ export class PomiClient {
   public readonly catalogs: CatalogClient;
   public readonly catalogPrograms: CatalogProgramClient;
   public readonly classes: ClassClient;
+  public readonly classSchedules: ClassScheduleClient;
   public readonly courses: CourseClient;
   public readonly institutes: InstituteClient;
   public readonly languages: LanguageClient;
@@ -241,7 +256,7 @@ export class PomiClient {
   public readonly rooms: RoomClient;
   public readonly specializations: SpecializationClient;
   public readonly studyPeriods: StudyPeriodClient;
-  public readonly curriculums: CurriculumClient;
+  public readonly curricula: CurriculumClient;
   public readonly periodPlans: PeriodPlanClient;
   public readonly students: StudentClient;
   public readonly studentCourses: StudentCourseClient;
@@ -272,6 +287,7 @@ export class PomiClient {
     this.catalogs = new CatalogClient(this);
     this.catalogPrograms = new CatalogProgramClient(this);
     this.classes = new ClassClient(this);
+    this.classSchedules = new ClassScheduleClient(this);
     this.courses = new CourseClient(this);
     this.institutes = new InstituteClient(this);
     this.languages = new LanguageClient(this);
@@ -280,7 +296,7 @@ export class PomiClient {
     this.rooms = new RoomClient(this);
     this.specializations = new SpecializationClient(this);
     this.studyPeriods = new StudyPeriodClient(this);
-    this.curriculums = new CurriculumClient(this);
+    this.curricula = new CurriculumClient(this);
     this.periodPlans = new PeriodPlanClient(this);
     this.students = new StudentClient(this);
     this.studentCourses = new StudentCourseClient(this);

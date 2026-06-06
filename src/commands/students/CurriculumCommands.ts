@@ -17,14 +17,14 @@ export type PatchCurriculumBody = z.infer<typeof CurriculumApi.patch.input>["bod
 export type DeleteCurriculumPath = z.infer<typeof CurriculumApi.remove.input>["path"];
 
 export type GetCurriculumCommand = Command<GetCurriculumPath, never, never>;
-export type ListCurriculumsCommand = Command<ListCurriculaPath, never, never>;
+export type ListCurriculaCommand = Command<ListCurriculaPath, never, never>;
 export type CreateCurriculumCommand = Command<CreateCurriculumPath, never, never>;
 export type PatchCurriculumCommand = Command<PatchCurriculumPath, never, PatchCurriculumBody>;
 export type DeleteCurriculumCommand = Command<DeleteCurriculumPath, never, never>;
 
 export const getCurriculum: CommandExecutor<GetCurriculumCommand, CurriculumEntity>
 	= buildCommandExecutor(getCurriculumInstruction);
-export const listCurriculums: CommandExecutor<ListCurriculumsCommand, CurriculumEntity[]>
+export const listCurricula: CommandExecutor<ListCurriculaCommand, CurriculumEntity[]>
 	= buildCommandExecutor(listCurriculumInstruction);
 export const createCurriculum: CommandExecutor<CreateCurriculumCommand, CurriculumEntity>
 	= buildCommandExecutor(createCurriculumInstruction);

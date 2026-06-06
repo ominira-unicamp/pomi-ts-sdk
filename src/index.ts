@@ -1,4 +1,3 @@
-import type { DeleteCatalogProgramCommand } from "./commands/CatalogProgramCommands.js";
 import { PomiClient } from "./pomiClient.js";
 
 // =============================================================================
@@ -49,6 +48,21 @@ export type {
 	PatchClassCommand,
 	DeleteClassCommand
 } from "./commands/ClassCommands.js";
+
+export type {
+	ClassScheduleEntity,
+	GetClassSchedulePath,
+	ListClassSchedulesQuery,
+	CreateClassScheduleBody,
+	PatchClassSchedulePath,
+	PatchClassScheduleBody,
+	DeleteClassSchedulePath,
+	GetClassScheduleCommand,
+	ListClassSchedulesCommand,
+	CreateClassScheduleCommand,
+	PatchClassScheduleCommand,
+	DeleteClassScheduleCommand
+} from "./commands/ClassScheduleCommands.js";
 
 export type {
 	CourseEntity,
@@ -179,7 +193,7 @@ export type {
 	PatchCurriculumBody,
 	DeleteCurriculumPath,
 	GetCurriculumCommand,
-	ListCurriculumsCommand,
+	ListCurriculaCommand,
 	CreateCurriculumCommand,
 	PatchCurriculumCommand,
 	DeleteCurriculumCommand,
@@ -265,6 +279,13 @@ export {
 	deleteClass
 } from "./commands/ClassCommands.js";
 export {
+	getClassSchedule,
+	listClassSchedules,
+	createClassSchedule,
+	patchClassSchedule,
+	deleteClassSchedule
+} from "./commands/ClassScheduleCommands.js";
+export {
 	getCourse,
 	listCourses,
 	createCourse,
@@ -322,7 +343,7 @@ export {
 } from "./commands/StudyPeriodInterface.js";
 export {
 	getCurriculum,
-	listCurriculums,
+	listCurricula,
 	createCurriculum,
 	patchCurriculum,
 	deleteCurriculum
