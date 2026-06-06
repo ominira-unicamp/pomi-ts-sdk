@@ -123,7 +123,7 @@ const buildPathFromTemplate = (
 			}
 			return encodeURIComponent(String(value));
 		})
-		.join("");
+		.join("/");
 
 	return { path, missing };
 };
