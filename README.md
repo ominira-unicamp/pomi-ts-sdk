@@ -1,8 +1,180 @@
 # POMI SDK
 
-O pacote contém o cliente operacional gerado em `src/generated`, derivado dos contratos OpenAPI Data e App.
+[![npm version](https://img.shields.io/npm/v/@ominira/pomi-sdk.svg)](https://www.npmjs.com/package/@ominira/pomi-sdk)
 
-O gerador fica em `sdk-gen`, separando o carregamento e a validação do contrato da emissão dos artefatos. A geração recebe os documentos OpenAPI por parâmetro de linha de comando, com variáveis de ambiente como alternativa; ela não depende da posição deste repositório no disco.
+Cliente TypeScript tipado para consumir as APIs Data e App do POMI. O pacote oferece operações organizadas por recurso, autenticação, paginação, filtros, tipos de domínio e tratamento de erros derivados dos contratos OpenAPI.
+
+As APIs publicadas estão disponíveis em:
+
+- Data API: `https://data.pomi.ominira.dev`;
+- App API: `https://app.pomi.ominira.dev`.
+
+## Instalação
+
+O pacote requer Node.js 18 ou superior.
+
+```bash
+npm install @ominira/pomi-sdk
+```
+
+## Início rápido
+
+Crie uma instância do cliente informando as URLs das duas APIs:
+
+```ts
+import { createPomiSdk } from '@ominira/pomi-sdk'
+
+const sdk = createPomiSdk({
+  dataApiUrl: 'https://data.pomi.ominira.dev',
+  appApiUrl: 'https://app.pomi.ominira.dev',
+})
+
+const page = await sdk.data.courses.list({
+  filter: { credits: { gte: 4 } },
+})
+
+console.log(page.data)
+console.log(page.links.next)
+```
+
+O namespace `data` contém os recursos da API pública de dados acadêmicos. O namespace `app` contém os recursos da aplicação, incluindo operações autenticadas.
+
+## Configuração do cliente
+
+`createPomiSdk` aceita as seguintes opções:
+
+| Opção | Obrigatória | Descrição |
+| --- | --- | --- |
+| `dataApiUrl` | sim | URL base da Data API. |
+| `appApiUrl` | sim | URL base da App API. |
+| `getAccessToken` | não | Função assíncrona que fornece o token Bearer para operações autenticadas. |
+| `fetch` | não | Implementação de `fetch` usada pelo cliente, útil para testes ou runtimes customizados. |
+
+### Autenticação
+
+Forneça o token ao criar o cliente quando todas as operações autenticadas compartilharem a mesma sessão:
+
+```ts
+const sdk = createPomiSdk({
+  dataApiUrl: 'https://data.pomi.ominira.dev',
+  appApiUrl: 'https://app.pomi.ominira.dev',
+  getAccessToken: async () => accessToken,
+})
+
+const currentUser = await sdk.app.currentUser.get()
+```
+
+Também é possível fornecer a autenticação apenas para uma chamada. O contexto da chamada tem precedência sobre a configuração global:
+
+```ts
+const currentUser = await sdk.app.currentUser.get({
+  getAccessToken: async () => accessToken,
+})
+```
+
+Operações públicas não solicitam token.
+
+## Recursos e operações
+
+O cliente agrupa operações relacionadas em recursos com métodos tipados. Conforme as operações disponíveis no contrato, um recurso pode expor métodos como `get`, `list`, `create`, `update` e `delete`.
+
+```ts
+const course = await sdk.data.courses.get(42)
+
+const courses = await sdk.data.courses.list({
+  filter: { code: { eq: 'MC102' } },
+})
+```
+
+Os argumentos, filtros, corpos e respostas são inferidos pelo TypeScript a partir do contrato da operação.
+
+### Paginação
+
+`list` retorna uma página com `data`, `quantity`, `total` e `links`. Os links `self`, `first`, `last`, `next` e `previous` são fornecidos pela API; `next` e `previous` podem ser `null`.
+
+Para carregar todos os itens diretamente, use `listAll`:
+
+```ts
+const courses = await sdk.data.courses.listAll({
+  filter: { credits: { gte: 4 } },
+})
+```
+
+Para processar uma página por vez, use o iterador assíncrono `pages`:
+
+```ts
+for await (const page of sdk.data.courses.pages()) {
+  for (const course of page.data) {
+    console.log(course.code)
+  }
+}
+```
+
+`listAll` e `pages` seguem `page.links.next` até a última página.
+
+## Tipos e metadados
+
+Tipos de domínio, entradas de operações, filtros, enums e problemas podem ser importados pelos entrypoints de cada API:
+
+```ts
+import type {
+  Course,
+  listCoursesInput,
+} from '@ominira/pomi-sdk/generated/data'
+import type { Student } from '@ominira/pomi-sdk/generated/app'
+
+type CourseQuery = listCoursesInput
+```
+
+O namespace `generated` expõe os artefatos gerados quando a aplicação precisa inspecionar capacidades do contrato em runtime:
+
+```ts
+import { generated } from '@ominira/pomi-sdk'
+
+const courseFilters = generated.data.filterCapabilities.listCourses
+```
+
+### Entry points
+
+| Import | Conteúdo |
+| --- | --- |
+| `@ominira/pomi-sdk` | Cliente, erros, tipos principais e namespace `generated`. |
+| `@ominira/pomi-sdk/errors` | Erros e funções auxiliares de validação. |
+| `@ominira/pomi-sdk/generated` | Artefatos gerados das APIs Data e App. |
+| `@ominira/pomi-sdk/generated/data` | Tipos, operações, recursos e metadados da Data API. |
+| `@ominira/pomi-sdk/generated/app` | Tipos, operações, recursos e metadados da App API. |
+| `@ominira/pomi-sdk/generated-client` | Cliente operacional em um entrypoint dedicado. |
+| `@ominira/pomi-sdk/generated-pagination` | Auxiliar de paginação de baixo nível. |
+
+## Tratamento de erros
+
+Respostas HTTP sem sucesso lançam `ApiError`. Quando a API retorna `application/problem+json`, os detalhes ficam disponíveis em `error.problem`.
+
+```ts
+import { isApiError } from '@ominira/pomi-sdk'
+
+try {
+  await sdk.data.courses.get(42)
+} catch (error) {
+  if (isApiError(error)) {
+    console.error(error.status, error.problem?.detail)
+  }
+}
+```
+
+Para problemas conhecidos de uma operação, `sdk.errors.is` permite discriminar o valor pelo campo `type` preservando a inferência de tipos.
+
+## Contribuição
+
+Instale as dependências antes de executar o gerador ou as validações:
+
+```bash
+npm ci
+```
+
+### Atualização dos contratos e artefatos
+
+O cliente em `src/generated` é derivado dos contratos OpenAPI Data e App. O gerador fica em `sdk-gen` e recebe os documentos por parâmetro de linha de comando, sem depender da posição deste repositório no disco.
 
 Para exportar os contratos a partir de um checkout do backend:
 
@@ -20,57 +192,34 @@ npm run generate -- \
 npm run generate:check -- \
   --data-openapi ../openapi.json \
   --app-openapi ../pomi-backend/packages/app/app-openapi.json
-
-npm run check
-npm test
-npm run build
 ```
 
-`--data-openapi` e `--app-openapi` têm precedência. Como alternativa, use `POMI_DATA_OPENAPI_PATH` e `POMI_APP_OPENAPI_PATH`; os nomes legados `DATA_OPENAPI_PATH`, `OPENAPI_PATH` (Data) e `APP_OPENAPI_PATH` (App) continuam aceitos para compatibilidade.
+`--data-openapi` e `--app-openapi` têm precedência. Como alternativa, use `POMI_DATA_OPENAPI_PATH` e `POMI_APP_OPENAPI_PATH`; os nomes legados `DATA_OPENAPI_PATH`, `OPENAPI_PATH` para Data e `APP_OPENAPI_PATH` para App continuam aceitos para compatibilidade.
 
-A camada operacional é exposta por `createPomiSdk` e pelo namespace `generated`:
+O gerador exige `operationId` e metadados explícitos `x-pomi-sdk` e `x-pomi-schema`. Operações depreciadas podem declarar `x-pomi-sdk: false` e permanecem apenas no tipo OpenAPI bruto. A geração usa staging e substitui os artefatos somente após sucesso. `generate:check` verifica se os arquivos versionados estão atualizados sem modificá-los e apresenta a cobertura do contrato.
 
-```ts
-import { createPomiSdk, generated } from '@ominira/pomi-sdk'
+Os schemas podem declarar campos de transporte, identidade, somente leitura, relações e aliases de domínio. A paginação usa o envelope `data`, `quantity`, `total` e `links`, com sua política declarada em `x-pomi-pagination`.
 
-const sdk = createPomiSdk({
-  dataApiUrl: 'https://data.example.com',
-  appApiUrl: 'https://app.example.com',
-})
+Execute a validação completa antes de integrar uma mudança:
 
-const courses = await sdk.data.courses.list({
-  filter: { credits: { gte: 4 } },
-})
-
-const filters = generated.data.filterCapabilities.listCourses
+```bash
+npm run validate
 ```
 
-O frontend não precisa conhecer as rotas HTTP. Os metadados gerados também expõem filtros, problemas, schemas, enums e construtores de URL.
+Esse comando executa os testes do gerador, as verificações arquiteturais e de tipos, os testes do cliente e o build.
 
-O gerador exige `operationId` e metadados explícitos `x-pomi-sdk` e `x-pomi-schema`. Operações depreciadas podem declarar `x-pomi-sdk: false` e permanecem apenas no tipo OpenAPI bruto. A geração é feita em staging e substitui os artefatos somente após sucesso. O modo `generate:check` confere se os arquivos versionados estão atualizados sem modificá-los e apresenta um relatório de cobertura do contrato.
+### Publicação
 
-Os schemas podem declarar campos de transporte, identidade, somente leitura, relações e aliases de domínio. A paginação usa o envelope uniforme `data`, `quantity`, `total` e `links`, com sua política declarada em `x-pomi-pagination`.
+O pacote é publicado no npm pelo workflow `publish.yml` quando uma tag Git `vX.Y.Z` é enviada. A tag deve corresponder exatamente à versão de `package.json`.
 
-## Publicação
+O Trusted Publisher de `@ominira/pomi-sdk` está configurado com GitHub Actions, organização `ominira-unicamp`, repositório `pomi-ts-sdk`, workflow `publish.yml`, ambiente `npm` e permissão para `npm publish`. A integração usa OIDC e não requer o secret `NPM_TOKEN`.
 
-O pacote é publicado no npm pelo workflow `publish.yml` quando uma tag Git `vX.Y.Z` é enviada. A tag deve ser exatamente `v` seguida pela versão de `package.json`, por exemplo `v0.4.1`.
+Para publicar uma nova versão:
 
-Antes da primeira publicação automatizada, configure em `@ominira/pomi-sdk` no npm um Trusted Publisher com:
+1. atualize a versão em `package.json` e `package-lock.json`;
+2. execute `npm run validate`;
+3. integre a alteração validada na branch principal;
+4. crie e envie a tag `vX.Y.Z` apontando para esse commit;
+5. acompanhe o workflow `Publish package` e aprove o ambiente `npm`, caso ele exija revisão.
 
-- provedor: GitHub Actions;
-- organização: `ominira-unicamp`;
-- repositório: `pomi-ts-sdk`;
-- workflow: `publish.yml`;
-- ambiente: `npm`;
-- ação permitida: `npm publish`.
-
-Crie também o ambiente `npm` no GitHub. Ele pode ter required reviewers para exigir aprovação antes da publicação. O workflow usa OIDC e não requer um secret `NPM_TOKEN`.
-
-O fluxo de release é:
-
-1. atualizar a versão em `package.json` e `package-lock.json`;
-2. integrar e validar a alteração na branch principal;
-3. criar e enviar a tag `vX.Y.Z` apontando para esse commit;
-4. aprovar o deployment do ambiente `npm`, caso essa proteção esteja habilitada.
-
-A publicação executa `prepublishOnly`, que roda testes do gerador, checagem arquitetural e de tipos, testes do cliente e build antes de enviar o pacote.
+`release:verify` rejeita tags que não correspondam à versão declarada. Antes do envio ao npm, `prepublishOnly` executa novamente a validação completa.
