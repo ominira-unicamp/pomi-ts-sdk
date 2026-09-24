@@ -1,6 +1,6 @@
 {
   "name": "@ominira/pomi-sdk",
-  "version": "0.5.0",
+  "version": "0.4.1",
   "description": "Planejador da Ominira SDK",
   "homepage": "https://github.com/ominira-unicamp/pomi-ts-sdk#readme",
   "bugs": {
@@ -9,6 +9,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ominira-unicamp/pomi-ts-sdk.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "license": "MIT",
   "author": "goliasvictor",
@@ -63,7 +67,9 @@
     "check": "npm run architecture:check && npm run typecheck",
     "test": "node --import tsx --test src/generated*.test.ts",
     "build": "tsc -p tsconfig.build.json",
-    "prepublishOnly": "npm run check && npm test && npm run build"
+    "validate": "npm run test:generator && npm run check && npm test && npm run build",
+    "release:verify": "node scripts/verify-release-version.mjs",
+    "prepublishOnly": "npm run validate"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",

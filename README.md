@@ -50,3 +50,27 @@ O frontend não precisa conhecer as rotas HTTP. Os metadados gerados também exp
 O gerador exige `operationId` e metadados explícitos `x-pomi-sdk` e `x-pomi-schema`. Operações depreciadas podem declarar `x-pomi-sdk: false` e permanecem apenas no tipo OpenAPI bruto. A geração é feita em staging e substitui os artefatos somente após sucesso. O modo `generate:check` confere se os arquivos versionados estão atualizados sem modificá-los e apresenta um relatório de cobertura do contrato.
 
 Os schemas podem declarar campos de transporte, identidade, somente leitura, relações e aliases de domínio. A paginação usa o envelope uniforme `data`, `quantity`, `total` e `links`, com sua política declarada em `x-pomi-pagination`.
+
+## Publicação
+
+O pacote é publicado no npm pelo workflow `publish.yml` quando uma tag Git `vX.Y.Z` é enviada. A tag deve ser exatamente `v` seguida pela versão de `package.json`, por exemplo `v0.4.1`.
+
+Antes da primeira publicação automatizada, configure em `@ominira/pomi-sdk` no npm um Trusted Publisher com:
+
+- provedor: GitHub Actions;
+- organização: `ominira-unicamp`;
+- repositório: `pomi-ts-sdk`;
+- workflow: `publish.yml`;
+- ambiente: `npm`;
+- ação permitida: `npm publish`.
+
+Crie também o ambiente `npm` no GitHub. Ele pode ter required reviewers para exigir aprovação antes da publicação. O workflow usa OIDC e não requer um secret `NPM_TOKEN`.
+
+O fluxo de release é:
+
+1. atualizar a versão em `package.json` e `package-lock.json`;
+2. integrar e validar a alteração na branch principal;
+3. criar e enviar a tag `vX.Y.Z` apontando para esse commit;
+4. aprovar o deployment do ambiente `npm`, caso essa proteção esteja habilitada.
+
+A publicação executa `prepublishOnly`, que roda testes do gerador, checagem arquitetural e de tipos, testes do cliente e build antes de enviar o pacote.
