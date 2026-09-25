@@ -421,13 +421,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -499,13 +497,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -722,13 +718,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -815,13 +809,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -908,13 +900,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1001,13 +991,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1094,13 +1082,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1187,13 +1173,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1280,13 +1264,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1373,13 +1355,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1466,13 +1446,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1655,13 +1633,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1748,13 +1724,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1841,13 +1815,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -1934,13 +1906,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2027,13 +1997,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2120,13 +2088,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2213,13 +2179,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2306,13 +2270,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2399,13 +2361,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2492,13 +2452,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2585,13 +2543,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2678,13 +2634,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2771,13 +2725,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2864,13 +2816,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -2957,13 +2907,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -3061,13 +3009,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -3354,13 +3300,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -3599,13 +3543,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -4091,13 +4033,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -4412,13 +4352,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -4627,13 +4565,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -5128,13 +5064,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -5782,13 +5716,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -5985,13 +5917,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -6173,13 +6103,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -6410,13 +6338,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -6858,13 +6784,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -7308,13 +7232,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -7531,13 +7453,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -7781,13 +7701,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -8306,13 +8224,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -8555,13 +8471,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -8758,13 +8672,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -9003,13 +8915,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -9373,13 +9283,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -9589,13 +9497,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -9870,13 +9776,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -10077,13 +9981,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -10294,13 +10196,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -10552,13 +10452,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -10855,13 +10753,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {
@@ -11165,13 +11061,11 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/problem+json",
                         "schema": {
-                            "$ref": "#/components/schemas/InternalServerErrorProblem"
+                            "$ref": "#/components/schemas/ServerErrorProblem"
                         }
                     }
                 ],
-                "problemTypes": [
-                    "urn:pomi:problem:internal-server-error"
-                ]
+                "problemTypes": []
             }
         ],
         "query": {

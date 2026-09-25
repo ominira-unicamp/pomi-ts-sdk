@@ -10,12 +10,6 @@ export type YearPeriod = (typeof yearPeriodValues)[number]
 export const planningVisibilityValues = ["PRIVATE", "FRIENDS", "PUBLIC"] as const
 export type PlanningVisibility = (typeof planningVisibilityValues)[number]
 
-export const planningGuideModeValues = ["CURRICULUM", "PROGRAM", "NONE"] as const
-export type PlanningGuideMode = (typeof planningGuideModeValues)[number]
-
-export const planningCurriculumSourceValues = ["SAVED", "SUGGESTION", null] as const
-export type PlanningCurriculumSource = (typeof planningCurriculumSourceValues)[number]
-
 export const dayOfWeekValues = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"] as const
 export type DayOfWeek = (typeof dayOfWeekValues)[number]
 
@@ -57,8 +51,6 @@ export const enumValueNames = {
     "AuthUserStatus": "authUserStatusValues",
     "YearPeriod": "yearPeriodValues",
     "PlanningVisibility": "planningVisibilityValues",
-    "PlanningGuideMode": "planningGuideModeValues",
-    "PlanningCurriculumSource": "planningCurriculumSourceValues",
     "DayOfWeek": "dayOfWeekValues",
     "SharedPlanningVisibility": "sharedPlanningVisibilityValues",
     "CourseEvaluationMode": "courseEvaluationModeValues",

@@ -8,6 +8,10 @@ export type Domain<T> = T extends null
     ? { readonly [Key in keyof T]: Domain<T[Key]> }
     : T
 
+export type DistributiveOmit<T, Key extends PropertyKey> = T extends unknown
+    ? Omit<T, Key>
+    : never
+
 export type PaginationLinks = {
     self: string
     first: string
@@ -65,8 +69,47 @@ export type Department = Domain<DepartmentTransport>
 export type ProfessorPositionTransport = components['schemas']['ProfessorPosition']
 export type ProfessorPosition = Domain<ProfessorPositionTransport>
 
+export type AcademicPositionAffiliationTransport = components['schemas']['AcademicPositionAffiliation']
+export type AcademicPositionAffiliation = Domain<AcademicPositionAffiliationTransport>
+
+export type CareerAcademicPositionAffiliationTransport = components['schemas']['CareerAcademicPositionAffiliation']
+export type CareerAcademicPositionAffiliation = Domain<CareerAcademicPositionAffiliationTransport>
+
+export type CareerAcademicPositionAffiliationDetailsTransport = components['schemas']['CareerAcademicPositionAffiliationDetails']
+export type CareerAcademicPositionAffiliationDetails = Domain<CareerAcademicPositionAffiliationDetailsTransport>
+
 export type CareerReferenceTransport = components['schemas']['CareerReference']
 export type CareerReference = Domain<CareerReferenceTransport>
+
+export type CollaboratorAcademicPositionAffiliationTransport = components['schemas']['CollaboratorAcademicPositionAffiliation']
+export type CollaboratorAcademicPositionAffiliation = Domain<CollaboratorAcademicPositionAffiliationTransport>
+
+export type SeniorAcademicPositionAffiliationTransport = components['schemas']['SeniorAcademicPositionAffiliation']
+export type SeniorAcademicPositionAffiliation = Domain<SeniorAcademicPositionAffiliationTransport>
+
+export type SeniorAcademicPositionAffiliationDetailsTransport = components['schemas']['SeniorAcademicPositionAffiliationDetails']
+export type SeniorAcademicPositionAffiliationDetails = Domain<SeniorAcademicPositionAffiliationDetailsTransport>
+
+export type GeneralSeniorAcademicPositionAffiliationTransport = components['schemas']['GeneralSeniorAcademicPositionAffiliation']
+export type GeneralSeniorAcademicPositionAffiliation = Domain<GeneralSeniorAcademicPositionAffiliationTransport>
+
+export type CareerSeniorAcademicPositionAffiliationTransport = components['schemas']['CareerSeniorAcademicPositionAffiliation']
+export type CareerSeniorAcademicPositionAffiliation = Domain<CareerSeniorAcademicPositionAffiliationTransport>
+
+export type VisitingInvitedAcademicPositionAffiliationTransport = components['schemas']['VisitingInvitedAcademicPositionAffiliation']
+export type VisitingInvitedAcademicPositionAffiliation = Domain<VisitingInvitedAcademicPositionAffiliationTransport>
+
+export type VisitingSpecialistAcademicPositionAffiliationTransport = components['schemas']['VisitingSpecialistAcademicPositionAffiliation']
+export type VisitingSpecialistAcademicPositionAffiliation = Domain<VisitingSpecialistAcademicPositionAffiliationTransport>
+
+export type VisitingSpecialistAcademicPositionAffiliationDetailsTransport = components['schemas']['VisitingSpecialistAcademicPositionAffiliationDetails']
+export type VisitingSpecialistAcademicPositionAffiliationDetails = Domain<VisitingSpecialistAcademicPositionAffiliationDetailsTransport>
+
+export type PostdoctoralProgramAcademicPositionAffiliationTransport = components['schemas']['PostdoctoralProgramAcademicPositionAffiliation']
+export type PostdoctoralProgramAcademicPositionAffiliation = Domain<PostdoctoralProgramAcademicPositionAffiliationTransport>
+
+export type PostdoctoralProgramAcademicPositionAffiliationDetailsTransport = components['schemas']['PostdoctoralProgramAcademicPositionAffiliationDetails']
+export type PostdoctoralProgramAcademicPositionAffiliationDetails = Domain<PostdoctoralProgramAcademicPositionAffiliationDetailsTransport>
 
 export type ProfessorDataPortalProfileTransport = components['schemas']['ProfessorDataPortalProfile']
 export type ProfessorDataPortalProfile = Domain<ProfessorDataPortalProfileTransport>
@@ -86,6 +129,30 @@ export type Catalog = Domain<CatalogTransport>
 export type CatalogCourseTransport = components['schemas']['CatalogCourseEntity']
 export type CatalogCourse = Domain<CatalogCourseTransport>
 
+export type CatalogCoursePrerequisiteItemTransport = components['schemas']['CatalogCoursePrerequisiteItem']
+export type CatalogCoursePrerequisiteItem = Domain<CatalogCoursePrerequisiteItemTransport>
+
+export type CourseCatalogCoursePrerequisiteTransport = components['schemas']['CourseCatalogCoursePrerequisite']
+export type CourseCatalogCoursePrerequisite = Domain<CourseCatalogCoursePrerequisiteTransport>
+
+export type CatalogCoursePrerequisiteCourseDetailsTransport = components['schemas']['CatalogCoursePrerequisiteCourseDetails']
+export type CatalogCoursePrerequisiteCourseDetails = Domain<CatalogCoursePrerequisiteCourseDetailsTransport>
+
+export type SpecialRequirementCatalogCoursePrerequisiteTransport = components['schemas']['SpecialRequirementCatalogCoursePrerequisite']
+export type SpecialRequirementCatalogCoursePrerequisite = Domain<SpecialRequirementCatalogCoursePrerequisiteTransport>
+
+export type CatalogCourseSpecialRequirementTransport = components['schemas']['CatalogCourseSpecialRequirement']
+export type CatalogCourseSpecialRequirement = Domain<CatalogCourseSpecialRequirementTransport>
+
+export type AuthorizationSpecialRequirementTransport = components['schemas']['AuthorizationSpecialRequirement']
+export type AuthorizationSpecialRequirement = Domain<AuthorizationSpecialRequirementTransport>
+
+export type ProgressionCoefficientSpecialRequirementTransport = components['schemas']['ProgressionCoefficientSpecialRequirement']
+export type ProgressionCoefficientSpecialRequirement = Domain<ProgressionCoefficientSpecialRequirementTransport>
+
+export type ProgressionCoefficientSpecialRequirementDetailsTransport = components['schemas']['ProgressionCoefficientSpecialRequirementDetails']
+export type ProgressionCoefficientSpecialRequirementDetails = Domain<ProgressionCoefficientSpecialRequirementDetailsTransport>
+
 export type CoordinatorTransport = components['schemas']['CoordinatorEntity']
 export type Coordinator = Domain<CoordinatorTransport>
 
@@ -98,11 +165,32 @@ export type CourseBlockSet = Domain<CourseBlockSetTransport>
 export type CourseRequirementTransport = components['schemas']['CourseRequirement']
 export type CourseRequirement = Domain<CourseRequirementTransport>
 
+export type AnyCourseRequirementTransport = components['schemas']['AnyCourseRequirement']
+export type AnyCourseRequirement = Domain<AnyCourseRequirementTransport>
+
+export type PrefixCourseRequirementTransport = components['schemas']['PrefixCourseRequirement']
+export type PrefixCourseRequirement = Domain<PrefixCourseRequirementTransport>
+
+export type PrefixCourseRequirementDetailsTransport = components['schemas']['PrefixCourseRequirementDetails']
+export type PrefixCourseRequirementDetails = Domain<PrefixCourseRequirementDetailsTransport>
+
+export type SpecificCourseRequirementTransport = components['schemas']['SpecificCourseRequirement']
+export type SpecificCourseRequirement = Domain<SpecificCourseRequirementTransport>
+
+export type SpecificCourseRequirementDetailsTransport = components['schemas']['SpecificCourseRequirementDetails']
+export type SpecificCourseRequirementDetails = Domain<SpecificCourseRequirementDetailsTransport>
+
 export type ElectiveBlockTransport = components['schemas']['ElectiveBlock']
 export type ElectiveBlock = Domain<ElectiveBlockTransport>
 
 export type CatalogProgramVariantTransport = components['schemas']['CatalogProgramVariant']
 export type CatalogProgramVariant = Domain<CatalogProgramVariantTransport>
+
+export type ProgramCatalogProgramVariantTransport = components['schemas']['ProgramCatalogProgramVariant']
+export type ProgramCatalogProgramVariant = Domain<ProgramCatalogProgramVariantTransport>
+
+export type SpecializationCatalogProgramVariantTransport = components['schemas']['SpecializationCatalogProgramVariant']
+export type SpecializationCatalogProgramVariant = Domain<SpecializationCatalogProgramVariantTransport>
 
 export type CatalogProgramLanguageTransport = components['schemas']['CatalogProgramLanguage']
 export type CatalogProgramLanguage = Domain<CatalogProgramLanguageTransport>
@@ -265,8 +353,99 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
+    "AcademicPositionAffiliation": {
+        "schema": "AcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CareerAcademicPositionAffiliation": {
+        "schema": "CareerAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CareerAcademicPositionAffiliationDetails": {
+        "schema": "CareerAcademicPositionAffiliationDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
     "CareerReference": {
         "schema": "CareerReference",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CollaboratorAcademicPositionAffiliation": {
+        "schema": "CollaboratorAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SeniorAcademicPositionAffiliation": {
+        "schema": "SeniorAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SeniorAcademicPositionAffiliationDetails": {
+        "schema": "SeniorAcademicPositionAffiliationDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "GeneralSeniorAcademicPositionAffiliation": {
+        "schema": "GeneralSeniorAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CareerSeniorAcademicPositionAffiliation": {
+        "schema": "CareerSeniorAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "VisitingInvitedAcademicPositionAffiliation": {
+        "schema": "VisitingInvitedAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "VisitingSpecialistAcademicPositionAffiliation": {
+        "schema": "VisitingSpecialistAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "VisitingSpecialistAcademicPositionAffiliationDetails": {
+        "schema": "VisitingSpecialistAcademicPositionAffiliationDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PostdoctoralProgramAcademicPositionAffiliation": {
+        "schema": "PostdoctoralProgramAcademicPositionAffiliation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PostdoctoralProgramAcademicPositionAffiliationDetails": {
+        "schema": "PostdoctoralProgramAcademicPositionAffiliationDetails",
         "transportFields": [],
         "identityFields": [],
         "readOnlyFields": [],
@@ -326,6 +505,62 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
+    "CatalogCoursePrerequisiteItem": {
+        "schema": "CatalogCoursePrerequisiteItem",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CourseCatalogCoursePrerequisite": {
+        "schema": "CourseCatalogCoursePrerequisite",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CatalogCoursePrerequisiteCourseDetails": {
+        "schema": "CatalogCoursePrerequisiteCourseDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SpecialRequirementCatalogCoursePrerequisite": {
+        "schema": "SpecialRequirementCatalogCoursePrerequisite",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CatalogCourseSpecialRequirement": {
+        "schema": "CatalogCourseSpecialRequirement",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "AuthorizationSpecialRequirement": {
+        "schema": "AuthorizationSpecialRequirement",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProgressionCoefficientSpecialRequirement": {
+        "schema": "ProgressionCoefficientSpecialRequirement",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProgressionCoefficientSpecialRequirementDetails": {
+        "schema": "ProgressionCoefficientSpecialRequirementDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
     "Coordinator": {
         "schema": "CoordinatorEntity",
         "transportFields": [],
@@ -377,6 +612,53 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
+    "AnyCourseRequirement": {
+        "schema": "AnyCourseRequirement",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PrefixCourseRequirement": {
+        "schema": "PrefixCourseRequirement",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PrefixCourseRequirementDetails": {
+        "schema": "PrefixCourseRequirementDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SpecificCourseRequirement": {
+        "schema": "SpecificCourseRequirement",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SpecificCourseRequirementDetails": {
+        "schema": "SpecificCourseRequirementDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {
+            "catalogCourseId": {
+                "resource": "catalogCourses",
+                "cardinality": "one",
+                "nullable": true
+            }
+        }
+    },
     "ElectiveBlock": {
         "schema": "ElectiveBlock",
         "transportFields": [],
@@ -390,6 +672,36 @@ export const domainModelDefinitions = {
         "identityFields": [],
         "readOnlyFields": [],
         "relations": {}
+    },
+    "ProgramCatalogProgramVariant": {
+        "schema": "ProgramCatalogProgramVariant",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {
+            "curriculumSuggestionId": {
+                "resource": "curriculumSuggestions",
+                "cardinality": "one",
+                "nullable": true
+            }
+        }
+    },
+    "SpecializationCatalogProgramVariant": {
+        "schema": "SpecializationCatalogProgramVariant",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {
+            "curriculumSuggestionId": {
+                "resource": "curriculumSuggestions",
+                "cardinality": "one",
+                "nullable": true
+            }
+        }
     },
     "CatalogProgramLanguage": {
         "schema": "CatalogProgramLanguage",

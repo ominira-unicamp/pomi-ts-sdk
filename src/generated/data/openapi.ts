@@ -952,11 +952,22 @@ export interface components {
                 [key: string]: unknown;
             };
         };
+        ServerErrorProblem: components["schemas"]["InternalServerErrorProblem"] | components["schemas"]["InconsistentResourceStateProblem"];
         InternalServerErrorProblem: {
 
             type: "urn:pomi:problem:internal-server-error";
 
             title: "Não foi possível concluir a ação";
+
+            status: 500;
+            detail: string;
+            instance?: string;
+        };
+        InconsistentResourceStateProblem: {
+
+            type: "urn:pomi:problem:inconsistent-resource-state";
+
+            title: "Estado interno do recurso inconsistente";
 
             status: 500;
             detail: string;
@@ -1060,18 +1071,65 @@ export interface components {
             id: number;
             canonicalKey: string;
             role: string;
-            affiliationType: string;
-            programCode: string | null;
-            postdoctoralModality: string | null;
-            careerReference: components["schemas"]["CareerReference"];
+            affiliation: components["schemas"]["AcademicPositionAffiliation"];
         } | null;
+        AcademicPositionAffiliation: components["schemas"]["CareerAcademicPositionAffiliation"] | components["schemas"]["CollaboratorAcademicPositionAffiliation"] | components["schemas"]["SeniorAcademicPositionAffiliation"] | components["schemas"]["VisitingInvitedAcademicPositionAffiliation"] | components["schemas"]["VisitingSpecialistAcademicPositionAffiliation"] | components["schemas"]["PostdoctoralProgramAcademicPositionAffiliation"];
+        CareerAcademicPositionAffiliation: {
+
+            type: "CAREER";
+            career: components["schemas"]["CareerAcademicPositionAffiliationDetails"];
+        };
+        CareerAcademicPositionAffiliationDetails: {
+            reference: components["schemas"]["CareerReference"];
+        };
         CareerReference: {
             career: string;
             code: string;
             rank: string | null;
             category: string | null;
             progressionOrder: number;
-        } | null;
+        };
+        CollaboratorAcademicPositionAffiliation: {
+
+            type: "COLLABORATOR";
+        };
+        SeniorAcademicPositionAffiliation: {
+
+            type: "SENIOR";
+            senior: components["schemas"]["SeniorAcademicPositionAffiliationDetails"];
+        };
+        SeniorAcademicPositionAffiliationDetails: components["schemas"]["GeneralSeniorAcademicPositionAffiliation"] | components["schemas"]["CareerSeniorAcademicPositionAffiliation"];
+        GeneralSeniorAcademicPositionAffiliation: {
+
+            kind: "GENERAL";
+        };
+        CareerSeniorAcademicPositionAffiliation: {
+
+            kind: "CAREER";
+            career: components["schemas"]["CareerAcademicPositionAffiliationDetails"];
+            programCode: string;
+        };
+        VisitingInvitedAcademicPositionAffiliation: {
+
+            type: "VISITING_INVITED";
+        };
+        VisitingSpecialistAcademicPositionAffiliation: {
+
+            type: "VISITING_SPECIALIST";
+            visitingSpecialist: components["schemas"]["VisitingSpecialistAcademicPositionAffiliationDetails"];
+        };
+        VisitingSpecialistAcademicPositionAffiliationDetails: {
+            programCode: string;
+        };
+        PostdoctoralProgramAcademicPositionAffiliation: {
+
+            type: "POSTDOCTORAL_PROGRAM";
+            postdoctoralProgram: components["schemas"]["PostdoctoralProgramAcademicPositionAffiliationDetails"];
+        };
+        PostdoctoralProgramAcademicPositionAffiliationDetails: {
+            modality: string;
+            programCode: string | null;
+        };
         ProfessorDataPortalProfile: {
             id: number;
             professorId: number;
@@ -1164,7 +1222,7 @@ export interface components {
                 classroomHours: number | null;
             };
             offeringPeriod: components["schemas"]["CourseOfferingPeriod"];
-            evaluation: string | null;
+            evaluation: components["schemas"]["CourseEvaluationMode"];
             finalExam: boolean | null;
             minimumAttendancePercent: number | null;
             syllabus: string | null;
@@ -1172,22 +1230,44 @@ export interface components {
             sourceUrl: string | null;
             prerequisites: {
                 any: {
-                    all: ({
-                        courseId: number;
-                        fulfillment: components["schemas"]["CatalogCoursePrerequisiteFulfillment"];
-                    } | {
-                        specialRequirementType: components["schemas"]["CatalogCourseSpecialRequirementType"];
-                        specialRequirementValue: number;
-                    })[];
+                    all: components["schemas"]["CatalogCoursePrerequisiteItem"][];
                 }[];
             };
         };
 
         CourseOfferingPeriod: "ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION" | null;
 
-        CatalogCoursePrerequisiteFulfillment: "FULL" | "PARTIAL";
+        CourseEvaluationMode: "GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT" | null;
+        CatalogCoursePrerequisiteItem: components["schemas"]["CourseCatalogCoursePrerequisite"] | components["schemas"]["SpecialRequirementCatalogCoursePrerequisite"];
+        CourseCatalogCoursePrerequisite: {
 
-        CatalogCourseSpecialRequirementType: "AUTHORIZATION" | "PROGRESSION_COEFFICIENT";
+            type: "COURSE";
+            course: components["schemas"]["CatalogCoursePrerequisiteCourseDetails"];
+        };
+        CatalogCoursePrerequisiteCourseDetails: {
+            courseId: number | null;
+            fulfillment: components["schemas"]["CatalogCoursePrerequisiteFulfillment"];
+        };
+
+        CatalogCoursePrerequisiteFulfillment: "FULL" | "PARTIAL";
+        SpecialRequirementCatalogCoursePrerequisite: {
+
+            type: "SPECIAL_REQUIREMENT";
+            specialRequirement: components["schemas"]["CatalogCourseSpecialRequirement"];
+        };
+        CatalogCourseSpecialRequirement: components["schemas"]["AuthorizationSpecialRequirement"] | components["schemas"]["ProgressionCoefficientSpecialRequirement"];
+        AuthorizationSpecialRequirement: {
+
+            type: "AUTHORIZATION";
+        };
+        ProgressionCoefficientSpecialRequirement: {
+
+            type: "PROGRESSION_COEFFICIENT";
+            progressionCoefficient: components["schemas"]["ProgressionCoefficientSpecialRequirementDetails"];
+        };
+        ProgressionCoefficientSpecialRequirementDetails: {
+            value: number;
+        };
         CoordinatorEntity: {
             id: number;
             name: string;
@@ -1219,25 +1299,40 @@ export interface components {
             mandatory: components["schemas"]["CourseRequirement"][];
             electives: components["schemas"]["ElectiveBlock"][];
         };
-        CourseRequirement: {
+        CourseRequirement: components["schemas"]["AnyCourseRequirement"] | components["schemas"]["PrefixCourseRequirement"] | components["schemas"]["SpecificCourseRequirement"];
+        AnyCourseRequirement: {
             id: number;
-            type: components["schemas"]["CourseRequirementType"];
-            courseId: number | null;
-            courseCode: string | null;
-            courseName: string | null;
-            prefix: string | null;
+
+            type: "any";
+        };
+        PrefixCourseRequirement: {
+            id: number;
+
+            type: "prefix";
+            prefix: components["schemas"]["PrefixCourseRequirementDetails"];
+        };
+        PrefixCourseRequirementDetails: {
+            value: string;
+        };
+        SpecificCourseRequirement: {
+            id: number;
+
+            type: "specific";
+            specific: components["schemas"]["SpecificCourseRequirementDetails"];
+        };
+        SpecificCourseRequirementDetails: {
+            courseId: number;
+            courseCode: string;
+            courseName: string;
             catalogCourseId: number | null;
         };
-
-        CourseRequirementType: "any" | "prefix" | "specific";
         ElectiveBlock: {
             credits: number;
             courses: components["schemas"]["CourseRequirement"][];
         };
-        CatalogProgramVariant: {
+        CatalogProgramVariant: components["schemas"]["ProgramCatalogProgramVariant"] | components["schemas"]["SpecializationCatalogProgramVariant"];
+        ProgramCatalogProgramVariant: {
             id: number;
-            programId: number | null;
-            specializationId: number | null;
             curriculumSuggestionId: number | null;
             code: string;
             name: string;
@@ -1249,6 +1344,30 @@ export interface components {
             professionalDescription: string | null;
             recognitionDescription: string | null;
             blocks: components["schemas"]["CourseBlockSet"];
+
+            type: "PROGRAM";
+            program: {
+                programId: number;
+            };
+        };
+        SpecializationCatalogProgramVariant: {
+            id: number;
+            curriculumSuggestionId: number | null;
+            code: string;
+            name: string;
+            integralizationCredits: number | null;
+            integralizationSupervisedHours: number | null;
+            integralizationExtensionHours: number | null;
+            integralizationSemesters: number | null;
+            integralizationMaximumSemesters: number | null;
+            professionalDescription: string | null;
+            recognitionDescription: string | null;
+            blocks: components["schemas"]["CourseBlockSet"];
+
+            type: "SPECIALIZATION";
+            specialization: {
+                specializationId: number;
+            };
         };
         CatalogProgramLanguage: {
             languageId: number;
@@ -1485,7 +1604,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1542,7 +1661,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1601,7 +1720,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1650,7 +1769,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1715,7 +1834,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1764,7 +1883,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1844,7 +1963,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1893,7 +2012,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -1945,7 +2064,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2021,7 +2140,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2070,7 +2189,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2135,7 +2254,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2184,7 +2303,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2244,7 +2363,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2293,7 +2412,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2349,7 +2468,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2398,7 +2517,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2454,7 +2573,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2503,7 +2622,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2552,7 +2671,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2614,7 +2733,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2663,7 +2782,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2720,7 +2839,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2809,7 +2928,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2858,7 +2977,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2914,7 +3033,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -2963,7 +3082,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3012,7 +3131,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3081,7 +3200,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3130,7 +3249,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3211,7 +3330,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3260,7 +3379,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3320,7 +3439,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3369,7 +3488,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3426,7 +3545,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3475,7 +3594,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3541,7 +3660,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3590,7 +3709,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3697,7 +3816,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3757,7 +3876,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3813,7 +3932,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3862,7 +3981,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3929,7 +4048,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -3978,7 +4097,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4038,7 +4157,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4087,7 +4206,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4177,7 +4296,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4226,7 +4345,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4330,7 +4449,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4379,7 +4498,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4440,7 +4559,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4489,7 +4608,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };
@@ -4555,7 +4674,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["InternalServerErrorProblem"];
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
                 };
             };
         };

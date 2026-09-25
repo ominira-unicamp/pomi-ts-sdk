@@ -46,12 +46,38 @@ import type {
   ClassSchedule,
   Coauthor,
   Course,
+  CourseRequirement,
+  AnyCourseRequirement,
+  PrefixCourseRequirement,
+  SpecificCourseRequirement,
+  CatalogCoursePrerequisiteItem,
+  CourseCatalogCoursePrerequisite,
+  SpecialRequirementCatalogCoursePrerequisite,
+  CatalogProgramVariant,
+  ProgramCatalogProgramVariant,
+  SpecializationCatalogProgramVariant,
+  ProfessorPosition,
+  AcademicPositionAffiliation,
+  CareerAcademicPositionAffiliation,
+  CollaboratorAcademicPositionAffiliation,
+  SeniorAcademicPositionAffiliation,
+  VisitingInvitedAcademicPositionAffiliation,
+  VisitingSpecialistAcademicPositionAffiliation,
+  PostdoctoralProgramAcademicPositionAffiliation,
   ProfessorDataPortalProfileSummary,
   StudyPeriod,
   Unit,
 } from './generated/data/domain.js'
 import type {
   Category,
+  CurriculumPlanningGuide,
+  NonePlanningGuide,
+  PlanningGuide,
+  ProgramPlanningGuide,
+  FeedbackReportTarget,
+  GeneralFeedbackReportTarget,
+  FeatureFeedbackReportTarget,
+  AcademicResourceFeedbackReportTarget,
   SharedPeriodPlanningPage,
   StudentCourseAttempt,
   StudentPublicPerson,
@@ -112,6 +138,56 @@ type DomainTypeAssertions = [
   AssertFalse<'_paths' extends keyof Course ? true : false>,
   AssertFalse<'_paths' extends keyof ClassSchedule ? true : false>,
   AssertFalse<'_paths' extends keyof BlockSet ? true : false>,
+  Assert<
+    Equal<
+      CourseRequirement,
+      AnyCourseRequirement | PrefixCourseRequirement | SpecificCourseRequirement
+    >
+  >,
+  Assert<
+    Equal<
+      PlanningGuide,
+      NonePlanningGuide | ProgramPlanningGuide | CurriculumPlanningGuide
+    >
+  >,
+  Assert<
+    Equal<
+      CatalogCoursePrerequisiteItem,
+      | CourseCatalogCoursePrerequisite
+      | SpecialRequirementCatalogCoursePrerequisite
+    >
+  >,
+  Assert<
+    Equal<
+      CatalogProgramVariant,
+      ProgramCatalogProgramVariant | SpecializationCatalogProgramVariant
+    >
+  >,
+  Assert<
+    Equal<
+      AcademicPositionAffiliation,
+      | CareerAcademicPositionAffiliation
+      | CollaboratorAcademicPositionAffiliation
+      | SeniorAcademicPositionAffiliation
+      | VisitingInvitedAcademicPositionAffiliation
+      | VisitingSpecialistAcademicPositionAffiliation
+      | PostdoctoralProgramAcademicPositionAffiliation
+    >
+  >,
+  Assert<
+    Equal<
+      NonNullable<ProfessorPosition>['affiliation'],
+      AcademicPositionAffiliation
+    >
+  >,
+  Assert<
+    Equal<
+      FeedbackReportTarget,
+      | GeneralFeedbackReportTarget
+      | FeatureFeedbackReportTarget
+      | AcademicResourceFeedbackReportTarget
+    >
+  >,
 ]
 type SortTermOf<Input> = Input extends { sort?: infer Sort }
   ? NonNullable<Sort> extends ReadonlyArray<infer Term>

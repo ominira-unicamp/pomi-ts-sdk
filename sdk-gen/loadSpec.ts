@@ -63,13 +63,21 @@ function schemaHasPath(
   schema: unknown,
   path: string,
 ) {
-  let current = resolvedSchema(document, schema)
-  for (const part of path.split('.')) {
-    current = resolvedSchema(document, current)
-    if (!isRecord(current) || !isRecord(current.properties)) return false
-    current = current.properties[part]
+  const visit = (current: unknown, parts: ReadonlyArray<string>): boolean => {
+    const resolved = resolvedSchema(document, current)
+    if (!isRecord(resolved)) return false
+    if (Array.isArray(resolved.oneOf))
+      return (
+        resolved.oneOf.length > 0 &&
+        resolved.oneOf.every((branch) => visit(branch, parts))
+      )
+    const [part, ...remaining] = parts
+    if (!part) return true
+    if (!isRecord(resolved.properties)) return false
+    const property = resolved.properties[part]
+    return property !== undefined && visit(property, remaining)
   }
-  return current !== undefined
+  return visit(schema, path.split('.'))
 }
 
 function successfulSchemas(entry: OperationModel) {
@@ -206,7 +214,6 @@ function validateSchemas(document: OpenApiDocument) {
     if (metadata.generate !== false && publicNames.has(metadata.publicName))
       throw new Error(`Duplicate public schema name ${metadata.publicName}`)
     if (metadata.generate !== false) publicNames.add(metadata.publicName)
-    const properties = isRecord(schema.properties) ? schema.properties : {}
     const fields = [
       ...(metadata.transportFields ?? []),
       ...(metadata.identityFields ?? []),
@@ -214,7 +221,7 @@ function validateSchemas(document: OpenApiDocument) {
       ...Object.keys(metadata.relations ?? {}),
     ]
     for (const field of fields)
-      if (!(field in properties))
+      if (!schemaHasPath(document, schema, field))
         throw new Error(
           `Schema ${name} metadata references missing field ${field}`,
         )

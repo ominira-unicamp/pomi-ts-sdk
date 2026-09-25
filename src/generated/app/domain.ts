@@ -8,6 +8,10 @@ export type Domain<T> = T extends null
     ? { readonly [Key in keyof T]: Domain<T[Key]> }
     : T
 
+export type DistributiveOmit<T, Key extends PropertyKey> = T extends unknown
+    ? Omit<T, Key>
+    : never
+
 export type PaginationLinks = {
     self: string
     first: string
@@ -52,6 +56,33 @@ export type PeriodPlanning = Domain<PeriodPlanningTransport>
 
 export type PlanningGuideTransport = components['schemas']['PlanningGuide']
 export type PlanningGuide = Domain<PlanningGuideTransport>
+
+export type NonePlanningGuideTransport = components['schemas']['NonePlanningGuide']
+export type NonePlanningGuide = Domain<NonePlanningGuideTransport>
+
+export type ProgramPlanningGuideTransport = components['schemas']['ProgramPlanningGuide']
+export type ProgramPlanningGuide = Domain<ProgramPlanningGuideTransport>
+
+export type ProgramPlanningGuideDetailsTransport = components['schemas']['ProgramPlanningGuideDetails']
+export type ProgramPlanningGuideDetails = Domain<ProgramPlanningGuideDetailsTransport>
+
+export type CurriculumPlanningGuideTransport = components['schemas']['CurriculumPlanningGuide']
+export type CurriculumPlanningGuide = Domain<CurriculumPlanningGuideTransport>
+
+export type CurriculumPlanningGuideDetailsTransport = components['schemas']['CurriculumPlanningGuideDetails']
+export type CurriculumPlanningGuideDetails = Domain<CurriculumPlanningGuideDetailsTransport>
+
+export type SavedCurriculumPlanningGuideTransport = components['schemas']['SavedCurriculumPlanningGuide']
+export type SavedCurriculumPlanningGuide = Domain<SavedCurriculumPlanningGuideTransport>
+
+export type SavedCurriculumPlanningGuideDetailsTransport = components['schemas']['SavedCurriculumPlanningGuideDetails']
+export type SavedCurriculumPlanningGuideDetails = Domain<SavedCurriculumPlanningGuideDetailsTransport>
+
+export type SuggestionCurriculumPlanningGuideTransport = components['schemas']['SuggestionCurriculumPlanningGuide']
+export type SuggestionCurriculumPlanningGuide = Domain<SuggestionCurriculumPlanningGuideTransport>
+
+export type SuggestionCurriculumPlanningGuideDetailsTransport = components['schemas']['SuggestionCurriculumPlanningGuideDetails']
+export type SuggestionCurriculumPlanningGuideDetails = Domain<SuggestionCurriculumPlanningGuideDetailsTransport>
 
 export type PeriodPlanningClassTransport = components['schemas']['PeriodPlanningClass']
 export type PeriodPlanningClass = Domain<PeriodPlanningClassTransport>
@@ -115,6 +146,21 @@ export type FeedbackReportAccepted = Domain<FeedbackReportAcceptedTransport>
 
 export type FeedbackReportTargetTransport = components['schemas']['FeedbackReportTarget']
 export type FeedbackReportTarget = Domain<FeedbackReportTargetTransport>
+
+export type GeneralFeedbackReportTargetTransport = components['schemas']['GeneralFeedbackReportTarget']
+export type GeneralFeedbackReportTarget = Domain<GeneralFeedbackReportTargetTransport>
+
+export type FeatureFeedbackReportTargetTransport = components['schemas']['FeatureFeedbackReportTarget']
+export type FeatureFeedbackReportTarget = Domain<FeatureFeedbackReportTargetTransport>
+
+export type FeedbackFeatureTargetDetailsTransport = components['schemas']['FeedbackFeatureTargetDetails']
+export type FeedbackFeatureTargetDetails = Domain<FeedbackFeatureTargetDetailsTransport>
+
+export type AcademicResourceFeedbackReportTargetTransport = components['schemas']['AcademicResourceFeedbackReportTarget']
+export type AcademicResourceFeedbackReportTarget = Domain<AcademicResourceFeedbackReportTargetTransport>
+
+export type FeedbackAcademicResourceTargetDetailsTransport = components['schemas']['FeedbackAcademicResourceTargetDetails']
+export type FeedbackAcademicResourceTargetDetails = Domain<FeedbackAcademicResourceTargetDetailsTransport>
 
 export type FeedbackReportTransport = components['schemas']['FeedbackReport']
 export type FeedbackReport = Domain<FeedbackReportTransport>
@@ -229,6 +275,69 @@ export const domainModelDefinitions = {
     },
     "PlanningGuide": {
         "schema": "PlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "NonePlanningGuide": {
+        "schema": "NonePlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProgramPlanningGuide": {
+        "schema": "ProgramPlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProgramPlanningGuideDetails": {
+        "schema": "ProgramPlanningGuideDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CurriculumPlanningGuide": {
+        "schema": "CurriculumPlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CurriculumPlanningGuideDetails": {
+        "schema": "CurriculumPlanningGuideDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SavedCurriculumPlanningGuide": {
+        "schema": "SavedCurriculumPlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SavedCurriculumPlanningGuideDetails": {
+        "schema": "SavedCurriculumPlanningGuideDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SuggestionCurriculumPlanningGuide": {
+        "schema": "SuggestionCurriculumPlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SuggestionCurriculumPlanningGuideDetails": {
+        "schema": "SuggestionCurriculumPlanningGuideDetails",
         "transportFields": [],
         "identityFields": [],
         "readOnlyFields": [],
@@ -430,6 +539,41 @@ export const domainModelDefinitions = {
     },
     "FeedbackReportTarget": {
         "schema": "FeedbackReportTarget",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "GeneralFeedbackReportTarget": {
+        "schema": "GeneralFeedbackReportTarget",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "FeatureFeedbackReportTarget": {
+        "schema": "FeatureFeedbackReportTarget",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "FeedbackFeatureTargetDetails": {
+        "schema": "FeedbackFeatureTargetDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "AcademicResourceFeedbackReportTarget": {
+        "schema": "AcademicResourceFeedbackReportTarget",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "FeedbackAcademicResourceTargetDetails": {
+        "schema": "FeedbackAcademicResourceTargetDetails",
         "transportFields": [],
         "identityFields": [],
         "readOnlyFields": [],

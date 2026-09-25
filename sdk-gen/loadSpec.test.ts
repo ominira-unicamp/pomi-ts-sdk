@@ -218,3 +218,65 @@ test('rejects incomplete or inconsistent sort metadata', async () => {
     },
   )
 })
+
+test('validates union metadata across named variant branches', async () => {
+  const branch = (type: string) => ({
+    type: 'object',
+    properties: { id: { type: 'integer' }, type: { enum: [type] } },
+    required: ['id', 'type'],
+    'x-pomi-schema': {
+      kind: 'variant',
+      publicName: `Example${type}`,
+      identityFields: ['id'],
+    },
+  })
+  await withSpec(
+    {
+      openapi: '3.1.0',
+      paths: {
+        '/examples': {
+          get: {
+            operationId: 'listExamples',
+            'x-pomi-sdk': {
+              resource: 'examples',
+              method: 'list',
+              action: 'list',
+            },
+            responses: {
+              200: {
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'array',
+                      items: { $ref: '#/components/schemas/Example' },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      components: {
+        schemas: {
+          Example: {
+            oneOf: [
+              { $ref: '#/components/schemas/ExampleA' },
+              { $ref: '#/components/schemas/ExampleB' },
+            ],
+            'x-pomi-schema': {
+              kind: 'entity',
+              publicName: 'Example',
+              identityFields: ['id'],
+            },
+          },
+          ExampleA: branch('A'),
+          ExampleB: branch('B'),
+        },
+      },
+    },
+    async (path) => {
+      await assert.doesNotReject(loadSpec('app', path))
+    },
+  )
+})

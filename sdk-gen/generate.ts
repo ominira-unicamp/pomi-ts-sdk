@@ -83,7 +83,9 @@ function pageItemSchema(document: OpenApiDocument, schema: unknown) {
   const resolved = schemaAtRef(document, schema) ?? schema
   if (!isRecord(resolved) || !isRecord(resolved.properties)) return undefined
   const data = resolved.properties.data
-  const links = schemaAtRef(document, resolved.properties.links) ?? resolved.properties.links
+  const links =
+    schemaAtRef(document, resolved.properties.links) ??
+    resolved.properties.links
   if (!isRecord(data) || data.type !== 'array') return undefined
   if (
     !isRecord(links) ||
@@ -355,7 +357,7 @@ function createDomainSource(registry: DomainRegistry) {
       const fields = registry.transportFields.get(schemaName) ?? []
       const source =
         fields.length > 0
-          ? `Omit<${modelName}Transport, ${fields.map((field) => JSON.stringify(field)).join(' | ')}>`
+          ? `DistributiveOmit<${modelName}Transport, ${fields.map((field) => JSON.stringify(field)).join(' | ')}>`
           : `${modelName}Transport`
       return `export type ${modelName}Transport = components['schemas']['${schemaName}']\nexport type ${modelName} = Domain<${source}>`
     },
@@ -395,6 +397,10 @@ export type Domain<T> = T extends null
     : T extends object
       ? { readonly [Key in keyof T]: Domain<T[Key]> }
       : T
+
+export type DistributiveOmit<T, Key extends PropertyKey> = T extends unknown
+  ? Omit<T, Key>
+  : never
 
 export type PaginationLinks = {
   self: string
