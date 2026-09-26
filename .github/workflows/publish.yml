@@ -38,4 +38,10 @@ jobs:
         run: npm run release:verify -- "$RELEASE_TAG"
 
       - name: Publish package
-        run: npm publish
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          if [[ "$PACKAGE_VERSION" == *-* ]]; then
+            npm publish --tag rc
+          else
+            npm publish
+          fi
