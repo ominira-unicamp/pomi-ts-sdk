@@ -230,6 +230,10 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
+    "getCourseProfessorEvaluationSummary": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
     "getCurrentUser": [
         "urn:pomi:problem:invalid-request"
     ],
@@ -289,6 +293,9 @@ export const operationProblemTypes = {
     "listCategories": [
         "urn:pomi:problem:invalid-request"
     ],
+    "listCourseEvaluationSummaries": [
+        "urn:pomi:problem:invalid-request"
+    ],
     "listCourseTags": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
@@ -297,6 +304,9 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request"
     ],
     "listPendingProfessorEvaluations": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listProfessorEvaluationSummaries": [
         "urn:pomi:problem:invalid-request"
     ],
     "listPublicSharedPeriodPlannings": [

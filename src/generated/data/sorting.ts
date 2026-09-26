@@ -1,5 +1,5 @@
 export type { SortDirection, SortInput, SortTerm } from '../../runtime/sorting.js'
-import type { listCalendarEventsInput, listCalendarTagsInput, listCatalogCoursesInput, listCatalogProgramsInput, listCatalogsInput, listClassesInput, listClassSchedulesInput, listCoauthorsInput, listCoordinatorsInput, listCourseEvaluationSummariesInput, listCoursesInput, listCurriculumSuggestionsInput, listDailyMenusInput, listDepartmentsInput, listExchangeNoticesInput, listExchangePlacesInput, listKeywordsInput, listLanguagesInput, listProfessorDataPortalProfilesInput, listProfessorEvaluationSummariesInput, listProfessorPositionsInput, listProfessorsInput, listProgramsInput, listRoomsInput, listSpecializationsInput, listStudyPeriodsInput, listUnitsInput } from './operations.js'
+import type { listCalendarEventsInput, listCalendarTagsInput, listCatalogCoursesInput, listCatalogProgramsInput, listCatalogsInput, listClassesInput, listClassSchedulesInput, listCoauthorsInput, listCoordinatorsInput, listCoursesInput, listCurriculumSuggestionsInput, listDailyMenusInput, listDepartmentsInput, listExchangeNoticesInput, listExchangePlacesInput, listKeywordsInput, listLanguagesInput, listProfessorDataPortalProfilesInput, listProfessorPositionsInput, listProfessorsInput, listProgramsInput, listRoomsInput, listSpecializationsInput, listStudyPeriodsInput, listUnitsInput } from './operations.js'
 
 export type listCalendarEventsSort = NonNullable<listCalendarEventsInput['sort']>
 export type listCalendarTagsSort = NonNullable<listCalendarTagsInput['sort']>
@@ -10,7 +10,6 @@ export type listClassesSort = NonNullable<listClassesInput['sort']>
 export type listClassSchedulesSort = NonNullable<listClassSchedulesInput['sort']>
 export type listCoauthorsSort = NonNullable<listCoauthorsInput['sort']>
 export type listCoordinatorsSort = NonNullable<listCoordinatorsInput['sort']>
-export type listCourseEvaluationSummariesSort = NonNullable<listCourseEvaluationSummariesInput['sort']>
 export type listCoursesSort = NonNullable<listCoursesInput['sort']>
 export type listCurriculumSuggestionsSort = NonNullable<listCurriculumSuggestionsInput['sort']>
 export type listDailyMenusSort = NonNullable<listDailyMenusInput['sort']>
@@ -20,7 +19,6 @@ export type listExchangePlacesSort = NonNullable<listExchangePlacesInput['sort']
 export type listKeywordsSort = NonNullable<listKeywordsInput['sort']>
 export type listLanguagesSort = NonNullable<listLanguagesInput['sort']>
 export type listProfessorDataPortalProfilesSort = NonNullable<listProfessorDataPortalProfilesInput['sort']>
-export type listProfessorEvaluationSummariesSort = NonNullable<listProfessorEvaluationSummariesInput['sort']>
 export type listProfessorPositionsSort = NonNullable<listProfessorPositionsInput['sort']>
 export type listProfessorsSort = NonNullable<listProfessorsInput['sort']>
 export type listProgramsSort = NonNullable<listProgramsInput['sort']>
@@ -112,19 +110,6 @@ export const sortCapabilities = {
         ],
         "default": "name:asc"
     },
-    "listCourseEvaluationSummaries": {
-        "version": 1,
-        "fields": [
-            "course.code",
-            "course.name",
-            "responseCount",
-            "wouldTakeAgain",
-            "fairness",
-            "clarity",
-            "difficulty"
-        ],
-        "default": "course.code:asc"
-    },
     "listCourses": {
         "version": 1,
         "fields": [
@@ -200,18 +185,6 @@ export const sortCapabilities = {
             "name"
         ],
         "default": "name:asc"
-    },
-    "listProfessorEvaluationSummaries": {
-        "version": 1,
-        "fields": [
-            "professor.name",
-            "responseCount",
-            "wouldTakeAgain",
-            "fairness",
-            "clarity",
-            "difficulty"
-        ],
-        "default": "professor.name:asc"
     },
     "listProfessorPositions": {
         "version": 1,

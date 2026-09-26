@@ -52,9 +52,6 @@ export type getCoauthorsProblem = operations["getCoauthors"]['responses'][400]['
 export type getCoordinatorsInput = OperationInput<operations["getCoordinators"]['parameters']['path'], operations["getCoordinators"]['parameters']['query'], operations["getCoordinators"]['parameters']['header'], RequestBodyOf<operations["getCoordinators"]>, false>
 export type getCoordinatorsOutput = import('./domain.js').Coordinator
 export type getCoordinatorsProblem = operations["getCoordinators"]['responses'][400]['content']["application/problem+json"] | operations["getCoordinators"]['responses'][404]['content']["application/problem+json"] | operations["getCoordinators"]['responses'][500]['content']["application/problem+json"]
-export type getCourseProfessorEvaluationSummaryInput = OperationInput<operations["getCourseProfessorEvaluationSummary"]['parameters']['path'], operations["getCourseProfessorEvaluationSummary"]['parameters']['query'], operations["getCourseProfessorEvaluationSummary"]['parameters']['header'], RequestBodyOf<operations["getCourseProfessorEvaluationSummary"]>, false>
-export type getCourseProfessorEvaluationSummaryOutput = import('./domain.js').CourseProfessorEvaluationSummary
-export type getCourseProfessorEvaluationSummaryProblem = operations["getCourseProfessorEvaluationSummary"]['responses'][400]['content']["application/problem+json"] | operations["getCourseProfessorEvaluationSummary"]['responses'][404]['content']["application/problem+json"] | operations["getCourseProfessorEvaluationSummary"]['responses'][500]['content']["application/problem+json"]
 export type getCoursesInput = OperationInput<operations["getCourses"]['parameters']['path'], operations["getCourses"]['parameters']['query'], operations["getCourses"]['parameters']['header'], RequestBodyOf<operations["getCourses"]>, false>
 export type getCoursesOutput = import('./domain.js').Course
 export type getCoursesProblem = operations["getCourses"]['responses'][400]['content']["application/problem+json"] | operations["getCourses"]['responses'][404]['content']["application/problem+json"] | operations["getCourses"]['responses'][500]['content']["application/problem+json"]
@@ -127,9 +124,6 @@ export type listCoauthorsProblem = operations["listCoauthors"]['responses'][400]
 export type listCoordinatorsInput = OperationInput<operations["listCoordinators"]['parameters']['path'], SortQuery<operations["listCoordinators"]['parameters']['query'], "name">, operations["listCoordinators"]['parameters']['header'], RequestBodyOf<operations["listCoordinators"]>, false>
 export type listCoordinatorsOutput = import('./domain.js').Page<import('./domain.js').Coordinator>
 export type listCoordinatorsProblem = operations["listCoordinators"]['responses'][400]['content']["application/problem+json"] | operations["listCoordinators"]['responses'][500]['content']["application/problem+json"]
-export type listCourseEvaluationSummariesInput = OperationInput<operations["listCourseEvaluationSummaries"]['parameters']['path'], SortQuery<operations["listCourseEvaluationSummaries"]['parameters']['query'], "course.code" | "course.name" | "responseCount" | "wouldTakeAgain" | "fairness" | "clarity" | "difficulty">, operations["listCourseEvaluationSummaries"]['parameters']['header'], RequestBodyOf<operations["listCourseEvaluationSummaries"]>, false>
-export type listCourseEvaluationSummariesOutput = import('./domain.js').Page<import('./domain.js').CourseEvaluationSummary>
-export type listCourseEvaluationSummariesProblem = operations["listCourseEvaluationSummaries"]['responses'][400]['content']["application/problem+json"] | operations["listCourseEvaluationSummaries"]['responses'][500]['content']["application/problem+json"]
 export type listCoursesInput = OperationInput<operations["listCourses"]['parameters']['path'], SortQuery<operations["listCourses"]['parameters']['query'], "code" | "name" | "credits" | "unitCode">, operations["listCourses"]['parameters']['header'], RequestBodyOf<operations["listCourses"]>, false>
 export type listCoursesOutput = import('./domain.js').Page<import('./domain.js').Course>
 export type listCoursesProblem = operations["listCourses"]['responses'][400]['content']["application/problem+json"] | operations["listCourses"]['responses'][500]['content']["application/problem+json"]
@@ -157,9 +151,6 @@ export type listLanguagesProblem = operations["listLanguages"]['responses'][400]
 export type listProfessorDataPortalProfilesInput = OperationInput<operations["listProfessorDataPortalProfiles"]['parameters']['path'], SortQuery<operations["listProfessorDataPortalProfiles"]['parameters']['query'], "name">, operations["listProfessorDataPortalProfiles"]['parameters']['header'], RequestBodyOf<operations["listProfessorDataPortalProfiles"]>, false>
 export type listProfessorDataPortalProfilesOutput = import('./domain.js').Page<import('./domain.js').ProfessorDataPortalProfileSummary>
 export type listProfessorDataPortalProfilesProblem = operations["listProfessorDataPortalProfiles"]['responses'][400]['content']["application/problem+json"] | operations["listProfessorDataPortalProfiles"]['responses'][500]['content']["application/problem+json"]
-export type listProfessorEvaluationSummariesInput = OperationInput<operations["listProfessorEvaluationSummaries"]['parameters']['path'], SortQuery<operations["listProfessorEvaluationSummaries"]['parameters']['query'], "professor.name" | "responseCount" | "wouldTakeAgain" | "fairness" | "clarity" | "difficulty">, operations["listProfessorEvaluationSummaries"]['parameters']['header'], RequestBodyOf<operations["listProfessorEvaluationSummaries"]>, false>
-export type listProfessorEvaluationSummariesOutput = import('./domain.js').Page<import('./domain.js').ProfessorEvaluationSummary>
-export type listProfessorEvaluationSummariesProblem = operations["listProfessorEvaluationSummaries"]['responses'][400]['content']["application/problem+json"] | operations["listProfessorEvaluationSummaries"]['responses'][500]['content']["application/problem+json"]
 export type listProfessorPositionsInput = OperationInput<operations["listProfessorPositions"]['parameters']['path'], SortQuery<operations["listProfessorPositions"]['parameters']['query'], "canonicalKey" | "role">, operations["listProfessorPositions"]['parameters']['header'], RequestBodyOf<operations["listProfessorPositions"]>, false>
 export type listProfessorPositionsOutput = import('./domain.js').Page<import('./domain.js').ProfessorPosition>
 export type listProfessorPositionsProblem = operations["listProfessorPositions"]['responses'][400]['content']["application/problem+json"] | operations["listProfessorPositions"]['responses'][500]['content']["application/problem+json"]
@@ -193,7 +184,6 @@ export interface OperationInputs {
     getClassSchedules: getClassSchedulesInput
     getCoauthors: getCoauthorsInput
     getCoordinators: getCoordinatorsInput
-    getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryInput
     getCourses: getCoursesInput
     getCurriculumSuggestions: getCurriculumSuggestionsInput
     getDailyMenus: getDailyMenusInput
@@ -218,7 +208,6 @@ export interface OperationInputs {
     listClassSchedules: listClassSchedulesInput
     listCoauthors: listCoauthorsInput
     listCoordinators: listCoordinatorsInput
-    listCourseEvaluationSummaries: listCourseEvaluationSummariesInput
     listCourses: listCoursesInput
     listCurriculumSuggestions: listCurriculumSuggestionsInput
     listDailyMenus: listDailyMenusInput
@@ -228,7 +217,6 @@ export interface OperationInputs {
     listKeywords: listKeywordsInput
     listLanguages: listLanguagesInput
     listProfessorDataPortalProfiles: listProfessorDataPortalProfilesInput
-    listProfessorEvaluationSummaries: listProfessorEvaluationSummariesInput
     listProfessorPositions: listProfessorPositionsInput
     listProfessors: listProfessorsInput
     listPrograms: listProgramsInput
@@ -249,7 +237,6 @@ export interface OperationOutputs {
     getClassSchedules: getClassSchedulesOutput
     getCoauthors: getCoauthorsOutput
     getCoordinators: getCoordinatorsOutput
-    getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryOutput
     getCourses: getCoursesOutput
     getCurriculumSuggestions: getCurriculumSuggestionsOutput
     getDailyMenus: getDailyMenusOutput
@@ -274,7 +261,6 @@ export interface OperationOutputs {
     listClassSchedules: listClassSchedulesOutput
     listCoauthors: listCoauthorsOutput
     listCoordinators: listCoordinatorsOutput
-    listCourseEvaluationSummaries: listCourseEvaluationSummariesOutput
     listCourses: listCoursesOutput
     listCurriculumSuggestions: listCurriculumSuggestionsOutput
     listDailyMenus: listDailyMenusOutput
@@ -284,7 +270,6 @@ export interface OperationOutputs {
     listKeywords: listKeywordsOutput
     listLanguages: listLanguagesOutput
     listProfessorDataPortalProfiles: listProfessorDataPortalProfilesOutput
-    listProfessorEvaluationSummaries: listProfessorEvaluationSummariesOutput
     listProfessorPositions: listProfessorPositionsOutput
     listProfessors: listProfessorsOutput
     listPrograms: listProgramsOutput
@@ -305,7 +290,6 @@ export interface OperationProblems {
     getClassSchedules: getClassSchedulesProblem
     getCoauthors: getCoauthorsProblem
     getCoordinators: getCoordinatorsProblem
-    getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryProblem
     getCourses: getCoursesProblem
     getCurriculumSuggestions: getCurriculumSuggestionsProblem
     getDailyMenus: getDailyMenusProblem
@@ -330,7 +314,6 @@ export interface OperationProblems {
     listClassSchedules: listClassSchedulesProblem
     listCoauthors: listCoauthorsProblem
     listCoordinators: listCoordinatorsProblem
-    listCourseEvaluationSummaries: listCourseEvaluationSummariesProblem
     listCourses: listCoursesProblem
     listCurriculumSuggestions: listCurriculumSuggestionsProblem
     listDailyMenus: listDailyMenusProblem
@@ -340,7 +323,6 @@ export interface OperationProblems {
     listKeywords: listKeywordsProblem
     listLanguages: listLanguagesProblem
     listProfessorDataPortalProfiles: listProfessorDataPortalProfilesProblem
-    listProfessorEvaluationSummaries: listProfessorEvaluationSummariesProblem
     listProfessorPositions: listProfessorPositionsProblem
     listProfessors: listProfessorsProblem
     listPrograms: listProgramsProblem
@@ -1373,193 +1355,6 @@ export const operationDefinitions = {
             "pathParameters": {
                 "id": "coordinatorId"
             }
-        },
-        "pagination": null
-    },
-    "getCourseProfessorEvaluationSummary": {
-        "operationId": "getCourseProfessorEvaluationSummary",
-        "target": "data",
-        "method": "GET",
-        "path": "/evaluation-summaries",
-        "authentication": "public",
-        "tags": [
-            "evaluation-summaries"
-        ],
-        "summary": "Get CourseProfessorEvaluationSummary",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [],
-        "queryParameters": [
-            "filter"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/CourseProfessorEvaluationSummary"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "filter",
-                    "required": true,
-                    "description": "Structured evaluation summary filters. Use filter[courseId]=1&filter[professorId]=2.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "courseId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            },
-                            "professorId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "courseId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    },
-                    {
-                        "path": [
-                            "professorId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            }
-        },
-        "sdk": {
-            "resource": "evaluationSummaries",
-            "method": "getByCourseAndProfessor",
-            "action": "get"
         },
         "pagination": null
     },
@@ -6045,241 +5840,6 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
-    "listCourseEvaluationSummaries": {
-        "operationId": "listCourseEvaluationSummaries",
-        "target": "data",
-        "method": "GET",
-        "path": "/courses/evaluation-summaries",
-        "authentication": "public",
-        "tags": [
-            "evaluation-summaries"
-        ],
-        "summary": "List CourseEvaluationSummaries",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "filter",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/PageCourseEvaluationSummaries"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "default": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "default": 20,
-                        "description": "Number of items per page."
-                    }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Structured course summary filters. Use filter[courseCode]=MC102.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "courseId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            },
-                            "courseCode": {
-                                "oneOf": [
-                                    {
-                                        "minLength": 1,
-                                        "type": "string"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minLength": 1,
-                                                "type": "string"
-                                            },
-                                            "ne": {
-                                                "minLength": 1,
-                                                "type": "string"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minLength": 1,
-                                                    "type": "string"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "course.code:asc"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "courseId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    },
-                    {
-                        "path": [
-                            "courseCode"
-                        ],
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        },
-                        "operators": [
-                            "eq",
-                            "ne",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            },
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "course.code",
-                    "course.name",
-                    "responseCount",
-                    "wouldTakeAgain",
-                    "fairness",
-                    "clarity",
-                    "difficulty"
-                ],
-                "default": "course.code:asc"
-            }
-        },
-        "sdk": {
-            "resource": "evaluationSummaries",
-            "method": "listByCourse",
-            "action": "list"
-        },
-        "pagination": {
-            "defaultMode": "page",
-            "defaultPageSize": 20,
-            "allowAll": false
-        }
-    },
     "listCourses": {
         "operationId": "listCourses",
         "target": "data",
@@ -9217,197 +8777,6 @@ export const operationDefinitions = {
         "sdk": {
             "resource": "professorDataPortalProfiles",
             "method": "list",
-            "action": "list"
-        },
-        "pagination": {
-            "defaultMode": "page",
-            "defaultPageSize": 20,
-            "allowAll": false
-        }
-    },
-    "listProfessorEvaluationSummaries": {
-        "operationId": "listProfessorEvaluationSummaries",
-        "target": "data",
-        "method": "GET",
-        "path": "/professors/evaluation-summaries",
-        "authentication": "public",
-        "tags": [
-            "evaluation-summaries"
-        ],
-        "summary": "List ProfessorEvaluationSummaries",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "filter",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/PageProfessorEvaluationSummaries"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "default": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "default": 20,
-                        "description": "Number of items per page."
-                    }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Structured professor summary filters. Use filter[professorId]=1.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "professorId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "professor.name:asc"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "professorId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            },
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "professor.name",
-                    "responseCount",
-                    "wouldTakeAgain",
-                    "fairness",
-                    "clarity",
-                    "difficulty"
-                ],
-                "default": "professor.name:asc"
-            }
-        },
-        "sdk": {
-            "resource": "evaluationSummaries",
-            "method": "listByProfessor",
             "action": "list"
         },
         "pagination": {

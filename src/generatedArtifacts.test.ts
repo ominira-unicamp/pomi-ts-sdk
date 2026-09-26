@@ -220,8 +220,8 @@ const domainTypeAssertions = undefined as unknown as DomainTypeAssertions
 const sortingTypeAssertions = undefined as unknown as SortingTypeAssertions
 
 test('generates separate operational manifests for Data and App', () => {
-  assert.equal(Object.keys(dataOperations).length, 53)
-  assert.equal(Object.keys(appOperations).length, 71)
+  assert.equal(Object.keys(dataOperations).length, 50)
+  assert.equal(Object.keys(appOperations).length, 74)
   assert.equal(dataOperations.listCourses.target, 'data')
   assert.equal(dataOperations.listCourses.authentication, 'public')
   assert.equal(appOperations.listStudentAbsences.target, 'app')
@@ -230,11 +230,11 @@ test('generates separate operational manifests for Data and App', () => {
   assert.equal(sdkManifest.app.operationDefinitions, appOperations)
   assert.equal(
     Object.values(dataOperations).filter((operation) => operation.sdk).length,
-    53,
+    50,
   )
   assert.equal(
     Object.values(appOperations).filter((operation) => operation.sdk).length,
-    71,
+    74,
   )
   assert.equal(dataOperations.listClasses.sdk?.resource, 'classes')
   assert.equal(dataOperations.listClasses.pagination?.defaultMode, 'page')
@@ -285,10 +285,7 @@ test('generates canonical domain models independently from operation envelopes',
     'Program',
     'Room',
     'Specialization',
-    'CourseEvaluationSummary',
-    'CourseProfessorEvaluationSummary',
-    'ExchangePlaceListItem',
-    'ProfessorEvaluationSummary',
+  'ExchangePlaceListItem',
   ]) {
     assert.ok(model in dataDomainModels)
   }
@@ -315,8 +312,11 @@ test('generates canonical domain models independently from operation envelopes',
     'FeedbackReport',
     'PendingProfessorEvaluation',
     'StudentPublicProfile',
-    'StudentTagInterest',
-    'ProfessorEvaluation',
+  'StudentTagInterest',
+  'ProfessorEvaluation',
+  'CourseEvaluationSummary',
+  'CourseProfessorEvaluationSummary',
+  'ProfessorEvaluationSummary',
   ]) {
     assert.ok(model in appDomainModels)
   }

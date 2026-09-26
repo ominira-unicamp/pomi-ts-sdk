@@ -1,40 +1,122 @@
 export const componentSchemas = {
-    "CurrentUserEntity": {
+    "PageProfessorEvaluationSummaries": {
         "type": "object",
         "properties": {
-            "id": {
+            "data": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ProfessorEvaluationSummary"
+                }
+            },
+            "quantity": {
                 "type": "integer"
             },
-            "roles": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                }
+            "total": {
+                "type": "integer"
             },
-            "capabilities": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                }
-            },
-            "studentId": {
-                "type": "integer",
-                "nullable": true
+            "links": {
+                "$ref": "#/components/schemas/PaginationLinks"
             }
         },
         "required": [
-            "id",
-            "roles",
-            "capabilities",
-            "studentId"
+            "data",
+            "quantity",
+            "total",
+            "links"
+        ],
+        "x-pomi-schema": {
+            "kind": "page",
+            "publicName": "PageProfessorEvaluationSummaries"
+        }
+    },
+    "ProfessorEvaluationSummary": {
+        "type": "object",
+        "properties": {
+            "responseCount": {
+                "type": "integer",
+                "minimum": 5
+            },
+            "wouldTakeAgain": {
+                "type": "number"
+            },
+            "fairness": {
+                "type": "number"
+            },
+            "clarity": {
+                "type": "number"
+            },
+            "difficulty": {
+                "type": "number"
+            },
+            "professor": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "required": [
+            "responseCount",
+            "wouldTakeAgain",
+            "fairness",
+            "clarity",
+            "difficulty",
+            "professor"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
-            "kind": "entity",
-            "publicName": "CurrentUser",
-            "identityFields": [
-                "id"
-            ]
+            "kind": "projection",
+            "publicName": "ProfessorEvaluationSummary"
+        }
+    },
+    "PaginationLinks": {
+        "type": "object",
+        "properties": {
+            "self": {
+                "type": "string",
+                "format": "uri-reference"
+            },
+            "first": {
+                "type": "string",
+                "format": "uri-reference"
+            },
+            "last": {
+                "type": "string",
+                "format": "uri-reference"
+            },
+            "next": {
+                "type": "string",
+                "nullable": true,
+                "format": "uri-reference"
+            },
+            "previous": {
+                "type": "string",
+                "nullable": true,
+                "format": "uri-reference"
+            }
+        },
+        "required": [
+            "self",
+            "first",
+            "last",
+            "next",
+            "previous"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "transport",
+            "publicName": "PaginationLinks",
+            "generate": false
         }
     },
     "InvalidRequestProblem": {
@@ -220,6 +302,239 @@ export const componentSchemas = {
             "publicName": "InconsistentResourceStateProblem"
         }
     },
+    "PageCourseEvaluationSummaries": {
+        "type": "object",
+        "properties": {
+            "data": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/CourseEvaluationSummary"
+                }
+            },
+            "quantity": {
+                "type": "integer"
+            },
+            "total": {
+                "type": "integer"
+            },
+            "links": {
+                "$ref": "#/components/schemas/PaginationLinks"
+            }
+        },
+        "required": [
+            "data",
+            "quantity",
+            "total",
+            "links"
+        ],
+        "x-pomi-schema": {
+            "kind": "page",
+            "publicName": "PageCourseEvaluationSummaries"
+        }
+    },
+    "CourseEvaluationSummary": {
+        "type": "object",
+        "properties": {
+            "responseCount": {
+                "type": "integer",
+                "minimum": 5
+            },
+            "wouldTakeAgain": {
+                "type": "number"
+            },
+            "fairness": {
+                "type": "number"
+            },
+            "clarity": {
+                "type": "number"
+            },
+            "difficulty": {
+                "type": "number"
+            },
+            "course": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "code",
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "required": [
+            "responseCount",
+            "wouldTakeAgain",
+            "fairness",
+            "clarity",
+            "difficulty",
+            "course"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "projection",
+            "publicName": "CourseEvaluationSummary"
+        }
+    },
+    "CourseProfessorEvaluationSummary": {
+        "type": "object",
+        "properties": {
+            "responseCount": {
+                "type": "integer",
+                "minimum": 5
+            },
+            "wouldTakeAgain": {
+                "type": "number"
+            },
+            "fairness": {
+                "type": "number"
+            },
+            "clarity": {
+                "type": "number"
+            },
+            "difficulty": {
+                "type": "number"
+            },
+            "course": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "code",
+                    "name"
+                ],
+                "additionalProperties": false
+            },
+            "professor": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "required": [
+            "responseCount",
+            "wouldTakeAgain",
+            "fairness",
+            "clarity",
+            "difficulty",
+            "course",
+            "professor"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "projection",
+            "publicName": "CourseProfessorEvaluationSummary"
+        }
+    },
+    "ResourceNotFoundProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Recurso não encontrado"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    404
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ResourceNotFoundProblem"
+        }
+    },
+    "CurrentUserEntity": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "capabilities": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "studentId": {
+                "type": "integer",
+                "nullable": true
+            }
+        },
+        "required": [
+            "id",
+            "roles",
+            "capabilities",
+            "studentId"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "CurrentUser",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
     "BotIdentityEntity": {
         "type": "object",
         "properties": {
@@ -242,46 +557,6 @@ export const componentSchemas = {
             "identityFields": [
                 "id"
             ]
-        }
-    },
-    "PaginationLinks": {
-        "type": "object",
-        "properties": {
-            "self": {
-                "type": "string",
-                "format": "uri-reference"
-            },
-            "first": {
-                "type": "string",
-                "format": "uri-reference"
-            },
-            "last": {
-                "type": "string",
-                "format": "uri-reference"
-            },
-            "next": {
-                "type": "string",
-                "nullable": true,
-                "format": "uri-reference"
-            },
-            "previous": {
-                "type": "string",
-                "nullable": true,
-                "format": "uri-reference"
-            }
-        },
-        "required": [
-            "self",
-            "first",
-            "last",
-            "next",
-            "previous"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "transport",
-            "publicName": "PaginationLinks",
-            "generate": false
         }
     },
     "BotGrantEntity": {
@@ -361,46 +636,6 @@ export const componentSchemas = {
         "x-pomi-schema": {
             "kind": "value-object",
             "publicName": "StudentCapability"
-        }
-    },
-    "ResourceNotFoundProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Recurso não encontrado"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    404
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "ResourceNotFoundProblem"
         }
     },
     "ReplaceBotGrantBody": {
@@ -1775,10 +2010,6 @@ export const componentSchemas = {
             "studyPeriodId": {
                 "type": "integer"
             },
-            "curriculumId": {
-                "type": "integer",
-                "nullable": true
-            },
             "guide": {
                 "$ref": "#/components/schemas/PlanningGuideInput"
             },
@@ -2030,10 +2261,6 @@ export const componentSchemas = {
             },
             "visibility": {
                 "$ref": "#/components/schemas/PlanningVisibility"
-            },
-            "curriculumId": {
-                "type": "integer",
-                "nullable": true
             },
             "guide": {
                 "$ref": "#/components/schemas/PlanningGuideInput"
@@ -4431,10 +4658,6 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "createStudentPeriodPlan": {
-        "parameters": [],
-        "filter": null
-    },
     "createStudentPeriodPlannings": {
         "parameters": [],
         "filter": null
@@ -4467,10 +4690,6 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "deleteStudentPeriodPlan": {
-        "parameters": [],
-        "filter": null
-    },
     "deleteStudentPeriodPlannings": {
         "parameters": [],
         "filter": null
@@ -4490,6 +4709,109 @@ export const queryCapabilities = {
     "getCategory": {
         "parameters": [],
         "filter": null
+    },
+    "getCourseProfessorEvaluationSummary": {
+        "parameters": [
+            {
+                "name": "filter",
+                "required": true,
+                "description": "Structured evaluation summary filters. Use filter[courseId]=1&filter[professorId]=2.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "courseId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "professorId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "courseId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                },
+                {
+                    "path": [
+                        "professorId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
     },
     "getCurrentUser": {
         "parameters": [],
@@ -4512,10 +4834,6 @@ export const queryCapabilities = {
         "filter": null
     },
     "getStudentCurricula": {
-        "parameters": [],
-        "filter": null
-    },
-    "getStudentPeriodPlan": {
         "parameters": [],
         "filter": null
     },
@@ -4778,6 +5096,165 @@ export const queryCapabilities = {
                 "name"
             ],
             "default": "name:asc"
+        }
+    },
+    "listCourseEvaluationSummaries": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 20,
+                    "description": "Number of items per page."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Structured course summary filters. Use filter[courseCode]=MC102.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "courseId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "courseCode": {
+                            "oneOf": [
+                                {
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "ne": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "course.code:asc"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "courseId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                },
+                {
+                    "path": [
+                        "courseCode"
+                    ],
+                    "schema": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "operators": [
+                        "eq",
+                        "ne",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        },
+        "sort": {
+            "version": 1,
+            "fields": [
+                "course.code",
+                "course.name",
+                "responseCount",
+                "wouldTakeAgain",
+                "fairness",
+                "clarity",
+                "difficulty"
+            ],
+            "default": "course.code:asc"
         }
     },
     "listCourseTags": {
@@ -5048,6 +5525,121 @@ export const queryCapabilities = {
                 "professorName"
             ],
             "default": "courseCode:asc,classCode:asc,professorName:asc"
+        }
+    },
+    "listProfessorEvaluationSummaries": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 20,
+                    "description": "Number of items per page."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Structured professor summary filters. Use filter[professorId]=1.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "professorId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "professor.name:asc"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "professorId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        },
+        "sort": {
+            "version": 1,
+            "fields": [
+                "professor.name",
+                "responseCount",
+                "wouldTakeAgain",
+                "fairness",
+                "clarity",
+                "difficulty"
+            ],
+            "default": "professor.name:asc"
         }
     },
     "listPublicSharedPeriodPlannings": {
@@ -5868,68 +6460,6 @@ export const queryCapabilities = {
             "default": "displayName:asc"
         }
     },
-    "listStudentPeriodPlan": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "updatedAt:desc"
-                }
-            }
-        ],
-        "filter": null,
-        "sort": {
-            "version": 1,
-            "fields": [
-                "updatedAt",
-                "name",
-                "studyPeriodYear",
-                "studyPeriodYearPeriod",
-                "visibility"
-            ],
-            "default": "updatedAt:desc"
-        }
-    },
     "listStudentPeriodPlannings": {
         "parameters": [
             {
@@ -6518,10 +7048,6 @@ export const queryCapabilities = {
         "filter": null
     },
     "updateStudentCurricula": {
-        "parameters": [],
-        "filter": null
-    },
-    "updateStudentPeriodPlan": {
         "parameters": [],
         "filter": null
     },

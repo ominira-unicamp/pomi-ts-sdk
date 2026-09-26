@@ -30,6 +30,21 @@ export type Page<T> = {
 export type DomainComponentSchemaName = keyof components['schemas']
 export type Component<Name extends DomainComponentSchemaName> = Domain<components['schemas'][Name]>
 
+export type PageProfessorEvaluationSummariesTransport = components['schemas']['PageProfessorEvaluationSummaries']
+export type PageProfessorEvaluationSummaries = Domain<PageProfessorEvaluationSummariesTransport>
+
+export type ProfessorEvaluationSummaryTransport = components['schemas']['ProfessorEvaluationSummary']
+export type ProfessorEvaluationSummary = Domain<ProfessorEvaluationSummaryTransport>
+
+export type PageCourseEvaluationSummariesTransport = components['schemas']['PageCourseEvaluationSummaries']
+export type PageCourseEvaluationSummaries = Domain<PageCourseEvaluationSummariesTransport>
+
+export type CourseEvaluationSummaryTransport = components['schemas']['CourseEvaluationSummary']
+export type CourseEvaluationSummary = Domain<CourseEvaluationSummaryTransport>
+
+export type CourseProfessorEvaluationSummaryTransport = components['schemas']['CourseProfessorEvaluationSummary']
+export type CourseProfessorEvaluationSummary = Domain<CourseProfessorEvaluationSummaryTransport>
+
 export type CurrentUserTransport = components['schemas']['CurrentUserEntity']
 export type CurrentUser = Domain<CurrentUserTransport>
 
@@ -183,6 +198,41 @@ export type StudentTagInterest = Domain<StudentTagInterestTransport>
 
 
 export const domainModelDefinitions = {
+    "PageProfessorEvaluationSummaries": {
+        "schema": "PageProfessorEvaluationSummaries",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProfessorEvaluationSummary": {
+        "schema": "ProfessorEvaluationSummary",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PageCourseEvaluationSummaries": {
+        "schema": "PageCourseEvaluationSummaries",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CourseEvaluationSummary": {
+        "schema": "CourseEvaluationSummary",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CourseProfessorEvaluationSummary": {
+        "schema": "CourseProfessorEvaluationSummary",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
     "CurrentUser": {
         "schema": "CurrentUserEntity",
         "transportFields": [],

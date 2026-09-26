@@ -8,6 +8,13 @@ export const problemCatalog = {
         "title": "Dados da requisição inválidos",
         "hasFields": true
     },
+    "urn:pomi:problem:resource-not-found": {
+        "schemaName": "ResourceNotFoundProblem",
+        "type": "urn:pomi:problem:resource-not-found",
+        "status": 404,
+        "title": "Recurso não encontrado",
+        "hasFields": false
+    },
     "urn:pomi:problem:internal-server-error": {
         "schemaName": "InternalServerErrorProblem",
         "type": "urn:pomi:problem:internal-server-error",
@@ -20,13 +27,6 @@ export const problemCatalog = {
         "type": "urn:pomi:problem:inconsistent-resource-state",
         "status": 500,
         "title": "Estado interno do recurso inconsistente",
-        "hasFields": false
-    },
-    "urn:pomi:problem:resource-not-found": {
-        "schemaName": "ResourceNotFoundProblem",
-        "type": "urn:pomi:problem:resource-not-found",
-        "status": 404,
-        "title": "Recurso não encontrado",
         "hasFields": false
     }
 } as const
@@ -68,10 +68,6 @@ export const operationProblemTypes = {
         "urn:pomi:problem:resource-not-found"
     ],
     "getCoordinators": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "getCourseProfessorEvaluationSummary": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
@@ -162,9 +158,6 @@ export const operationProblemTypes = {
     "listCoordinators": [
         "urn:pomi:problem:invalid-request"
     ],
-    "listCourseEvaluationSummaries": [
-        "urn:pomi:problem:invalid-request"
-    ],
     "listCourses": [
         "urn:pomi:problem:invalid-request"
     ],
@@ -190,9 +183,6 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request"
     ],
     "listProfessorDataPortalProfiles": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listProfessorEvaluationSummaries": [
         "urn:pomi:problem:invalid-request"
     ],
     "listProfessorPositions": [
@@ -221,9 +211,9 @@ export const operationProblemTypes = {
 export type ProblemType = keyof typeof problemCatalog
 export type ProblemByType = {
     "urn:pomi:problem:invalid-request": components['schemas']["InvalidRequestProblem"]
+    "urn:pomi:problem:resource-not-found": components['schemas']["ResourceNotFoundProblem"]
     "urn:pomi:problem:internal-server-error": components['schemas']["InternalServerErrorProblem"]
     "urn:pomi:problem:inconsistent-resource-state": components['schemas']["InconsistentResourceStateProblem"]
-    "urn:pomi:problem:resource-not-found": components['schemas']["ResourceNotFoundProblem"]
 }
 export type AnyProblem = ProblemByType[ProblemType]
 export type OperationProblem<Name extends keyof typeof operationProblemTypes> =

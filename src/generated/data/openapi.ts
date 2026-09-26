@@ -1,55 +1,4 @@
 export interface paths {
-    "/professors/evaluation-summaries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["listProfessorEvaluationSummaries"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/courses/evaluation-summaries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["listCourseEvaluationSummaries"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/evaluation-summaries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getCourseProfessorEvaluationSummary"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/units/{id}": {
         parameters: {
             query?: never;
@@ -904,34 +853,10 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        PageProfessorEvaluationSummaries: {
-            data: components["schemas"]["ProfessorEvaluationSummary"][];
-            quantity: number;
-            total: number;
-            links: components["schemas"]["PaginationLinks"];
-        };
-        ProfessorEvaluationSummary: {
-            responseCount: number;
-            wouldTakeAgain: number;
-            fairness: number;
-            clarity: number;
-            difficulty: number;
-            professor: {
-                id: number;
-                name: string;
-            };
-        };
-        PaginationLinks: {
-
-            self: string;
-
-            first: string;
-
-            last: string;
-
-            next: string | null;
-
-            previous: string | null;
+        UnitEntity: {
+            id: number;
+            code: string;
+            name: string;
         };
         InvalidRequestProblem: {
 
@@ -951,6 +876,16 @@ export interface components {
             details?: {
                 [key: string]: unknown;
             };
+        };
+        ResourceNotFoundProblem: {
+
+            type: "urn:pomi:problem:resource-not-found";
+
+            title: "Recurso não encontrado";
+
+            status: 404;
+            detail: string;
+            instance?: string;
         };
         ServerErrorProblem: components["schemas"]["InternalServerErrorProblem"] | components["schemas"]["InconsistentResourceStateProblem"];
         InternalServerErrorProblem: {
@@ -973,54 +908,17 @@ export interface components {
             detail: string;
             instance?: string;
         };
-        PageCourseEvaluationSummaries: {
-            data: components["schemas"]["CourseEvaluationSummary"][];
-            quantity: number;
-            total: number;
-            links: components["schemas"]["PaginationLinks"];
-        };
-        CourseEvaluationSummary: {
-            responseCount: number;
-            wouldTakeAgain: number;
-            fairness: number;
-            clarity: number;
-            difficulty: number;
-            course: {
-                id: number;
-                code: string;
-                name: string;
-            };
-        };
-        CourseProfessorEvaluationSummary: {
-            responseCount: number;
-            wouldTakeAgain: number;
-            fairness: number;
-            clarity: number;
-            difficulty: number;
-            course: {
-                id: number;
-                code: string;
-                name: string;
-            };
-            professor: {
-                id: number;
-                name: string;
-            };
-        };
-        ResourceNotFoundProblem: {
+        PaginationLinks: {
 
-            type: "urn:pomi:problem:resource-not-found";
+            self: string;
 
-            title: "Recurso não encontrado";
+            first: string;
 
-            status: 404;
-            detail: string;
-            instance?: string;
-        };
-        UnitEntity: {
-            id: number;
-            code: string;
-            name: string;
+            last: string;
+
+            next: string | null;
+
+            previous: string | null;
         };
         CourseEntity: {
             id: number;
@@ -1192,8 +1090,6 @@ export interface components {
             programsCount: number;
 
             coursesCount: number;
-
-            studentsCount: number;
 
             programIds: number[];
         };
@@ -1415,7 +1311,6 @@ export interface components {
                 code: string;
             };
             catalogProgramsCount: number;
-            studentsCount: number;
         };
         Specialization: {
             id: number;
@@ -1425,7 +1320,6 @@ export interface components {
             code: string;
             name: string;
             catalogProgramVariantsCount: number;
-            studentsCount: number;
         };
         ExchangeNotice: {
             id: number;
@@ -1557,174 +1451,6 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    listProfessorEvaluationSummaries: {
-        parameters: {
-            query?: {
-
-                page?: number;
-
-                pageSize?: number;
-
-                filter?: {
-                    professorId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                };
-
-                sort?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PageProfessorEvaluationSummaries"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    listCourseEvaluationSummaries: {
-        parameters: {
-            query?: {
-
-                page?: number;
-
-                pageSize?: number;
-
-                filter?: {
-                    courseId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                    courseCode?: string | {
-                        eq?: string;
-                        ne?: string;
-                        in?: string[];
-                    };
-                };
-
-                sort?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PageCourseEvaluationSummaries"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    getCourseProfessorEvaluationSummary: {
-        parameters: {
-            query: {
-
-                filter: {
-                    courseId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                    professorId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                };
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CourseProfessorEvaluationSummary"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
     getUnits: {
         parameters: {
             query?: never;

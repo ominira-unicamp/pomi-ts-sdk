@@ -1,6 +1,9 @@
-import type { listPendingProfessorEvaluationsInput, listPublicSharedPeriodPlanningsInput, listStudentAbsencesInput, listStudentCourseAttemptsInput, listStudentFriendshipsInput, listStudentSharedPeriodPlanningsInput, listTagsInput } from './operations.js'
+import type { getCourseProfessorEvaluationSummaryInput, listCourseEvaluationSummariesInput, listPendingProfessorEvaluationsInput, listProfessorEvaluationSummariesInput, listPublicSharedPeriodPlanningsInput, listStudentAbsencesInput, listStudentCourseAttemptsInput, listStudentFriendshipsInput, listStudentSharedPeriodPlanningsInput, listTagsInput } from './operations.js'
 
+export type getCourseProfessorEvaluationSummaryFilter = NonNullable<getCourseProfessorEvaluationSummaryInput['filter']>
+export type listCourseEvaluationSummariesFilter = NonNullable<listCourseEvaluationSummariesInput['filter']>
 export type listPendingProfessorEvaluationsFilter = NonNullable<listPendingProfessorEvaluationsInput['filter']>
+export type listProfessorEvaluationSummariesFilter = NonNullable<listProfessorEvaluationSummariesInput['filter']>
 export type listPublicSharedPeriodPlanningsFilter = NonNullable<listPublicSharedPeriodPlanningsInput['filter']>
 export type listStudentAbsencesFilter = NonNullable<listStudentAbsencesInput['filter']>
 export type listStudentCourseAttemptsFilter = NonNullable<listStudentCourseAttemptsInput['filter']>
@@ -9,6 +12,79 @@ export type listStudentSharedPeriodPlanningsFilter = NonNullable<listStudentShar
 export type listTagsFilter = NonNullable<listTagsInput['filter']>
 
 export const filterCapabilities = {
+    "getCourseProfessorEvaluationSummary": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "courseId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "professorId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listCourseEvaluationSummaries": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "courseId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "courseCode"
+                ],
+                "schema": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
     "listPendingProfessorEvaluations": {
         "version": 1,
         "fields": [
@@ -36,6 +112,29 @@ export const filterCapabilities = {
                 },
                 "operators": [
                     "eq"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listProfessorEvaluationSummaries": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "professorId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
                 ]
             }
         ],

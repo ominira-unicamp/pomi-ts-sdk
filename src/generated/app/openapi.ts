@@ -1,4 +1,55 @@
 export interface paths {
+    "/professors/evaluation-summaries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listProfessorEvaluationSummaries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/courses/evaluation-summaries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listCourseEvaluationSummaries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/evaluation-summaries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getCourseProfessorEvaluationSummary"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/me": {
         parameters: {
             query?: never;
@@ -207,43 +258,6 @@ export interface paths {
         put?: never;
 
         post: operations["createStudentPeriodPlannings"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/period-plan/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getStudentPeriodPlan"];
-        put?: never;
-        post?: never;
-
-        delete: operations["deleteStudentPeriodPlan"];
-        options?: never;
-        head?: never;
-
-        patch: operations["updateStudentPeriodPlan"];
-        trace?: never;
-    };
-    "/student/{sid}/period-plan": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["listStudentPeriodPlan"];
-        put?: never;
-
-        post: operations["createStudentPeriodPlan"];
         delete?: never;
         options?: never;
         head?: never;
@@ -815,11 +829,34 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        CurrentUserEntity: {
-            id: number;
-            roles: string[];
-            capabilities: string[];
-            studentId: number | null;
+        PageProfessorEvaluationSummaries: {
+            data: components["schemas"]["ProfessorEvaluationSummary"][];
+            quantity: number;
+            total: number;
+            links: components["schemas"]["PaginationLinks"];
+        };
+        ProfessorEvaluationSummary: {
+            responseCount: number;
+            wouldTakeAgain: number;
+            fairness: number;
+            clarity: number;
+            difficulty: number;
+            professor: {
+                id: number;
+                name: string;
+            };
+        };
+        PaginationLinks: {
+
+            self: string;
+
+            first: string;
+
+            last: string;
+
+            next: string | null;
+
+            previous: string | null;
         };
         InvalidRequestProblem: {
 
@@ -861,21 +898,59 @@ export interface components {
             detail: string;
             instance?: string;
         };
+        PageCourseEvaluationSummaries: {
+            data: components["schemas"]["CourseEvaluationSummary"][];
+            quantity: number;
+            total: number;
+            links: components["schemas"]["PaginationLinks"];
+        };
+        CourseEvaluationSummary: {
+            responseCount: number;
+            wouldTakeAgain: number;
+            fairness: number;
+            clarity: number;
+            difficulty: number;
+            course: {
+                id: number;
+                code: string;
+                name: string;
+            };
+        };
+        CourseProfessorEvaluationSummary: {
+            responseCount: number;
+            wouldTakeAgain: number;
+            fairness: number;
+            clarity: number;
+            difficulty: number;
+            course: {
+                id: number;
+                code: string;
+                name: string;
+            };
+            professor: {
+                id: number;
+                name: string;
+            };
+        };
+        ResourceNotFoundProblem: {
+
+            type: "urn:pomi:problem:resource-not-found";
+
+            title: "Recurso não encontrado";
+
+            status: 404;
+            detail: string;
+            instance?: string;
+        };
+        CurrentUserEntity: {
+            id: number;
+            roles: string[];
+            capabilities: string[];
+            studentId: number | null;
+        };
         BotIdentityEntity: {
             id: number;
             displayName: string | null;
-        };
-        PaginationLinks: {
-
-            self: string;
-
-            first: string;
-
-            last: string;
-
-            next: string | null;
-
-            previous: string | null;
         };
         BotGrantEntity: {
             id: number;
@@ -893,16 +968,6 @@ export interface components {
         };
 
         StudentCapability: "STUDENT_PROFILE_READ" | "STUDENT_PROFILE_WRITE" | "STUDENT_HISTORY_READ" | "STUDENT_HISTORY_WRITE" | "STUDENT_PLANNING_READ" | "STUDENT_PLANNING_WRITE" | "STUDENT_SOCIAL_READ" | "STUDENT_SOCIAL_WRITE" | "STUDENT_FEEDBACK_READ" | "STUDENT_FEEDBACK_WRITE";
-        ResourceNotFoundProblem: {
-
-            type: "urn:pomi:problem:resource-not-found";
-
-            title: "Recurso não encontrado";
-
-            status: 404;
-            detail: string;
-            instance?: string;
-        };
         ReplaceBotGrantBody: {
             capabilities: components["schemas"]["StudentCapability"][];
         };
@@ -1182,7 +1247,6 @@ export interface components {
         CreatePeriodPlanningInput: {
             name?: string;
             studyPeriodId: number;
-            curriculumId?: number | null;
             guide?: components["schemas"]["PlanningGuideInput"];
             classes: number[];
         };
@@ -1227,7 +1291,6 @@ export interface components {
         UpdatePeriodPlanningInput: {
             name?: string;
             visibility?: components["schemas"]["PlanningVisibility"];
-            curriculumId?: number | null;
             guide?: components["schemas"]["PlanningGuideInput"];
             classes?: {
                 set?: number[];
@@ -1685,6 +1748,174 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    listProfessorEvaluationSummaries: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number;
+
+                filter?: {
+                    professorId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+
+                sort?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PageProfessorEvaluationSummaries"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listCourseEvaluationSummaries: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number;
+
+                filter?: {
+                    courseId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                    courseCode?: string | {
+                        eq?: string;
+                        ne?: string;
+                        in?: string[];
+                    };
+                };
+
+                sort?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PageCourseEvaluationSummaries"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getCourseProfessorEvaluationSummary: {
+        parameters: {
+            query: {
+
+                filter: {
+                    courseId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                    professorId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseProfessorEvaluationSummary"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
     getCurrentUser: {
         parameters: {
             query?: never;
@@ -2860,274 +3091,6 @@ export interface operations {
         };
     };
     createStudentPeriodPlannings: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreatePeriodPlanningInput"];
-            };
-        };
-        responses: {
-
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PeriodPlanningEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidPeriodPlanProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    getStudentPeriodPlan: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PeriodPlanningEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    deleteStudentPeriodPlan: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    updateStudentPeriodPlan: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                id: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdatePeriodPlanningInput"];
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PeriodPlanningEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidPeriodPlanProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    listStudentPeriodPlan: {
-        parameters: {
-            query?: {
-
-                page?: number;
-
-                pageSize?: number | "all";
-
-                sort?: string;
-            };
-            header?: never;
-            path: {
-                sid: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PeriodPlanningEntity"][];
-                        quantity: number;
-                        total: number;
-                        links: components["schemas"]["PaginationLinks"];
-                    };
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    createStudentPeriodPlan: {
         parameters: {
             query?: never;
             header?: never;
