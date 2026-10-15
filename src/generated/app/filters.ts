@@ -1,13 +1,21 @@
-import type { getCourseProfessorEvaluationSummaryInput, listCourseEvaluationSummariesInput, listPendingProfessorEvaluationsInput, listProfessorEvaluationSummariesInput, listPublicSharedPeriodPlanningsInput, listStudentAbsencesInput, listStudentCourseAttemptsInput, listStudentFriendshipsInput, listStudentSharedPeriodPlanningsInput, listTagsInput } from './operations.js'
+import type { getCourseProfessorEvaluationSummaryInput, listCourseEvaluationSummariesInput, listGroupEventsInput, listGroupInvitationsInput, listGroupRolesInput, listManagedGroupEventsInput, listManagedGroupInvitationsInput, listManagedGroupMembershipsInput, listPendingProfessorEvaluationsInput, listProfessorEvaluationSummariesInput, listPublicGroupMembershipsInput, listPublicSharedPeriodPlanningsInput, listStudentAbsencesInput, listStudentCourseAttemptsInput, listStudentFriendshipsInput, listStudentGroupMembershipsInput, listStudentSharedPeriodPlanningsInput, listTagsInput } from './operations.js'
 
 export type getCourseProfessorEvaluationSummaryFilter = NonNullable<getCourseProfessorEvaluationSummaryInput['filter']>
 export type listCourseEvaluationSummariesFilter = NonNullable<listCourseEvaluationSummariesInput['filter']>
+export type listGroupEventsFilter = NonNullable<listGroupEventsInput['filter']>
+export type listGroupInvitationsFilter = NonNullable<listGroupInvitationsInput['filter']>
+export type listGroupRolesFilter = NonNullable<listGroupRolesInput['filter']>
+export type listManagedGroupEventsFilter = NonNullable<listManagedGroupEventsInput['filter']>
+export type listManagedGroupInvitationsFilter = NonNullable<listManagedGroupInvitationsInput['filter']>
+export type listManagedGroupMembershipsFilter = NonNullable<listManagedGroupMembershipsInput['filter']>
 export type listPendingProfessorEvaluationsFilter = NonNullable<listPendingProfessorEvaluationsInput['filter']>
 export type listProfessorEvaluationSummariesFilter = NonNullable<listProfessorEvaluationSummariesInput['filter']>
+export type listPublicGroupMembershipsFilter = NonNullable<listPublicGroupMembershipsInput['filter']>
 export type listPublicSharedPeriodPlanningsFilter = NonNullable<listPublicSharedPeriodPlanningsInput['filter']>
 export type listStudentAbsencesFilter = NonNullable<listStudentAbsencesInput['filter']>
 export type listStudentCourseAttemptsFilter = NonNullable<listStudentCourseAttemptsInput['filter']>
 export type listStudentFriendshipsFilter = NonNullable<listStudentFriendshipsInput['filter']>
+export type listStudentGroupMembershipsFilter = NonNullable<listStudentGroupMembershipsInput['filter']>
 export type listStudentSharedPeriodPlanningsFilter = NonNullable<listStudentSharedPeriodPlanningsInput['filter']>
 export type listTagsFilter = NonNullable<listTagsInput['filter']>
 
@@ -85,6 +93,144 @@ export const filterCapabilities = {
             "maxParameters": 100
         }
     },
+    "listGroupEvents": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listGroupInvitations": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listGroupRoles": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listManagedGroupEvents": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listManagedGroupInvitations": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listManagedGroupMemberships": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
     "listPendingProfessorEvaluations": {
         "version": 1,
         "fields": [
@@ -135,6 +281,41 @@ export const filterCapabilities = {
                 "operators": [
                     "eq",
                     "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listPublicGroupMemberships": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "publicId"
+                ],
+                "schema": {
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "operators": [
+                    "eq"
                 ]
             }
         ],
@@ -277,6 +458,29 @@ export const filterCapabilities = {
                 },
                 "operators": [
                     "eq"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listStudentGroupMemberships": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "groupId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
                 ]
             }
         ],

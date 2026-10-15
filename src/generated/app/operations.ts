@@ -22,12 +22,21 @@ type SortQuery<Query, SortField extends string> = ParameterRecord<Query> extends
 type OperationInput<Path, Query, Header, Body, BodyRequired extends boolean> =
     ParameterRecord<Path> & ParameterRecord<Query> & HeaderInput<Header> & BodyInput<Body, BodyRequired>
 
+export type acceptGroupInvitationInput = OperationInput<operations["acceptGroupInvitation"]['parameters']['path'], operations["acceptGroupInvitation"]['parameters']['query'], operations["acceptGroupInvitation"]['parameters']['header'], RequestBodyOf<operations["acceptGroupInvitation"]>, false>
+export type acceptGroupInvitationOutput = import('./domain.js').OwnGroupMembership
+export type acceptGroupInvitationProblem = operations["acceptGroupInvitation"]['responses'][400]['content']["application/problem+json"] | operations["acceptGroupInvitation"]['responses'][404]['content']["application/problem+json"] | operations["acceptGroupInvitation"]['responses'][500]['content']["application/problem+json"]
 export type acceptStudentFriendshipInput = OperationInput<operations["acceptStudentFriendship"]['parameters']['path'], operations["acceptStudentFriendship"]['parameters']['query'], operations["acceptStudentFriendship"]['parameters']['header'], RequestBodyOf<operations["acceptStudentFriendship"]>, false>
 export type acceptStudentFriendshipOutput = import('./domain.js').StudentFriendship
 export type acceptStudentFriendshipProblem = operations["acceptStudentFriendship"]['responses'][400]['content']["application/problem+json"] | operations["acceptStudentFriendship"]['responses'][404]['content']["application/problem+json"] | operations["acceptStudentFriendship"]['responses'][409]['content']["application/problem+json"] | operations["acceptStudentFriendship"]['responses'][500]['content']["application/problem+json"]
 export type addCourseTagInput = OperationInput<operations["addCourseTag"]['parameters']['path'], operations["addCourseTag"]['parameters']['query'], operations["addCourseTag"]['parameters']['header'], RequestBodyOf<operations["addCourseTag"]>, false>
 export type addCourseTagOutput = void
 export type addCourseTagProblem = operations["addCourseTag"]['responses'][400]['content']["application/problem+json"] | operations["addCourseTag"]['responses'][422]['content']["application/problem+json"] | operations["addCourseTag"]['responses'][500]['content']["application/problem+json"]
+export type archiveGroupInput = OperationInput<operations["archiveGroup"]['parameters']['path'], operations["archiveGroup"]['parameters']['query'], operations["archiveGroup"]['parameters']['header'], RequestBodyOf<operations["archiveGroup"]>, false>
+export type archiveGroupOutput = void
+export type archiveGroupProblem = operations["archiveGroup"]['responses'][400]['content']["application/problem+json"] | operations["archiveGroup"]['responses'][404]['content']["application/problem+json"] | operations["archiveGroup"]['responses'][500]['content']["application/problem+json"]
+export type cancelGroupEventInput = OperationInput<operations["cancelGroupEvent"]['parameters']['path'], operations["cancelGroupEvent"]['parameters']['query'], operations["cancelGroupEvent"]['parameters']['header'], RequestBodyOf<operations["cancelGroupEvent"]>, false>
+export type cancelGroupEventOutput = import('./domain.js').ManagedGroupEvent
+export type cancelGroupEventProblem = operations["cancelGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["cancelGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["cancelGroupEvent"]['responses'][500]['content']["application/problem+json"]
 export type createAuthUserInput = OperationInput<operations["createAuthUser"]['parameters']['path'], operations["createAuthUser"]['parameters']['query'], operations["createAuthUser"]['parameters']['header'], RequestBodyOf<operations["createAuthUser"]>, true>
 export type createAuthUserOutput = import('./domain.js').AuthUser
 export type createAuthUserProblem = operations["createAuthUser"]['responses'][400]['content']["application/problem+json"] | operations["createAuthUser"]['responses'][500]['content']["application/problem+json"]
@@ -37,6 +46,18 @@ export type createCategoryProblem = operations["createCategory"]['responses'][40
 export type createFeedbackReportInput = OperationInput<operations["createFeedbackReport"]['parameters']['path'], operations["createFeedbackReport"]['parameters']['query'], operations["createFeedbackReport"]['parameters']['header'], RequestBodyOf<operations["createFeedbackReport"]>, true>
 export type createFeedbackReportOutput = import('./domain.js').FeedbackReportAccepted
 export type createFeedbackReportProblem = operations["createFeedbackReport"]['responses'][400]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][404]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][422]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][429]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][500]['content']["application/problem+json"]
+export type createGroupInput = OperationInput<operations["createGroup"]['parameters']['path'], operations["createGroup"]['parameters']['query'], operations["createGroup"]['parameters']['header'], RequestBodyOf<operations["createGroup"]>, true>
+export type createGroupOutput = import('./domain.js').Group
+export type createGroupProblem = operations["createGroup"]['responses'][400]['content']["application/problem+json"] | operations["createGroup"]['responses'][422]['content']["application/problem+json"] | operations["createGroup"]['responses'][500]['content']["application/problem+json"]
+export type createGroupEventInput = OperationInput<operations["createGroupEvent"]['parameters']['path'], operations["createGroupEvent"]['parameters']['query'], operations["createGroupEvent"]['parameters']['header'], RequestBodyOf<operations["createGroupEvent"]>, true>
+export type createGroupEventOutput = import('./domain.js').ManagedGroupEvent
+export type createGroupEventProblem = operations["createGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["createGroupEvent"]['responses'][500]['content']["application/problem+json"]
+export type createGroupInvitationInput = OperationInput<operations["createGroupInvitation"]['parameters']['path'], operations["createGroupInvitation"]['parameters']['query'], operations["createGroupInvitation"]['parameters']['header'], RequestBodyOf<operations["createGroupInvitation"]>, true>
+export type createGroupInvitationOutput = import('./domain.js').GroupInvitation
+export type createGroupInvitationProblem = operations["createGroupInvitation"]['responses'][400]['content']["application/problem+json"] | operations["createGroupInvitation"]['responses'][500]['content']["application/problem+json"]
+export type createGroupRoleInput = OperationInput<operations["createGroupRole"]['parameters']['path'], operations["createGroupRole"]['parameters']['query'], operations["createGroupRole"]['parameters']['header'], RequestBodyOf<operations["createGroupRole"]>, true>
+export type createGroupRoleOutput = import('./domain.js').GroupRole
+export type createGroupRoleProblem = operations["createGroupRole"]['responses'][400]['content']["application/problem+json"] | operations["createGroupRole"]['responses'][500]['content']["application/problem+json"]
 export type createStudentAbsencesInput = OperationInput<operations["createStudentAbsences"]['parameters']['path'], operations["createStudentAbsences"]['parameters']['query'], operations["createStudentAbsences"]['parameters']['header'], RequestBodyOf<operations["createStudentAbsences"]>, true>
 export type createStudentAbsencesOutput = import('./domain.js').StudentAbsence
 export type createStudentAbsencesProblem = operations["createStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][409]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][422]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][500]['content']["application/problem+json"]
@@ -64,9 +85,15 @@ export type createStudentsProblem = operations["createStudents"]['responses'][40
 export type createTagInput = OperationInput<operations["createTag"]['parameters']['path'], operations["createTag"]['parameters']['query'], operations["createTag"]['parameters']['header'], RequestBodyOf<operations["createTag"]>, true>
 export type createTagOutput = import('./domain.js').Tag
 export type createTagProblem = operations["createTag"]['responses'][400]['content']["application/problem+json"] | operations["createTag"]['responses'][409]['content']["application/problem+json"] | operations["createTag"]['responses'][422]['content']["application/problem+json"] | operations["createTag"]['responses'][500]['content']["application/problem+json"]
+export type declineGroupInvitationInput = OperationInput<operations["declineGroupInvitation"]['parameters']['path'], operations["declineGroupInvitation"]['parameters']['query'], operations["declineGroupInvitation"]['parameters']['header'], RequestBodyOf<operations["declineGroupInvitation"]>, false>
+export type declineGroupInvitationOutput = void
+export type declineGroupInvitationProblem = operations["declineGroupInvitation"]['responses'][400]['content']["application/problem+json"] | operations["declineGroupInvitation"]['responses'][404]['content']["application/problem+json"] | operations["declineGroupInvitation"]['responses'][500]['content']["application/problem+json"]
 export type deleteCategoryInput = OperationInput<operations["deleteCategory"]['parameters']['path'], operations["deleteCategory"]['parameters']['query'], operations["deleteCategory"]['parameters']['header'], RequestBodyOf<operations["deleteCategory"]>, false>
 export type deleteCategoryOutput = void
 export type deleteCategoryProblem = operations["deleteCategory"]['responses'][400]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][404]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][409]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][500]['content']["application/problem+json"]
+export type deleteGroupRoleInput = OperationInput<operations["deleteGroupRole"]['parameters']['path'], operations["deleteGroupRole"]['parameters']['query'], operations["deleteGroupRole"]['parameters']['header'], RequestBodyOf<operations["deleteGroupRole"]>, false>
+export type deleteGroupRoleOutput = void
+export type deleteGroupRoleProblem = operations["deleteGroupRole"]['responses'][400]['content']["application/problem+json"] | operations["deleteGroupRole"]['responses'][404]['content']["application/problem+json"] | operations["deleteGroupRole"]['responses'][500]['content']["application/problem+json"]
 export type deleteStudentAbsencesInput = OperationInput<operations["deleteStudentAbsences"]['parameters']['path'], operations["deleteStudentAbsences"]['parameters']['query'], operations["deleteStudentAbsences"]['parameters']['header'], RequestBodyOf<operations["deleteStudentAbsences"]>, false>
 export type deleteStudentAbsencesOutput = void
 export type deleteStudentAbsencesProblem = operations["deleteStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentAbsences"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentAbsences"]['responses'][500]['content']["application/problem+json"]
@@ -103,9 +130,18 @@ export type getCurrentUserProblem = operations["getCurrentUser"]['responses'][40
 export type getExchangeNoticeSubscriptionInput = OperationInput<operations["getExchangeNoticeSubscription"]['parameters']['path'], operations["getExchangeNoticeSubscription"]['parameters']['query'], operations["getExchangeNoticeSubscription"]['parameters']['header'], RequestBodyOf<operations["getExchangeNoticeSubscription"]>, false>
 export type getExchangeNoticeSubscriptionOutput = import('./domain.js').ExchangeNoticeSubscription
 export type getExchangeNoticeSubscriptionProblem = operations["getExchangeNoticeSubscription"]['responses'][400]['content']["application/problem+json"] | operations["getExchangeNoticeSubscription"]['responses'][500]['content']["application/problem+json"]
+export type getGroupInput = OperationInput<operations["getGroup"]['parameters']['path'], operations["getGroup"]['parameters']['query'], operations["getGroup"]['parameters']['header'], RequestBodyOf<operations["getGroup"]>, false>
+export type getGroupOutput = import('./domain.js').Group
+export type getGroupProblem = operations["getGroup"]['responses'][400]['content']["application/problem+json"] | operations["getGroup"]['responses'][404]['content']["application/problem+json"] | operations["getGroup"]['responses'][500]['content']["application/problem+json"]
+export type getGroupEventInput = OperationInput<operations["getGroupEvent"]['parameters']['path'], operations["getGroupEvent"]['parameters']['query'], operations["getGroupEvent"]['parameters']['header'], RequestBodyOf<operations["getGroupEvent"]>, false>
+export type getGroupEventOutput = import('./domain.js').GroupEvent
+export type getGroupEventProblem = operations["getGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["getGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["getGroupEvent"]['responses'][500]['content']["application/problem+json"]
 export type getProfessorEvaluationInput = OperationInput<operations["getProfessorEvaluation"]['parameters']['path'], operations["getProfessorEvaluation"]['parameters']['query'], operations["getProfessorEvaluation"]['parameters']['header'], RequestBodyOf<operations["getProfessorEvaluation"]>, false>
 export type getProfessorEvaluationOutput = import('./domain.js').ProfessorEvaluationEligibility
 export type getProfessorEvaluationProblem = operations["getProfessorEvaluation"]['responses'][400]['content']["application/problem+json"] | operations["getProfessorEvaluation"]['responses'][422]['content']["application/problem+json"] | operations["getProfessorEvaluation"]['responses'][500]['content']["application/problem+json"]
+export type getPublicGroupMembershipInput = OperationInput<operations["getPublicGroupMembership"]['parameters']['path'], operations["getPublicGroupMembership"]['parameters']['query'], operations["getPublicGroupMembership"]['parameters']['header'], RequestBodyOf<operations["getPublicGroupMembership"]>, false>
+export type getPublicGroupMembershipOutput = import('./domain.js').PublicGroupMembership
+export type getPublicGroupMembershipProblem = operations["getPublicGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["getPublicGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["getPublicGroupMembership"]['responses'][500]['content']["application/problem+json"]
 export type getPublicSharedPeriodPlanningInput = OperationInput<operations["getPublicSharedPeriodPlanning"]['parameters']['path'], operations["getPublicSharedPeriodPlanning"]['parameters']['query'], operations["getPublicSharedPeriodPlanning"]['parameters']['header'], RequestBodyOf<operations["getPublicSharedPeriodPlanning"]>, false>
 export type getPublicSharedPeriodPlanningOutput = import('./domain.js').SharedPeriodPlanning
 export type getPublicSharedPeriodPlanningProblem = operations["getPublicSharedPeriodPlanning"]['responses'][400]['content']["application/problem+json"] | operations["getPublicSharedPeriodPlanning"]['responses'][404]['content']["application/problem+json"] | operations["getPublicSharedPeriodPlanning"]['responses'][500]['content']["application/problem+json"]
@@ -115,6 +151,9 @@ export type getStudentCourseAttemptsProblem = operations["getStudentCourseAttemp
 export type getStudentCurriculaInput = OperationInput<operations["getStudentCurricula"]['parameters']['path'], operations["getStudentCurricula"]['parameters']['query'], operations["getStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["getStudentCurricula"]>, false>
 export type getStudentCurriculaOutput = import('./domain.js').Curriculum
 export type getStudentCurriculaProblem = operations["getStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["getStudentCurricula"]['responses'][404]['content']["application/problem+json"] | operations["getStudentCurricula"]['responses'][500]['content']["application/problem+json"]
+export type getStudentGroupMembershipInput = OperationInput<operations["getStudentGroupMembership"]['parameters']['path'], operations["getStudentGroupMembership"]['parameters']['query'], operations["getStudentGroupMembership"]['parameters']['header'], RequestBodyOf<operations["getStudentGroupMembership"]>, false>
+export type getStudentGroupMembershipOutput = import('./domain.js').OwnGroupMembership
+export type getStudentGroupMembershipProblem = operations["getStudentGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["getStudentGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["getStudentGroupMembership"]['responses'][500]['content']["application/problem+json"]
 export type getStudentPeriodPlanningsInput = OperationInput<operations["getStudentPeriodPlannings"]['parameters']['path'], operations["getStudentPeriodPlannings"]['parameters']['query'], operations["getStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["getStudentPeriodPlannings"]>, false>
 export type getStudentPeriodPlanningsOutput = import('./domain.js').PeriodPlanning
 export type getStudentPeriodPlanningsProblem = operations["getStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["getStudentPeriodPlannings"]['responses'][404]['content']["application/problem+json"] | operations["getStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
@@ -154,12 +193,36 @@ export type listCourseTagsProblem = operations["listCourseTags"]['responses'][40
 export type listFeedbackReportsInput = OperationInput<operations["listFeedbackReports"]['parameters']['path'], SortQuery<operations["listFeedbackReports"]['parameters']['query'], "createdAt" | "updatedAt" | "status" | "kind" | "title">, operations["listFeedbackReports"]['parameters']['header'], RequestBodyOf<operations["listFeedbackReports"]>, false>
 export type listFeedbackReportsOutput = import('./domain.js').Page<import('./domain.js').FeedbackReport>
 export type listFeedbackReportsProblem = operations["listFeedbackReports"]['responses'][400]['content']["application/problem+json"] | operations["listFeedbackReports"]['responses'][500]['content']["application/problem+json"]
+export type listGroupEventsInput = OperationInput<operations["listGroupEvents"]['parameters']['path'], operations["listGroupEvents"]['parameters']['query'], operations["listGroupEvents"]['parameters']['header'], RequestBodyOf<operations["listGroupEvents"]>, false>
+export type listGroupEventsOutput = import('./domain.js').Page<import('./domain.js').GroupEvent>
+export type listGroupEventsProblem = operations["listGroupEvents"]['responses'][400]['content']["application/problem+json"] | operations["listGroupEvents"]['responses'][500]['content']["application/problem+json"]
+export type listGroupInvitationsInput = OperationInput<operations["listGroupInvitations"]['parameters']['path'], operations["listGroupInvitations"]['parameters']['query'], operations["listGroupInvitations"]['parameters']['header'], RequestBodyOf<operations["listGroupInvitations"]>, false>
+export type listGroupInvitationsOutput = import('./domain.js').Page<import('./domain.js').GroupInvitation>
+export type listGroupInvitationsProblem = operations["listGroupInvitations"]['responses'][400]['content']["application/problem+json"] | operations["listGroupInvitations"]['responses'][500]['content']["application/problem+json"]
+export type listGroupRolesInput = OperationInput<operations["listGroupRoles"]['parameters']['path'], operations["listGroupRoles"]['parameters']['query'], operations["listGroupRoles"]['parameters']['header'], RequestBodyOf<operations["listGroupRoles"]>, false>
+export type listGroupRolesOutput = import('./domain.js').Page<import('./domain.js').GroupRole>
+export type listGroupRolesProblem = operations["listGroupRoles"]['responses'][400]['content']["application/problem+json"] | operations["listGroupRoles"]['responses'][500]['content']["application/problem+json"]
+export type listGroupsInput = OperationInput<operations["listGroups"]['parameters']['path'], operations["listGroups"]['parameters']['query'], operations["listGroups"]['parameters']['header'], RequestBodyOf<operations["listGroups"]>, false>
+export type listGroupsOutput = import('./domain.js').Page<import('./domain.js').Group>
+export type listGroupsProblem = operations["listGroups"]['responses'][400]['content']["application/problem+json"] | operations["listGroups"]['responses'][500]['content']["application/problem+json"]
+export type listManagedGroupEventsInput = OperationInput<operations["listManagedGroupEvents"]['parameters']['path'], operations["listManagedGroupEvents"]['parameters']['query'], operations["listManagedGroupEvents"]['parameters']['header'], RequestBodyOf<operations["listManagedGroupEvents"]>, false>
+export type listManagedGroupEventsOutput = import('./domain.js').Page<import('./domain.js').ManagedGroupEvent>
+export type listManagedGroupEventsProblem = operations["listManagedGroupEvents"]['responses'][400]['content']["application/problem+json"] | operations["listManagedGroupEvents"]['responses'][500]['content']["application/problem+json"]
+export type listManagedGroupInvitationsInput = OperationInput<operations["listManagedGroupInvitations"]['parameters']['path'], operations["listManagedGroupInvitations"]['parameters']['query'], operations["listManagedGroupInvitations"]['parameters']['header'], RequestBodyOf<operations["listManagedGroupInvitations"]>, false>
+export type listManagedGroupInvitationsOutput = import('./domain.js').Page<import('./domain.js').ManagedGroupInvitation>
+export type listManagedGroupInvitationsProblem = operations["listManagedGroupInvitations"]['responses'][400]['content']["application/problem+json"] | operations["listManagedGroupInvitations"]['responses'][500]['content']["application/problem+json"]
+export type listManagedGroupMembershipsInput = OperationInput<operations["listManagedGroupMemberships"]['parameters']['path'], operations["listManagedGroupMemberships"]['parameters']['query'], operations["listManagedGroupMemberships"]['parameters']['header'], RequestBodyOf<operations["listManagedGroupMemberships"]>, false>
+export type listManagedGroupMembershipsOutput = import('./domain.js').Page<import('./domain.js').ManagedGroupMembership>
+export type listManagedGroupMembershipsProblem = operations["listManagedGroupMemberships"]['responses'][400]['content']["application/problem+json"] | operations["listManagedGroupMemberships"]['responses'][500]['content']["application/problem+json"]
 export type listPendingProfessorEvaluationsInput = OperationInput<operations["listPendingProfessorEvaluations"]['parameters']['path'], SortQuery<operations["listPendingProfessorEvaluations"]['parameters']['query'], "courseCode" | "courseName" | "classCode" | "professorName">, operations["listPendingProfessorEvaluations"]['parameters']['header'], RequestBodyOf<operations["listPendingProfessorEvaluations"]>, false>
 export type listPendingProfessorEvaluationsOutput = import('./domain.js').Page<import('./domain.js').PendingProfessorEvaluation>
 export type listPendingProfessorEvaluationsProblem = operations["listPendingProfessorEvaluations"]['responses'][400]['content']["application/problem+json"] | operations["listPendingProfessorEvaluations"]['responses'][500]['content']["application/problem+json"]
 export type listProfessorEvaluationSummariesInput = OperationInput<operations["listProfessorEvaluationSummaries"]['parameters']['path'], SortQuery<operations["listProfessorEvaluationSummaries"]['parameters']['query'], "professor.name" | "responseCount" | "wouldTakeAgain" | "fairness" | "clarity" | "difficulty">, operations["listProfessorEvaluationSummaries"]['parameters']['header'], RequestBodyOf<operations["listProfessorEvaluationSummaries"]>, false>
 export type listProfessorEvaluationSummariesOutput = import('./domain.js').Page<import('./domain.js').ProfessorEvaluationSummary>
 export type listProfessorEvaluationSummariesProblem = operations["listProfessorEvaluationSummaries"]['responses'][400]['content']["application/problem+json"] | operations["listProfessorEvaluationSummaries"]['responses'][500]['content']["application/problem+json"]
+export type listPublicGroupMembershipsInput = OperationInput<operations["listPublicGroupMemberships"]['parameters']['path'], operations["listPublicGroupMemberships"]['parameters']['query'], operations["listPublicGroupMemberships"]['parameters']['header'], RequestBodyOf<operations["listPublicGroupMemberships"]>, false>
+export type listPublicGroupMembershipsOutput = import('./domain.js').Page<import('./domain.js').PublicGroupMembership>
+export type listPublicGroupMembershipsProblem = operations["listPublicGroupMemberships"]['responses'][400]['content']["application/problem+json"] | operations["listPublicGroupMemberships"]['responses'][500]['content']["application/problem+json"]
 export type listPublicSharedPeriodPlanningsInput = OperationInput<operations["listPublicSharedPeriodPlannings"]['parameters']['path'], SortQuery<operations["listPublicSharedPeriodPlannings"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear">, operations["listPublicSharedPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["listPublicSharedPeriodPlannings"]>, false>
 export type listPublicSharedPeriodPlanningsOutput = import('./domain.js').Page<import('./domain.js').SharedPeriodPlanning>
 export type listPublicSharedPeriodPlanningsProblem = operations["listPublicSharedPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["listPublicSharedPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
@@ -178,6 +241,9 @@ export type listStudentFeedbackReportsProblem = operations["listStudentFeedbackR
 export type listStudentFriendshipsInput = OperationInput<operations["listStudentFriendships"]['parameters']['path'], SortQuery<operations["listStudentFriendships"]['parameters']['query'], "updatedAt" | "status">, operations["listStudentFriendships"]['parameters']['header'], RequestBodyOf<operations["listStudentFriendships"]>, false>
 export type listStudentFriendshipsOutput = import('./domain.js').Page<import('./domain.js').StudentFriendship>
 export type listStudentFriendshipsProblem = operations["listStudentFriendships"]['responses'][400]['content']["application/problem+json"] | operations["listStudentFriendships"]['responses'][500]['content']["application/problem+json"]
+export type listStudentGroupMembershipsInput = OperationInput<operations["listStudentGroupMemberships"]['parameters']['path'], operations["listStudentGroupMemberships"]['parameters']['query'], operations["listStudentGroupMemberships"]['parameters']['header'], RequestBodyOf<operations["listStudentGroupMemberships"]>, false>
+export type listStudentGroupMembershipsOutput = import('./domain.js').Page<import('./domain.js').OwnGroupMembership>
+export type listStudentGroupMembershipsProblem = operations["listStudentGroupMemberships"]['responses'][400]['content']["application/problem+json"] | operations["listStudentGroupMemberships"]['responses'][500]['content']["application/problem+json"]
 export type listStudentPeopleInput = OperationInput<operations["listStudentPeople"]['parameters']['path'], SortQuery<operations["listStudentPeople"]['parameters']['query'], "displayName">, operations["listStudentPeople"]['parameters']['header'], RequestBodyOf<operations["listStudentPeople"]>, false>
 export type listStudentPeopleOutput = import('./domain.js').Page<import('./domain.js').StudentPublicPerson>
 export type listStudentPeopleProblem = operations["listStudentPeople"]['responses'][400]['content']["application/problem+json"] | operations["listStudentPeople"]['responses'][500]['content']["application/problem+json"]
@@ -199,6 +265,9 @@ export type listTagCoursesProblem = operations["listTagCourses"]['responses'][40
 export type listTagsInput = OperationInput<operations["listTags"]['parameters']['path'], SortQuery<operations["listTags"]['parameters']['query'], "name" | "categoryId">, operations["listTags"]['parameters']['header'], RequestBodyOf<operations["listTags"]>, false>
 export type listTagsOutput = import('./domain.js').Page<import('./domain.js').Tag>
 export type listTagsProblem = operations["listTags"]['responses'][400]['content']["application/problem+json"] | operations["listTags"]['responses'][500]['content']["application/problem+json"]
+export type publishGroupEventInput = OperationInput<operations["publishGroupEvent"]['parameters']['path'], operations["publishGroupEvent"]['parameters']['query'], operations["publishGroupEvent"]['parameters']['header'], RequestBodyOf<operations["publishGroupEvent"]>, false>
+export type publishGroupEventOutput = import('./domain.js').ManagedGroupEvent
+export type publishGroupEventProblem = operations["publishGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["publishGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["publishGroupEvent"]['responses'][500]['content']["application/problem+json"]
 export type removeCourseTagInput = OperationInput<operations["removeCourseTag"]['parameters']['path'], operations["removeCourseTag"]['parameters']['query'], operations["removeCourseTag"]['parameters']['header'], RequestBodyOf<operations["removeCourseTag"]>, false>
 export type removeCourseTagOutput = void
 export type removeCourseTagProblem = operations["removeCourseTag"]['responses'][400]['content']["application/problem+json"] | operations["removeCourseTag"]['responses'][422]['content']["application/problem+json"] | operations["removeCourseTag"]['responses'][500]['content']["application/problem+json"]
@@ -220,6 +289,18 @@ export type updateExchangeNoticeSubscriptionProblem = operations["updateExchange
 export type updateFeedbackReportInput = OperationInput<operations["updateFeedbackReport"]['parameters']['path'], operations["updateFeedbackReport"]['parameters']['query'], operations["updateFeedbackReport"]['parameters']['header'], RequestBodyOf<operations["updateFeedbackReport"]>, true>
 export type updateFeedbackReportOutput = import('./domain.js').FeedbackReport
 export type updateFeedbackReportProblem = operations["updateFeedbackReport"]['responses'][400]['content']["application/problem+json"] | operations["updateFeedbackReport"]['responses'][404]['content']["application/problem+json"] | operations["updateFeedbackReport"]['responses'][500]['content']["application/problem+json"]
+export type updateGroupInput = OperationInput<operations["updateGroup"]['parameters']['path'], operations["updateGroup"]['parameters']['query'], operations["updateGroup"]['parameters']['header'], RequestBodyOf<operations["updateGroup"]>, true>
+export type updateGroupOutput = import('./domain.js').Group
+export type updateGroupProblem = operations["updateGroup"]['responses'][400]['content']["application/problem+json"] | operations["updateGroup"]['responses'][404]['content']["application/problem+json"] | operations["updateGroup"]['responses'][422]['content']["application/problem+json"] | operations["updateGroup"]['responses'][500]['content']["application/problem+json"]
+export type updateGroupEventInput = OperationInput<operations["updateGroupEvent"]['parameters']['path'], operations["updateGroupEvent"]['parameters']['query'], operations["updateGroupEvent"]['parameters']['header'], RequestBodyOf<operations["updateGroupEvent"]>, true>
+export type updateGroupEventOutput = import('./domain.js').ManagedGroupEvent
+export type updateGroupEventProblem = operations["updateGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["updateGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["updateGroupEvent"]['responses'][500]['content']["application/problem+json"]
+export type updateGroupRoleInput = OperationInput<operations["updateGroupRole"]['parameters']['path'], operations["updateGroupRole"]['parameters']['query'], operations["updateGroupRole"]['parameters']['header'], RequestBodyOf<operations["updateGroupRole"]>, true>
+export type updateGroupRoleOutput = import('./domain.js').GroupRole
+export type updateGroupRoleProblem = operations["updateGroupRole"]['responses'][400]['content']["application/problem+json"] | operations["updateGroupRole"]['responses'][404]['content']["application/problem+json"] | operations["updateGroupRole"]['responses'][500]['content']["application/problem+json"]
+export type updateManagedGroupMembershipInput = OperationInput<operations["updateManagedGroupMembership"]['parameters']['path'], operations["updateManagedGroupMembership"]['parameters']['query'], operations["updateManagedGroupMembership"]['parameters']['header'], RequestBodyOf<operations["updateManagedGroupMembership"]>, true>
+export type updateManagedGroupMembershipOutput = import('./domain.js').ManagedGroupMembership
+export type updateManagedGroupMembershipProblem = operations["updateManagedGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["updateManagedGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["updateManagedGroupMembership"]['responses'][500]['content']["application/problem+json"]
 export type updateProfessorEvaluationInput = OperationInput<operations["updateProfessorEvaluation"]['parameters']['path'], operations["updateProfessorEvaluation"]['parameters']['query'], operations["updateProfessorEvaluation"]['parameters']['header'], RequestBodyOf<operations["updateProfessorEvaluation"]>, true>
 export type updateProfessorEvaluationOutput = import('./domain.js').ProfessorEvaluation
 export type updateProfessorEvaluationProblem = operations["updateProfessorEvaluation"]['responses'][400]['content']["application/problem+json"] | operations["updateProfessorEvaluation"]['responses'][422]['content']["application/problem+json"] | operations["updateProfessorEvaluation"]['responses'][500]['content']["application/problem+json"]
@@ -229,6 +310,9 @@ export type updateStudentCourseAttemptsProblem = operations["updateStudentCourse
 export type updateStudentCurriculaInput = OperationInput<operations["updateStudentCurricula"]['parameters']['path'], operations["updateStudentCurricula"]['parameters']['query'], operations["updateStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["updateStudentCurricula"]>, true>
 export type updateStudentCurriculaOutput = import('./domain.js').Curriculum
 export type updateStudentCurriculaProblem = operations["updateStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentCurricula"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentCurricula"]['responses'][422]['content']["application/problem+json"] | operations["updateStudentCurricula"]['responses'][500]['content']["application/problem+json"]
+export type updateStudentGroupMembershipInput = OperationInput<operations["updateStudentGroupMembership"]['parameters']['path'], operations["updateStudentGroupMembership"]['parameters']['query'], operations["updateStudentGroupMembership"]['parameters']['header'], RequestBodyOf<operations["updateStudentGroupMembership"]>, true>
+export type updateStudentGroupMembershipOutput = import('./domain.js').OwnGroupMembership
+export type updateStudentGroupMembershipProblem = operations["updateStudentGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentGroupMembership"]['responses'][500]['content']["application/problem+json"]
 export type updateStudentPeriodPlanningsInput = OperationInput<operations["updateStudentPeriodPlannings"]['parameters']['path'], operations["updateStudentPeriodPlannings"]['parameters']['query'], operations["updateStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["updateStudentPeriodPlannings"]>, true>
 export type updateStudentPeriodPlanningsOutput = import('./domain.js').PeriodPlanning
 export type updateStudentPeriodPlanningsProblem = operations["updateStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentPeriodPlannings"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentPeriodPlannings"]['responses'][422]['content']["application/problem+json"] | operations["updateStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
@@ -246,11 +330,18 @@ export type updateTagOutput = import('./domain.js').Tag
 export type updateTagProblem = operations["updateTag"]['responses'][400]['content']["application/problem+json"] | operations["updateTag"]['responses'][404]['content']["application/problem+json"] | operations["updateTag"]['responses'][409]['content']["application/problem+json"] | operations["updateTag"]['responses'][422]['content']["application/problem+json"] | operations["updateTag"]['responses'][500]['content']["application/problem+json"]
 
 export interface OperationInputs {
+    acceptGroupInvitation: acceptGroupInvitationInput
     acceptStudentFriendship: acceptStudentFriendshipInput
     addCourseTag: addCourseTagInput
+    archiveGroup: archiveGroupInput
+    cancelGroupEvent: cancelGroupEventInput
     createAuthUser: createAuthUserInput
     createCategory: createCategoryInput
     createFeedbackReport: createFeedbackReportInput
+    createGroup: createGroupInput
+    createGroupEvent: createGroupEventInput
+    createGroupInvitation: createGroupInvitationInput
+    createGroupRole: createGroupRoleInput
     createStudentAbsences: createStudentAbsencesInput
     createStudentCourseAttempts: createStudentCourseAttemptsInput
     createStudentCurricula: createStudentCurriculaInput
@@ -260,7 +351,9 @@ export interface OperationInputs {
     createStudentPeriodPlannings: createStudentPeriodPlanningsInput
     createStudents: createStudentsInput
     createTag: createTagInput
+    declineGroupInvitation: declineGroupInvitationInput
     deleteCategory: deleteCategoryInput
+    deleteGroupRole: deleteGroupRoleInput
     deleteStudentAbsences: deleteStudentAbsencesInput
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsInput
     deleteStudentCurricula: deleteStudentCurriculaInput
@@ -273,10 +366,14 @@ export interface OperationInputs {
     getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryInput
     getCurrentUser: getCurrentUserInput
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionInput
+    getGroup: getGroupInput
+    getGroupEvent: getGroupEventInput
     getProfessorEvaluation: getProfessorEvaluationInput
+    getPublicGroupMembership: getPublicGroupMembershipInput
     getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningInput
     getStudentCourseAttempts: getStudentCourseAttemptsInput
     getStudentCurricula: getStudentCurriculaInput
+    getStudentGroupMembership: getStudentGroupMembershipInput
     getStudentPeriodPlannings: getStudentPeriodPlanningsInput
     getStudentPerson: getStudentPersonInput
     getStudentPublicProfile: getStudentPublicProfileInput
@@ -290,14 +387,23 @@ export interface OperationInputs {
     listCourseEvaluationSummaries: listCourseEvaluationSummariesInput
     listCourseTags: listCourseTagsInput
     listFeedbackReports: listFeedbackReportsInput
+    listGroupEvents: listGroupEventsInput
+    listGroupInvitations: listGroupInvitationsInput
+    listGroupRoles: listGroupRolesInput
+    listGroups: listGroupsInput
+    listManagedGroupEvents: listManagedGroupEventsInput
+    listManagedGroupInvitations: listManagedGroupInvitationsInput
+    listManagedGroupMemberships: listManagedGroupMembershipsInput
     listPendingProfessorEvaluations: listPendingProfessorEvaluationsInput
     listProfessorEvaluationSummaries: listProfessorEvaluationSummariesInput
+    listPublicGroupMemberships: listPublicGroupMembershipsInput
     listPublicSharedPeriodPlannings: listPublicSharedPeriodPlanningsInput
     listStudentAbsences: listStudentAbsencesInput
     listStudentCourseAttempts: listStudentCourseAttemptsInput
     listStudentCurricula: listStudentCurriculaInput
     listStudentFeedbackReports: listStudentFeedbackReportsInput
     listStudentFriendships: listStudentFriendshipsInput
+    listStudentGroupMemberships: listStudentGroupMembershipsInput
     listStudentPeople: listStudentPeopleInput
     listStudentPeriodPlannings: listStudentPeriodPlanningsInput
     listStudents: listStudentsInput
@@ -305,6 +411,7 @@ export interface OperationInputs {
     listStudentTagInterests: listStudentTagInterestsInput
     listTagCourses: listTagCoursesInput
     listTags: listTagsInput
+    publishGroupEvent: publishGroupEventInput
     removeCourseTag: removeCourseTagInput
     replaceBotGrant: replaceBotGrantInput
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesInput
@@ -312,9 +419,14 @@ export interface OperationInputs {
     updateCategory: updateCategoryInput
     updateExchangeNoticeSubscription: updateExchangeNoticeSubscriptionInput
     updateFeedbackReport: updateFeedbackReportInput
+    updateGroup: updateGroupInput
+    updateGroupEvent: updateGroupEventInput
+    updateGroupRole: updateGroupRoleInput
+    updateManagedGroupMembership: updateManagedGroupMembershipInput
     updateProfessorEvaluation: updateProfessorEvaluationInput
     updateStudentCourseAttempts: updateStudentCourseAttemptsInput
     updateStudentCurricula: updateStudentCurriculaInput
+    updateStudentGroupMembership: updateStudentGroupMembershipInput
     updateStudentPeriodPlannings: updateStudentPeriodPlanningsInput
     updateStudentPublicProfile: updateStudentPublicProfileInput
     updateStudents: updateStudentsInput
@@ -323,11 +435,18 @@ export interface OperationInputs {
 }
 
 export interface OperationOutputs {
+    acceptGroupInvitation: acceptGroupInvitationOutput
     acceptStudentFriendship: acceptStudentFriendshipOutput
     addCourseTag: addCourseTagOutput
+    archiveGroup: archiveGroupOutput
+    cancelGroupEvent: cancelGroupEventOutput
     createAuthUser: createAuthUserOutput
     createCategory: createCategoryOutput
     createFeedbackReport: createFeedbackReportOutput
+    createGroup: createGroupOutput
+    createGroupEvent: createGroupEventOutput
+    createGroupInvitation: createGroupInvitationOutput
+    createGroupRole: createGroupRoleOutput
     createStudentAbsences: createStudentAbsencesOutput
     createStudentCourseAttempts: createStudentCourseAttemptsOutput
     createStudentCurricula: createStudentCurriculaOutput
@@ -337,7 +456,9 @@ export interface OperationOutputs {
     createStudentPeriodPlannings: createStudentPeriodPlanningsOutput
     createStudents: createStudentsOutput
     createTag: createTagOutput
+    declineGroupInvitation: declineGroupInvitationOutput
     deleteCategory: deleteCategoryOutput
+    deleteGroupRole: deleteGroupRoleOutput
     deleteStudentAbsences: deleteStudentAbsencesOutput
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsOutput
     deleteStudentCurricula: deleteStudentCurriculaOutput
@@ -350,10 +471,14 @@ export interface OperationOutputs {
     getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryOutput
     getCurrentUser: getCurrentUserOutput
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionOutput
+    getGroup: getGroupOutput
+    getGroupEvent: getGroupEventOutput
     getProfessorEvaluation: getProfessorEvaluationOutput
+    getPublicGroupMembership: getPublicGroupMembershipOutput
     getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningOutput
     getStudentCourseAttempts: getStudentCourseAttemptsOutput
     getStudentCurricula: getStudentCurriculaOutput
+    getStudentGroupMembership: getStudentGroupMembershipOutput
     getStudentPeriodPlannings: getStudentPeriodPlanningsOutput
     getStudentPerson: getStudentPersonOutput
     getStudentPublicProfile: getStudentPublicProfileOutput
@@ -367,14 +492,23 @@ export interface OperationOutputs {
     listCourseEvaluationSummaries: listCourseEvaluationSummariesOutput
     listCourseTags: listCourseTagsOutput
     listFeedbackReports: listFeedbackReportsOutput
+    listGroupEvents: listGroupEventsOutput
+    listGroupInvitations: listGroupInvitationsOutput
+    listGroupRoles: listGroupRolesOutput
+    listGroups: listGroupsOutput
+    listManagedGroupEvents: listManagedGroupEventsOutput
+    listManagedGroupInvitations: listManagedGroupInvitationsOutput
+    listManagedGroupMemberships: listManagedGroupMembershipsOutput
     listPendingProfessorEvaluations: listPendingProfessorEvaluationsOutput
     listProfessorEvaluationSummaries: listProfessorEvaluationSummariesOutput
+    listPublicGroupMemberships: listPublicGroupMembershipsOutput
     listPublicSharedPeriodPlannings: listPublicSharedPeriodPlanningsOutput
     listStudentAbsences: listStudentAbsencesOutput
     listStudentCourseAttempts: listStudentCourseAttemptsOutput
     listStudentCurricula: listStudentCurriculaOutput
     listStudentFeedbackReports: listStudentFeedbackReportsOutput
     listStudentFriendships: listStudentFriendshipsOutput
+    listStudentGroupMemberships: listStudentGroupMembershipsOutput
     listStudentPeople: listStudentPeopleOutput
     listStudentPeriodPlannings: listStudentPeriodPlanningsOutput
     listStudents: listStudentsOutput
@@ -382,6 +516,7 @@ export interface OperationOutputs {
     listStudentTagInterests: listStudentTagInterestsOutput
     listTagCourses: listTagCoursesOutput
     listTags: listTagsOutput
+    publishGroupEvent: publishGroupEventOutput
     removeCourseTag: removeCourseTagOutput
     replaceBotGrant: replaceBotGrantOutput
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesOutput
@@ -389,9 +524,14 @@ export interface OperationOutputs {
     updateCategory: updateCategoryOutput
     updateExchangeNoticeSubscription: updateExchangeNoticeSubscriptionOutput
     updateFeedbackReport: updateFeedbackReportOutput
+    updateGroup: updateGroupOutput
+    updateGroupEvent: updateGroupEventOutput
+    updateGroupRole: updateGroupRoleOutput
+    updateManagedGroupMembership: updateManagedGroupMembershipOutput
     updateProfessorEvaluation: updateProfessorEvaluationOutput
     updateStudentCourseAttempts: updateStudentCourseAttemptsOutput
     updateStudentCurricula: updateStudentCurriculaOutput
+    updateStudentGroupMembership: updateStudentGroupMembershipOutput
     updateStudentPeriodPlannings: updateStudentPeriodPlanningsOutput
     updateStudentPublicProfile: updateStudentPublicProfileOutput
     updateStudents: updateStudentsOutput
@@ -400,11 +540,18 @@ export interface OperationOutputs {
 }
 
 export interface OperationProblems {
+    acceptGroupInvitation: acceptGroupInvitationProblem
     acceptStudentFriendship: acceptStudentFriendshipProblem
     addCourseTag: addCourseTagProblem
+    archiveGroup: archiveGroupProblem
+    cancelGroupEvent: cancelGroupEventProblem
     createAuthUser: createAuthUserProblem
     createCategory: createCategoryProblem
     createFeedbackReport: createFeedbackReportProblem
+    createGroup: createGroupProblem
+    createGroupEvent: createGroupEventProblem
+    createGroupInvitation: createGroupInvitationProblem
+    createGroupRole: createGroupRoleProblem
     createStudentAbsences: createStudentAbsencesProblem
     createStudentCourseAttempts: createStudentCourseAttemptsProblem
     createStudentCurricula: createStudentCurriculaProblem
@@ -414,7 +561,9 @@ export interface OperationProblems {
     createStudentPeriodPlannings: createStudentPeriodPlanningsProblem
     createStudents: createStudentsProblem
     createTag: createTagProblem
+    declineGroupInvitation: declineGroupInvitationProblem
     deleteCategory: deleteCategoryProblem
+    deleteGroupRole: deleteGroupRoleProblem
     deleteStudentAbsences: deleteStudentAbsencesProblem
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsProblem
     deleteStudentCurricula: deleteStudentCurriculaProblem
@@ -427,10 +576,14 @@ export interface OperationProblems {
     getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryProblem
     getCurrentUser: getCurrentUserProblem
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionProblem
+    getGroup: getGroupProblem
+    getGroupEvent: getGroupEventProblem
     getProfessorEvaluation: getProfessorEvaluationProblem
+    getPublicGroupMembership: getPublicGroupMembershipProblem
     getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningProblem
     getStudentCourseAttempts: getStudentCourseAttemptsProblem
     getStudentCurricula: getStudentCurriculaProblem
+    getStudentGroupMembership: getStudentGroupMembershipProblem
     getStudentPeriodPlannings: getStudentPeriodPlanningsProblem
     getStudentPerson: getStudentPersonProblem
     getStudentPublicProfile: getStudentPublicProfileProblem
@@ -444,14 +597,23 @@ export interface OperationProblems {
     listCourseEvaluationSummaries: listCourseEvaluationSummariesProblem
     listCourseTags: listCourseTagsProblem
     listFeedbackReports: listFeedbackReportsProblem
+    listGroupEvents: listGroupEventsProblem
+    listGroupInvitations: listGroupInvitationsProblem
+    listGroupRoles: listGroupRolesProblem
+    listGroups: listGroupsProblem
+    listManagedGroupEvents: listManagedGroupEventsProblem
+    listManagedGroupInvitations: listManagedGroupInvitationsProblem
+    listManagedGroupMemberships: listManagedGroupMembershipsProblem
     listPendingProfessorEvaluations: listPendingProfessorEvaluationsProblem
     listProfessorEvaluationSummaries: listProfessorEvaluationSummariesProblem
+    listPublicGroupMemberships: listPublicGroupMembershipsProblem
     listPublicSharedPeriodPlannings: listPublicSharedPeriodPlanningsProblem
     listStudentAbsences: listStudentAbsencesProblem
     listStudentCourseAttempts: listStudentCourseAttemptsProblem
     listStudentCurricula: listStudentCurriculaProblem
     listStudentFeedbackReports: listStudentFeedbackReportsProblem
     listStudentFriendships: listStudentFriendshipsProblem
+    listStudentGroupMemberships: listStudentGroupMembershipsProblem
     listStudentPeople: listStudentPeopleProblem
     listStudentPeriodPlannings: listStudentPeriodPlanningsProblem
     listStudents: listStudentsProblem
@@ -459,6 +621,7 @@ export interface OperationProblems {
     listStudentTagInterests: listStudentTagInterestsProblem
     listTagCourses: listTagCoursesProblem
     listTags: listTagsProblem
+    publishGroupEvent: publishGroupEventProblem
     removeCourseTag: removeCourseTagProblem
     replaceBotGrant: replaceBotGrantProblem
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesProblem
@@ -466,9 +629,14 @@ export interface OperationProblems {
     updateCategory: updateCategoryProblem
     updateExchangeNoticeSubscription: updateExchangeNoticeSubscriptionProblem
     updateFeedbackReport: updateFeedbackReportProblem
+    updateGroup: updateGroupProblem
+    updateGroupEvent: updateGroupEventProblem
+    updateGroupRole: updateGroupRoleProblem
+    updateManagedGroupMembership: updateManagedGroupMembershipProblem
     updateProfessorEvaluation: updateProfessorEvaluationProblem
     updateStudentCourseAttempts: updateStudentCourseAttemptsProblem
     updateStudentCurricula: updateStudentCurriculaProblem
+    updateStudentGroupMembership: updateStudentGroupMembershipProblem
     updateStudentPeriodPlannings: updateStudentPeriodPlanningsProblem
     updateStudentPublicProfile: updateStudentPublicProfileProblem
     updateStudents: updateStudentsProblem
@@ -477,6 +645,99 @@ export interface OperationProblems {
 }
 
 export const operationDefinitions = {
+    "acceptGroupInvitation": {
+        "operationId": "acceptGroupInvitation",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-invitations/{id}/accept",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "acceptGroupInvitation",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/OwnGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "acceptGroupInvitation",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
     "acceptStudentFriendship": {
         "operationId": "acceptStudentFriendship",
         "target": "app",
@@ -667,6 +928,185 @@ export const operationDefinitions = {
             "pathParameters": {
                 "courseId": "courseId",
                 "tagId": "tagId"
+            }
+        },
+        "pagination": null
+    },
+    "archiveGroup": {
+        "operationId": "archiveGroup",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/groups/{id}/archive",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "archiveGroup",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "id",
+            "sid"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groups",
+            "method": "archive",
+            "action": "update",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "cancelGroupEvent": {
+        "operationId": "cancelGroupEvent",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-events/{id}/cancel",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "cancelGroupEvent",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManagedGroupEvent"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "cancelGroupEvent",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
             }
         },
         "pagination": null
@@ -984,6 +1424,542 @@ export const operationDefinitions = {
             "resource": "feedbackReports",
             "method": "create",
             "action": "create"
+        },
+        "pagination": null
+    },
+    "createGroup": {
+        "operationId": "createGroup",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/groups",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create Group",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 40
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "maxLength": 80
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 320
+                                },
+                                "sortOrder": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "value"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "externalLinks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "label": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 80
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 2048,
+                                    "format": "uri"
+                                },
+                                "sortOrder": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "label",
+                                "url"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "tagIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/Group"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groups",
+            "method": "create",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": null
+    },
+    "createGroupEvent": {
+        "operationId": "createGroupEvent",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-events",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create GroupEvent",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "groupId"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "startsAt": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "date-time"
+                    },
+                    "endsAt": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "date-time"
+                    },
+                    "location": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 320
+                    },
+                    "tagIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "description"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManagedGroupEvent"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "groupId",
+                    "required": true,
+                    "description": null,
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "createGroupEvent",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": null
+    },
+    "createGroupInvitation": {
+        "operationId": "createGroupInvitation",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-invitations",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create GroupInvitation",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "groupId"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "recipientPublicId": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                },
+                "required": [
+                    "recipientPublicId"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupInvitation"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "groupId",
+                    "required": true,
+                    "description": null,
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "createGroupInvitation",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": null
+    },
+    "createGroupRole": {
+        "operationId": "createGroupRole",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-roles",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create GroupRole",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "groupId"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                    },
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "GROUP_EDIT",
+                                "GROUP_TAG_MANAGE",
+                                "MEMBER_MANAGE",
+                                "ROLE_MANAGE",
+                                "EVENT_CREATE",
+                                "EVENT_EDIT",
+                                "EVENT_PUBLISH"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupRole"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "groupId",
+                    "required": true,
+                    "description": null,
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "createGroupRole",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId"
+            }
         },
         "pagination": null
     },
@@ -2193,6 +3169,92 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "declineGroupInvitation": {
+        "operationId": "declineGroupInvitation",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-invitations/{id}/decline",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "declineGroupInvitation",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "declineGroupInvitation",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
     "deleteCategory": {
         "operationId": "deleteCategory",
         "target": "app",
@@ -2288,6 +3350,92 @@ export const operationDefinitions = {
             "action": "delete",
             "pathParameters": {
                 "id": "categoryId"
+            }
+        },
+        "pagination": null
+    },
+    "deleteGroupRole": {
+        "operationId": "deleteGroupRole",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/student/{sid}/group-roles/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Delete GroupRole",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "deleteGroupRole",
+            "action": "delete",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
             }
         },
         "pagination": null
@@ -3432,6 +4580,188 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "getGroup": {
+        "operationId": "getGroup",
+        "target": "app",
+        "method": "GET",
+        "path": "/groups/{id}",
+        "authentication": "public",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Get Group",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/Group"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groups",
+            "method": "get",
+            "action": "get",
+            "pathParameters": {
+                "id": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "getGroupEvent": {
+        "operationId": "getGroupEvent",
+        "target": "app",
+        "method": "GET",
+        "path": "/group-events/{id}",
+        "authentication": "public",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Get GroupEvent",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupEvent"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "getGroupEvent",
+            "action": "get",
+            "pathParameters": {
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
     "getProfessorEvaluation": {
         "operationId": "getProfessorEvaluation",
         "target": "app",
@@ -3538,6 +4868,97 @@ export const operationDefinitions = {
                 "sid": "studentId",
                 "classId": "classId",
                 "professorId": "professorId"
+            }
+        },
+        "pagination": null
+    },
+    "getPublicGroupMembership": {
+        "operationId": "getPublicGroupMembership",
+        "target": "app",
+        "method": "GET",
+        "path": "/group-memberships/{id}",
+        "authentication": "public",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Get PublicGroupMembership",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/PublicGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "getPublicGroupMembership",
+            "action": "get",
+            "pathParameters": {
+                "id": "id"
             }
         },
         "pagination": null
@@ -3815,6 +5236,99 @@ export const operationDefinitions = {
             "pathParameters": {
                 "sid": "studentId",
                 "id": "curriculumId"
+            }
+        },
+        "pagination": null
+    },
+    "getStudentGroupMembership": {
+        "operationId": "getStudentGroupMembership",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/group-memberships/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Get StudentGroupMembership",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/OwnGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "getStudentGroupMembership",
+            "action": "get",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
             }
         },
         "pagination": null
@@ -5572,6 +7086,1350 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
+    "listGroupEvents": {
+        "operationId": "listGroupEvents",
+        "target": "app",
+        "method": "GET",
+        "path": "/group-events",
+        "authentication": "public",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List GroupEvents",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupEvent"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listGroupEvents",
+            "action": "list",
+            "pathParameters": {}
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listGroupInvitations": {
+        "operationId": "listGroupInvitations",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/group-invitations",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List GroupInvitations",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupInvitation"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listGroupInvitations",
+            "action": "list",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listGroupRoles": {
+        "operationId": "listGroupRoles",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/group-roles",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List GroupRoles",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupRole"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listGroupRoles",
+            "action": "list",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listGroups": {
+        "operationId": "listGroups",
+        "target": "app",
+        "method": "GET",
+        "path": "/groups",
+        "authentication": "public",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List Groups",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [],
+        "queryParameters": [
+            "page",
+            "pageSize"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Group"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                }
+            ],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groups",
+            "method": "list",
+            "action": "list"
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listManagedGroupEvents": {
+        "operationId": "listManagedGroupEvents",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/managed-group-events",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List ManagedGroupEvents",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ManagedGroupEvent"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listManagedGroupEvents",
+            "action": "list",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listManagedGroupInvitations": {
+        "operationId": "listManagedGroupInvitations",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/managed-group-invitations",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List ManagedGroupInvitations",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ManagedGroupInvitation"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listManagedGroupInvitations",
+            "action": "list",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listManagedGroupMemberships": {
+        "operationId": "listManagedGroupMemberships",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/managed-group-memberships",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List ManagedGroupMemberships",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ManagedGroupMembership"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listManagedGroupMemberships",
+            "action": "list",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
     "listPendingProfessorEvaluations": {
         "operationId": "listPendingProfessorEvaluations",
         "target": "app",
@@ -6014,6 +8872,234 @@ export const operationDefinitions = {
             "defaultMode": "page",
             "defaultPageSize": 20,
             "allowAll": false
+        }
+    },
+    "listPublicGroupMemberships": {
+        "operationId": "listPublicGroupMemberships",
+        "target": "app",
+        "method": "GET",
+        "path": "/group-memberships",
+        "authentication": "public",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List PublicGroupMemberships",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PublicGroupMembership"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42 ou filter[publicId]=UUID.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "publicId": {
+                                "oneOf": [
+                                    {
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "format": "uuid",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "publicId"
+                        ],
+                        "schema": {
+                            "format": "uuid",
+                            "type": "string"
+                        },
+                        "operators": [
+                            "eq"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listPublicGroupMemberships",
+            "action": "list",
+            "pathParameters": {}
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
         }
     },
     "listPublicSharedPeriodPlannings": {
@@ -7370,6 +10456,208 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
+    "listStudentGroupMemberships": {
+        "operationId": "listStudentGroupMemberships",
+        "target": "app",
+        "method": "GET",
+        "path": "/student/{sid}/group-memberships",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List StudentGroupMemberships",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OwnGroupMembership"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listStudentGroupMemberships",
+            "action": "list",
+            "pathParameters": {
+                "sid": "studentId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
     "listStudentPeople": {
         "operationId": "listStudentPeople",
         "target": "app",
@@ -8654,6 +11942,99 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
+    "publishGroupEvent": {
+        "operationId": "publishGroupEvent",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/group-events/{id}/publish",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "publishGroupEvent",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManagedGroupEvent"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "publishGroupEvent",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
     "removeCourseTag": {
         "operationId": "removeCourseTag",
         "target": "app",
@@ -9355,6 +12736,800 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "updateGroup": {
+        "operationId": "updateGroup",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/student/{sid}/groups/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Update Group",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "id",
+            "sid"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "contacts": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 40
+                                        },
+                                        "label": {
+                                            "type": "string",
+                                            "nullable": true,
+                                            "maxLength": 80
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 320
+                                        },
+                                        "sortOrder": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "type",
+                                        "value"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "update": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 40
+                                        },
+                                        "label": {
+                                            "type": "string",
+                                            "nullable": true,
+                                            "maxLength": 80
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 320
+                                        },
+                                        "sortOrder": {
+                                            "type": "integer"
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "exclusiveMinimum": true
+                                        }
+                                    },
+                                    "required": [
+                                        "id"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "externalLinks": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "label": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 80
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "maxLength": 2048,
+                                            "format": "uri"
+                                        },
+                                        "sortOrder": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "label",
+                                        "url"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "update": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "label": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 80
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "maxLength": 2048,
+                                            "format": "uri"
+                                        },
+                                        "sortOrder": {
+                                            "type": "integer"
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "exclusiveMinimum": true
+                                        }
+                                    },
+                                    "required": [
+                                        "id"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "tags": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/Group"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groups",
+            "method": "update",
+            "action": "update",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "updateGroupEvent": {
+        "operationId": "updateGroupEvent",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/student/{sid}/group-events/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Update GroupEvent",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "startsAt": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "date-time"
+                    },
+                    "endsAt": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "date-time"
+                    },
+                    "location": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 320
+                    },
+                    "tags": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManagedGroupEvent"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "updateGroupEvent",
+            "action": "update",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
+    "updateGroupRole": {
+        "operationId": "updateGroupRole",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/student/{sid}/group-roles/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Update GroupRole",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                    },
+                    "permissions": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "GROUP_EDIT",
+                                        "GROUP_TAG_MANAGE",
+                                        "MEMBER_MANAGE",
+                                        "ROLE_MANAGE",
+                                        "EVENT_CREATE",
+                                        "EVENT_EDIT",
+                                        "EVENT_PUBLISH"
+                                    ]
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "GROUP_EDIT",
+                                        "GROUP_TAG_MANAGE",
+                                        "MEMBER_MANAGE",
+                                        "ROLE_MANAGE",
+                                        "EVENT_CREATE",
+                                        "EVENT_EDIT",
+                                        "EVENT_PUBLISH"
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupRole"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "updateGroupRole",
+            "action": "update",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
+    "updateManagedGroupMembership": {
+        "operationId": "updateManagedGroupMembership",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/student/{sid}/managed-group-memberships/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Update ManagedGroupMembership",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "positions": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 120
+                                        },
+                                        "startedAt": {
+                                            "type": "string",
+                                            "nullable": true,
+                                            "format": "date-time"
+                                        },
+                                        "endedAt": {
+                                            "type": "string",
+                                            "nullable": true,
+                                            "format": "date-time"
+                                        },
+                                        "sortOrder": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "title"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "update": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 120
+                                        },
+                                        "startedAt": {
+                                            "type": "string",
+                                            "nullable": true,
+                                            "format": "date-time"
+                                        },
+                                        "endedAt": {
+                                            "type": "string",
+                                            "nullable": true,
+                                            "format": "date-time"
+                                        },
+                                        "sortOrder": {
+                                            "type": "integer"
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "exclusiveMinimum": true
+                                        }
+                                    },
+                                    "required": [
+                                        "id"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "roles": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "leave": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManagedGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "updateManagedGroupMembership",
+            "action": "update",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
     "updateProfessorEvaluation": {
         "operationId": "updateProfessorEvaluation",
         "target": "app",
@@ -9890,6 +14065,114 @@ export const operationDefinitions = {
             "pathParameters": {
                 "sid": "studentId",
                 "id": "curriculumId"
+            }
+        },
+        "pagination": null
+    },
+    "updateStudentGroupMembership": {
+        "operationId": "updateStudentGroupMembership",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/student/{sid}/group-memberships/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Update StudentGroupMembership",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "isPublic": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "isPublic"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/OwnGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "updateStudentGroupMembership",
+            "action": "update",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "id"
             }
         },
         "pagination": null

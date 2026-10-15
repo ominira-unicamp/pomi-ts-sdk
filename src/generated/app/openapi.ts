@@ -629,6 +629,418 @@ export interface paths {
         patch: operations["updateFeedbackReport"];
         trace?: never;
     };
+    "/groups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listGroups"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/groups/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getGroup"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/groups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["createGroup"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/groups/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+
+        patch: operations["updateGroup"];
+        trace?: never;
+    };
+    "/student/{sid}/groups/{id}/archive": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["archiveGroup"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/group-memberships": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listPublicGroupMemberships"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/group-memberships/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getPublicGroupMembership"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-memberships": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listStudentGroupMemberships"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-memberships/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getStudentGroupMembership"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+
+        patch: operations["updateStudentGroupMembership"];
+        trace?: never;
+    };
+    "/student/{sid}/managed-group-memberships": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listManagedGroupMemberships"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/managed-group-memberships/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+
+        patch: operations["updateManagedGroupMembership"];
+        trace?: never;
+    };
+    "/student/{sid}/group-invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listGroupInvitations"];
+        put?: never;
+
+        post: operations["createGroupInvitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/managed-group-invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listManagedGroupInvitations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-invitations/{id}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["acceptGroupInvitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-invitations/{id}/decline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["declineGroupInvitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listGroupRoles"];
+        put?: never;
+
+        post: operations["createGroupRole"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-roles/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+
+        delete: operations["deleteGroupRole"];
+        options?: never;
+        head?: never;
+
+        patch: operations["updateGroupRole"];
+        trace?: never;
+    };
+    "/group-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listGroupEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/group-events/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getGroupEvent"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/managed-group-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listManagedGroupEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["createGroupEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-events/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+
+        patch: operations["updateGroupEvent"];
+        trace?: never;
+    };
+    "/student/{sid}/group-events/{id}/publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["publishGroupEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/group-events/{id}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["cancelGroupEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/student/{sid}/exchange-notice-subscription": {
         parameters: {
             query?: never;
@@ -1707,6 +2119,182 @@ export interface components {
         PatchFeedbackReportBody: {
             status?: components["schemas"]["FeedbackStatus"];
             adminMessage?: string | null;
+        };
+        Group: {
+            id: number;
+            name: string;
+            description: string | null;
+
+            status: "ACTIVE" | "ARCHIVED";
+            contacts: {
+                id: number;
+                type: string;
+                label: string | null;
+                value: string;
+                sortOrder: number;
+            }[];
+            externalLinks: {
+                id: number;
+                label: string;
+
+                url: string;
+                sortOrder: number;
+            }[];
+            tags: {
+                id: number;
+                name: string;
+                categoryId: number;
+            }[];
+
+            createdAt: string;
+
+            updatedAt: string;
+        };
+        PublicGroupMembership: {
+            id: number;
+            groupId: number;
+            displayName: string;
+
+            profilePublicId: string | null;
+
+            joinedAt: string;
+            positions: {
+                id: number;
+                title: string;
+
+                startedAt: string | null;
+
+                endedAt: string | null;
+                sortOrder: number;
+            }[];
+        };
+        OwnGroupMembership: {
+            id: number;
+            groupId: number;
+
+            joinedAt: string;
+            positions: {
+                id: number;
+                title: string;
+
+                startedAt: string | null;
+
+                endedAt: string | null;
+                sortOrder: number;
+            }[];
+            studentId: number;
+            isPublic: boolean;
+
+            leftAt: string | null;
+            roles: {
+                id: number;
+                name: string;
+            }[];
+            permissions: ("GROUP_EDIT" | "GROUP_TAG_MANAGE" | "MEMBER_MANAGE" | "ROLE_MANAGE" | "EVENT_CREATE" | "EVENT_EDIT" | "EVENT_PUBLISH")[];
+        };
+        ManagedGroupMembership: {
+            id: number;
+            groupId: number;
+
+            joinedAt: string;
+            positions: {
+                id: number;
+                title: string;
+
+                startedAt: string | null;
+
+                endedAt: string | null;
+                sortOrder: number;
+            }[];
+            studentId: number;
+            isPublic: boolean;
+
+            leftAt: string | null;
+            roles: {
+                id: number;
+                name: string;
+            }[];
+            permissions: ("GROUP_EDIT" | "GROUP_TAG_MANAGE" | "MEMBER_MANAGE" | "ROLE_MANAGE" | "EVENT_CREATE" | "EVENT_EDIT" | "EVENT_PUBLISH")[];
+            studentName: string;
+        };
+        GroupInvitation: {
+            id: number;
+            groupId: number;
+            recipientStudentId: number;
+            inviterStudentId: number;
+
+            status: "PENDING" | "ACCEPTED" | "DECLINED" | "CANCELLED" | "EXPIRED";
+
+            expiresAt: string;
+
+            createdAt: string;
+
+            respondedAt: string | null;
+        };
+        ManagedGroupInvitation: {
+            id: number;
+            groupId: number;
+            recipientStudentId: number;
+            inviterStudentId: number;
+
+            status: "PENDING" | "ACCEPTED" | "DECLINED" | "CANCELLED" | "EXPIRED";
+
+            expiresAt: string;
+
+            createdAt: string;
+
+            respondedAt: string | null;
+            recipientName: string;
+
+            recipientPublicId: string;
+        };
+        GroupRole: {
+            id: number;
+            groupId: number;
+            name: string;
+            permissions: string[];
+        };
+        GroupEvent: {
+            id: number;
+            groupId: number;
+            name: string;
+            description: string;
+
+            startsAt: string | null;
+
+            endsAt: string | null;
+            location: string | null;
+            tags: {
+                id: number;
+                name: string;
+                categoryId: number;
+            }[];
+
+            createdAt: string;
+
+            updatedAt: string;
+        };
+        ManagedGroupEvent: {
+            id: number;
+            groupId: number;
+            name: string;
+            description: string;
+
+            startsAt: string | null;
+
+            endsAt: string | null;
+            location: string | null;
+            tags: {
+                id: number;
+                name: string;
+                categoryId: number;
+            }[];
+
+            createdAt: string;
+
+            updatedAt: string;
+
+            status: "DRAFT" | "PUBLISHED" | "CANCELLED";
         };
         ExchangeNoticeSubscription: {
             studentId: number;
@@ -4756,6 +5344,1596 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["FeedbackReport"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listGroups: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["Group"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getGroup: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Group"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    createGroup: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name: string;
+                    description?: string | null;
+                    contacts?: {
+                        type: string;
+                        label?: string | null;
+                        value: string;
+                        sortOrder?: number;
+                    }[];
+                    externalLinks?: {
+                        label: string;
+
+                        url: string;
+                        sortOrder?: number;
+                    }[];
+                    tagIds?: number[];
+                };
+            };
+        };
+        responses: {
+
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Group"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateGroup: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+                sid: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name?: string;
+                    description?: string | null;
+                    contacts?: {
+                        add?: {
+                            type: string;
+                            label?: string | null;
+                            value: string;
+                            sortOrder?: number;
+                        }[];
+                        update?: {
+                            type?: string;
+                            label?: string | null;
+                            value?: string;
+                            sortOrder?: number;
+                            id: number;
+                        }[];
+                        remove?: number[];
+                    };
+                    externalLinks?: {
+                        add?: {
+                            label: string;
+
+                            url: string;
+                            sortOrder?: number;
+                        }[];
+                        update?: {
+                            label?: string;
+
+                            url?: string;
+                            sortOrder?: number;
+                            id: number;
+                        }[];
+                        remove?: number[];
+                    };
+                    tags?: {
+                        add?: number[];
+                        remove?: number[];
+                    };
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Group"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    archiveGroup: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listPublicGroupMemberships: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                    publicId?: string | {
+
+                        eq?: string;
+                    };
+                };
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PublicGroupMembership"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getPublicGroupMembership: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicGroupMembership"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listStudentGroupMemberships: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OwnGroupMembership"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getStudentGroupMembership: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnGroupMembership"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateStudentGroupMembership: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    isPublic: boolean;
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnGroupMembership"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listManagedGroupMemberships: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ManagedGroupMembership"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateManagedGroupMembership: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    positions?: {
+                        add?: {
+                            title: string;
+
+                            startedAt?: string | null;
+
+                            endedAt?: string | null;
+                            sortOrder?: number;
+                        }[];
+                        update?: {
+                            title?: string;
+
+                            startedAt?: string | null;
+
+                            endedAt?: string | null;
+                            sortOrder?: number;
+                            id: number;
+                        }[];
+                        remove?: number[];
+                    };
+                    roles?: {
+                        add?: number[];
+                        remove?: number[];
+                    };
+                    leave?: boolean;
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManagedGroupMembership"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listGroupInvitations: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["GroupInvitation"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    createGroupInvitation: {
+        parameters: {
+            query: {
+                groupId: number;
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+
+                    recipientPublicId: string;
+                };
+            };
+        };
+        responses: {
+
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupInvitation"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listManagedGroupInvitations: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ManagedGroupInvitation"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    acceptGroupInvitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnGroupMembership"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    declineGroupInvitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listGroupRoles: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["GroupRole"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    createGroupRole: {
+        parameters: {
+            query: {
+                groupId: number;
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name: string;
+                    permissions?: ("GROUP_EDIT" | "GROUP_TAG_MANAGE" | "MEMBER_MANAGE" | "ROLE_MANAGE" | "EVENT_CREATE" | "EVENT_EDIT" | "EVENT_PUBLISH")[];
+                };
+            };
+        };
+        responses: {
+
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupRole"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    deleteGroupRole: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateGroupRole: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name?: string;
+                    permissions?: {
+                        add?: ("GROUP_EDIT" | "GROUP_TAG_MANAGE" | "MEMBER_MANAGE" | "ROLE_MANAGE" | "EVENT_CREATE" | "EVENT_EDIT" | "EVENT_PUBLISH")[];
+                        remove?: ("GROUP_EDIT" | "GROUP_TAG_MANAGE" | "MEMBER_MANAGE" | "ROLE_MANAGE" | "EVENT_CREATE" | "EVENT_EDIT" | "EVENT_PUBLISH")[];
+                    };
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupRole"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listGroupEvents: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["GroupEvent"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getGroupEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupEvent"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listManagedGroupEvents: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter?: {
+                    groupId?: number | {
+                        eq?: number;
+                        in?: number[];
+                    };
+                };
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ManagedGroupEvent"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    createGroupEvent: {
+        parameters: {
+            query: {
+                groupId: number;
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name: string;
+                    description: string;
+
+                    startsAt?: string | null;
+
+                    endsAt?: string | null;
+                    location?: string | null;
+                    tagIds?: number[];
+                };
+            };
+        };
+        responses: {
+
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManagedGroupEvent"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateGroupEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name?: string;
+                    description?: string;
+
+                    startsAt?: string | null;
+
+                    endsAt?: string | null;
+                    location?: string | null;
+                    tags?: {
+                        add?: number[];
+                        remove?: number[];
+                    };
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManagedGroupEvent"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    publishGroupEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManagedGroupEvent"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    cancelGroupEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManagedGroupEvent"];
                 };
             };
 

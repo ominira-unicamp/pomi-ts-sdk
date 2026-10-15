@@ -1,4 +1,4 @@
-import type { createAuthUserInput, createCategoryInput, createFeedbackReportInput, createStudentAbsencesInput, createStudentCourseAttemptsInput, createStudentCurriculaInput, createStudentFeedbackReportInput, createStudentFriendshipInput, createStudentHistoryInput, createStudentPeriodPlanningsInput, createStudentsInput, createTagInput, deleteStudentsInput, replaceBotGrantInput, updateAuthUserInput, updateCategoryInput, updateExchangeNoticeSubscriptionInput, updateFeedbackReportInput, updateProfessorEvaluationInput, updateStudentCourseAttemptsInput, updateStudentCurriculaInput, updateStudentPeriodPlanningsInput, updateStudentPublicProfileInput, updateStudentsInput, updateTagInput } from './operations.js'
+import type { createAuthUserInput, createCategoryInput, createFeedbackReportInput, createGroupInput, createGroupEventInput, createGroupInvitationInput, createGroupRoleInput, createStudentAbsencesInput, createStudentCourseAttemptsInput, createStudentCurriculaInput, createStudentFeedbackReportInput, createStudentFriendshipInput, createStudentHistoryInput, createStudentPeriodPlanningsInput, createStudentsInput, createTagInput, deleteStudentsInput, replaceBotGrantInput, updateAuthUserInput, updateCategoryInput, updateExchangeNoticeSubscriptionInput, updateFeedbackReportInput, updateGroupInput, updateGroupEventInput, updateGroupRoleInput, updateManagedGroupMembershipInput, updateProfessorEvaluationInput, updateStudentCourseAttemptsInput, updateStudentCurriculaInput, updateStudentGroupMembershipInput, updateStudentPeriodPlanningsInput, updateStudentPublicProfileInput, updateStudentsInput, updateTagInput } from './operations.js'
 
 export type createAuthUserRequest = Readonly<createAuthUserInput>
 export type createAuthUserBody = createAuthUserInput extends { body?: infer Body } ? Readonly<Body> : never
@@ -6,6 +6,14 @@ export type createCategoryRequest = Readonly<createCategoryInput>
 export type createCategoryBody = createCategoryInput extends { body?: infer Body } ? Readonly<Body> : never
 export type createFeedbackReportRequest = Readonly<createFeedbackReportInput>
 export type createFeedbackReportBody = createFeedbackReportInput extends { body?: infer Body } ? Readonly<Body> : never
+export type createGroupRequest = Readonly<createGroupInput>
+export type createGroupBody = createGroupInput extends { body?: infer Body } ? Readonly<Body> : never
+export type createGroupEventRequest = Readonly<createGroupEventInput>
+export type createGroupEventBody = createGroupEventInput extends { body?: infer Body } ? Readonly<Body> : never
+export type createGroupInvitationRequest = Readonly<createGroupInvitationInput>
+export type createGroupInvitationBody = createGroupInvitationInput extends { body?: infer Body } ? Readonly<Body> : never
+export type createGroupRoleRequest = Readonly<createGroupRoleInput>
+export type createGroupRoleBody = createGroupRoleInput extends { body?: infer Body } ? Readonly<Body> : never
 export type createStudentAbsencesRequest = Readonly<createStudentAbsencesInput>
 export type createStudentAbsencesBody = createStudentAbsencesInput extends { body?: infer Body } ? Readonly<Body> : never
 export type createStudentCourseAttemptsRequest = Readonly<createStudentCourseAttemptsInput>
@@ -36,12 +44,22 @@ export type updateExchangeNoticeSubscriptionRequest = Readonly<updateExchangeNot
 export type updateExchangeNoticeSubscriptionBody = updateExchangeNoticeSubscriptionInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateFeedbackReportRequest = Readonly<updateFeedbackReportInput>
 export type updateFeedbackReportBody = updateFeedbackReportInput extends { body?: infer Body } ? Readonly<Body> : never
+export type updateGroupRequest = Readonly<updateGroupInput>
+export type updateGroupBody = updateGroupInput extends { body?: infer Body } ? Readonly<Body> : never
+export type updateGroupEventRequest = Readonly<updateGroupEventInput>
+export type updateGroupEventBody = updateGroupEventInput extends { body?: infer Body } ? Readonly<Body> : never
+export type updateGroupRoleRequest = Readonly<updateGroupRoleInput>
+export type updateGroupRoleBody = updateGroupRoleInput extends { body?: infer Body } ? Readonly<Body> : never
+export type updateManagedGroupMembershipRequest = Readonly<updateManagedGroupMembershipInput>
+export type updateManagedGroupMembershipBody = updateManagedGroupMembershipInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateProfessorEvaluationRequest = Readonly<updateProfessorEvaluationInput>
 export type updateProfessorEvaluationBody = updateProfessorEvaluationInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateStudentCourseAttemptsRequest = Readonly<updateStudentCourseAttemptsInput>
 export type updateStudentCourseAttemptsBody = updateStudentCourseAttemptsInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateStudentCurriculaRequest = Readonly<updateStudentCurriculaInput>
 export type updateStudentCurriculaBody = updateStudentCurriculaInput extends { body?: infer Body } ? Readonly<Body> : never
+export type updateStudentGroupMembershipRequest = Readonly<updateStudentGroupMembershipInput>
+export type updateStudentGroupMembershipBody = updateStudentGroupMembershipInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateStudentPeriodPlanningsRequest = Readonly<updateStudentPeriodPlanningsInput>
 export type updateStudentPeriodPlanningsBody = updateStudentPeriodPlanningsInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateStudentPublicProfileRequest = Readonly<updateStudentPublicProfileInput>

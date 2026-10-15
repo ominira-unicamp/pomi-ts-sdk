@@ -4318,6 +4318,848 @@ export const componentSchemas = {
             "publicName": "PatchFeedbackReportBody"
         }
     },
+    "Group": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string",
+                "nullable": true
+            },
+            "status": {
+                "type": "string",
+                "enum": [
+                    "ACTIVE",
+                    "ARCHIVED"
+                ]
+            },
+            "contacts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "type": {
+                            "type": "string"
+                        },
+                        "label": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "value": {
+                            "type": "string"
+                        },
+                        "sortOrder": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "type",
+                        "label",
+                        "value",
+                        "sortOrder"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "externalLinks": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "label": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "sortOrder": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "label",
+                        "url",
+                        "sortOrder"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "tags": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "categoryId": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name",
+                        "categoryId"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": [
+            "id",
+            "name",
+            "description",
+            "status",
+            "contacts",
+            "externalLinks",
+            "tags",
+            "createdAt",
+            "updatedAt"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "Group",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "PublicGroupMembership": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "displayName": {
+                "type": "string"
+            },
+            "profilePublicId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
+            },
+            "joinedAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "positions": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "startedAt": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "date-time"
+                        },
+                        "endedAt": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "date-time"
+                        },
+                        "sortOrder": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "title",
+                        "startedAt",
+                        "endedAt",
+                        "sortOrder"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "displayName",
+            "profilePublicId",
+            "joinedAt",
+            "positions"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "PublicGroupMembership",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "OwnGroupMembership": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "joinedAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "positions": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "startedAt": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "date-time"
+                        },
+                        "endedAt": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "date-time"
+                        },
+                        "sortOrder": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "title",
+                        "startedAt",
+                        "endedAt",
+                        "sortOrder"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "studentId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "isPublic": {
+                "type": "boolean"
+            },
+            "leftAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "permissions": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP_EDIT",
+                        "GROUP_TAG_MANAGE",
+                        "MEMBER_MANAGE",
+                        "ROLE_MANAGE",
+                        "EVENT_CREATE",
+                        "EVENT_EDIT",
+                        "EVENT_PUBLISH"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "joinedAt",
+            "positions",
+            "studentId",
+            "isPublic",
+            "leftAt",
+            "roles",
+            "permissions"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "OwnGroupMembership",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "ManagedGroupMembership": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "joinedAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "positions": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "startedAt": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "date-time"
+                        },
+                        "endedAt": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "date-time"
+                        },
+                        "sortOrder": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "title",
+                        "startedAt",
+                        "endedAt",
+                        "sortOrder"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "studentId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "isPublic": {
+                "type": "boolean"
+            },
+            "leftAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "permissions": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP_EDIT",
+                        "GROUP_TAG_MANAGE",
+                        "MEMBER_MANAGE",
+                        "ROLE_MANAGE",
+                        "EVENT_CREATE",
+                        "EVENT_EDIT",
+                        "EVENT_PUBLISH"
+                    ]
+                }
+            },
+            "studentName": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "joinedAt",
+            "positions",
+            "studentId",
+            "isPublic",
+            "leftAt",
+            "roles",
+            "permissions",
+            "studentName"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "ManagedGroupMembership",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "GroupInvitation": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "recipientStudentId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "inviterStudentId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "status": {
+                "type": "string",
+                "enum": [
+                    "PENDING",
+                    "ACCEPTED",
+                    "DECLINED",
+                    "CANCELLED",
+                    "EXPIRED"
+                ]
+            },
+            "expiresAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "respondedAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "recipientStudentId",
+            "inviterStudentId",
+            "status",
+            "expiresAt",
+            "createdAt",
+            "respondedAt"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "GroupInvitation",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "ManagedGroupInvitation": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "recipientStudentId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "inviterStudentId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "status": {
+                "type": "string",
+                "enum": [
+                    "PENDING",
+                    "ACCEPTED",
+                    "DECLINED",
+                    "CANCELLED",
+                    "EXPIRED"
+                ]
+            },
+            "expiresAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "respondedAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "recipientName": {
+                "type": "string"
+            },
+            "recipientPublicId": {
+                "type": "string",
+                "format": "uuid"
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "recipientStudentId",
+            "inviterStudentId",
+            "status",
+            "expiresAt",
+            "createdAt",
+            "respondedAt",
+            "recipientName",
+            "recipientPublicId"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "ManagedGroupInvitation",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "GroupRole": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "name": {
+                "type": "string"
+            },
+            "permissions": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "name",
+            "permissions"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "GroupRole",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "GroupEvent": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "startsAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "endsAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "location": {
+                "type": "string",
+                "nullable": true
+            },
+            "tags": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "categoryId": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name",
+                        "categoryId"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "name",
+            "description",
+            "startsAt",
+            "endsAt",
+            "location",
+            "tags",
+            "createdAt",
+            "updatedAt"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "GroupEvent",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "ManagedGroupEvent": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "groupId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "startsAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "endsAt": {
+                "type": "string",
+                "nullable": true,
+                "format": "date-time"
+            },
+            "location": {
+                "type": "string",
+                "nullable": true
+            },
+            "tags": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "categoryId": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name",
+                        "categoryId"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "status": {
+                "type": "string",
+                "enum": [
+                    "DRAFT",
+                    "PUBLISHED",
+                    "CANCELLED"
+                ]
+            }
+        },
+        "required": [
+            "id",
+            "groupId",
+            "name",
+            "description",
+            "startsAt",
+            "endsAt",
+            "location",
+            "tags",
+            "createdAt",
+            "updatedAt",
+            "status"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "ManagedGroupEvent",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
     "ExchangeNoticeSubscription": {
         "type": "object",
         "properties": {
@@ -4610,15 +5452,68 @@ export const enumValues = {
         "OPEN",
         "IN_PROGRESS",
         "CLOSED"
+    ],
+    "Group.status": [
+        "ACTIVE",
+        "ARCHIVED"
+    ],
+    "OwnGroupMembership.permissions[]": [
+        "GROUP_EDIT",
+        "GROUP_TAG_MANAGE",
+        "MEMBER_MANAGE",
+        "ROLE_MANAGE",
+        "EVENT_CREATE",
+        "EVENT_EDIT",
+        "EVENT_PUBLISH"
+    ],
+    "ManagedGroupMembership.permissions[]": [
+        "GROUP_EDIT",
+        "GROUP_TAG_MANAGE",
+        "MEMBER_MANAGE",
+        "ROLE_MANAGE",
+        "EVENT_CREATE",
+        "EVENT_EDIT",
+        "EVENT_PUBLISH"
+    ],
+    "GroupInvitation.status": [
+        "PENDING",
+        "ACCEPTED",
+        "DECLINED",
+        "CANCELLED",
+        "EXPIRED"
+    ],
+    "ManagedGroupInvitation.status": [
+        "PENDING",
+        "ACCEPTED",
+        "DECLINED",
+        "CANCELLED",
+        "EXPIRED"
+    ],
+    "ManagedGroupEvent.status": [
+        "DRAFT",
+        "PUBLISHED",
+        "CANCELLED"
     ]
 } as const
 
 export const queryCapabilities = {
+    "acceptGroupInvitation": {
+        "parameters": [],
+        "filter": null
+    },
     "acceptStudentFriendship": {
         "parameters": [],
         "filter": null
     },
     "addCourseTag": {
+        "parameters": [],
+        "filter": null
+    },
+    "archiveGroup": {
+        "parameters": [],
+        "filter": null
+    },
+    "cancelGroupEvent": {
         "parameters": [],
         "filter": null
     },
@@ -4632,6 +5527,55 @@ export const queryCapabilities = {
     },
     "createFeedbackReport": {
         "parameters": [],
+        "filter": null
+    },
+    "createGroup": {
+        "parameters": [],
+        "filter": null
+    },
+    "createGroupEvent": {
+        "parameters": [
+            {
+                "name": "groupId",
+                "required": true,
+                "description": null,
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        ],
+        "filter": null
+    },
+    "createGroupInvitation": {
+        "parameters": [
+            {
+                "name": "groupId",
+                "required": true,
+                "description": null,
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        ],
+        "filter": null
+    },
+    "createGroupRole": {
+        "parameters": [
+            {
+                "name": "groupId",
+                "required": true,
+                "description": null,
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        ],
         "filter": null
     },
     "createStudentAbsences": {
@@ -4670,7 +5614,15 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "declineGroupInvitation": {
+        "parameters": [],
+        "filter": null
+    },
     "deleteCategory": {
+        "parameters": [],
+        "filter": null
+    },
+    "deleteGroupRole": {
         "parameters": [],
         "filter": null
     },
@@ -4821,7 +5773,19 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "getGroup": {
+        "parameters": [],
+        "filter": null
+    },
+    "getGroupEvent": {
+        "parameters": [],
+        "filter": null
+    },
     "getProfessorEvaluation": {
+        "parameters": [],
+        "filter": null
+    },
+    "getPublicGroupMembership": {
         "parameters": [],
         "filter": null
     },
@@ -4834,6 +5798,10 @@ export const queryCapabilities = {
         "filter": null
     },
     "getStudentCurricula": {
+        "parameters": [],
+        "filter": null
+    },
+    "getStudentGroupMembership": {
         "parameters": [],
         "filter": null
     },
@@ -5378,6 +6346,639 @@ export const queryCapabilities = {
             "default": "createdAt:desc"
         }
     },
+    "listGroupEvents": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
+    "listGroupInvitations": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
+    "listGroupRoles": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
+    "listGroups": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            }
+        ],
+        "filter": null
+    },
+    "listManagedGroupEvents": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
+    "listManagedGroupInvitations": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
+    "listManagedGroupMemberships": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
     "listPendingProfessorEvaluations": {
         "parameters": [
             {
@@ -5640,6 +7241,135 @@ export const queryCapabilities = {
                 "difficulty"
             ],
             "default": "professor.name:asc"
+        }
+    },
+    "listPublicGroupMemberships": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42 ou filter[publicId]=UUID.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "publicId": {
+                            "oneOf": [
+                                {
+                                    "format": "uuid",
+                                    "type": "string"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "format": "uuid",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                },
+                {
+                    "path": [
+                        "publicId"
+                    ],
+                    "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "operators": [
+                        "eq"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
         }
     },
     "listPublicSharedPeriodPlannings": {
@@ -6400,6 +8130,105 @@ export const queryCapabilities = {
             "default": "updatedAt:desc"
         }
     },
+    "listStudentGroupMemberships": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
     "listStudentPeople": {
         "parameters": [
             {
@@ -6999,6 +8828,10 @@ export const queryCapabilities = {
             "default": "name:asc"
         }
     },
+    "publishGroupEvent": {
+        "parameters": [],
+        "filter": null
+    },
     "removeCourseTag": {
         "parameters": [],
         "filter": null
@@ -7039,6 +8872,22 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "updateGroup": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateGroupEvent": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateGroupRole": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateManagedGroupMembership": {
+        "parameters": [],
+        "filter": null
+    },
     "updateProfessorEvaluation": {
         "parameters": [],
         "filter": null
@@ -7048,6 +8897,10 @@ export const queryCapabilities = {
         "filter": null
     },
     "updateStudentCurricula": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateStudentGroupMembership": {
         "parameters": [],
         "filter": null
     },

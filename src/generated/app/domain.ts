@@ -180,6 +180,33 @@ export type FeedbackAcademicResourceTargetDetails = Domain<FeedbackAcademicResou
 export type FeedbackReportTransport = components['schemas']['FeedbackReport']
 export type FeedbackReport = Domain<FeedbackReportTransport>
 
+export type GroupTransport = components['schemas']['Group']
+export type Group = Domain<GroupTransport>
+
+export type PublicGroupMembershipTransport = components['schemas']['PublicGroupMembership']
+export type PublicGroupMembership = Domain<PublicGroupMembershipTransport>
+
+export type OwnGroupMembershipTransport = components['schemas']['OwnGroupMembership']
+export type OwnGroupMembership = Domain<OwnGroupMembershipTransport>
+
+export type ManagedGroupMembershipTransport = components['schemas']['ManagedGroupMembership']
+export type ManagedGroupMembership = Domain<ManagedGroupMembershipTransport>
+
+export type GroupInvitationTransport = components['schemas']['GroupInvitation']
+export type GroupInvitation = Domain<GroupInvitationTransport>
+
+export type ManagedGroupInvitationTransport = components['schemas']['ManagedGroupInvitation']
+export type ManagedGroupInvitation = Domain<ManagedGroupInvitationTransport>
+
+export type GroupRoleTransport = components['schemas']['GroupRole']
+export type GroupRole = Domain<GroupRoleTransport>
+
+export type GroupEventTransport = components['schemas']['GroupEvent']
+export type GroupEvent = Domain<GroupEventTransport>
+
+export type ManagedGroupEventTransport = components['schemas']['ManagedGroupEvent']
+export type ManagedGroupEvent = Domain<ManagedGroupEventTransport>
+
 export type ExchangeNoticeSubscriptionTransport = components['schemas']['ExchangeNoticeSubscription']
 export type ExchangeNoticeSubscription = Domain<ExchangeNoticeSubscriptionTransport>
 
@@ -631,6 +658,87 @@ export const domainModelDefinitions = {
     },
     "FeedbackReport": {
         "schema": "FeedbackReport",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "Group": {
+        "schema": "Group",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PublicGroupMembership": {
+        "schema": "PublicGroupMembership",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "OwnGroupMembership": {
+        "schema": "OwnGroupMembership",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ManagedGroupMembership": {
+        "schema": "ManagedGroupMembership",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "GroupInvitation": {
+        "schema": "GroupInvitation",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ManagedGroupInvitation": {
+        "schema": "ManagedGroupInvitation",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "GroupRole": {
+        "schema": "GroupRole",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "GroupEvent": {
+        "schema": "GroupEvent",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ManagedGroupEvent": {
+        "schema": "ManagedGroupEvent",
         "transportFields": [],
         "identityFields": [
             "id"

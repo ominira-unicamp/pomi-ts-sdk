@@ -46,6 +46,24 @@ export type FeedbackAcademicResourceType = (typeof feedbackAcademicResourceTypeV
 export const feedbackStatusValues = ["OPEN", "IN_PROGRESS", "CLOSED"] as const
 export type FeedbackStatus = (typeof feedbackStatusValues)[number]
 
+export const groupStatusValues = ["ACTIVE", "ARCHIVED"] as const
+export type GroupStatus = (typeof groupStatusValues)[number]
+
+export const ownGroupMembershipPermissionsArrayValues = ["GROUP_EDIT", "GROUP_TAG_MANAGE", "MEMBER_MANAGE", "ROLE_MANAGE", "EVENT_CREATE", "EVENT_EDIT", "EVENT_PUBLISH"] as const
+export type OwnGroupMembershipPermissionsArray = (typeof ownGroupMembershipPermissionsArrayValues)[number]
+
+export const managedGroupMembershipPermissionsArrayValues = ["GROUP_EDIT", "GROUP_TAG_MANAGE", "MEMBER_MANAGE", "ROLE_MANAGE", "EVENT_CREATE", "EVENT_EDIT", "EVENT_PUBLISH"] as const
+export type ManagedGroupMembershipPermissionsArray = (typeof managedGroupMembershipPermissionsArrayValues)[number]
+
+export const groupInvitationStatusValues = ["PENDING", "ACCEPTED", "DECLINED", "CANCELLED", "EXPIRED"] as const
+export type GroupInvitationStatus = (typeof groupInvitationStatusValues)[number]
+
+export const managedGroupInvitationStatusValues = ["PENDING", "ACCEPTED", "DECLINED", "CANCELLED", "EXPIRED"] as const
+export type ManagedGroupInvitationStatus = (typeof managedGroupInvitationStatusValues)[number]
+
+export const managedGroupEventStatusValues = ["DRAFT", "PUBLISHED", "CANCELLED"] as const
+export type ManagedGroupEventStatus = (typeof managedGroupEventStatusValues)[number]
+
 export const enumValueNames = {
     "StudentCapability": "studentCapabilityValues",
     "AuthUserStatus": "authUserStatusValues",
@@ -62,5 +80,11 @@ export const enumValueNames = {
     "FeedbackKind": "feedbackKindValues",
     "FeedbackFeatureKey": "feedbackFeatureKeyValues",
     "FeedbackAcademicResourceType": "feedbackAcademicResourceTypeValues",
-    "FeedbackStatus": "feedbackStatusValues"
+    "FeedbackStatus": "feedbackStatusValues",
+    "Group.status": "groupStatusValues",
+    "OwnGroupMembership.permissions[]": "ownGroupMembershipPermissionsArrayValues",
+    "ManagedGroupMembership.permissions[]": "managedGroupMembershipPermissionsArrayValues",
+    "GroupInvitation.status": "groupInvitationStatusValues",
+    "ManagedGroupInvitation.status": "managedGroupInvitationStatusValues",
+    "ManagedGroupEvent.status": "managedGroupEventStatusValues"
 } as const
