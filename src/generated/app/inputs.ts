@@ -1,4 +1,4 @@
-import type { createAuthUserInput, createCategoryInput, createFeedbackReportInput, createGroupInput, createGroupEventInput, createGroupInvitationInput, createGroupRoleInput, createStudentAbsencesInput, createStudentCourseAttemptsInput, createStudentCurriculaInput, createStudentFeedbackReportInput, createStudentFriendshipInput, createStudentHistoryInput, createStudentPeriodPlanningsInput, createStudentsInput, createTagInput, deleteStudentsInput, replaceBotGrantInput, updateAuthUserInput, updateCategoryInput, updateExchangeNoticeSubscriptionInput, updateFeedbackReportInput, updateGroupInput, updateGroupEventInput, updateGroupRoleInput, updateManagedGroupMembershipInput, updateProfessorEvaluationInput, updateStudentCourseAttemptsInput, updateStudentCurriculaInput, updateStudentGroupMembershipInput, updateStudentPeriodPlanningsInput, updateStudentPublicProfileInput, updateStudentsInput, updateTagInput } from './operations.js'
+import type { createAuthUserInput, createCategoryInput, createFeedbackReportInput, createGroupInput, createGroupEventInput, createGroupInvitationInput, createGroupRoleInput, createStudentAbsencesInput, createStudentCourseAttemptsInput, createStudentCurriculaInput, createStudentFeedbackReportInput, createStudentFriendshipInput, createStudentHistoryInput, createStudentPeriodPlanningsInput, createStudentsInput, createTagInput, deleteStudentsInput, putGroupAvatarInput, putStudentAvatarInput, replaceBotGrantInput, updateAuthUserInput, updateCategoryInput, updateExchangeNoticeSubscriptionInput, updateFeedbackReportInput, updateGroupInput, updateGroupEventInput, updateGroupRoleInput, updateManagedGroupMembershipInput, updateProfessorEvaluationInput, updateStudentCourseAttemptsInput, updateStudentCurriculaInput, updateStudentGroupMembershipInput, updateStudentPeriodPlanningsInput, updateStudentPublicProfileInput, updateStudentsInput, updateTagInput } from './operations.js'
 
 export type createAuthUserRequest = Readonly<createAuthUserInput>
 export type createAuthUserBody = createAuthUserInput extends { body?: infer Body } ? Readonly<Body> : never
@@ -34,6 +34,10 @@ export type createTagRequest = Readonly<createTagInput>
 export type createTagBody = createTagInput extends { body?: infer Body } ? Readonly<Body> : never
 export type deleteStudentsRequest = Readonly<deleteStudentsInput>
 export type deleteStudentsBody = deleteStudentsInput extends { body?: infer Body } ? Readonly<Body> : never
+export type putGroupAvatarRequest = Readonly<putGroupAvatarInput>
+export type putGroupAvatarBody = putGroupAvatarInput extends { body?: infer Body } ? Readonly<Body> : never
+export type putStudentAvatarRequest = Readonly<putStudentAvatarInput>
+export type putStudentAvatarBody = putStudentAvatarInput extends { body?: infer Body } ? Readonly<Body> : never
 export type replaceBotGrantRequest = Readonly<replaceBotGrantInput>
 export type replaceBotGrantBody = replaceBotGrantInput extends { body?: infer Body } ? Readonly<Body> : never
 export type updateAuthUserRequest = Readonly<updateAuthUserInput>

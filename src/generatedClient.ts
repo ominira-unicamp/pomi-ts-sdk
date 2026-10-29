@@ -221,11 +221,15 @@ export class PomiSdk {
     )
     const init: RequestInit =
       definition.target === 'app' ? { cache: 'no-store' } : {}
+    if (context?.signal) init.signal = context.signal
     if (definition.method !== 'GET') init.method = definition.method
-    if (definition.authentication === 'required') {
+    if (definition.authentication === 'required' || definition.authentication === 'optional') {
       const getAccessToken = context?.getAccessToken ?? this.getAccessToken
-      if (!getAccessToken) throw new Error('Authentication is required.')
-      headers.set('Authorization', `Bearer ${await getAccessToken()}`)
+      if (getAccessToken) {
+        headers.set('Authorization', `Bearer ${await getAccessToken()}`)
+      } else if (definition.authentication === 'required') {
+        throw new Error('Authentication is required.')
+      }
     }
     if (definition.requestBody?.required && input.body === undefined) {
       throw new TypeError(
@@ -233,17 +237,25 @@ export class PomiSdk {
       )
     }
     if (definition.requestBody && input.body !== undefined) {
-      headers.set('Content-Type', definition.requestBody.contentType)
-      init.body =
-        definition.requestBody.contentType === 'application/json'
-          ? JSON.stringify(input.body)
-          : String(input.body)
+      if (definition.requestBody.contentType === 'multipart/form-data') {
+        if (!(input.body instanceof FormData)) {
+          throw new TypeError(`Operation ${definition.operationId} requires FormData.`)
+        }
+        headers.delete('Content-Type')
+        init.body = input.body
+      } else {
+        headers.set('Content-Type', definition.requestBody.contentType)
+        init.body =
+          definition.requestBody.contentType === 'application/json'
+            ? JSON.stringify(input.body)
+            : String(input.body)
+      }
     }
     if ([...headers].length > 0) init.headers = headers
 
     const response = await this.fetcher(url.href, init)
-    const text = await response.clone().text()
     if (!response.ok) {
+      const text = await response.text()
       const body = httpBody(text)
       throw new ApiError(
         response.status,
@@ -264,12 +276,15 @@ export class PomiSdk {
     ) {
       throw new UnexpectedResponseError(definition.operationId, response.status)
     }
-    if (!text || documented?.contentTypes.length === 0) return undefined as T
+    if (documented?.contentTypes.length === 0) return undefined as T
     const actualContentType = responseContentType(response)
     const content =
       documented?.contentTypes.find(
         (contentType) => contentType === actualContentType,
       ) ?? documented?.contentTypes[0]
+    if (content?.startsWith('image/')) return (await response.blob()) as T
+    const text = await response.text()
+    if (!text) return undefined as T
     return (
       content?.includes('json') || !documented
         ? (JSON.parse(text) as unknown)

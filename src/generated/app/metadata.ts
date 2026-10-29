@@ -1,4 +1,519 @@
 export const componentSchemas = {
+    "InvalidRequestProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Dados da requisição inválidos"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    400
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ProblemField"
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "fields"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "InvalidRequestProblem"
+        }
+    },
+    "ProblemField": {
+        "type": "object",
+        "properties": {
+            "code": {
+                "type": "string"
+            },
+            "path": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "message": {
+                "type": "string"
+            },
+            "details": {
+                "type": "object",
+                "additionalProperties": {
+                    "nullable": true
+                }
+            }
+        },
+        "required": [
+            "code",
+            "path",
+            "message"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ProblemField"
+        }
+    },
+    "UnauthenticatedProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Autenticação necessária"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    401
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "UnauthenticatedProblem"
+        }
+    },
+    "ForbiddenProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Acesso não permitido"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    403
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ForbiddenProblem"
+        }
+    },
+    "ResourceNotFoundProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Recurso não encontrado"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    404
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ResourceNotFoundProblem"
+        }
+    },
+    "ConflictProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Conflito ao concluir a ação"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    409
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ConflictProblem"
+        }
+    },
+    "PayloadTooLargeProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:payload-too-large"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Corpo da requisição muito grande"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    413
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "PayloadTooLargeProblem"
+        }
+    },
+    "UnprocessableEntityProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:unprocessable-entity"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Não foi possível concluir a ação"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    422
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ProblemField"
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "UnprocessableEntityProblem"
+        }
+    },
+    "MediaUploadRateLimitProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:media-upload-rate-limit"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Muitos uploads de imagem"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    429
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "retryAfterSeconds": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "retryAfterSeconds"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "MediaUploadRateLimitProblem"
+        }
+    },
+    "ServerErrorProblem": {
+        "oneOf": [
+            {
+                "$ref": "#/components/schemas/InternalServerErrorProblem"
+            },
+            {
+                "$ref": "#/components/schemas/InconsistentResourceStateProblem"
+            }
+        ],
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "urn:pomi:problem:internal-server-error": "#/components/schemas/InternalServerErrorProblem",
+                "urn:pomi:problem:inconsistent-resource-state": "#/components/schemas/InconsistentResourceStateProblem"
+            }
+        },
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ServerErrorProblem"
+        }
+    },
+    "InternalServerErrorProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:internal-server-error"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Não foi possível concluir a ação"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    500
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "InternalServerErrorProblem"
+        }
+    },
+    "InconsistentResourceStateProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:inconsistent-resource-state"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Estado interno do recurso inconsistente"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    500
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "InconsistentResourceStateProblem"
+        }
+    },
+    "ServiceUnavailableProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:service-unavailable"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Serviço indisponível"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    503
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ServiceUnavailableProblem"
+        }
+    },
     "PageProfessorEvaluationSummaries": {
         "type": "object",
         "properties": {
@@ -117,189 +632,6 @@ export const componentSchemas = {
             "kind": "transport",
             "publicName": "PaginationLinks",
             "generate": false
-        }
-    },
-    "InvalidRequestProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Dados da requisição inválidos"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    400
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "fields": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/ProblemField"
-                }
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail",
-            "fields"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "InvalidRequestProblem"
-        }
-    },
-    "ProblemField": {
-        "type": "object",
-        "properties": {
-            "code": {
-                "type": "string"
-            },
-            "path": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                }
-            },
-            "message": {
-                "type": "string"
-            },
-            "details": {
-                "type": "object",
-                "additionalProperties": {
-                    "nullable": true
-                }
-            }
-        },
-        "required": [
-            "code",
-            "path",
-            "message"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "ProblemField"
-        }
-    },
-    "ServerErrorProblem": {
-        "oneOf": [
-            {
-                "$ref": "#/components/schemas/InternalServerErrorProblem"
-            },
-            {
-                "$ref": "#/components/schemas/InconsistentResourceStateProblem"
-            }
-        ],
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "urn:pomi:problem:internal-server-error": "#/components/schemas/InternalServerErrorProblem",
-                "urn:pomi:problem:inconsistent-resource-state": "#/components/schemas/InconsistentResourceStateProblem"
-            }
-        },
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "ServerErrorProblem"
-        }
-    },
-    "InternalServerErrorProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:internal-server-error"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Não foi possível concluir a ação"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    500
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "InternalServerErrorProblem"
-        }
-    },
-    "InconsistentResourceStateProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:inconsistent-resource-state"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Estado interno do recurso inconsistente"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    500
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "InconsistentResourceStateProblem"
         }
     },
     "PageCourseEvaluationSummaries": {
@@ -455,46 +787,6 @@ export const componentSchemas = {
         "x-pomi-schema": {
             "kind": "projection",
             "publicName": "CourseProfessorEvaluationSummary"
-        }
-    },
-    "ResourceNotFoundProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Recurso não encontrado"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    404
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "ResourceNotFoundProblem"
         }
     },
     "CurrentUserEntity": {
@@ -2357,11 +2649,17 @@ export const componentSchemas = {
                     },
                     "displayName": {
                         "type": "string"
+                    },
+                    "avatarMediaId": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "uuid"
                     }
                 },
                 "required": [
                     "publicId",
-                    "displayName"
+                    "displayName",
+                    "avatarMediaId"
                 ],
                 "additionalProperties": false
             },
@@ -3472,6 +3770,11 @@ export const componentSchemas = {
             "displayName": {
                 "type": "string"
             },
+            "avatarMediaId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
+            },
             "bio": {
                 "type": "string",
                 "nullable": true
@@ -3565,6 +3868,7 @@ export const componentSchemas = {
         "required": [
             "publicId",
             "displayName",
+            "avatarMediaId",
             "bio",
             "interests",
             "currentCourses",
@@ -3694,6 +3998,11 @@ export const componentSchemas = {
             "displayName": {
                 "type": "string"
             },
+            "avatarMediaId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
+            },
             "bio": {
                 "type": "string",
                 "nullable": true
@@ -3781,6 +4090,7 @@ export const componentSchemas = {
         "required": [
             "publicId",
             "displayName",
+            "avatarMediaId",
             "bio",
             "interests",
             "currentCourses",
@@ -4340,6 +4650,11 @@ export const componentSchemas = {
                     "ARCHIVED"
                 ]
             },
+            "avatarMediaId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
+            },
             "contacts": {
                 "type": "array",
                 "items": {
@@ -4445,6 +4760,7 @@ export const componentSchemas = {
             "name",
             "description",
             "status",
+            "avatarMediaId",
             "contacts",
             "externalLinks",
             "tags",
@@ -4477,6 +4793,11 @@ export const componentSchemas = {
                 "type": "string"
             },
             "profilePublicId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
+            },
+            "avatarMediaId": {
                 "type": "string",
                 "nullable": true,
                 "format": "uuid"
@@ -4528,6 +4849,7 @@ export const componentSchemas = {
             "groupId",
             "displayName",
             "profilePublicId",
+            "avatarMediaId",
             "joinedAt",
             "positions"
         ],
@@ -4769,6 +5091,11 @@ export const componentSchemas = {
             },
             "studentName": {
                 "type": "string"
+            },
+            "avatarMediaId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
             }
         },
         "required": [
@@ -4781,7 +5108,8 @@ export const componentSchemas = {
             "leftAt",
             "roles",
             "permissions",
-            "studentName"
+            "studentName",
+            "avatarMediaId"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
@@ -4910,6 +5238,11 @@ export const componentSchemas = {
             "recipientPublicId": {
                 "type": "string",
                 "format": "uuid"
+            },
+            "recipientAvatarMediaId": {
+                "type": "string",
+                "nullable": true,
+                "format": "uuid"
             }
         },
         "required": [
@@ -4922,7 +5255,8 @@ export const componentSchemas = {
             "createdAt",
             "respondedAt",
             "recipientName",
-            "recipientPublicId"
+            "recipientPublicId",
+            "recipientAvatarMediaId"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
@@ -5622,11 +5956,19 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "deleteGroupAvatar": {
+        "parameters": [],
+        "filter": null
+    },
     "deleteGroupRole": {
         "parameters": [],
         "filter": null
     },
     "deleteStudentAbsences": {
+        "parameters": [],
+        "filter": null
+    },
+    "deleteStudentAvatar": {
         "parameters": [],
         "filter": null
     },
@@ -5778,6 +6120,10 @@ export const queryCapabilities = {
         "filter": null
     },
     "getGroupEvent": {
+        "parameters": [],
+        "filter": null
+    },
+    "getImageVariant": {
         "parameters": [],
         "filter": null
     },
@@ -8829,6 +9175,14 @@ export const queryCapabilities = {
         }
     },
     "publishGroupEvent": {
+        "parameters": [],
+        "filter": null
+    },
+    "putGroupAvatar": {
+        "parameters": [],
+        "filter": null
+    },
+    "putStudentAvatar": {
         "parameters": [],
         "filter": null
     },

@@ -221,7 +221,9 @@ const sortingTypeAssertions = undefined as unknown as SortingTypeAssertions
 
 test('generates separate operational manifests for Data and App', () => {
   assert.equal(Object.keys(dataOperations).length, 50)
-  assert.equal(Object.keys(appOperations).length, 101)
+  assert.equal(Object.keys(appOperations).length, 107)
+  assert.equal('putGroupBanner' in appOperations, false)
+  assert.equal('deleteGroupBanner' in appOperations, false)
   assert.equal(dataOperations.listCourses.target, 'data')
   assert.equal(dataOperations.listCourses.authentication, 'public')
   assert.equal(appOperations.listStudentAbsences.target, 'app')
@@ -234,7 +236,7 @@ test('generates separate operational manifests for Data and App', () => {
   )
   assert.equal(
     Object.values(appOperations).filter((operation) => operation.sdk).length,
-    101,
+    107,
   )
   assert.equal(dataOperations.listClasses.sdk?.resource, 'classes')
   assert.equal(dataOperations.listClasses.pagination?.defaultMode, 'page')

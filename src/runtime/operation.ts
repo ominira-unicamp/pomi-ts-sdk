@@ -1,5 +1,5 @@
 export type ApiTarget = 'app' | 'data'
-export type AuthenticationMode = 'public' | 'required'
+export type AuthenticationMode = 'public' | 'optional' | 'required'
 
 export type GeneratedOperationResponse = Readonly<{
   status: number | string

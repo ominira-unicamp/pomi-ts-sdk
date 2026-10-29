@@ -921,12 +921,19 @@ export interface components {
             previous: string | null;
         };
         CourseEntity: {
+
             id: number;
+
             code: string;
+
             name: string;
+
             credits: number;
+
             prefix: string;
+
             unitId: number | null;
+
             unitCode: string | null;
         };
         PageCourses: {
@@ -1094,12 +1101,19 @@ export interface components {
             programIds: number[];
         };
         CatalogCourseEntity: {
+
             id: number;
+
             catalogId: number;
+
             catalogYear: number;
+
             courseId: number;
+
             code: string;
+
             name: string;
+
             credits: number;
             coordinator: {
                 id: number;

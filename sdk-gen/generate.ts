@@ -40,6 +40,9 @@ function pathParameterType(entry: OperationEntry, wireName: string) {
   const schema = isRecord(parameter?.schema) ? parameter.schema : undefined
   if (schema?.type === 'integer' || schema?.type === 'number') return 'number'
   if (schema?.type === 'boolean') return 'boolean'
+  if (Array.isArray(schema?.enum) && schema.enum.every((value) => typeof value === 'string')) {
+    return schema.enum.map((value) => JSON.stringify(value)).join(' | ')
+  }
   return 'string'
 }
 
@@ -176,6 +179,7 @@ function operationSuccessType(
       const contents = contentTypeEntries(response)
       if (contents.length === 0) return ['void']
       return contents.map(([contentType, content]) => {
+        if (contentType.startsWith('image/')) return 'Blob'
         const domainType = domainTypeForSchema(
           document,
           content.schema,
@@ -260,7 +264,10 @@ function authenticationFor(
   document: OpenApiDocument,
 ) {
   const security = operation.security ?? document.security ?? []
-  return security.length > 0 ? 'required' : 'public'
+  if (security.length === 0) return 'public'
+  return security.some((requirement) => Object.keys(requirement).length === 0)
+    ? 'optional'
+    : 'required'
 }
 
 function requestBodyMetadata(operation: OpenApiOperation) {
@@ -530,7 +537,9 @@ import type { GeneratedOperationDefinition } from '../../runtime/operation.js'
 
 type ParameterRecord<T> = [NonNullable<T>] extends [never] ? {} : NonNullable<T>
 type RequestBodyOf<T> = T extends { requestBody: { content: infer Content } }
-  ? Content[keyof Content]
+  ? 'multipart/form-data' extends keyof Content
+    ? FormData
+    : Content[keyof Content]
   : never
 type BodyInput<Body, Required extends boolean> = [Body] extends [never]
   ? {}

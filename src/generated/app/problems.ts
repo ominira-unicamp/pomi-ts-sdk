@@ -8,6 +8,55 @@ export const problemCatalog = {
         "title": "Dados da requisição inválidos",
         "hasFields": true
     },
+    "urn:pomi:problem:unauthenticated": {
+        "schemaName": "UnauthenticatedProblem",
+        "type": "urn:pomi:problem:unauthenticated",
+        "status": 401,
+        "title": "Autenticação necessária",
+        "hasFields": false
+    },
+    "urn:pomi:problem:forbidden": {
+        "schemaName": "ForbiddenProblem",
+        "type": "urn:pomi:problem:forbidden",
+        "status": 403,
+        "title": "Acesso não permitido",
+        "hasFields": false
+    },
+    "urn:pomi:problem:resource-not-found": {
+        "schemaName": "ResourceNotFoundProblem",
+        "type": "urn:pomi:problem:resource-not-found",
+        "status": 404,
+        "title": "Recurso não encontrado",
+        "hasFields": false
+    },
+    "urn:pomi:problem:conflict": {
+        "schemaName": "ConflictProblem",
+        "type": "urn:pomi:problem:conflict",
+        "status": 409,
+        "title": "Conflito ao concluir a ação",
+        "hasFields": false
+    },
+    "urn:pomi:problem:payload-too-large": {
+        "schemaName": "PayloadTooLargeProblem",
+        "type": "urn:pomi:problem:payload-too-large",
+        "status": 413,
+        "title": "Corpo da requisição muito grande",
+        "hasFields": false
+    },
+    "urn:pomi:problem:unprocessable-entity": {
+        "schemaName": "UnprocessableEntityProblem",
+        "type": "urn:pomi:problem:unprocessable-entity",
+        "status": 422,
+        "title": "Não foi possível concluir a ação",
+        "hasFields": true
+    },
+    "urn:pomi:problem:media-upload-rate-limit": {
+        "schemaName": "MediaUploadRateLimitProblem",
+        "type": "urn:pomi:problem:media-upload-rate-limit",
+        "status": 429,
+        "title": "Muitos uploads de imagem",
+        "hasFields": false
+    },
     "urn:pomi:problem:internal-server-error": {
         "schemaName": "InternalServerErrorProblem",
         "type": "urn:pomi:problem:internal-server-error",
@@ -22,11 +71,11 @@ export const problemCatalog = {
         "title": "Estado interno do recurso inconsistente",
         "hasFields": false
     },
-    "urn:pomi:problem:resource-not-found": {
-        "schemaName": "ResourceNotFoundProblem",
-        "type": "urn:pomi:problem:resource-not-found",
-        "status": 404,
-        "title": "Recurso não encontrado",
+    "urn:pomi:problem:service-unavailable": {
+        "schemaName": "ServiceUnavailableProblem",
+        "type": "urn:pomi:problem:service-unavailable",
+        "status": 503,
+        "title": "Serviço indisponível",
         "hasFields": false
     },
     "urn:pomi:problem:admin-identity-managed-by-cli": {
@@ -222,6 +271,13 @@ export const operationProblemTypes = {
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict"
     ],
+    "deleteGroupAvatar": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:unauthenticated",
+        "urn:pomi:problem:forbidden",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:conflict"
+    ],
     "deleteGroupRole": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
@@ -229,6 +285,13 @@ export const operationProblemTypes = {
     "deleteStudentAbsences": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
+    ],
+    "deleteStudentAvatar": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:unauthenticated",
+        "urn:pomi:problem:forbidden",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:conflict"
     ],
     "deleteStudentCourseAttempts": [
         "urn:pomi:problem:invalid-request",
@@ -280,6 +343,13 @@ export const operationProblemTypes = {
     "getGroupEvent": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
+    ],
+    "getImageVariant": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:unauthenticated",
+        "urn:pomi:problem:forbidden",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:service-unavailable"
     ],
     "getProfessorEvaluation": [
         "urn:pomi:problem:invalid-request",
@@ -429,6 +499,28 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
+    "putGroupAvatar": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:unauthenticated",
+        "urn:pomi:problem:forbidden",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:conflict",
+        "urn:pomi:problem:payload-too-large",
+        "urn:pomi:problem:unprocessable-entity",
+        "urn:pomi:problem:media-upload-rate-limit",
+        "urn:pomi:problem:service-unavailable"
+    ],
+    "putStudentAvatar": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:unauthenticated",
+        "urn:pomi:problem:forbidden",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:conflict",
+        "urn:pomi:problem:payload-too-large",
+        "urn:pomi:problem:unprocessable-entity",
+        "urn:pomi:problem:media-upload-rate-limit",
+        "urn:pomi:problem:service-unavailable"
+    ],
     "removeCourseTag": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:reference-not-found"
@@ -528,9 +620,16 @@ export const operationProblemTypes = {
 export type ProblemType = keyof typeof problemCatalog
 export type ProblemByType = {
     "urn:pomi:problem:invalid-request": components['schemas']["InvalidRequestProblem"]
+    "urn:pomi:problem:unauthenticated": components['schemas']["UnauthenticatedProblem"]
+    "urn:pomi:problem:forbidden": components['schemas']["ForbiddenProblem"]
+    "urn:pomi:problem:resource-not-found": components['schemas']["ResourceNotFoundProblem"]
+    "urn:pomi:problem:conflict": components['schemas']["ConflictProblem"]
+    "urn:pomi:problem:payload-too-large": components['schemas']["PayloadTooLargeProblem"]
+    "urn:pomi:problem:unprocessable-entity": components['schemas']["UnprocessableEntityProblem"]
+    "urn:pomi:problem:media-upload-rate-limit": components['schemas']["MediaUploadRateLimitProblem"]
     "urn:pomi:problem:internal-server-error": components['schemas']["InternalServerErrorProblem"]
     "urn:pomi:problem:inconsistent-resource-state": components['schemas']["InconsistentResourceStateProblem"]
-    "urn:pomi:problem:resource-not-found": components['schemas']["ResourceNotFoundProblem"]
+    "urn:pomi:problem:service-unavailable": components['schemas']["ServiceUnavailableProblem"]
     "urn:pomi:problem:admin-identity-managed-by-cli": components['schemas']["AdminIdentityManagedByCliProblem"]
     "urn:pomi:problem:unique-constraint-conflict": components['schemas']["UniqueConstraintConflictProblem"]
     "urn:pomi:problem:reference-not-found": components['schemas']["ReferenceNotFoundProblem"]

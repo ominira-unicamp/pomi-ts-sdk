@@ -341,3 +341,48 @@ test('provides the SDK-level problem guard', async () => {
     sdk.errors.is(error, 'urn:pomi:problem:invalid-request'),
   )
 })
+
+test('sends media uploads as FormData with the browser boundary', async () => {
+  let sent: RequestInit | undefined
+  const sdk = sdkWith(
+    async (_input, init) => {
+      sent = init
+      return new Response(JSON.stringify({ mediaId: crypto.randomUUID(), revision: 1 }), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      })
+    },
+    async () => 'token',
+  )
+  const form = new FormData()
+  form.append('images[]', new Blob(['image'], { type: 'image/png' }), 'avatar.png')
+
+  await sdk.app.media.putStudentAvatar(7, form)
+
+  assert.equal(sent?.body, form)
+  assert.equal(new Headers(sent?.headers).get('Content-Type'), null)
+  assert.equal(new Headers(sent?.headers).get('Authorization'), 'Bearer token')
+})
+
+test('returns image variants as Blob with optional authentication', async () => {
+  const headers: Array<string | null> = []
+  const sdk = sdkWith(async (_input, init) => {
+    headers.push(new Headers(init?.headers).get('Authorization'))
+    return new Response(new Blob(['image'], { type: 'image/webp' }), {
+      status: 200,
+      headers: { 'content-type': 'image/webp' },
+    })
+  })
+  const mediaId = crypto.randomUUID()
+
+  const anonymous = await sdk.app.media.getImageVariant(mediaId, 'avatarSmall')
+  const privateImage = await sdk.app.media.getImageVariant(
+    mediaId,
+    'avatarLarge',
+    { getAccessToken: async () => 'token' },
+  )
+
+  assert.equal(await anonymous.text(), 'image')
+  assert.equal(await privateImage.text(), 'image')
+  assert.deepEqual(headers, [null, 'Bearer token'])
+})

@@ -293,32 +293,46 @@ export const componentSchemas = {
         "type": "object",
         "properties": {
             "id": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Identificador estável da disciplina no POMI.",
+                "example": 732
             },
             "code": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Código institucional da disciplina.",
+                "example": "MC732"
             },
             "name": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Nome normalizado da disciplina.",
+                "example": "Programação Concorrente"
             },
             "credits": {
                 "type": "integer",
-                "minimum": 0
+                "minimum": 0,
+                "description": "Quantidade de créditos acadêmicos.",
+                "example": 4
             },
             "prefix": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Prefixo alfabético extraído do código.",
+                "example": "MC"
             },
             "unitId": {
                 "type": "integer",
-                "nullable": true
+                "nullable": true,
+                "description": "Identificador da unidade responsável, quando conhecida.",
+                "example": 1
             },
             "unitCode": {
                 "type": "string",
                 "nullable": true,
-                "minLength": 1
+                "minLength": 1,
+                "description": "Sigla da unidade responsável, quando conhecida.",
+                "example": "IC"
             }
         },
         "required": [
@@ -1220,28 +1234,42 @@ export const componentSchemas = {
         "type": "object",
         "properties": {
             "id": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Identificador da representação da disciplina no catálogo.",
+                "example": 7322025
             },
             "catalogId": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Identificador do catálogo acadêmico.",
+                "example": 2025
             },
             "catalogYear": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Ano de vigência do catálogo.",
+                "example": 2025
             },
             "courseId": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Identificador da disciplina normalizada relacionada.",
+                "example": 732
             },
             "code": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Código institucional da disciplina nesse catálogo.",
+                "example": "MC732"
             },
             "name": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Nome publicado para a disciplina nesse catálogo.",
+                "example": "Programação Concorrente"
             },
             "credits": {
                 "type": "integer",
-                "minimum": 0
+                "minimum": 0,
+                "description": "Quantidade de créditos no contexto do catálogo.",
+                "example": 4
             },
             "coordinator": {
                 "type": "object",

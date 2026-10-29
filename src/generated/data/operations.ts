@@ -4,7 +4,9 @@ import type { GeneratedOperationDefinition } from '../../runtime/operation.js'
 
 type ParameterRecord<T> = [NonNullable<T>] extends [never] ? {} : NonNullable<T>
 type RequestBodyOf<T> = T extends { requestBody: { content: infer Content } }
-    ? Content[keyof Content]
+    ? 'multipart/form-data' extends keyof Content
+    ? FormData
+    : Content[keyof Content]
     : never
 type BodyInput<Body, Required extends boolean> = [Body] extends [never]
     ? {}
@@ -342,7 +344,7 @@ export const operationDefinitions = {
         "tags": [
             "calendar-events"
         ],
-        "summary": "Get CalendarEvents",
+        "summary": "Consultar evento acadêmico",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -433,7 +435,7 @@ export const operationDefinitions = {
         "tags": [
             "calendar"
         ],
-        "summary": "Get public iCalendar feed",
+        "summary": "Consultar calendário acadêmico",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -639,7 +641,7 @@ export const operationDefinitions = {
         "tags": [
             "calendar-tags"
         ],
-        "summary": "Get CalendarTags",
+        "summary": "Consultar categoria do calendário",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -730,8 +732,8 @@ export const operationDefinitions = {
         "tags": [
             "catalog-courses"
         ],
-        "summary": "Get CatalogCourses",
-        "description": null,
+        "summary": "Consultar disciplina de catálogo",
+        "description": "Retorna uma disciplina no contexto de um catálogo acadêmico específico.",
         "deprecated": false,
         "pathParameters": [
             "id"
@@ -821,7 +823,7 @@ export const operationDefinitions = {
         "tags": [
             "catalog-program"
         ],
-        "summary": "Get CatalogPrograms",
+        "summary": "Consultar curso em catálogo",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -912,7 +914,7 @@ export const operationDefinitions = {
         "tags": [
             "catalogs"
         ],
-        "summary": "Get Catalogs",
+        "summary": "Consultar catálogo",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1003,7 +1005,7 @@ export const operationDefinitions = {
         "tags": [
             "classes"
         ],
-        "summary": "Get Classes",
+        "summary": "Consultar turma",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1094,7 +1096,7 @@ export const operationDefinitions = {
         "tags": [
             "class-schedules"
         ],
-        "summary": "Get ClassSchedules",
+        "summary": "Consultar horário de turma",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1185,7 +1187,7 @@ export const operationDefinitions = {
         "tags": [
             "coauthors"
         ],
-        "summary": "Get Coauthors",
+        "summary": "Consultar coautoria",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1276,7 +1278,7 @@ export const operationDefinitions = {
         "tags": [
             "coordinators"
         ],
-        "summary": "Get Coordinators",
+        "summary": "Consultar coordenador",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1367,8 +1369,8 @@ export const operationDefinitions = {
         "tags": [
             "courses"
         ],
-        "summary": "Get Courses",
-        "description": null,
+        "summary": "Consultar disciplina",
+        "description": "Retorna a identidade normalizada de uma disciplina pelo identificador POMI.",
         "deprecated": false,
         "pathParameters": [
             "id"
@@ -1458,7 +1460,7 @@ export const operationDefinitions = {
         "tags": [
             "curriculum-suggestions"
         ],
-        "summary": "Get CurriculumSuggestions",
+        "summary": "Consultar currículo sugerido",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1549,7 +1551,7 @@ export const operationDefinitions = {
         "tags": [
             "daily-menus"
         ],
-        "summary": "Get DailyMenus",
+        "summary": "Consultar cardápio diário",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1640,7 +1642,7 @@ export const operationDefinitions = {
         "tags": [
             "departments"
         ],
-        "summary": "Get Departments",
+        "summary": "Consultar departamento",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1731,7 +1733,7 @@ export const operationDefinitions = {
         "tags": [
             "exchange-notices"
         ],
-        "summary": "Get ExchangeNotices",
+        "summary": "Consultar edital de intercâmbio",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1822,7 +1824,7 @@ export const operationDefinitions = {
         "tags": [
             "keywords"
         ],
-        "summary": "Get Keywords",
+        "summary": "Consultar palavra-chave",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -1913,7 +1915,7 @@ export const operationDefinitions = {
         "tags": [
             "languages"
         ],
-        "summary": "Get Languages",
+        "summary": "Consultar idioma",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2004,7 +2006,7 @@ export const operationDefinitions = {
         "tags": [
             "professor-data-portal"
         ],
-        "summary": "Get ProfessorDataPortalProfiles",
+        "summary": "Consultar registro do portal de docentes",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2095,7 +2097,7 @@ export const operationDefinitions = {
         "tags": [
             "professor-positions"
         ],
-        "summary": "Get ProfessorPositions",
+        "summary": "Consultar cargo docente",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2186,7 +2188,7 @@ export const operationDefinitions = {
         "tags": [
             "professors"
         ],
-        "summary": "Get Professors",
+        "summary": "Consultar docente",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2277,7 +2279,7 @@ export const operationDefinitions = {
         "tags": [
             "programs"
         ],
-        "summary": "Get Programs",
+        "summary": "Consultar curso de graduação",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2368,7 +2370,7 @@ export const operationDefinitions = {
         "tags": [
             "rooms"
         ],
-        "summary": "Get Rooms",
+        "summary": "Consultar sala",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2459,7 +2461,7 @@ export const operationDefinitions = {
         "tags": [
             "specializations"
         ],
-        "summary": "Get Specializations",
+        "summary": "Consultar habilitação",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2550,7 +2552,7 @@ export const operationDefinitions = {
         "tags": [
             "study-periods"
         ],
-        "summary": "Get StudyPeriods",
+        "summary": "Consultar período letivo",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2641,7 +2643,7 @@ export const operationDefinitions = {
         "tags": [
             "units"
         ],
-        "summary": "Get Units",
+        "summary": "Consultar unidade",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -2732,7 +2734,7 @@ export const operationDefinitions = {
         "tags": [
             "calendar-events"
         ],
-        "summary": "List CalendarEvents",
+        "summary": "Listar eventos acadêmicos",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -3023,7 +3025,7 @@ export const operationDefinitions = {
         "tags": [
             "calendar-tags"
         ],
-        "summary": "List CalendarTags",
+        "summary": "Listar categorias do calendário",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -3266,8 +3268,8 @@ export const operationDefinitions = {
         "tags": [
             "catalog-courses"
         ],
-        "summary": "List CatalogCourses",
-        "description": null,
+        "summary": "Listar disciplinas de catálogo",
+        "description": "Lista representações institucionais de disciplinas em catálogos acadêmicos.",
         "deprecated": false,
         "pathParameters": [],
         "queryParameters": [
@@ -3756,7 +3758,7 @@ export const operationDefinitions = {
         "tags": [
             "catalog-program"
         ],
-        "summary": "List CatalogPrograms",
+        "summary": "Listar cursos em catálogos",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -4075,7 +4077,7 @@ export const operationDefinitions = {
         "tags": [
             "catalogs"
         ],
-        "summary": "List Catalogs",
+        "summary": "Listar catálogos",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -4288,7 +4290,7 @@ export const operationDefinitions = {
         "tags": [
             "classes"
         ],
-        "summary": "List Classes",
+        "summary": "Listar turmas",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -4810,7 +4812,7 @@ export const operationDefinitions = {
         "tags": [
             "class-schedules"
         ],
-        "summary": "List ClassSchedules",
+        "summary": "Listar horários de turmas",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -5439,7 +5441,7 @@ export const operationDefinitions = {
         "tags": [
             "coauthors"
         ],
-        "summary": "List Coauthors",
+        "summary": "Listar coautorias",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -5640,7 +5642,7 @@ export const operationDefinitions = {
         "tags": [
             "coordinators"
         ],
-        "summary": "List Coordinators",
+        "summary": "Listar coordenadores",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -5849,8 +5851,8 @@ export const operationDefinitions = {
         "tags": [
             "courses"
         ],
-        "summary": "List Courses",
-        "description": null,
+        "summary": "Listar disciplinas",
+        "description": "Lista identidades normalizadas de disciplinas com filtros, ordenação e paginação.",
         "deprecated": false,
         "pathParameters": [],
         "queryParameters": [
@@ -6272,7 +6274,7 @@ export const operationDefinitions = {
         "tags": [
             "curriculum-suggestions"
         ],
-        "summary": "List CurriculumSuggestions",
+        "summary": "Listar currículos sugeridos",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -6720,7 +6722,7 @@ export const operationDefinitions = {
         "tags": [
             "daily-menus"
         ],
-        "summary": "List DailyMenus",
+        "summary": "Listar cardápios diários",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -6941,7 +6943,7 @@ export const operationDefinitions = {
         "tags": [
             "departments"
         ],
-        "summary": "List Departments",
+        "summary": "Listar departamentos",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -7188,7 +7190,7 @@ export const operationDefinitions = {
         "tags": [
             "exchange-notices"
         ],
-        "summary": "List ExchangeNotices",
+        "summary": "Listar editais de intercâmbio",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -7712,7 +7714,7 @@ export const operationDefinitions = {
         "tags": [
             "exchange-places"
         ],
-        "summary": "List ExchangePlaces",
+        "summary": "Listar vagas de intercâmbio",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -7959,7 +7961,7 @@ export const operationDefinitions = {
         "tags": [
             "keywords"
         ],
-        "summary": "List Keywords",
+        "summary": "Listar palavras-chave",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -8160,7 +8162,7 @@ export const operationDefinitions = {
         "tags": [
             "languages"
         ],
-        "summary": "List Languages",
+        "summary": "Listar idiomas",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -8403,7 +8405,7 @@ export const operationDefinitions = {
         "tags": [
             "professor-data-portal"
         ],
-        "summary": "List ProfessorDataPortalProfiles",
+        "summary": "Listar registros do portal de docentes",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -8794,7 +8796,7 @@ export const operationDefinitions = {
         "tags": [
             "professor-positions"
         ],
-        "summary": "List ProfessorPositions",
+        "summary": "Listar cargos docentes",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -9096,7 +9098,7 @@ export const operationDefinitions = {
         "tags": [
             "professors"
         ],
-        "summary": "List Professors",
+        "summary": "Listar docentes",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -9278,7 +9280,7 @@ export const operationDefinitions = {
         "tags": [
             "programs"
         ],
-        "summary": "List Programs",
+        "summary": "Listar cursos de graduação",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -9493,7 +9495,7 @@ export const operationDefinitions = {
         "tags": [
             "rooms"
         ],
-        "summary": "List Rooms",
+        "summary": "Listar salas",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -9749,7 +9751,7 @@ export const operationDefinitions = {
         "tags": [
             "specializations"
         ],
-        "summary": "List Specializations",
+        "summary": "Listar habilitações",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -10050,7 +10052,7 @@ export const operationDefinitions = {
         "tags": [
             "study-periods"
         ],
-        "summary": "List StudyPeriods",
+        "summary": "Listar períodos letivos",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -10358,7 +10360,7 @@ export const operationDefinitions = {
         "tags": [
             "units"
         ],
-        "summary": "List Units",
+        "summary": "Listar unidades",
         "description": null,
         "deprecated": false,
         "pathParameters": [],

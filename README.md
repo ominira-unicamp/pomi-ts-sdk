@@ -74,6 +74,22 @@ const currentUser = await sdk.app.currentUser.get({
 
 Operações públicas não solicitam token.
 
+### Imagens de pessoas e grupos
+
+As respostas de pessoas, membros de grupos e autoria de planejamentos incluem
+`avatarMediaId` quando a política do recurso permite divulgar a imagem.
+Convites gerenciados usam `recipientAvatarMediaId`. Um valor `null` deve resultar
+em fallback na interface.
+
+Use `sdk.app.media.getImageVariant(mediaId, 'avatarSmall', contexto)` para obter
+um `Blob`; a outra variante é `avatarLarge`. Imagens privadas
+exigem `getAccessToken` no contexto. Para upload, envie `FormData` com o arquivo
+no campo `images[]` usando os métodos de `sdk.app.media`. Avatares novos recebem
+corte central quadrado antes do armazenamento.
+
+Os IDs são identificadores públicos da App API. O SDK não expõe aliases ou
+credenciais administrativas do pict-rs.
+
 ## Recursos e operações
 
 O cliente agrupa operações relacionadas em recursos com métodos tipados. Conforme as operações disponíveis no contrato, um recurso pode expor métodos como `get`, `list`, `create`, `update` e `delete`.

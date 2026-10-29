@@ -4,7 +4,9 @@ import type { GeneratedOperationDefinition } from '../../runtime/operation.js'
 
 type ParameterRecord<T> = [NonNullable<T>] extends [never] ? {} : NonNullable<T>
 type RequestBodyOf<T> = T extends { requestBody: { content: infer Content } }
-    ? Content[keyof Content]
+    ? 'multipart/form-data' extends keyof Content
+    ? FormData
+    : Content[keyof Content]
     : never
 type BodyInput<Body, Required extends boolean> = [Body] extends [never]
     ? {}
@@ -91,12 +93,18 @@ export type declineGroupInvitationProblem = operations["declineGroupInvitation"]
 export type deleteCategoryInput = OperationInput<operations["deleteCategory"]['parameters']['path'], operations["deleteCategory"]['parameters']['query'], operations["deleteCategory"]['parameters']['header'], RequestBodyOf<operations["deleteCategory"]>, false>
 export type deleteCategoryOutput = void
 export type deleteCategoryProblem = operations["deleteCategory"]['responses'][400]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][404]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][409]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][500]['content']["application/problem+json"]
+export type deleteGroupAvatarInput = OperationInput<operations["deleteGroupAvatar"]['parameters']['path'], operations["deleteGroupAvatar"]['parameters']['query'], operations["deleteGroupAvatar"]['parameters']['header'], RequestBodyOf<operations["deleteGroupAvatar"]>, false>
+export type deleteGroupAvatarOutput = void
+export type deleteGroupAvatarProblem = operations["deleteGroupAvatar"]['responses'][400]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][401]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][403]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][404]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][409]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][500]['content']["application/problem+json"]
 export type deleteGroupRoleInput = OperationInput<operations["deleteGroupRole"]['parameters']['path'], operations["deleteGroupRole"]['parameters']['query'], operations["deleteGroupRole"]['parameters']['header'], RequestBodyOf<operations["deleteGroupRole"]>, false>
 export type deleteGroupRoleOutput = void
 export type deleteGroupRoleProblem = operations["deleteGroupRole"]['responses'][400]['content']["application/problem+json"] | operations["deleteGroupRole"]['responses'][404]['content']["application/problem+json"] | operations["deleteGroupRole"]['responses'][500]['content']["application/problem+json"]
 export type deleteStudentAbsencesInput = OperationInput<operations["deleteStudentAbsences"]['parameters']['path'], operations["deleteStudentAbsences"]['parameters']['query'], operations["deleteStudentAbsences"]['parameters']['header'], RequestBodyOf<operations["deleteStudentAbsences"]>, false>
 export type deleteStudentAbsencesOutput = void
 export type deleteStudentAbsencesProblem = operations["deleteStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentAbsences"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentAbsences"]['responses'][500]['content']["application/problem+json"]
+export type deleteStudentAvatarInput = OperationInput<operations["deleteStudentAvatar"]['parameters']['path'], operations["deleteStudentAvatar"]['parameters']['query'], operations["deleteStudentAvatar"]['parameters']['header'], RequestBodyOf<operations["deleteStudentAvatar"]>, false>
+export type deleteStudentAvatarOutput = void
+export type deleteStudentAvatarProblem = operations["deleteStudentAvatar"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][401]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][403]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][409]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][500]['content']["application/problem+json"]
 export type deleteStudentCourseAttemptsInput = OperationInput<operations["deleteStudentCourseAttempts"]['parameters']['path'], operations["deleteStudentCourseAttempts"]['parameters']['query'], operations["deleteStudentCourseAttempts"]['parameters']['header'], RequestBodyOf<operations["deleteStudentCourseAttempts"]>, false>
 export type deleteStudentCourseAttemptsOutput = void
 export type deleteStudentCourseAttemptsProblem = operations["deleteStudentCourseAttempts"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentCourseAttempts"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentCourseAttempts"]['responses'][500]['content']["application/problem+json"]
@@ -136,6 +144,9 @@ export type getGroupProblem = operations["getGroup"]['responses'][400]['content'
 export type getGroupEventInput = OperationInput<operations["getGroupEvent"]['parameters']['path'], operations["getGroupEvent"]['parameters']['query'], operations["getGroupEvent"]['parameters']['header'], RequestBodyOf<operations["getGroupEvent"]>, false>
 export type getGroupEventOutput = import('./domain.js').GroupEvent
 export type getGroupEventProblem = operations["getGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["getGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["getGroupEvent"]['responses'][500]['content']["application/problem+json"]
+export type getImageVariantInput = OperationInput<operations["getImageVariant"]['parameters']['path'], operations["getImageVariant"]['parameters']['query'], operations["getImageVariant"]['parameters']['header'], RequestBodyOf<operations["getImageVariant"]>, false>
+export type getImageVariantOutput = Blob
+export type getImageVariantProblem = operations["getImageVariant"]['responses'][400]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][401]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][403]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][404]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][500]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][503]['content']["application/problem+json"]
 export type getProfessorEvaluationInput = OperationInput<operations["getProfessorEvaluation"]['parameters']['path'], operations["getProfessorEvaluation"]['parameters']['query'], operations["getProfessorEvaluation"]['parameters']['header'], RequestBodyOf<operations["getProfessorEvaluation"]>, false>
 export type getProfessorEvaluationOutput = import('./domain.js').ProfessorEvaluationEligibility
 export type getProfessorEvaluationProblem = operations["getProfessorEvaluation"]['responses'][400]['content']["application/problem+json"] | operations["getProfessorEvaluation"]['responses'][422]['content']["application/problem+json"] | operations["getProfessorEvaluation"]['responses'][500]['content']["application/problem+json"]
@@ -268,6 +279,12 @@ export type listTagsProblem = operations["listTags"]['responses'][400]['content'
 export type publishGroupEventInput = OperationInput<operations["publishGroupEvent"]['parameters']['path'], operations["publishGroupEvent"]['parameters']['query'], operations["publishGroupEvent"]['parameters']['header'], RequestBodyOf<operations["publishGroupEvent"]>, false>
 export type publishGroupEventOutput = import('./domain.js').ManagedGroupEvent
 export type publishGroupEventProblem = operations["publishGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["publishGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["publishGroupEvent"]['responses'][500]['content']["application/problem+json"]
+export type putGroupAvatarInput = OperationInput<operations["putGroupAvatar"]['parameters']['path'], operations["putGroupAvatar"]['parameters']['query'], operations["putGroupAvatar"]['parameters']['header'], RequestBodyOf<operations["putGroupAvatar"]>, true>
+export type putGroupAvatarOutput = operations["putGroupAvatar"]['responses'][200]['content']["application/json"]
+export type putGroupAvatarProblem = operations["putGroupAvatar"]['responses'][400]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][401]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][403]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][404]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][409]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][413]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][422]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][429]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][500]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][503]['content']["application/problem+json"]
+export type putStudentAvatarInput = OperationInput<operations["putStudentAvatar"]['parameters']['path'], operations["putStudentAvatar"]['parameters']['query'], operations["putStudentAvatar"]['parameters']['header'], RequestBodyOf<operations["putStudentAvatar"]>, true>
+export type putStudentAvatarOutput = operations["putStudentAvatar"]['responses'][200]['content']["application/json"]
+export type putStudentAvatarProblem = operations["putStudentAvatar"]['responses'][400]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][401]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][403]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][404]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][409]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][413]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][422]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][429]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][500]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][503]['content']["application/problem+json"]
 export type removeCourseTagInput = OperationInput<operations["removeCourseTag"]['parameters']['path'], operations["removeCourseTag"]['parameters']['query'], operations["removeCourseTag"]['parameters']['header'], RequestBodyOf<operations["removeCourseTag"]>, false>
 export type removeCourseTagOutput = void
 export type removeCourseTagProblem = operations["removeCourseTag"]['responses'][400]['content']["application/problem+json"] | operations["removeCourseTag"]['responses'][422]['content']["application/problem+json"] | operations["removeCourseTag"]['responses'][500]['content']["application/problem+json"]
@@ -353,8 +370,10 @@ export interface OperationInputs {
     createTag: createTagInput
     declineGroupInvitation: declineGroupInvitationInput
     deleteCategory: deleteCategoryInput
+    deleteGroupAvatar: deleteGroupAvatarInput
     deleteGroupRole: deleteGroupRoleInput
     deleteStudentAbsences: deleteStudentAbsencesInput
+    deleteStudentAvatar: deleteStudentAvatarInput
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsInput
     deleteStudentCurricula: deleteStudentCurriculaInput
     deleteStudentFriendship: deleteStudentFriendshipInput
@@ -368,6 +387,7 @@ export interface OperationInputs {
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionInput
     getGroup: getGroupInput
     getGroupEvent: getGroupEventInput
+    getImageVariant: getImageVariantInput
     getProfessorEvaluation: getProfessorEvaluationInput
     getPublicGroupMembership: getPublicGroupMembershipInput
     getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningInput
@@ -412,6 +432,8 @@ export interface OperationInputs {
     listTagCourses: listTagCoursesInput
     listTags: listTagsInput
     publishGroupEvent: publishGroupEventInput
+    putGroupAvatar: putGroupAvatarInput
+    putStudentAvatar: putStudentAvatarInput
     removeCourseTag: removeCourseTagInput
     replaceBotGrant: replaceBotGrantInput
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesInput
@@ -458,8 +480,10 @@ export interface OperationOutputs {
     createTag: createTagOutput
     declineGroupInvitation: declineGroupInvitationOutput
     deleteCategory: deleteCategoryOutput
+    deleteGroupAvatar: deleteGroupAvatarOutput
     deleteGroupRole: deleteGroupRoleOutput
     deleteStudentAbsences: deleteStudentAbsencesOutput
+    deleteStudentAvatar: deleteStudentAvatarOutput
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsOutput
     deleteStudentCurricula: deleteStudentCurriculaOutput
     deleteStudentFriendship: deleteStudentFriendshipOutput
@@ -473,6 +497,7 @@ export interface OperationOutputs {
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionOutput
     getGroup: getGroupOutput
     getGroupEvent: getGroupEventOutput
+    getImageVariant: getImageVariantOutput
     getProfessorEvaluation: getProfessorEvaluationOutput
     getPublicGroupMembership: getPublicGroupMembershipOutput
     getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningOutput
@@ -517,6 +542,8 @@ export interface OperationOutputs {
     listTagCourses: listTagCoursesOutput
     listTags: listTagsOutput
     publishGroupEvent: publishGroupEventOutput
+    putGroupAvatar: putGroupAvatarOutput
+    putStudentAvatar: putStudentAvatarOutput
     removeCourseTag: removeCourseTagOutput
     replaceBotGrant: replaceBotGrantOutput
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesOutput
@@ -563,8 +590,10 @@ export interface OperationProblems {
     createTag: createTagProblem
     declineGroupInvitation: declineGroupInvitationProblem
     deleteCategory: deleteCategoryProblem
+    deleteGroupAvatar: deleteGroupAvatarProblem
     deleteGroupRole: deleteGroupRoleProblem
     deleteStudentAbsences: deleteStudentAbsencesProblem
+    deleteStudentAvatar: deleteStudentAvatarProblem
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsProblem
     deleteStudentCurricula: deleteStudentCurriculaProblem
     deleteStudentFriendship: deleteStudentFriendshipProblem
@@ -578,6 +607,7 @@ export interface OperationProblems {
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionProblem
     getGroup: getGroupProblem
     getGroupEvent: getGroupEventProblem
+    getImageVariant: getImageVariantProblem
     getProfessorEvaluation: getProfessorEvaluationProblem
     getPublicGroupMembership: getPublicGroupMembershipProblem
     getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningProblem
@@ -622,6 +652,8 @@ export interface OperationProblems {
     listTagCourses: listTagCoursesProblem
     listTags: listTagsProblem
     publishGroupEvent: publishGroupEventProblem
+    putGroupAvatar: putGroupAvatarProblem
+    putStudentAvatar: putStudentAvatarProblem
     removeCourseTag: removeCourseTagProblem
     replaceBotGrant: replaceBotGrantProblem
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesProblem
@@ -3354,6 +3386,137 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "deleteGroupAvatar": {
+        "operationId": "deleteGroupAvatar",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/student/{sid}/groups/{id}/avatar",
+        "authentication": "required",
+        "tags": [
+            "media"
+        ],
+        "summary": "Delete GroupAvatar",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 401,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnauthenticatedProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            {
+                "status": 403,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ForbiddenProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "media",
+            "method": "deleteGroupAvatar",
+            "action": "delete",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "groupId"
+            }
+        },
+        "pagination": null
+    },
     "deleteGroupRole": {
         "operationId": "deleteGroupRole",
         "target": "app",
@@ -3522,6 +3685,135 @@ export const operationDefinitions = {
             "pathParameters": {
                 "sid": "studentId",
                 "id": "studentAbsenceId"
+            }
+        },
+        "pagination": null
+    },
+    "deleteStudentAvatar": {
+        "operationId": "deleteStudentAvatar",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/student/{sid}/avatar",
+        "authentication": "required",
+        "tags": [
+            "media"
+        ],
+        "summary": "Delete StudentAvatar",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 401,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnauthenticatedProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            {
+                "status": 403,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ForbiddenProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "media",
+            "method": "deleteStudentAvatar",
+            "action": "delete",
+            "pathParameters": {
+                "sid": "studentId"
             }
         },
         "pagination": null
@@ -4758,6 +5050,145 @@ export const operationDefinitions = {
             "action": "get",
             "pathParameters": {
                 "id": "id"
+            }
+        },
+        "pagination": null
+    },
+    "getImageVariant": {
+        "operationId": "getImageVariant",
+        "target": "app",
+        "method": "GET",
+        "path": "/media/{mediaId}/{variant}",
+        "authentication": "optional",
+        "tags": [
+            "media"
+        ],
+        "summary": "Get ImageVariant",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "mediaId",
+            "variant"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "image/webp",
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 401,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnauthenticatedProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            {
+                "status": 403,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ForbiddenProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 503,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServiceUnavailableProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:service-unavailable"
+                ]
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "media",
+            "method": "getImageVariant",
+            "action": "get",
+            "pathParameters": {
+                "mediaId": "mediaId",
+                "variant": "variant"
             }
         },
         "pagination": null
@@ -12031,6 +12462,458 @@ export const operationDefinitions = {
             "pathParameters": {
                 "sid": "studentId",
                 "id": "id"
+            }
+        },
+        "pagination": null
+    },
+    "putGroupAvatar": {
+        "operationId": "putGroupAvatar",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/groups/{id}/avatar",
+        "authentication": "required",
+        "tags": [
+            "media"
+        ],
+        "summary": "putGroupAvatar",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "multipart/form-data",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "images[]": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "required": [
+                    "images[]"
+                ]
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "mediaId": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                },
+                                "revision": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            },
+                            "required": [
+                                "mediaId",
+                                "revision"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 401,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnauthenticatedProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            {
+                "status": 403,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ForbiddenProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            {
+                "status": 413,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/PayloadTooLargeProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:payload-too-large"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnprocessableEntityProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unprocessable-entity"
+                ]
+            },
+            {
+                "status": 429,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/MediaUploadRateLimitProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:media-upload-rate-limit"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 503,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServiceUnavailableProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:service-unavailable"
+                ]
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "media",
+            "method": "putGroupAvatar",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId",
+                "id": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "putStudentAvatar": {
+        "operationId": "putStudentAvatar",
+        "target": "app",
+        "method": "POST",
+        "path": "/student/{sid}/avatar",
+        "authentication": "required",
+        "tags": [
+            "media"
+        ],
+        "summary": "putStudentAvatar",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "sid"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "multipart/form-data",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "images[]": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "required": [
+                    "images[]"
+                ]
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "mediaId": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                },
+                                "revision": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            },
+                            "required": [
+                                "mediaId",
+                                "revision"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 401,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnauthenticatedProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            {
+                "status": 403,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ForbiddenProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            {
+                "status": 413,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/PayloadTooLargeProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:payload-too-large"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnprocessableEntityProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unprocessable-entity"
+                ]
+            },
+            {
+                "status": 429,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/MediaUploadRateLimitProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:media-upload-rate-limit"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 503,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServiceUnavailableProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:service-unavailable"
+                ]
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "media",
+            "method": "putStudentAvatar",
+            "action": "create",
+            "pathParameters": {
+                "sid": "studentId"
             }
         },
         "pagination": null
