@@ -3508,12 +3508,12 @@ export const operationDefinitions = {
         },
         "sdk": {
             "resource": "media",
-            "method": "deleteGroupAvatar",
-            "action": "delete",
             "pathParameters": {
                 "sid": "studentId",
                 "id": "groupId"
-            }
+            },
+            "method": "deleteGroupAvatar",
+            "action": "delete"
         },
         "pagination": null
     },
@@ -3810,11 +3810,11 @@ export const operationDefinitions = {
         },
         "sdk": {
             "resource": "media",
-            "method": "deleteStudentAvatar",
-            "action": "delete",
             "pathParameters": {
                 "sid": "studentId"
-            }
+            },
+            "method": "deleteStudentAvatar",
+            "action": "delete"
         },
         "pagination": null
     },
@@ -12684,12 +12684,12 @@ export const operationDefinitions = {
         },
         "sdk": {
             "resource": "media",
-            "method": "putGroupAvatar",
-            "action": "create",
             "pathParameters": {
                 "sid": "studentId",
                 "id": "groupId"
-            }
+            },
+            "method": "putGroupAvatar",
+            "action": "create"
         },
         "pagination": null
     },
@@ -12910,11 +12910,11 @@ export const operationDefinitions = {
         },
         "sdk": {
             "resource": "media",
-            "method": "putStudentAvatar",
-            "action": "create",
             "pathParameters": {
                 "sid": "studentId"
-            }
+            },
+            "method": "putStudentAvatar",
+            "action": "create"
         },
         "pagination": null
     },

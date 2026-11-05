@@ -1,40 +1,4 @@
 export interface paths {
-    "/student/{sid}/avatar": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-
-        post: operations["putStudentAvatar"];
-
-        delete: operations["deleteStudentAvatar"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/groups/{id}/avatar": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-
-        post: operations["putGroupAvatar"];
-
-        delete: operations["deleteGroupAvatar"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/media/{mediaId}/{variant}": {
         parameters: {
             query?: never;
@@ -95,6 +59,41 @@ export interface paths {
         };
 
         get: operations["getCourseProfessorEvaluationSummary"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/classes/{classId}/professors/{professorId}/evaluation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getProfessorEvaluation"];
+
+        put: operations["updateProfessorEvaluation"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/professor-evaluations/pending": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listPendingProfessorEvaluations"];
         put?: never;
         post?: never;
         delete?: never;
@@ -204,43 +203,6 @@ export interface paths {
         head?: never;
 
         patch: operations["updateAuthUser"];
-        trace?: never;
-    };
-    "/students/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getStudents"];
-        put?: never;
-        post?: never;
-
-        delete: operations["deleteStudents"];
-        options?: never;
-        head?: never;
-
-        patch: operations["updateStudents"];
-        trace?: never;
-    };
-    "/students": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["listStudents"];
-        put?: never;
-
-        post: operations["createStudents"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
         trace?: never;
     };
     "/student/{sid}/curricula/{id}": {
@@ -377,41 +339,6 @@ export interface paths {
         };
 
         get: operations["getStudentSharedPeriodPlanning"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/classes/{classId}/professors/{professorId}/evaluation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getProfessorEvaluation"];
-
-        put: operations["updateProfessorEvaluation"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/professor-evaluations/pending": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["listPendingProfessorEvaluations"];
         put?: never;
         post?: never;
         delete?: never;
@@ -762,6 +689,24 @@ export interface paths {
 
         post: operations["archiveGroup"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/groups/{id}/avatar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["putGroupAvatar"];
+
+        delete: operations["deleteGroupAvatar"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1255,6 +1200,61 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/students/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getStudents"];
+        put?: never;
+        post?: never;
+
+        delete: operations["deleteStudents"];
+        options?: never;
+        head?: never;
+
+        patch: operations["updateStudents"];
+        trace?: never;
+    };
+    "/students": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listStudents"];
+        put?: never;
+
+        post: operations["createStudents"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/student/{sid}/avatar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+
+        post: operations["putStudentAvatar"];
+
+        delete: operations["deleteStudentAvatar"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/student/{sid}/tag-interests": {
         parameters: {
             query?: never;
@@ -1342,48 +1342,6 @@ export interface components {
             status: 404;
             detail: string;
             instance?: string;
-        };
-        ConflictProblem: {
-
-            type: "urn:pomi:problem:conflict";
-
-            title: "Conflito ao concluir a ação";
-
-            status: 409;
-            detail: string;
-            instance?: string;
-        };
-        PayloadTooLargeProblem: {
-
-            type: "urn:pomi:problem:payload-too-large";
-
-            title: "Corpo da requisição muito grande";
-
-            status: 413;
-            detail: string;
-            instance?: string;
-        };
-        UnprocessableEntityProblem: {
-
-            type: "urn:pomi:problem:unprocessable-entity";
-
-            title: "Não foi possível concluir a ação";
-
-            status: 422;
-            detail: string;
-            instance?: string;
-            fields?: components["schemas"]["ProblemField"][];
-        };
-        MediaUploadRateLimitProblem: {
-
-            type: "urn:pomi:problem:media-upload-rate-limit";
-
-            title: "Muitos uploads de imagem";
-
-            status: 429;
-            detail: string;
-            instance?: string;
-            retryAfterSeconds: number;
         };
         ServerErrorProblem: components["schemas"]["InternalServerErrorProblem"] | components["schemas"]["InconsistentResourceStateProblem"];
         InternalServerErrorProblem: {
@@ -1479,6 +1437,72 @@ export interface components {
                 name: string;
             };
         };
+        ProfessorEvaluationEligibility: {
+            eligible: boolean;
+            evaluation: components["schemas"]["ProfessorEvaluation"];
+        };
+        ProfessorEvaluation: {
+            wouldTakeAgain: number;
+            fairness: number;
+            clarity: number;
+            difficulty: number;
+            id: number;
+            studentId: number;
+            classId: number;
+            professorId: number;
+
+            createdAt: string;
+
+            updatedAt: string;
+        } | null;
+        ReferenceNotFoundProblem: {
+
+            type: "urn:pomi:problem:reference-not-found";
+
+            title: "Referência não encontrada";
+
+            status: 422;
+            detail: string;
+            instance?: string;
+            fields: components["schemas"]["ProblemField"][];
+        };
+        InvalidProfessorEvaluationProblem: {
+
+            type: "urn:pomi:problem:invalid-professor-evaluation";
+
+            title: "Avaliação de professor inválida";
+
+            status: 422;
+            detail: string;
+            instance?: string;
+            fields: {
+                code: string;
+                path: string[];
+                message: string;
+            }[];
+        };
+        ProfessorEvaluationBody: {
+            wouldTakeAgain: number;
+            fairness: number;
+            clarity: number;
+            difficulty: number;
+        };
+        PendingProfessorEvaluation: {
+            attemptId: number;
+            class: {
+                id: number;
+                code: string;
+            };
+            course: {
+                id: number;
+                code: string;
+                name: string;
+            };
+            professor: {
+                id: number;
+                name: string;
+            };
+        };
         CurrentUserEntity: {
             id: number;
             roles: string[];
@@ -1548,70 +1572,6 @@ export interface components {
             status?: components["schemas"]["AuthUserStatus"];
             displayName?: string;
             capabilities?: components["schemas"]["AuthCapability"][];
-        };
-        StudentEntity: {
-            id: number;
-            ra: string;
-            name: string;
-            programId: number | null;
-            specializationId: number | null;
-            catalogId: number | null;
-            entryYear: number | null;
-            languageId: number | null;
-        };
-        UniqueConstraintConflictProblem: {
-
-            type: "urn:pomi:problem:unique-constraint-conflict";
-
-            title: "Informação já utilizada";
-
-            status: 409;
-            detail: string;
-            instance?: string;
-            fields: components["schemas"]["ProblemField"][];
-        };
-        ReferenceNotFoundProblem: {
-
-            type: "urn:pomi:problem:reference-not-found";
-
-            title: "Referência não encontrada";
-
-            status: 422;
-            detail: string;
-            instance?: string;
-            fields: components["schemas"]["ProblemField"][];
-        };
-        InvalidStudentProfileProblem: {
-
-            type: "urn:pomi:problem:invalid-student-profile";
-
-            title: "Perfil de aluno inválido";
-
-            status: 422;
-            detail: string;
-            instance?: string;
-            fields: {
-                code: string;
-                path: string[];
-                message: string;
-            }[];
-        };
-        CreateStudentBody: {
-            name: string;
-            programId?: number | null;
-            specializationId?: number | null;
-            catalogId?: number | null;
-            entryYear?: number | null;
-            languageId?: number | null;
-        };
-        PatchStudentBody: {
-            ra?: string;
-            name?: string;
-            programId?: number | null;
-            specializationId?: number | null;
-            catalogId?: number | null;
-            entryYear?: number | null;
-            languageId?: number | null;
         };
         CurriculumEntity: {
             id: number;
@@ -1712,7 +1672,7 @@ export interface components {
         ProgramPlanningGuideDetails: {
             catalogProgramId: number;
             catalogProgramVariantId: number;
-            languageId: number;
+            languageId: number | null;
         };
         CurriculumPlanningGuide: {
 
@@ -1802,7 +1762,7 @@ export interface components {
         ProgramPlanningGuideInputDetails: {
             catalogProgramId: number;
             catalogProgramVariantId: number;
-            languageId: number;
+            languageId: number | null;
         };
         CurriculumPlanningGuideInput: {
 
@@ -1864,61 +1824,6 @@ export interface components {
         };
 
         SharedPlanningVisibility: "FRIENDS" | "PUBLIC";
-        ProfessorEvaluationEligibility: {
-            eligible: boolean;
-            evaluation: components["schemas"]["ProfessorEvaluation"];
-        };
-        ProfessorEvaluation: {
-            wouldTakeAgain: number;
-            fairness: number;
-            clarity: number;
-            difficulty: number;
-            id: number;
-            studentId: number;
-            classId: number;
-            professorId: number;
-
-            createdAt: string;
-
-            updatedAt: string;
-        } | null;
-        InvalidProfessorEvaluationProblem: {
-
-            type: "urn:pomi:problem:invalid-professor-evaluation";
-
-            title: "Avaliação de professor inválida";
-
-            status: 422;
-            detail: string;
-            instance?: string;
-            fields: {
-                code: string;
-                path: string[];
-                message: string;
-            }[];
-        };
-        ProfessorEvaluationBody: {
-            wouldTakeAgain: number;
-            fairness: number;
-            clarity: number;
-            difficulty: number;
-        };
-        PendingProfessorEvaluation: {
-            attemptId: number;
-            class: {
-                id: number;
-                code: string;
-            };
-            course: {
-                id: number;
-                code: string;
-                name: string;
-            };
-            professor: {
-                id: number;
-                name: string;
-            };
-        };
         StudentCourseAttempt: {
             id: number;
             studentId: number;
@@ -1963,6 +1868,17 @@ export interface components {
                 name: string;
             }[];
         } | null;
+        UniqueConstraintConflictProblem: {
+
+            type: "urn:pomi:problem:unique-constraint-conflict";
+
+            title: "Informação já utilizada";
+
+            status: 409;
+            detail: string;
+            instance?: string;
+            fields: components["schemas"]["ProblemField"][];
+        };
         InvalidStudentCourseAttemptProblem: {
 
             type: "urn:pomi:problem:invalid-student-course-attempt";
@@ -2283,6 +2199,48 @@ export interface components {
 
             updatedAt: string;
         };
+        ConflictProblem: {
+
+            type: "urn:pomi:problem:conflict";
+
+            title: "Conflito ao concluir a ação";
+
+            status: 409;
+            detail: string;
+            instance?: string;
+        };
+        PayloadTooLargeProblem: {
+
+            type: "urn:pomi:problem:payload-too-large";
+
+            title: "Corpo da requisição muito grande";
+
+            status: 413;
+            detail: string;
+            instance?: string;
+        };
+        UnprocessableEntityProblem: {
+
+            type: "urn:pomi:problem:unprocessable-entity";
+
+            title: "Não foi possível concluir a ação";
+
+            status: 422;
+            detail: string;
+            instance?: string;
+            fields?: components["schemas"]["ProblemField"][];
+        };
+        MediaUploadRateLimitProblem: {
+
+            type: "urn:pomi:problem:media-upload-rate-limit";
+
+            title: "Muitos uploads de imagem";
+
+            status: 429;
+            detail: string;
+            instance?: string;
+            retryAfterSeconds: number;
+        };
         PublicGroupMembership: {
             id: number;
             groupId: number;
@@ -2460,6 +2418,48 @@ export interface components {
             name: string;
             credits: number;
         };
+        StudentEntity: {
+            id: number;
+            ra: string;
+            name: string;
+            programId: number | null;
+            specializationId: number | null;
+            catalogId: number | null;
+            entryYear: number | null;
+            languageId: number | null;
+        };
+        InvalidStudentProfileProblem: {
+
+            type: "urn:pomi:problem:invalid-student-profile";
+
+            title: "Perfil de aluno inválido";
+
+            status: 422;
+            detail: string;
+            instance?: string;
+            fields: {
+                code: string;
+                path: string[];
+                message: string;
+            }[];
+        };
+        CreateStudentBody: {
+            name: string;
+            programId?: number | null;
+            specializationId?: number | null;
+            catalogId?: number | null;
+            entryYear?: number | null;
+            languageId?: number | null;
+        };
+        PatchStudentBody: {
+            ra?: string;
+            name?: string;
+            programId?: number | null;
+            specializationId?: number | null;
+            catalogId?: number | null;
+            entryYear?: number | null;
+            languageId?: number | null;
+        };
         StudentTagInterest: {
             id: number;
             name: string;
@@ -2475,404 +2475,6 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    putStudentAvatar: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-
-                    "images[]": string;
-                };
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-
-                        mediaId: string;
-                        revision: number;
-                    };
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
-                };
-            };
-
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ConflictProblem"];
-                };
-            };
-
-            413: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["PayloadTooLargeProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UnprocessableEntityProblem"];
-                };
-            };
-
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["MediaUploadRateLimitProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServiceUnavailableProblem"];
-                };
-            };
-        };
-    };
-    deleteStudentAvatar: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
-                };
-            };
-
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ConflictProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    putGroupAvatar: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                id: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-
-                    "images[]": string;
-                };
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-
-                        mediaId: string;
-                        revision: number;
-                    };
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
-                };
-            };
-
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ConflictProblem"];
-                };
-            };
-
-            413: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["PayloadTooLargeProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UnprocessableEntityProblem"];
-                };
-            };
-
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["MediaUploadRateLimitProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServiceUnavailableProblem"];
-                };
-            };
-        };
-    };
-    deleteGroupAvatar: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
-                };
-            };
-
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ConflictProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
     getImageVariant: {
         parameters: {
             query?: never;
@@ -3105,6 +2707,175 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getProfessorEvaluation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                classId: number;
+                professorId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfessorEvaluationEligibility"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidProfessorEvaluationProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateProfessorEvaluation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                classId: number;
+                professorId: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProfessorEvaluationBody"];
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfessorEvaluation"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidProfessorEvaluationProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listPendingProfessorEvaluations: {
+        parameters: {
+            query: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                filter: {
+                    year?: number | {
+                        eq?: number;
+                    };
+                    yearPeriod?: ("FIRST_SEMESTER" | "SECOND_SEMESTER") | {
+
+                        eq?: "FIRST_SEMESTER" | "SECOND_SEMESTER";
+                    };
+                };
+
+                sort?: string;
+            };
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PendingProfessorEvaluation"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
                 };
             };
 
@@ -3451,301 +3222,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    getStudents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StudentEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    deleteStudents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": {
-                    confirmationRa: string;
-                };
-            };
-        };
-        responses: {
-
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidStudentProfileProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    updateStudents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PatchStudentBody"];
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StudentEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidStudentProfileProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    listStudents: {
-        parameters: {
-            query?: {
-
-                page?: number;
-
-                pageSize?: number | "all";
-
-                sort?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["StudentEntity"][];
-                        quantity: number;
-                        total: number;
-                        links: components["schemas"]["PaginationLinks"];
-                    };
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    createStudents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateStudentBody"];
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StudentEntity"];
-                };
-            };
-
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StudentEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UniqueConstraintConflictProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidStudentProfileProblem"];
                 };
             };
 
@@ -4540,175 +4016,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    getProfessorEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                classId: number;
-                professorId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ProfessorEvaluationEligibility"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidProfessorEvaluationProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    updateProfessorEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sid: number;
-                classId: number;
-                professorId: number;
-            };
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ProfessorEvaluationBody"];
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ProfessorEvaluation"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidProfessorEvaluationProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    listPendingProfessorEvaluations: {
-        parameters: {
-            query: {
-
-                page?: number;
-
-                pageSize?: number | "all";
-
-                filter: {
-                    year?: number | {
-                        eq?: number;
-                    };
-                    yearPeriod?: ("FIRST_SEMESTER" | "SECOND_SEMESTER") | {
-
-                        eq?: "FIRST_SEMESTER" | "SECOND_SEMESTER";
-                    };
-                };
-
-                sort?: string;
-            };
-            header?: never;
-            path: {
-                sid: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PendingProfessorEvaluation"][];
-                        quantity: number;
-                        total: number;
-                        links: components["schemas"]["PaginationLinks"];
-                    };
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
                 };
             };
 
@@ -6294,6 +5601,206 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    putGroupAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+
+                    "images[]": string;
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+
+                        mediaId: string;
+                        revision: number;
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
+                };
+            };
+
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConflictProblem"];
+                };
+            };
+
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["PayloadTooLargeProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UnprocessableEntityProblem"];
+                };
+            };
+
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["MediaUploadRateLimitProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServiceUnavailableProblem"];
+                };
+            };
+        };
+    };
+    deleteGroupAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
+                };
+            };
+
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConflictProblem"];
                 };
             };
 
@@ -8506,6 +8013,499 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getStudents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentEntity"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    deleteStudents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    confirmationRa: string;
+                };
+            };
+        };
+        responses: {
+
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidStudentProfileProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateStudents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PatchStudentBody"];
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentEntity"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidStudentProfileProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    listStudents: {
+        parameters: {
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
+
+                sort?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["StudentEntity"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    createStudents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateStudentBody"];
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentEntity"];
+                };
+            };
+
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentEntity"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UniqueConstraintConflictProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidStudentProfileProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    putStudentAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+
+                    "images[]": string;
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+
+                        mediaId: string;
+                        revision: number;
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
+                };
+            };
+
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConflictProblem"];
+                };
+            };
+
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["PayloadTooLargeProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UnprocessableEntityProblem"];
+                };
+            };
+
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["MediaUploadRateLimitProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServiceUnavailableProblem"];
+                };
+            };
+        };
+    };
+    deleteStudentAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UnauthenticatedProblem"];
+                };
+            };
+
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ForbiddenProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConflictProblem"];
                 };
             };
 

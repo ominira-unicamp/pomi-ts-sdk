@@ -93,6 +93,7 @@ import type {
   listTagsOutput,
 } from './generated/app/index.js'
 import { sdkManifest } from './generated/manifest.js'
+import type { components as AppComponents } from './generated/app/openapi.js'
 
 type Equal<Left, Right> =
   (<Value>() => Value extends Left ? 1 : 2) extends <
@@ -245,6 +246,15 @@ test('generates separate operational manifests for Data and App', () => {
     appOperations.listPublicSharedPeriodPlannings.pagination?.defaultMode,
     'page',
   )
+})
+
+test('program guide supports no additional language', () => {
+  const program: AppComponents['schemas']['ProgramPlanningGuideInputDetails'] = {
+    catalogProgramId: 42,
+    catalogProgramVariantId: 7,
+    languageId: null,
+  }
+  assert.equal(program.languageId, null)
 })
 
 test('generates type-checked resources and explicit operation bindings', () => {

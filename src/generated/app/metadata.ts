@@ -199,178 +199,6 @@ export const componentSchemas = {
             "publicName": "ResourceNotFoundProblem"
         }
     },
-    "ConflictProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:conflict"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Conflito ao concluir a ação"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    409
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "ConflictProblem"
-        }
-    },
-    "PayloadTooLargeProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:payload-too-large"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Corpo da requisição muito grande"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    413
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "PayloadTooLargeProblem"
-        }
-    },
-    "UnprocessableEntityProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:unprocessable-entity"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Não foi possível concluir a ação"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    422
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "fields": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/ProblemField"
-                }
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "UnprocessableEntityProblem"
-        }
-    },
-    "MediaUploadRateLimitProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:media-upload-rate-limit"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Muitos uploads de imagem"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    429
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "retryAfterSeconds": {
-                "type": "integer",
-                "minimum": 0,
-                "exclusiveMinimum": true
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail",
-            "retryAfterSeconds"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "MediaUploadRateLimitProblem"
-        }
-    },
     "ServerErrorProblem": {
         "oneOf": [
             {
@@ -789,6 +617,312 @@ export const componentSchemas = {
             "publicName": "CourseProfessorEvaluationSummary"
         }
     },
+    "ProfessorEvaluationEligibility": {
+        "type": "object",
+        "properties": {
+            "eligible": {
+                "type": "boolean"
+            },
+            "evaluation": {
+                "$ref": "#/components/schemas/ProfessorEvaluation"
+            }
+        },
+        "required": [
+            "eligible",
+            "evaluation"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "projection",
+            "publicName": "ProfessorEvaluationEligibility"
+        }
+    },
+    "ProfessorEvaluation": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+            "wouldTakeAgain": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "fairness": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "clarity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "difficulty": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "id": {
+                "type": "integer"
+            },
+            "studentId": {
+                "type": "integer"
+            },
+            "classId": {
+                "type": "integer"
+            },
+            "professorId": {
+                "type": "integer"
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": [
+            "wouldTakeAgain",
+            "fairness",
+            "clarity",
+            "difficulty",
+            "id",
+            "studentId",
+            "classId",
+            "professorId",
+            "createdAt",
+            "updatedAt"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "ProfessorEvaluation",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "ReferenceNotFoundProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:reference-not-found"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Referência não encontrada"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    422
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ProblemField"
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "fields"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ReferenceNotFoundProblem"
+        }
+    },
+    "InvalidProfessorEvaluationProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:invalid-professor-evaluation"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Avaliação de professor inválida"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    422
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "message": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "code",
+                        "path",
+                        "message"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "fields"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "InvalidProfessorEvaluationProblem"
+        }
+    },
+    "ProfessorEvaluationBody": {
+        "type": "object",
+        "properties": {
+            "wouldTakeAgain": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "fairness": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "clarity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            },
+            "difficulty": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+            }
+        },
+        "required": [
+            "wouldTakeAgain",
+            "fairness",
+            "clarity",
+            "difficulty"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "input",
+            "publicName": "ProfessorEvaluationBody"
+        }
+    },
+    "PendingProfessorEvaluation": {
+        "type": "object",
+        "properties": {
+            "attemptId": {
+                "type": "integer"
+            },
+            "class": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "code"
+                ]
+            },
+            "course": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "code",
+                    "name"
+                ]
+            },
+            "professor": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ]
+            }
+        },
+        "required": [
+            "attemptId",
+            "class",
+            "course",
+            "professor"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "PendingProfessorEvaluation"
+        }
+    },
     "CurrentUserEntity": {
         "type": "object",
         "properties": {
@@ -1141,299 +1275,6 @@ export const componentSchemas = {
         "x-pomi-schema": {
             "kind": "input",
             "publicName": "PatchAuthUserBody"
-        }
-    },
-    "StudentEntity": {
-        "type": "object",
-        "properties": {
-            "id": {
-                "type": "integer"
-            },
-            "ra": {
-                "type": "string"
-            },
-            "name": {
-                "type": "string"
-            },
-            "programId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "specializationId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "catalogId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "entryYear": {
-                "type": "integer",
-                "nullable": true,
-                "minimum": 1900,
-                "maximum": 9999
-            },
-            "languageId": {
-                "type": "integer",
-                "nullable": true
-            }
-        },
-        "required": [
-            "id",
-            "ra",
-            "name",
-            "programId",
-            "specializationId",
-            "catalogId",
-            "entryYear",
-            "languageId"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "entity",
-            "publicName": "Student",
-            "identityFields": [
-                "id"
-            ]
-        }
-    },
-    "UniqueConstraintConflictProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:unique-constraint-conflict"
-                ]
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Informação já utilizada"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    409
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "fields": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/ProblemField"
-                }
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail",
-            "fields"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "UniqueConstraintConflictProblem"
-        }
-    },
-    "ReferenceNotFoundProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:reference-not-found"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Referência não encontrada"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    422
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "fields": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/ProblemField"
-                }
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail",
-            "fields"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "ReferenceNotFoundProblem"
-        }
-    },
-    "InvalidStudentProfileProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:invalid-student-profile"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Perfil de aluno inválido"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    422
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "fields": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "code": {
-                            "type": "string"
-                        },
-                        "path": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "message": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "code",
-                        "path",
-                        "message"
-                    ],
-                    "additionalProperties": false
-                }
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail",
-            "fields"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "InvalidStudentProfileProblem"
-        }
-    },
-    "CreateStudentBody": {
-        "type": "object",
-        "properties": {
-            "name": {
-                "type": "string"
-            },
-            "programId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "specializationId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "catalogId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "entryYear": {
-                "type": "integer",
-                "nullable": true,
-                "minimum": 1900,
-                "maximum": 9999
-            },
-            "languageId": {
-                "type": "integer",
-                "nullable": true
-            }
-        },
-        "required": [
-            "name"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "CreateStudentBody"
-        }
-    },
-    "PatchStudentBody": {
-        "type": "object",
-        "properties": {
-            "ra": {
-                "type": "string"
-            },
-            "name": {
-                "type": "string"
-            },
-            "programId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "specializationId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "catalogId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "entryYear": {
-                "type": "integer",
-                "nullable": true,
-                "minimum": 1900,
-                "maximum": 9999
-            },
-            "languageId": {
-                "type": "integer",
-                "nullable": true
-            }
-        },
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "PatchStudentBody"
         }
     },
     "CurriculumEntity": {
@@ -1939,7 +1780,8 @@ export const componentSchemas = {
                 "type": "integer"
             },
             "languageId": {
-                "type": "integer"
+                "type": "integer",
+                "nullable": true
             }
         },
         "required": [
@@ -2415,7 +2257,8 @@ export const componentSchemas = {
                 "type": "integer"
             },
             "languageId": {
-                "type": "integer"
+                "type": "integer",
+                "nullable": true
             }
         },
         "required": [
@@ -2716,264 +2559,6 @@ export const componentSchemas = {
             "publicName": "SharedPlanningVisibility"
         }
     },
-    "ProfessorEvaluationEligibility": {
-        "type": "object",
-        "properties": {
-            "eligible": {
-                "type": "boolean"
-            },
-            "evaluation": {
-                "$ref": "#/components/schemas/ProfessorEvaluation"
-            }
-        },
-        "required": [
-            "eligible",
-            "evaluation"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "projection",
-            "publicName": "ProfessorEvaluationEligibility"
-        }
-    },
-    "ProfessorEvaluation": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-            "wouldTakeAgain": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "fairness": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "clarity": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "difficulty": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "id": {
-                "type": "integer"
-            },
-            "studentId": {
-                "type": "integer"
-            },
-            "classId": {
-                "type": "integer"
-            },
-            "professorId": {
-                "type": "integer"
-            },
-            "createdAt": {
-                "type": "string",
-                "format": "date-time"
-            },
-            "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-            }
-        },
-        "required": [
-            "wouldTakeAgain",
-            "fairness",
-            "clarity",
-            "difficulty",
-            "id",
-            "studentId",
-            "classId",
-            "professorId",
-            "createdAt",
-            "updatedAt"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "entity",
-            "publicName": "ProfessorEvaluation",
-            "identityFields": [
-                "id"
-            ]
-        }
-    },
-    "InvalidProfessorEvaluationProblem": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "urn:pomi:problem:invalid-professor-evaluation"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "title": {
-                "type": "string",
-                "enum": [
-                    "Avaliação de professor inválida"
-                ]
-            },
-            "status": {
-                "type": "number",
-                "enum": [
-                    422
-                ]
-            },
-            "detail": {
-                "type": "string"
-            },
-            "instance": {
-                "type": "string"
-            },
-            "fields": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "code": {
-                            "type": "string"
-                        },
-                        "path": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "message": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "code",
-                        "path",
-                        "message"
-                    ],
-                    "additionalProperties": false
-                }
-            }
-        },
-        "required": [
-            "type",
-            "title",
-            "status",
-            "detail",
-            "fields"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "problem",
-            "publicName": "InvalidProfessorEvaluationProblem"
-        }
-    },
-    "ProfessorEvaluationBody": {
-        "type": "object",
-        "properties": {
-            "wouldTakeAgain": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "fairness": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "clarity": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            },
-            "difficulty": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 5
-            }
-        },
-        "required": [
-            "wouldTakeAgain",
-            "fairness",
-            "clarity",
-            "difficulty"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "ProfessorEvaluationBody"
-        }
-    },
-    "PendingProfessorEvaluation": {
-        "type": "object",
-        "properties": {
-            "attemptId": {
-                "type": "integer"
-            },
-            "class": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "code": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "code"
-                ]
-            },
-            "course": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "code": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "code",
-                    "name"
-                ]
-            },
-            "professor": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "name"
-                ]
-            }
-        },
-        "required": [
-            "attemptId",
-            "class",
-            "course",
-            "professor"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "entity",
-            "publicName": "PendingProfessorEvaluation"
-        }
-    },
     "StudentCourseAttempt": {
         "type": "object",
         "properties": {
@@ -3197,6 +2782,53 @@ export const componentSchemas = {
         "x-pomi-schema": {
             "kind": "projection",
             "publicName": "CourseAttemptClass"
+        }
+    },
+    "UniqueConstraintConflictProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:unique-constraint-conflict"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Informação já utilizada"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    409
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ProblemField"
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "fields"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "UniqueConstraintConflictProblem"
         }
     },
     "InvalidStudentCourseAttemptProblem": {
@@ -4776,6 +4408,178 @@ export const componentSchemas = {
             ]
         }
     },
+    "ConflictProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Conflito ao concluir a ação"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    409
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "ConflictProblem"
+        }
+    },
+    "PayloadTooLargeProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:payload-too-large"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Corpo da requisição muito grande"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    413
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "PayloadTooLargeProblem"
+        }
+    },
+    "UnprocessableEntityProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:unprocessable-entity"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Não foi possível concluir a ação"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    422
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ProblemField"
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "UnprocessableEntityProblem"
+        }
+    },
+    "MediaUploadRateLimitProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:media-upload-rate-limit"
+                ]
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Muitos uploads de imagem"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    429
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "retryAfterSeconds": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "retryAfterSeconds"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "MediaUploadRateLimitProblem"
+        }
+    },
     "PublicGroupMembership": {
         "type": "object",
         "properties": {
@@ -5635,6 +5439,204 @@ export const componentSchemas = {
             "identityFields": [
                 "id"
             ]
+        }
+    },
+    "StudentEntity": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "ra": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "programId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "specializationId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "catalogId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "entryYear": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 1900,
+                "maximum": 9999
+            },
+            "languageId": {
+                "type": "integer",
+                "nullable": true
+            }
+        },
+        "required": [
+            "id",
+            "ra",
+            "name",
+            "programId",
+            "specializationId",
+            "catalogId",
+            "entryYear",
+            "languageId"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "Student",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "InvalidStudentProfileProblem": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "urn:pomi:problem:invalid-student-profile"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "title": {
+                "type": "string",
+                "enum": [
+                    "Perfil de aluno inválido"
+                ]
+            },
+            "status": {
+                "type": "number",
+                "enum": [
+                    422
+                ]
+            },
+            "detail": {
+                "type": "string"
+            },
+            "instance": {
+                "type": "string"
+            },
+            "fields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "message": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "code",
+                        "path",
+                        "message"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "required": [
+            "type",
+            "title",
+            "status",
+            "detail",
+            "fields"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "problem",
+            "publicName": "InvalidStudentProfileProblem"
+        }
+    },
+    "CreateStudentBody": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "programId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "specializationId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "catalogId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "entryYear": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 1900,
+                "maximum": 9999
+            },
+            "languageId": {
+                "type": "integer",
+                "nullable": true
+            }
+        },
+        "required": [
+            "name"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "input",
+            "publicName": "CreateStudentBody"
+        }
+    },
+    "PatchStudentBody": {
+        "type": "object",
+        "properties": {
+            "ra": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "programId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "specializationId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "catalogId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "entryYear": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 1900,
+                "maximum": 9999
+            },
+            "languageId": {
+                "type": "integer",
+                "nullable": true
+            }
+        },
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "input",
+            "publicName": "PatchStudentBody"
         }
     },
     "StudentTagInterest": {

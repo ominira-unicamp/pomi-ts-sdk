@@ -45,6 +45,15 @@ export type CourseEvaluationSummary = Domain<CourseEvaluationSummaryTransport>
 export type CourseProfessorEvaluationSummaryTransport = components['schemas']['CourseProfessorEvaluationSummary']
 export type CourseProfessorEvaluationSummary = Domain<CourseProfessorEvaluationSummaryTransport>
 
+export type ProfessorEvaluationEligibilityTransport = components['schemas']['ProfessorEvaluationEligibility']
+export type ProfessorEvaluationEligibility = Domain<ProfessorEvaluationEligibilityTransport>
+
+export type ProfessorEvaluationTransport = components['schemas']['ProfessorEvaluation']
+export type ProfessorEvaluation = Domain<ProfessorEvaluationTransport>
+
+export type PendingProfessorEvaluationTransport = components['schemas']['PendingProfessorEvaluation']
+export type PendingProfessorEvaluation = Domain<PendingProfessorEvaluationTransport>
+
 export type CurrentUserTransport = components['schemas']['CurrentUserEntity']
 export type CurrentUser = Domain<CurrentUserTransport>
 
@@ -56,9 +65,6 @@ export type BotGrant = Domain<BotGrantTransport>
 
 export type AuthUserTransport = components['schemas']['AuthUserEntity']
 export type AuthUser = Domain<AuthUserTransport>
-
-export type StudentTransport = components['schemas']['StudentEntity']
-export type Student = Domain<StudentTransport>
 
 export type CurriculumTransport = components['schemas']['CurriculumEntity']
 export type Curriculum = Domain<CurriculumTransport>
@@ -113,15 +119,6 @@ export type SharedPeriodPlanningPage = Domain<SharedPeriodPlanningPageTransport>
 
 export type SharedPeriodPlanningTransport = components['schemas']['SharedPeriodPlanning']
 export type SharedPeriodPlanning = Domain<SharedPeriodPlanningTransport>
-
-export type ProfessorEvaluationEligibilityTransport = components['schemas']['ProfessorEvaluationEligibility']
-export type ProfessorEvaluationEligibility = Domain<ProfessorEvaluationEligibilityTransport>
-
-export type ProfessorEvaluationTransport = components['schemas']['ProfessorEvaluation']
-export type ProfessorEvaluation = Domain<ProfessorEvaluationTransport>
-
-export type PendingProfessorEvaluationTransport = components['schemas']['PendingProfessorEvaluation']
-export type PendingProfessorEvaluation = Domain<PendingProfessorEvaluationTransport>
 
 export type StudentCourseAttemptTransport = components['schemas']['StudentCourseAttempt']
 export type StudentCourseAttempt = Domain<StudentCourseAttemptTransport>
@@ -219,6 +216,9 @@ export type Tag = Domain<TagTransport>
 export type TagRelatedCourseTransport = components['schemas']['TagRelatedCourse']
 export type TagRelatedCourse = Domain<TagRelatedCourseTransport>
 
+export type StudentTransport = components['schemas']['StudentEntity']
+export type Student = Domain<StudentTransport>
+
 export type StudentTagInterestTransport = components['schemas']['StudentTagInterest']
 export type StudentTagInterest = Domain<StudentTagInterestTransport>
 
@@ -260,6 +260,29 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
+    "ProfessorEvaluationEligibility": {
+        "schema": "ProfessorEvaluationEligibility",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProfessorEvaluation": {
+        "schema": "ProfessorEvaluation",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "PendingProfessorEvaluation": {
+        "schema": "PendingProfessorEvaluation",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
     "CurrentUser": {
         "schema": "CurrentUserEntity",
         "transportFields": [],
@@ -289,15 +312,6 @@ export const domainModelDefinitions = {
     },
     "AuthUser": {
         "schema": "AuthUserEntity",
-        "transportFields": [],
-        "identityFields": [
-            "id"
-        ],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "Student": {
-        "schema": "StudentEntity",
         "transportFields": [],
         "identityFields": [
             "id"
@@ -461,29 +475,6 @@ export const domainModelDefinitions = {
                 "cardinality": "many"
             }
         }
-    },
-    "ProfessorEvaluationEligibility": {
-        "schema": "ProfessorEvaluationEligibility",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "ProfessorEvaluation": {
-        "schema": "ProfessorEvaluation",
-        "transportFields": [],
-        "identityFields": [
-            "id"
-        ],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "PendingProfessorEvaluation": {
-        "schema": "PendingProfessorEvaluation",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
     },
     "StudentCourseAttempt": {
         "schema": "StudentCourseAttempt",
@@ -773,6 +764,15 @@ export const domainModelDefinitions = {
     },
     "TagRelatedCourse": {
         "schema": "TagRelatedCourse",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "Student": {
+        "schema": "StudentEntity",
         "transportFields": [],
         "identityFields": [
             "id"
