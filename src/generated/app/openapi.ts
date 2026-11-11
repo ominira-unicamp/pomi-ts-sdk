@@ -67,7 +67,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/classes/{classId}/professors/{professorId}/evaluation": {
+    "/users/{userId}/classes/{classId}/professors/{professorId}/evaluation": {
         parameters: {
             query?: never;
             header?: never;
@@ -85,7 +85,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/professor-evaluations/pending": {
+    "/users/{userId}/professor-evaluations/pending": {
         parameters: {
             query?: never;
             header?: never;
@@ -136,7 +136,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/me/bot-grants": {
+    "/users/{userId}/bot-grants": {
         parameters: {
             query?: never;
             header?: never;
@@ -153,7 +153,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/me/bot-grants/{botAuthUserId}": {
+    "/users/{userId}/bot-grants/{botAuthIdentityId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -170,7 +170,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/admin/auth-users": {
+    "/admin/auth-identities": {
         parameters: {
             query?: never;
             header?: never;
@@ -178,17 +178,17 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listAuthUsers"];
+        get: operations["listAuthIdentities"];
         put?: never;
 
-        post: operations["createAuthUser"];
+        post: operations["createAuthIdentity"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/admin/auth-users/{id}": {
+    "/admin/auth-identities/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -202,10 +202,10 @@ export interface paths {
         options?: never;
         head?: never;
 
-        patch: operations["updateAuthUser"];
+        patch: operations["updateAuthIdentity"];
         trace?: never;
     };
-    "/student/{sid}/curricula/{id}": {
+    "/users/{userId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -213,18 +213,17 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["getStudentCurricula"];
+        get: operations["getUser"];
         put?: never;
         post?: never;
-
-        delete: operations["deleteStudentCurricula"];
+        delete?: never;
         options?: never;
         head?: never;
 
-        patch: operations["updateStudentCurricula"];
+        patch: operations["updateUser"];
         trace?: never;
     };
-    "/student/{sid}/curricula": {
+    "/users/{userId}/preferences": {
         parameters: {
             query?: never;
             header?: never;
@@ -232,17 +231,54 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentCurricula"];
+        get: operations["getUserPreferences"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+
+        patch: operations["updateUserPreferences"];
+        trace?: never;
+    };
+    "/users/{userId}/curriculums/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getCurriculums"];
+        put?: never;
+        post?: never;
+
+        delete: operations["deleteCurriculums"];
+        options?: never;
+        head?: never;
+
+        patch: operations["updateCurriculums"];
+        trace?: never;
+    };
+    "/users/{userId}/curriculums": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listCurriculums"];
         put?: never;
 
-        post: operations["createStudentCurricula"];
+        post: operations["createCurriculums"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/period-plannings/{id}": {
+    "/users/{userId}/period-plans/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -250,18 +286,18 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["getStudentPeriodPlannings"];
+        get: operations["getPeriodPlans"];
         put?: never;
         post?: never;
 
-        delete: operations["deleteStudentPeriodPlannings"];
+        delete: operations["deletePeriodPlans"];
         options?: never;
         head?: never;
 
-        patch: operations["updateStudentPeriodPlannings"];
+        patch: operations["updatePeriodPlans"];
         trace?: never;
     };
-    "/student/{sid}/period-plannings": {
+    "/users/{userId}/period-plans": {
         parameters: {
             query?: never;
             header?: never;
@@ -269,17 +305,17 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentPeriodPlannings"];
+        get: operations["listPeriodPlans"];
         put?: never;
 
-        post: operations["createStudentPeriodPlannings"];
+        post: operations["createPeriodPlans"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/shared-period-plannings": {
+    "/shared-period-plans": {
         parameters: {
             query?: never;
             header?: never;
@@ -287,58 +323,7 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listPublicSharedPeriodPlannings"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/shared-period-plannings/{shareId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getPublicSharedPeriodPlanning"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/shared-period-plannings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["listStudentSharedPeriodPlannings"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/shared-period-plannings/{shareId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getStudentSharedPeriodPlanning"];
+        get: operations["listPublicSharedPeriodPlans"];
         put?: never;
         post?: never;
         delete?: never;
@@ -347,7 +332,58 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/course-attempts/{id}": {
+    "/shared-period-plans/{shareId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getPublicSharedPeriodPlan"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{userId}/shared-period-plans": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listUserSharedPeriodPlans"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{userId}/shared-period-plans/{shareId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["getUserSharedPeriodPlan"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{userId}/course-attempts/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -366,7 +402,7 @@ export interface paths {
         patch: operations["updateStudentCourseAttempts"];
         trace?: never;
     };
-    "/student/{sid}/course-attempts": {
+    "/users/{userId}/course-attempts": {
         parameters: {
             query?: never;
             header?: never;
@@ -384,7 +420,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/course-history": {
+    "/users/{userId}/course-history": {
         parameters: {
             query?: never;
             header?: never;
@@ -401,7 +437,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/absences": {
+    "/users/{userId}/absences": {
         parameters: {
             query?: never;
             header?: never;
@@ -409,7 +445,23 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentAbsences"];
+        get: operations["listUserAbsences"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{userId}/course-attempts/{attemptId}/absences": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
         put?: never;
 
         post: operations["createStudentAbsences"];
@@ -419,7 +471,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/absences/{id}": {
+    "/users/{userId}/course-attempts/{attemptId}/absences/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -436,7 +488,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/public-profile": {
+    "/users/{userId}/profile": {
         parameters: {
             query?: never;
             header?: never;
@@ -444,17 +496,17 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["getStudentPublicProfile"];
+        get: operations["getUserProfile"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
 
-        patch: operations["updateStudentPublicProfile"];
+        patch: operations["updateUserProfile"];
         trace?: never;
     };
-    "/student/{sid}/people": {
+    "/users/{userId}/people": {
         parameters: {
             query?: never;
             header?: never;
@@ -462,24 +514,7 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentPeople"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/people/{publicId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        get: operations["getStudentPerson"];
+        get: operations["listUserPeople"];
         put?: never;
         post?: never;
         delete?: never;
@@ -488,7 +523,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/friendships": {
+    "/users/{userId}/people/{publicId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -496,17 +531,34 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentFriendships"];
+        get: operations["getUserPerson"];
         put?: never;
-
-        post: operations["createStudentFriendship"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/friendships/{id}/accept": {
+    "/users/{userId}/friendships": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+
+        get: operations["listUserFriendships"];
+        put?: never;
+
+        post: operations["createUserFriendship"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{userId}/friendships/{id}/accept": {
         parameters: {
             query?: never;
             header?: never;
@@ -516,14 +568,14 @@ export interface paths {
         get?: never;
         put?: never;
 
-        post: operations["acceptStudentFriendship"];
+        post: operations["acceptUserFriendship"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/friendships/{id}": {
+    "/users/{userId}/friendships/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -534,7 +586,7 @@ export interface paths {
         put?: never;
         post?: never;
 
-        delete: operations["deleteStudentFriendship"];
+        delete: operations["deleteUserFriendship"];
         options?: never;
         head?: never;
         patch?: never;
@@ -557,7 +609,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/feedback-reports": {
+    "/users/{userId}/feedback-reports": {
         parameters: {
             query?: never;
             header?: never;
@@ -565,10 +617,10 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentFeedbackReports"];
+        get: operations["listUserFeedbackReports"];
         put?: never;
 
-        post: operations["createStudentFeedbackReport"];
+        post: operations["createUserFeedbackReport"];
         delete?: never;
         options?: never;
         head?: never;
@@ -626,7 +678,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/groups/{id}": {
+    "/groups/{groupId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -643,7 +695,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/groups": {
+    "/users/{userId}/groups": {
         parameters: {
             query?: never;
             header?: never;
@@ -660,7 +712,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/groups/{id}": {
+    "/users/{userId}/groups/{groupId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -677,7 +729,7 @@ export interface paths {
         patch: operations["updateGroup"];
         trace?: never;
     };
-    "/student/{sid}/groups/{id}/archive": {
+    "/users/{userId}/groups/{groupId}/archive": {
         parameters: {
             query?: never;
             header?: never;
@@ -694,7 +746,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/groups/{id}/avatar": {
+    "/users/{userId}/groups/{groupId}/avatar": {
         parameters: {
             query?: never;
             header?: never;
@@ -746,7 +798,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-memberships": {
+    "/users/{userId}/group-memberships": {
         parameters: {
             query?: never;
             header?: never;
@@ -754,7 +806,7 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentGroupMemberships"];
+        get: operations["listUserGroupMemberships"];
         put?: never;
         post?: never;
         delete?: never;
@@ -763,7 +815,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-memberships/{id}": {
+    "/users/{userId}/group-memberships/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -771,17 +823,17 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["getStudentGroupMembership"];
+        get: operations["getUserGroupMembership"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
 
-        patch: operations["updateStudentGroupMembership"];
+        patch: operations["updateUserGroupMembership"];
         trace?: never;
     };
-    "/student/{sid}/managed-group-memberships": {
+    "/users/{userId}/groups/{groupId}/memberships": {
         parameters: {
             query?: never;
             header?: never;
@@ -798,7 +850,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/managed-group-memberships/{id}": {
+    "/users/{userId}/groups/{groupId}/memberships/{membershipId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -815,7 +867,7 @@ export interface paths {
         patch: operations["updateManagedGroupMembership"];
         trace?: never;
     };
-    "/student/{sid}/group-invitations": {
+    "/users/{userId}/group-invitations": {
         parameters: {
             query?: never;
             header?: never;
@@ -825,15 +877,14 @@ export interface paths {
 
         get: operations["listGroupInvitations"];
         put?: never;
-
-        post: operations["createGroupInvitation"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/managed-group-invitations": {
+    "/users/{userId}/groups/{groupId}/invitations": {
         parameters: {
             query?: never;
             header?: never;
@@ -843,14 +894,15 @@ export interface paths {
 
         get: operations["listManagedGroupInvitations"];
         put?: never;
-        post?: never;
+
+        post: operations["createGroupInvitation"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-invitations/{id}/accept": {
+    "/users/{userId}/group-invitations/{id}/accept": {
         parameters: {
             query?: never;
             header?: never;
@@ -867,7 +919,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-invitations/{id}/decline": {
+    "/users/{userId}/group-invitations/{id}/decline": {
         parameters: {
             query?: never;
             header?: never;
@@ -884,7 +936,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-roles": {
+    "/users/{userId}/groups/{groupId}/roles": {
         parameters: {
             query?: never;
             header?: never;
@@ -902,7 +954,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-roles/{id}": {
+    "/users/{userId}/groups/{groupId}/roles/{roleId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -954,7 +1006,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/managed-group-events": {
+    "/users/{userId}/groups/{groupId}/events": {
         parameters: {
             query?: never;
             header?: never;
@@ -964,22 +1016,6 @@ export interface paths {
 
         get: operations["listManagedGroupEvents"];
         put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/student/{sid}/group-events": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
 
         post: operations["createGroupEvent"];
         delete?: never;
@@ -988,7 +1024,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-events/{id}": {
+    "/users/{userId}/groups/{groupId}/events/{eventId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1005,7 +1041,7 @@ export interface paths {
         patch: operations["updateGroupEvent"];
         trace?: never;
     };
-    "/student/{sid}/group-events/{id}/publish": {
+    "/users/{userId}/groups/{groupId}/events/{eventId}/publish": {
         parameters: {
             query?: never;
             header?: never;
@@ -1022,7 +1058,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/group-events/{id}/cancel": {
+    "/users/{userId}/groups/{groupId}/events/{eventId}/cancel": {
         parameters: {
             query?: never;
             header?: never;
@@ -1039,7 +1075,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/exchange-notice-subscription": {
+    "/users/{userId}/exchange-notice-subscription": {
         parameters: {
             query?: never;
             header?: never;
@@ -1057,7 +1093,7 @@ export interface paths {
         patch: operations["updateExchangeNoticeSubscription"];
         trace?: never;
     };
-    "/exchange-notice-subscriptions/unsubscribe": {
+    "/users/{userId}/exchange-notice-subscription/unsubscribe": {
         parameters: {
             query?: never;
             header?: never;
@@ -1200,7 +1236,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/students/{id}": {
+    "/users/{userId}/student": {
         parameters: {
             query?: never;
             header?: never;
@@ -1210,7 +1246,8 @@ export interface paths {
 
         get: operations["getStudents"];
         put?: never;
-        post?: never;
+
+        post: operations["createStudents"];
 
         delete: operations["deleteStudents"];
         options?: never;
@@ -1219,7 +1256,7 @@ export interface paths {
         patch: operations["updateStudents"];
         trace?: never;
     };
-    "/students": {
+    "/admin/students": {
         parameters: {
             query?: never;
             header?: never;
@@ -1229,15 +1266,14 @@ export interface paths {
 
         get: operations["listStudents"];
         put?: never;
-
-        post: operations["createStudents"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/avatar": {
+    "/users/{userId}/avatar": {
         parameters: {
             query?: never;
             header?: never;
@@ -1247,15 +1283,15 @@ export interface paths {
         get?: never;
         put?: never;
 
-        post: operations["putStudentAvatar"];
+        post: operations["putUserAvatar"];
 
-        delete: operations["deleteStudentAvatar"];
+        delete: operations["deleteUserAvatar"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/tag-interests": {
+    "/users/{userId}/interests": {
         parameters: {
             query?: never;
             header?: never;
@@ -1263,7 +1299,7 @@ export interface paths {
             cookie?: never;
         };
 
-        get: operations["listStudentTagInterests"];
+        get: operations["listUserInterests"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1272,7 +1308,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/student/{sid}/tag-interests/{tagId}": {
+    "/users/{userId}/interests/{tagId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1281,10 +1317,10 @@ export interface paths {
         };
         get?: never;
 
-        put: operations["updateStudentTagInterest"];
+        put: operations["updateUserInterest"];
         post?: never;
 
-        delete: operations["deleteStudentTagInterest"];
+        delete: operations["deleteUserInterest"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1447,7 +1483,7 @@ export interface components {
             clarity: number;
             difficulty: number;
             id: number;
-            studentId: number;
+            userId: number;
             classId: number;
             professorId: number;
 
@@ -1504,7 +1540,12 @@ export interface components {
             };
         };
         CurrentUserEntity: {
-            id: number;
+            principalId: number;
+            authIdentityId: number;
+
+            kind: "HUMAN" | "SERVICE";
+            userId: number | null;
+            serviceAccountId: number | null;
             roles: string[];
             capabilities: string[];
             studentId: number | null;
@@ -1515,42 +1556,50 @@ export interface components {
         };
         BotGrantEntity: {
             id: number;
-            studentId: number;
-            botAuthUserId: number;
-            capability: components["schemas"]["StudentCapability"];
+            userId: number;
+            botAuthIdentityId: number;
+            grantedByAuthIdentityId: number;
+            revokedByAuthIdentityId: number | null;
+            capability: components["schemas"]["UserCapability"];
 
             createdAt: string | null;
 
             revokedAt: string | null;
-            botAuthUser: {
+            botAuthIdentity: {
                 id: number;
                 displayName: string | null;
             };
         };
 
-        StudentCapability: "STUDENT_PROFILE_READ" | "STUDENT_PROFILE_WRITE" | "STUDENT_HISTORY_READ" | "STUDENT_HISTORY_WRITE" | "STUDENT_PLANNING_READ" | "STUDENT_PLANNING_WRITE" | "STUDENT_SOCIAL_READ" | "STUDENT_SOCIAL_WRITE" | "STUDENT_FEEDBACK_READ" | "STUDENT_FEEDBACK_WRITE";
+        UserCapability: "USER_PROFILE_READ" | "USER_PROFILE_WRITE" | "USER_HISTORY_READ" | "USER_HISTORY_WRITE" | "USER_PLANNING_READ" | "USER_PLANNING_WRITE" | "USER_SOCIAL_READ" | "USER_SOCIAL_WRITE" | "USER_FEEDBACK_READ" | "USER_FEEDBACK_WRITE";
         ReplaceBotGrantBody: {
-            capabilities: components["schemas"]["StudentCapability"][];
+            capabilities: components["schemas"]["UserCapability"][];
+            authorAuthIdentityId: number;
         };
-        AuthUserEntity: {
+        AuthIdentityEntity: {
             id: number;
+            principalId: number;
+            userId: number | null;
+            serviceAccountId: number | null;
             issuer: string;
             subject: string;
             email: string | null;
             displayName: string | null;
-            status: components["schemas"]["AuthUserStatus"];
+            status: components["schemas"]["AuthIdentityStatus"];
             roles: {
-                authUserId: number;
+                authIdentityId: number;
                 role: string;
             }[];
             capabilities: {
-                authUserId: number;
+                authIdentityId: number;
                 capability: string;
             }[];
         };
 
-        AuthUserStatus: "ACTIVE" | "DISABLED";
-        CreateBotAuthUserBody: {
+        AuthIdentityStatus: "ACTIVE" | "DISABLED";
+        CreateBotAuthIdentityBody: {
+
+            issuer: string;
             subject: string;
             displayName: string;
 
@@ -1568,14 +1617,23 @@ export interface components {
             detail: string;
             instance?: string;
         };
-        PatchAuthUserBody: {
-            status?: components["schemas"]["AuthUserStatus"];
+        PatchAuthIdentityBody: {
+            status?: components["schemas"]["AuthIdentityStatus"];
             displayName?: string;
             capabilities?: components["schemas"]["AuthCapability"][];
         };
+        UserEntity: {
+            id: number;
+            principalId: number;
+            name: string | null;
+            studentId: number | null;
+        };
+        UserPreferences: {
+            favoriteCurriculumId: number | null;
+        };
         CurriculumEntity: {
             id: number;
-            studentId: number;
+            userId: number;
             name: string;
             isFavorite: boolean;
             selection: {
@@ -1607,7 +1665,7 @@ export interface components {
         };
         CurriculumSummaryEntity: {
             id: number;
-            studentId: number;
+            userId: number;
             name: string;
             isFavorite: boolean;
             selection: {
@@ -1637,7 +1695,7 @@ export interface components {
         };
         PeriodPlanningEntity: {
             id: number;
-            studentId: number;
+            userId: number;
             name: string;
             studyPeriodId: number;
             studyPeriodYear: number;
@@ -1826,7 +1884,7 @@ export interface components {
         SharedPlanningVisibility: "FRIENDS" | "PUBLIC";
         StudentCourseAttempt: {
             id: number;
-            studentId: number;
+            userId: number;
             courseId: number;
             studyPeriodId: number | null;
             classId: number | null;
@@ -1996,12 +2054,11 @@ export interface components {
             }[];
         };
         CreateStudentAbsenceBody: {
-            courseAttemptId: number;
             classScheduleId: number;
 
             date: string;
         };
-        StudentPublicProfile: {
+        UserProfile: {
 
             publicId: string;
             displayName: string;
@@ -2039,13 +2096,13 @@ export interface components {
         };
 
         StudentProfileVisibility: "PRIVATE" | "FRIENDS" | "PUBLIC";
-        StudentPeoplePage: {
-            data: components["schemas"]["StudentPublicPerson"][];
+        UserPeoplePage: {
+            data: components["schemas"]["UserPublicPerson"][];
             quantity: number;
             total: number;
             links: components["schemas"]["PaginationLinks"];
         };
-        StudentPublicPerson: {
+        UserPublicPerson: {
 
             publicId: string;
             displayName: string;
@@ -2067,20 +2124,20 @@ export interface components {
             } | null;
             entryYear: number | null;
         };
-        StudentFriendship: {
+        UserFriendship: {
             id: number;
-            status: components["schemas"]["StudentFriendshipStatus"];
-            direction: components["schemas"]["StudentFriendshipDirection"];
-            friend: components["schemas"]["StudentPublicPerson"];
+            status: components["schemas"]["UserFriendshipStatus"];
+            direction: components["schemas"]["UserFriendshipDirection"];
+            friend: components["schemas"]["UserPublicPerson"];
 
             createdAt: string;
 
             acceptedAt: string | null;
         };
 
-        StudentFriendshipStatus: "PENDING" | "ACCEPTED";
+        UserFriendshipStatus: "PENDING" | "ACCEPTED";
 
-        StudentFriendshipDirection: "INCOMING" | "OUTGOING" | "NONE";
+        UserFriendshipDirection: "INCOMING" | "OUTGOING" | "NONE";
         FeedbackReportAccepted: {
 
             createdAt: string;
@@ -2155,7 +2212,7 @@ export interface components {
             sourcePath: string | null;
             status: components["schemas"]["FeedbackStatus"];
             adminMessage: string | null;
-            reporterStudentId: number | null;
+            reporterUserId: number | null;
 
             createdAt: string;
 
@@ -2275,7 +2332,7 @@ export interface components {
                 endedAt: string | null;
                 sortOrder: number;
             }[];
-            studentId: number;
+            userId: number;
             isPublic: boolean;
 
             leftAt: string | null;
@@ -2299,7 +2356,7 @@ export interface components {
                 endedAt: string | null;
                 sortOrder: number;
             }[];
-            studentId: number;
+            userId: number;
             isPublic: boolean;
 
             leftAt: string | null;
@@ -2315,8 +2372,8 @@ export interface components {
         GroupInvitation: {
             id: number;
             groupId: number;
-            recipientStudentId: number;
-            inviterStudentId: number;
+            recipientUserId: number;
+            inviterUserId: number;
 
             status: "PENDING" | "ACCEPTED" | "DECLINED" | "CANCELLED" | "EXPIRED";
 
@@ -2329,8 +2386,8 @@ export interface components {
         ManagedGroupInvitation: {
             id: number;
             groupId: number;
-            recipientStudentId: number;
-            inviterStudentId: number;
+            recipientUserId: number;
+            inviterUserId: number;
 
             status: "PENDING" | "ACCEPTED" | "DECLINED" | "CANCELLED" | "EXPIRED";
 
@@ -2394,7 +2451,7 @@ export interface components {
             status: "DRAFT" | "PUBLISHED" | "CANCELLED";
         };
         ExchangeNoticeSubscription: {
-            studentId: number;
+            userId: number;
             enabled: boolean;
             placeIds: number[];
         };
@@ -2420,6 +2477,7 @@ export interface components {
         };
         StudentEntity: {
             id: number;
+            userId: number;
             ra: string;
             name: string;
             programId: number | null;
@@ -2444,6 +2502,7 @@ export interface components {
             }[];
         };
         CreateStudentBody: {
+            ra: string;
             name: string;
             programId?: number | null;
             specializationId?: number | null;
@@ -2460,7 +2519,7 @@ export interface components {
             entryYear?: number | null;
             languageId?: number | null;
         };
-        StudentTagInterest: {
+        UserInterest: {
             id: number;
             name: string;
             categoryId: number;
@@ -2725,7 +2784,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 classId: number;
                 professorId: number;
             };
@@ -2776,7 +2835,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 classId: number;
                 professorId: number;
             };
@@ -2849,7 +2908,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -2988,7 +3047,9 @@ export interface operations {
                 sort?: string;
             };
             header?: never;
-            path?: never;
+            path: {
+                userId: number;
+            };
             cookie?: never;
         };
         requestBody?: never;
@@ -3032,7 +3093,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                botAuthUserId: number;
+                userId: number;
+                botAuthIdentityId: number;
             };
             cookie?: never;
         };
@@ -3079,7 +3141,7 @@ export interface operations {
             };
         };
     };
-    listAuthUsers: {
+    listAuthIdentities: {
         parameters: {
             query?: {
 
@@ -3102,7 +3164,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["AuthUserEntity"][];
+                        data: components["schemas"]["AuthIdentityEntity"][];
                         quantity: number;
                         total: number;
                         links: components["schemas"]["PaginationLinks"];
@@ -3129,7 +3191,7 @@ export interface operations {
             };
         };
     };
-    createAuthUser: {
+    createAuthIdentity: {
         parameters: {
             query?: never;
             header?: never;
@@ -3139,7 +3201,7 @@ export interface operations {
 
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CreateBotAuthUserBody"];
+                "application/json": components["schemas"]["CreateBotAuthIdentityBody"];
             };
         };
         responses: {
@@ -3149,7 +3211,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AuthUserEntity"];
+                    "application/json": components["schemas"]["AuthIdentityEntity"];
                 };
             };
 
@@ -3172,7 +3234,7 @@ export interface operations {
             };
         };
     };
-    updateAuthUser: {
+    updateAuthIdentity: {
         parameters: {
             query?: never;
             header?: never;
@@ -3184,7 +3246,7 @@ export interface operations {
 
         requestBody: {
             content: {
-                "application/json": components["schemas"]["PatchAuthUserBody"];
+                "application/json": components["schemas"]["PatchAuthIdentityBody"];
             };
         };
         responses: {
@@ -3194,7 +3256,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AuthUserEntity"];
+                    "application/json": components["schemas"]["AuthIdentityEntity"];
                 };
             };
 
@@ -3235,12 +3297,220 @@ export interface operations {
             };
         };
     };
-    getStudentCurricula: {
+    getUser: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserEntity"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": {
+                    name: string | null;
+                };
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserEntity"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getUserPreferences: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserPreferences"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    updateUserPreferences: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserPreferences"];
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserPreferences"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    getCurriculums: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -3285,12 +3555,12 @@ export interface operations {
             };
         };
     };
-    deleteStudentCurricula: {
+    deleteCurriculums: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -3333,12 +3603,12 @@ export interface operations {
             };
         };
     };
-    updateStudentCurricula: {
+    updateCurriculums: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -3428,7 +3698,7 @@ export interface operations {
             };
         };
     };
-    listStudentCurricula: {
+    listCurriculums: {
         parameters: {
             query?: {
 
@@ -3440,7 +3710,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -3480,12 +3750,12 @@ export interface operations {
             };
         };
     };
-    createStudentCurricula: {
+    createCurriculums: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -3554,12 +3824,12 @@ export interface operations {
             };
         };
     };
-    getStudentPeriodPlannings: {
+    getPeriodPlans: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -3604,12 +3874,12 @@ export interface operations {
             };
         };
     };
-    deleteStudentPeriodPlannings: {
+    deletePeriodPlans: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -3652,12 +3922,12 @@ export interface operations {
             };
         };
     };
-    updateStudentPeriodPlannings: {
+    updatePeriodPlans: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -3716,7 +3986,7 @@ export interface operations {
             };
         };
     };
-    listStudentPeriodPlannings: {
+    listPeriodPlans: {
         parameters: {
             query?: {
 
@@ -3728,7 +3998,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -3768,12 +4038,12 @@ export interface operations {
             };
         };
     };
-    createStudentPeriodPlannings: {
+    createPeriodPlans: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -3822,7 +4092,7 @@ export interface operations {
             };
         };
     };
-    listPublicSharedPeriodPlannings: {
+    listPublicSharedPeriodPlans: {
         parameters: {
             query?: {
 
@@ -3875,7 +4145,7 @@ export interface operations {
             };
         };
     };
-    getPublicSharedPeriodPlanning: {
+    getPublicSharedPeriodPlan: {
         parameters: {
             query?: never;
             header?: never;
@@ -3924,7 +4194,7 @@ export interface operations {
             };
         };
     };
-    listStudentSharedPeriodPlannings: {
+    listUserSharedPeriodPlans: {
         parameters: {
             query?: {
 
@@ -3944,7 +4214,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -3979,12 +4249,12 @@ export interface operations {
             };
         };
     };
-    getStudentSharedPeriodPlanning: {
+    getUserSharedPeriodPlan: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 shareId: string;
             };
             cookie?: never;
@@ -4034,7 +4304,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -4084,7 +4354,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -4132,7 +4402,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -4228,7 +4498,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4273,7 +4543,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4336,7 +4606,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4394,7 +4664,7 @@ export interface operations {
             };
         };
     };
-    listStudentAbsences: {
+    listUserAbsences: {
         parameters: {
             query?: {
 
@@ -4413,7 +4683,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4443,6 +4713,15 @@ export interface operations {
                 };
             };
 
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
+                };
+            };
+
             500: {
                 headers: {
                     [name: string]: unknown;
@@ -4458,7 +4737,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                attemptId: number;
             };
             cookie?: never;
         };
@@ -4485,6 +4765,15 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ResourceNotFoundProblem"];
                 };
             };
 
@@ -4521,7 +4810,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                attemptId: number;
                 id: number;
             };
             cookie?: never;
@@ -4564,12 +4854,12 @@ export interface operations {
             };
         };
     };
-    getStudentPublicProfile: {
+    getUserProfile: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4581,7 +4871,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudentPublicProfile"];
+                    "application/json": components["schemas"]["UserProfile"];
                 };
             };
 
@@ -4613,12 +4903,12 @@ export interface operations {
             };
         };
     };
-    updateStudentPublicProfile: {
+    updateUserProfile: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4640,7 +4930,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudentPublicProfile"];
+                    "application/json": components["schemas"]["UserProfile"];
                 };
             };
 
@@ -4672,7 +4962,7 @@ export interface operations {
             };
         };
     };
-    listStudentPeople: {
+    listUserPeople: {
         parameters: {
             query?: {
 
@@ -4685,7 +4975,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4697,7 +4987,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudentPeoplePage"];
+                    "application/json": components["schemas"]["UserPeoplePage"];
                 };
             };
 
@@ -4720,12 +5010,12 @@ export interface operations {
             };
         };
     };
-    getStudentPerson: {
+    getUserPerson: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 publicId: string;
             };
             cookie?: never;
@@ -4738,7 +5028,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudentPublicPerson"];
+                    "application/json": components["schemas"]["UserPublicPerson"];
                 };
             };
 
@@ -4770,7 +5060,7 @@ export interface operations {
             };
         };
     };
-    listStudentFriendships: {
+    listUserFriendships: {
         parameters: {
             query?: {
 
@@ -4794,7 +5084,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4807,7 +5097,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["StudentFriendship"][];
+                        data: components["schemas"]["UserFriendship"][];
                         quantity: number;
                         total: number;
                         links: components["schemas"]["PaginationLinks"];
@@ -4834,12 +5124,12 @@ export interface operations {
             };
         };
     };
-    createStudentFriendship: {
+    createUserFriendship: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -4859,7 +5149,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudentFriendship"];
+                    "application/json": components["schemas"]["UserFriendship"];
                 };
             };
 
@@ -4900,12 +5190,12 @@ export interface operations {
             };
         };
     };
-    acceptStudentFriendship: {
+    acceptUserFriendship: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -4918,7 +5208,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudentFriendship"];
+                    "application/json": components["schemas"]["UserFriendship"];
                 };
             };
 
@@ -4959,12 +5249,12 @@ export interface operations {
             };
         };
     };
-    deleteStudentFriendship: {
+    deleteUserFriendship: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -5077,7 +5367,7 @@ export interface operations {
             };
         };
     };
-    listStudentFeedbackReports: {
+    listUserFeedbackReports: {
         parameters: {
             query?: {
 
@@ -5089,7 +5379,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -5129,12 +5419,12 @@ export interface operations {
             };
         };
     };
-    createStudentFeedbackReport: {
+    createUserFeedbackReport: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -5349,7 +5639,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -5398,7 +5688,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -5468,8 +5758,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                id: number;
-                sid: number;
+                groupId: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -5571,8 +5861,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                id: number;
-                sid: number;
+                groupId: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -5619,8 +5909,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -5744,8 +6034,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -5922,7 +6212,7 @@ export interface operations {
             };
         };
     };
-    listStudentGroupMemberships: {
+    listUserGroupMemberships: {
         parameters: {
             query?: {
 
@@ -5939,7 +6229,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -5979,12 +6269,12 @@ export interface operations {
             };
         };
     };
-    getStudentGroupMembership: {
+    getUserGroupMembership: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -6029,12 +6319,12 @@ export interface operations {
             };
         };
     };
-    updateStudentGroupMembership: {
+    updateUserGroupMembership: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -6093,17 +6383,11 @@ export interface operations {
                 page?: number;
 
                 pageSize?: number | "all";
-
-                filter?: {
-                    groupId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                };
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -6148,8 +6432,9 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
+                membershipId: number;
             };
             cookie?: never;
         };
@@ -6241,7 +6526,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -6281,14 +6566,64 @@ export interface operations {
             };
         };
     };
-    createGroupInvitation: {
+    listManagedGroupInvitations: {
         parameters: {
-            query: {
-                groupId: number;
+            query?: {
+
+                page?: number;
+
+                pageSize?: number | "all";
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                groupId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ManagedGroupInvitation"][];
+                        quantity: number;
+                        total: number;
+                        links: components["schemas"]["PaginationLinks"];
+                    };
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
+    createGroupInvitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -6331,69 +6666,12 @@ export interface operations {
             };
         };
     };
-    listManagedGroupInvitations: {
-        parameters: {
-            query?: {
-
-                page?: number;
-
-                pageSize?: number | "all";
-
-                filter?: {
-                    groupId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                };
-            };
-            header?: never;
-            path: {
-                sid: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ManagedGroupInvitation"][];
-                        quantity: number;
-                        total: number;
-                        links: components["schemas"]["PaginationLinks"];
-                    };
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
     acceptGroupInvitation: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -6443,7 +6721,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 id: number;
             };
             cookie?: never;
@@ -6493,17 +6771,11 @@ export interface operations {
                 page?: number;
 
                 pageSize?: number | "all";
-
-                filter?: {
-                    groupId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                };
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -6545,12 +6817,11 @@ export interface operations {
     };
     createGroupRole: {
         parameters: {
-            query: {
-                groupId: number;
-            };
+            query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -6598,8 +6869,9 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
+                roleId: number;
             };
             cookie?: never;
         };
@@ -6646,8 +6918,9 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
+                roleId: number;
             };
             cookie?: never;
         };
@@ -6813,17 +7086,11 @@ export interface operations {
                 page?: number;
 
                 pageSize?: number | "all";
-
-                filter?: {
-                    groupId?: number | {
-                        eq?: number;
-                        in?: number[];
-                    };
-                };
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -6865,12 +7132,11 @@ export interface operations {
     };
     createGroupEvent: {
         parameters: {
-            query: {
-                groupId: number;
-            };
+            query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
+                groupId: number;
             };
             cookie?: never;
         };
@@ -6924,8 +7190,9 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
+                eventId: number;
             };
             cookie?: never;
         };
@@ -6991,8 +7258,9 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
+                eventId: number;
             };
             cookie?: never;
         };
@@ -7041,8 +7309,9 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
-                id: number;
+                userId: number;
+                groupId: number;
+                eventId: number;
             };
             cookie?: never;
         };
@@ -7091,7 +7360,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -7131,7 +7400,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -7186,7 +7455,9 @@ export interface operations {
                 token: string;
             };
             header?: never;
-            path?: never;
+            path: {
+                userId: number;
+            };
             cookie?: never;
         };
         requestBody?: never;
@@ -8031,7 +8302,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -8075,12 +8346,84 @@ export interface operations {
             };
         };
     };
+    createStudents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: number;
+            };
+            cookie?: never;
+        };
+
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateStudentBody"];
+            };
+        };
+        responses: {
+
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentEntity"];
+                };
+            };
+
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentEntity"];
+                };
+            };
+
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
+                };
+            };
+
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["UniqueConstraintConflictProblem"];
+                };
+            };
+
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidStudentProfileProblem"];
+                };
+            };
+
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
+                };
+            };
+        };
+    };
     deleteStudents: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -8143,7 +8486,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -8251,82 +8594,12 @@ export interface operations {
             };
         };
     };
-    createStudents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateStudentBody"];
-            };
-        };
-        responses: {
-
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StudentEntity"];
-                };
-            };
-
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StudentEntity"];
-                };
-            };
-
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["InvalidRequestProblem"];
-                };
-            };
-
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["UniqueConstraintConflictProblem"];
-                };
-            };
-
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ReferenceNotFoundProblem"] | components["schemas"]["InvalidStudentProfileProblem"];
-                };
-            };
-
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["ServerErrorProblem"];
-                };
-            };
-        };
-    };
-    putStudentAvatar: {
+    putUserAvatar: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -8445,12 +8718,12 @@ export interface operations {
             };
         };
     };
-    deleteStudentAvatar: {
+    deleteUserAvatar: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -8519,7 +8792,7 @@ export interface operations {
             };
         };
     };
-    listStudentTagInterests: {
+    listUserInterests: {
         parameters: {
             query?: {
 
@@ -8531,7 +8804,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                sid: number;
+                userId: number;
             };
             cookie?: never;
         };
@@ -8544,7 +8817,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["StudentTagInterest"][];
+                        data: components["schemas"]["UserInterest"][];
                         quantity: number;
                         total: number;
                         links: components["schemas"]["PaginationLinks"];
@@ -8571,12 +8844,12 @@ export interface operations {
             };
         };
     };
-    updateStudentTagInterest: {
+    updateUserInterest: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 tagId: number;
             };
             cookie?: never;
@@ -8619,12 +8892,12 @@ export interface operations {
             };
         };
     };
-    deleteStudentTagInterest: {
+    deleteUserInterest: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                sid: number;
+                userId: number;
                 tagId: number;
             };
             cookie?: never;

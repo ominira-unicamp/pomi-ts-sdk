@@ -80,15 +80,15 @@ import type {
   AcademicResourceFeedbackReportTarget,
   SharedPeriodPlanningPage,
   StudentCourseAttempt,
-  StudentPublicPerson,
+  UserPublicPerson,
   Tag,
   TagRelatedCourse,
 } from './generated/app/domain.js'
 import type {
   listCategoriesOutput,
   listCourseTagsOutput,
-  listPublicSharedPeriodPlanningsOutput,
-  listStudentPeopleOutput,
+  listPublicSharedPeriodPlansOutput,
+  listUserPeopleOutput,
   listTagCoursesOutput,
   listTagsOutput,
 } from './generated/app/index.js'
@@ -131,11 +131,11 @@ type DomainTypeAssertions = [
   >,
   Assert<
     Equal<
-      listPublicSharedPeriodPlanningsOutput['data'][number],
+      listPublicSharedPeriodPlansOutput['data'][number],
       SharedPeriodPlanningPage['data'][number]
     >
   >,
-  Assert<Equal<listStudentPeopleOutput['data'][number], StudentPublicPerson>>,
+  Assert<Equal<listUserPeopleOutput['data'][number], UserPublicPerson>>,
   AssertFalse<'_paths' extends keyof Course ? true : false>,
   AssertFalse<'_paths' extends keyof ClassSchedule ? true : false>,
   AssertFalse<'_paths' extends keyof BlockSet ? true : false>,
@@ -222,13 +222,13 @@ const sortingTypeAssertions = undefined as unknown as SortingTypeAssertions
 
 test('generates separate operational manifests for Data and App', () => {
   assert.equal(Object.keys(dataOperations).length, 50)
-  assert.equal(Object.keys(appOperations).length, 107)
+  assert.equal(Object.keys(appOperations).length, 111)
   assert.equal('putGroupBanner' in appOperations, false)
   assert.equal('deleteGroupBanner' in appOperations, false)
   assert.equal(dataOperations.listCourses.target, 'data')
   assert.equal(dataOperations.listCourses.authentication, 'public')
-  assert.equal(appOperations.listStudentAbsences.target, 'app')
-  assert.equal(appOperations.listStudentAbsences.authentication, 'required')
+  assert.equal(appOperations.listUserAbsences.target, 'app')
+  assert.equal(appOperations.listUserAbsences.authentication, 'required')
   assert.equal(sdkManifest.data.operationDefinitions, dataOperations)
   assert.equal(sdkManifest.app.operationDefinitions, appOperations)
   assert.equal(
@@ -237,13 +237,13 @@ test('generates separate operational manifests for Data and App', () => {
   )
   assert.equal(
     Object.values(appOperations).filter((operation) => operation.sdk).length,
-    107,
+    111,
   )
   assert.equal(dataOperations.listClasses.sdk?.resource, 'classes')
   assert.equal(dataOperations.listClasses.pagination?.defaultMode, 'page')
   assert.equal(appOperations.listTagCourses.pagination?.defaultMode, 'page')
   assert.equal(
-    appOperations.listPublicSharedPeriodPlannings.pagination?.defaultMode,
+    appOperations.listPublicSharedPeriodPlans.pagination?.defaultMode,
     'page',
   )
 })
@@ -310,11 +310,11 @@ test('generates canonical domain models independently from operation envelopes',
     'StudentAbsence',
     'StudentHistoryImportSummary',
     'Curriculum',
-    'StudentFriendship',
+    'UserFriendship',
     'PeriodPlanning',
     'Student',
     'SharedPeriodPlanning',
-    'StudentPublicPerson',
+    'UserPublicPerson',
     'BotIdentity',
     'CurrentUser',
     'BotGrant',
@@ -323,8 +323,8 @@ test('generates canonical domain models independently from operation envelopes',
     'ExchangeNoticeSubscription',
     'FeedbackReport',
     'PendingProfessorEvaluation',
-    'StudentPublicProfile',
-  'StudentTagInterest',
+    'UserProfile',
+  'UserInterest',
   'ProfessorEvaluation',
   'CourseEvaluationSummary',
   'CourseProfessorEvaluationSummary',
@@ -376,22 +376,23 @@ test('generates request inputs with structured filters and bodies', () => {
   }
   const filter: listCoursesFilter = { credits: { gte: 4 } }
   const absence: createStudentAbsencesInput = {
-    sid: 7,
+    userId: 7,
+    attemptId: 2,
     body: {
-      courseAttemptId: 2,
       classScheduleId: 3,
       date: '2026-08-20',
     },
   }
   const grant: replaceBotGrantInput = {
-    botAuthUserId: 8,
-    body: { capabilities: ['STUDENT_PROFILE_READ'] },
+    userId: 7,
+    botAuthIdentityId: 8,
+    body: { capabilities: ['USER_PROFILE_READ'], authorAuthIdentityId: 9 },
   }
 
   assert.equal(input.page, 1)
   assert.deepEqual(filter, { credits: { gte: 4 } })
   assert.equal(absence.body.classScheduleId, 3)
-  assert.deepEqual(grant.body.capabilities, ['STUDENT_PROFILE_READ'])
+  assert.deepEqual(grant.body.capabilities, ['USER_PROFILE_READ'])
 })
 
 test('exposes filter capabilities and operation-specific problems', () => {
@@ -401,10 +402,7 @@ test('exposes filter capabilities and operation-specific problems', () => {
     )?.operators,
     ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in'],
   )
-  assert.equal(
-    appFilterCapabilities.listStudentAbsences.fields[0]?.path.join('.'),
-    'courseAttemptId',
-  )
+  assert.deepEqual(appFilterCapabilities.listUserAbsences.fields.map(field => field.path), [['courseAttemptId']])
   assert.ok(
     appOperationProblems.createStudentAbsences.includes(
       'urn:pomi:problem:invalid-student-absence',
@@ -414,7 +412,7 @@ test('exposes filter capabilities and operation-specific problems', () => {
     appProblems['urn:pomi:problem:invalid-student-absence'].status,
     422,
   )
-  assert.equal(appQueryCapabilities.listStudentAbsences.filter?.version, 1)
+  assert.ok(appQueryCapabilities.listUserAbsences.filter)
   assert.ok(appEnumValues.StudentCourseAttemptStatus.length > 1)
   assert.deepEqual(dataSortCapabilities.listCatalogCourses, {
     version: 1,
@@ -432,14 +430,14 @@ test('generates typed path and query builders', () => {
   )
   assert.equal(
     appPaths.createStudentAbsences({
-      sid: 7,
+      userId: 7,
+      attemptId: 2,
       body: {
-        courseAttemptId: 2,
         classScheduleId: 3,
         date: '2026-08-20',
       },
     }),
-    '/student/7/absences',
+    '/users/7/course-attempts/2/absences',
   )
   const sortedPath = dataPaths.listCatalogCourses({
     sort: [

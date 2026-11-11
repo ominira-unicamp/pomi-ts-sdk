@@ -1,8 +1,11 @@
-export const studentCapabilityValues = ["STUDENT_PROFILE_READ", "STUDENT_PROFILE_WRITE", "STUDENT_HISTORY_READ", "STUDENT_HISTORY_WRITE", "STUDENT_PLANNING_READ", "STUDENT_PLANNING_WRITE", "STUDENT_SOCIAL_READ", "STUDENT_SOCIAL_WRITE", "STUDENT_FEEDBACK_READ", "STUDENT_FEEDBACK_WRITE"] as const
-export type StudentCapability = (typeof studentCapabilityValues)[number]
+export const currentUserEntityKindValues = ["HUMAN", "SERVICE"] as const
+export type CurrentUserEntityKind = (typeof currentUserEntityKindValues)[number]
 
-export const authUserStatusValues = ["ACTIVE", "DISABLED"] as const
-export type AuthUserStatus = (typeof authUserStatusValues)[number]
+export const userCapabilityValues = ["USER_PROFILE_READ", "USER_PROFILE_WRITE", "USER_HISTORY_READ", "USER_HISTORY_WRITE", "USER_PLANNING_READ", "USER_PLANNING_WRITE", "USER_SOCIAL_READ", "USER_SOCIAL_WRITE", "USER_FEEDBACK_READ", "USER_FEEDBACK_WRITE"] as const
+export type UserCapability = (typeof userCapabilityValues)[number]
+
+export const authIdentityStatusValues = ["ACTIVE", "DISABLED"] as const
+export type AuthIdentityStatus = (typeof authIdentityStatusValues)[number]
 
 export const yearPeriodValues = ["SUMMER", "FIRST_SEMESTER", "WINTER", "SECOND_SEMESTER"] as const
 export type YearPeriod = (typeof yearPeriodValues)[number]
@@ -28,11 +31,11 @@ export type HistoryCourseStatus = (typeof historyCourseStatusValues)[number]
 export const studentProfileVisibilityValues = ["PRIVATE", "FRIENDS", "PUBLIC"] as const
 export type StudentProfileVisibility = (typeof studentProfileVisibilityValues)[number]
 
-export const studentFriendshipStatusValues = ["PENDING", "ACCEPTED"] as const
-export type StudentFriendshipStatus = (typeof studentFriendshipStatusValues)[number]
+export const userFriendshipStatusValues = ["PENDING", "ACCEPTED"] as const
+export type UserFriendshipStatus = (typeof userFriendshipStatusValues)[number]
 
-export const studentFriendshipDirectionValues = ["INCOMING", "OUTGOING", "NONE"] as const
-export type StudentFriendshipDirection = (typeof studentFriendshipDirectionValues)[number]
+export const userFriendshipDirectionValues = ["INCOMING", "OUTGOING", "NONE"] as const
+export type UserFriendshipDirection = (typeof userFriendshipDirectionValues)[number]
 
 export const feedbackKindValues = ["BUG", "SUGGESTION", "DATA_ISSUE"] as const
 export type FeedbackKind = (typeof feedbackKindValues)[number]
@@ -65,8 +68,9 @@ export const managedGroupEventStatusValues = ["DRAFT", "PUBLISHED", "CANCELLED"]
 export type ManagedGroupEventStatus = (typeof managedGroupEventStatusValues)[number]
 
 export const enumValueNames = {
-    "StudentCapability": "studentCapabilityValues",
-    "AuthUserStatus": "authUserStatusValues",
+    "CurrentUserEntity.kind": "currentUserEntityKindValues",
+    "UserCapability": "userCapabilityValues",
+    "AuthIdentityStatus": "authIdentityStatusValues",
     "YearPeriod": "yearPeriodValues",
     "PlanningVisibility": "planningVisibilityValues",
     "DayOfWeek": "dayOfWeekValues",
@@ -75,8 +79,8 @@ export const enumValueNames = {
     "StudentCourseAttemptStatus": "studentCourseAttemptStatusValues",
     "HistoryCourseStatus": "historyCourseStatusValues",
     "StudentProfileVisibility": "studentProfileVisibilityValues",
-    "StudentFriendshipStatus": "studentFriendshipStatusValues",
-    "StudentFriendshipDirection": "studentFriendshipDirectionValues",
+    "UserFriendshipStatus": "userFriendshipStatusValues",
+    "UserFriendshipDirection": "userFriendshipDirectionValues",
     "FeedbackKind": "feedbackKindValues",
     "FeedbackFeatureKey": "feedbackFeatureKeyValues",
     "FeedbackAcademicResourceType": "feedbackAcademicResourceTypeValues",

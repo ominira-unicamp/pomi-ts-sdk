@@ -1,23 +1,19 @@
-import type { getCourseProfessorEvaluationSummaryInput, listCourseEvaluationSummariesInput, listGroupEventsInput, listGroupInvitationsInput, listGroupRolesInput, listManagedGroupEventsInput, listManagedGroupInvitationsInput, listManagedGroupMembershipsInput, listPendingProfessorEvaluationsInput, listProfessorEvaluationSummariesInput, listPublicGroupMembershipsInput, listPublicSharedPeriodPlanningsInput, listStudentAbsencesInput, listStudentCourseAttemptsInput, listStudentFriendshipsInput, listStudentGroupMembershipsInput, listStudentSharedPeriodPlanningsInput, listTagsInput } from './operations.js'
+import type { getCourseProfessorEvaluationSummaryInput, listCourseEvaluationSummariesInput, listGroupEventsInput, listGroupInvitationsInput, listPendingProfessorEvaluationsInput, listProfessorEvaluationSummariesInput, listPublicGroupMembershipsInput, listPublicSharedPeriodPlansInput, listStudentCourseAttemptsInput, listTagsInput, listUserAbsencesInput, listUserFriendshipsInput, listUserGroupMembershipsInput, listUserSharedPeriodPlansInput } from './operations.js'
 
 export type getCourseProfessorEvaluationSummaryFilter = NonNullable<getCourseProfessorEvaluationSummaryInput['filter']>
 export type listCourseEvaluationSummariesFilter = NonNullable<listCourseEvaluationSummariesInput['filter']>
 export type listGroupEventsFilter = NonNullable<listGroupEventsInput['filter']>
 export type listGroupInvitationsFilter = NonNullable<listGroupInvitationsInput['filter']>
-export type listGroupRolesFilter = NonNullable<listGroupRolesInput['filter']>
-export type listManagedGroupEventsFilter = NonNullable<listManagedGroupEventsInput['filter']>
-export type listManagedGroupInvitationsFilter = NonNullable<listManagedGroupInvitationsInput['filter']>
-export type listManagedGroupMembershipsFilter = NonNullable<listManagedGroupMembershipsInput['filter']>
 export type listPendingProfessorEvaluationsFilter = NonNullable<listPendingProfessorEvaluationsInput['filter']>
 export type listProfessorEvaluationSummariesFilter = NonNullable<listProfessorEvaluationSummariesInput['filter']>
 export type listPublicGroupMembershipsFilter = NonNullable<listPublicGroupMembershipsInput['filter']>
-export type listPublicSharedPeriodPlanningsFilter = NonNullable<listPublicSharedPeriodPlanningsInput['filter']>
-export type listStudentAbsencesFilter = NonNullable<listStudentAbsencesInput['filter']>
+export type listPublicSharedPeriodPlansFilter = NonNullable<listPublicSharedPeriodPlansInput['filter']>
 export type listStudentCourseAttemptsFilter = NonNullable<listStudentCourseAttemptsInput['filter']>
-export type listStudentFriendshipsFilter = NonNullable<listStudentFriendshipsInput['filter']>
-export type listStudentGroupMembershipsFilter = NonNullable<listStudentGroupMembershipsInput['filter']>
-export type listStudentSharedPeriodPlanningsFilter = NonNullable<listStudentSharedPeriodPlanningsInput['filter']>
 export type listTagsFilter = NonNullable<listTagsInput['filter']>
+export type listUserAbsencesFilter = NonNullable<listUserAbsencesInput['filter']>
+export type listUserFriendshipsFilter = NonNullable<listUserFriendshipsInput['filter']>
+export type listUserGroupMembershipsFilter = NonNullable<listUserGroupMembershipsInput['filter']>
+export type listUserSharedPeriodPlansFilter = NonNullable<listUserSharedPeriodPlansInput['filter']>
 
 export const filterCapabilities = {
     "getCourseProfessorEvaluationSummary": {
@@ -139,98 +135,6 @@ export const filterCapabilities = {
             "maxParameters": 100
         }
     },
-    "listGroupRoles": {
-        "version": 1,
-        "fields": [
-            {
-                "path": [
-                    "groupId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            }
-        ],
-        "constraints": {
-            "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
-        }
-    },
-    "listManagedGroupEvents": {
-        "version": 1,
-        "fields": [
-            {
-                "path": [
-                    "groupId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            }
-        ],
-        "constraints": {
-            "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
-        }
-    },
-    "listManagedGroupInvitations": {
-        "version": 1,
-        "fields": [
-            {
-                "path": [
-                    "groupId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            }
-        ],
-        "constraints": {
-            "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
-        }
-    },
-    "listManagedGroupMemberships": {
-        "version": 1,
-        "fields": [
-            {
-                "path": [
-                    "groupId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            }
-        ],
-        "constraints": {
-            "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
-        }
-    },
     "listPendingProfessorEvaluations": {
         "version": 1,
         "fields": [
@@ -325,34 +229,12 @@ export const filterCapabilities = {
             "maxParameters": 100
         }
     },
-    "listPublicSharedPeriodPlannings": {
+    "listPublicSharedPeriodPlans": {
         "version": 1,
         "fields": [
             {
                 "path": [
                     "studyPeriodId"
-                ],
-                "schema": {
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            }
-        ],
-        "constraints": {
-            "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
-        }
-    },
-    "listStudentAbsences": {
-        "version": 1,
-        "fields": [
-            {
-                "path": [
-                    "courseAttemptId"
                 ],
                 "schema": {
                     "type": "integer"
@@ -426,7 +308,79 @@ export const filterCapabilities = {
             "maxParameters": 100
         }
     },
-    "listStudentFriendships": {
+    "listTags": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "categoryId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "parentTagId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "courseId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listUserAbsences": {
+        "version": 1,
+        "fields": [
+            {
+                "path": [
+                    "courseAttemptId"
+                ],
+                "schema": {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            }
+        ],
+        "constraints": {
+            "maxExpressions": 20,
+            "maxDepth": 3,
+            "maxParameters": 100
+        }
+    },
+    "listUserFriendships": {
         "version": 1,
         "fields": [
             {
@@ -467,7 +421,7 @@ export const filterCapabilities = {
             "maxParameters": 100
         }
     },
-    "listStudentGroupMemberships": {
+    "listUserGroupMemberships": {
         "version": 1,
         "fields": [
             {
@@ -490,7 +444,7 @@ export const filterCapabilities = {
             "maxParameters": 100
         }
     },
-    "listStudentSharedPeriodPlannings": {
+    "listUserSharedPeriodPlans": {
         "version": 1,
         "fields": [
             {
@@ -500,55 +454,6 @@ export const filterCapabilities = {
                 "schema": {
                     "format": "uuid",
                     "type": "string"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            }
-        ],
-        "constraints": {
-            "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
-        }
-    },
-    "listTags": {
-        "version": 1,
-        "fields": [
-            {
-                "path": [
-                    "categoryId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            },
-            {
-                "path": [
-                    "parentTagId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
-                },
-                "operators": [
-                    "eq",
-                    "in"
-                ]
-            },
-            {
-                "path": [
-                    "courseId"
-                ],
-                "schema": {
-                    "minimum": 1,
-                    "type": "integer"
                 },
                 "operators": [
                     "eq",

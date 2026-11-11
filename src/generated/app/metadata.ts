@@ -664,7 +664,7 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
-            "studentId": {
+            "userId": {
                 "type": "integer"
             },
             "classId": {
@@ -688,7 +688,7 @@ export const componentSchemas = {
             "clarity",
             "difficulty",
             "id",
-            "studentId",
+            "userId",
             "classId",
             "professorId",
             "createdAt",
@@ -926,8 +926,26 @@ export const componentSchemas = {
     "CurrentUserEntity": {
         "type": "object",
         "properties": {
-            "id": {
+            "principalId": {
                 "type": "integer"
+            },
+            "authIdentityId": {
+                "type": "integer"
+            },
+            "kind": {
+                "type": "string",
+                "enum": [
+                    "HUMAN",
+                    "SERVICE"
+                ]
+            },
+            "userId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "serviceAccountId": {
+                "type": "integer",
+                "nullable": true
             },
             "roles": {
                 "type": "array",
@@ -947,7 +965,11 @@ export const componentSchemas = {
             }
         },
         "required": [
-            "id",
+            "principalId",
+            "authIdentityId",
+            "kind",
+            "userId",
+            "serviceAccountId",
             "roles",
             "capabilities",
             "studentId"
@@ -957,7 +979,7 @@ export const componentSchemas = {
             "kind": "entity",
             "publicName": "CurrentUser",
             "identityFields": [
-                "id"
+                "principalId"
             ]
         }
     },
@@ -991,14 +1013,21 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
-            "studentId": {
+            "userId": {
                 "type": "integer"
             },
-            "botAuthUserId": {
+            "botAuthIdentityId": {
                 "type": "integer"
+            },
+            "grantedByAuthIdentityId": {
+                "type": "integer"
+            },
+            "revokedByAuthIdentityId": {
+                "type": "integer",
+                "nullable": true
             },
             "capability": {
-                "$ref": "#/components/schemas/StudentCapability"
+                "$ref": "#/components/schemas/UserCapability"
             },
             "createdAt": {
                 "type": "string",
@@ -1010,7 +1039,7 @@ export const componentSchemas = {
                 "nullable": true,
                 "format": "date-time"
             },
-            "botAuthUser": {
+            "botAuthIdentity": {
                 "type": "object",
                 "properties": {
                     "id": {
@@ -1029,12 +1058,14 @@ export const componentSchemas = {
         },
         "required": [
             "id",
-            "studentId",
-            "botAuthUserId",
+            "userId",
+            "botAuthIdentityId",
+            "grantedByAuthIdentityId",
+            "revokedByAuthIdentityId",
             "capability",
             "createdAt",
             "revokedAt",
-            "botAuthUser"
+            "botAuthIdentity"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
@@ -1045,23 +1076,23 @@ export const componentSchemas = {
             ]
         }
     },
-    "StudentCapability": {
+    "UserCapability": {
         "type": "string",
         "enum": [
-            "STUDENT_PROFILE_READ",
-            "STUDENT_PROFILE_WRITE",
-            "STUDENT_HISTORY_READ",
-            "STUDENT_HISTORY_WRITE",
-            "STUDENT_PLANNING_READ",
-            "STUDENT_PLANNING_WRITE",
-            "STUDENT_SOCIAL_READ",
-            "STUDENT_SOCIAL_WRITE",
-            "STUDENT_FEEDBACK_READ",
-            "STUDENT_FEEDBACK_WRITE"
+            "USER_PROFILE_READ",
+            "USER_PROFILE_WRITE",
+            "USER_HISTORY_READ",
+            "USER_HISTORY_WRITE",
+            "USER_PLANNING_READ",
+            "USER_PLANNING_WRITE",
+            "USER_SOCIAL_READ",
+            "USER_SOCIAL_WRITE",
+            "USER_FEEDBACK_READ",
+            "USER_FEEDBACK_WRITE"
         ],
         "x-pomi-schema": {
             "kind": "value-object",
-            "publicName": "StudentCapability"
+            "publicName": "UserCapability"
         }
     },
     "ReplaceBotGrantBody": {
@@ -1070,12 +1101,18 @@ export const componentSchemas = {
             "capabilities": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/StudentCapability"
+                    "$ref": "#/components/schemas/UserCapability"
                 }
+            },
+            "authorAuthIdentityId": {
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
             }
         },
         "required": [
-            "capabilities"
+            "capabilities",
+            "authorAuthIdentityId"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
@@ -1083,11 +1120,22 @@ export const componentSchemas = {
             "publicName": "ReplaceBotGrantBody"
         }
     },
-    "AuthUserEntity": {
+    "AuthIdentityEntity": {
         "type": "object",
         "properties": {
             "id": {
                 "type": "integer"
+            },
+            "principalId": {
+                "type": "integer"
+            },
+            "userId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "serviceAccountId": {
+                "type": "integer",
+                "nullable": true
             },
             "issuer": {
                 "type": "string"
@@ -1104,14 +1152,14 @@ export const componentSchemas = {
                 "nullable": true
             },
             "status": {
-                "$ref": "#/components/schemas/AuthUserStatus"
+                "$ref": "#/components/schemas/AuthIdentityStatus"
             },
             "roles": {
                 "type": "array",
                 "items": {
                     "type": "object",
                     "properties": {
-                        "authUserId": {
+                        "authIdentityId": {
                             "type": "integer"
                         },
                         "role": {
@@ -1119,7 +1167,7 @@ export const componentSchemas = {
                         }
                     },
                     "required": [
-                        "authUserId",
+                        "authIdentityId",
                         "role"
                     ]
                 }
@@ -1129,7 +1177,7 @@ export const componentSchemas = {
                 "items": {
                     "type": "object",
                     "properties": {
-                        "authUserId": {
+                        "authIdentityId": {
                             "type": "integer"
                         },
                         "capability": {
@@ -1137,7 +1185,7 @@ export const componentSchemas = {
                         }
                     },
                     "required": [
-                        "authUserId",
+                        "authIdentityId",
                         "capability"
                     ]
                 }
@@ -1145,6 +1193,9 @@ export const componentSchemas = {
         },
         "required": [
             "id",
+            "principalId",
+            "userId",
+            "serviceAccountId",
             "issuer",
             "subject",
             "email",
@@ -1156,13 +1207,13 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "entity",
-            "publicName": "AuthUser",
+            "publicName": "AuthIdentity",
             "identityFields": [
                 "id"
             ]
         }
     },
-    "AuthUserStatus": {
+    "AuthIdentityStatus": {
         "type": "string",
         "enum": [
             "ACTIVE",
@@ -1170,12 +1221,16 @@ export const componentSchemas = {
         ],
         "x-pomi-schema": {
             "kind": "value-object",
-            "publicName": "AuthUserStatus"
+            "publicName": "AuthIdentityStatus"
         }
     },
-    "CreateBotAuthUserBody": {
+    "CreateBotAuthIdentityBody": {
         "type": "object",
         "properties": {
+            "issuer": {
+                "type": "string",
+                "format": "uri"
+            },
             "subject": {
                 "type": "string",
                 "minLength": 1
@@ -1194,13 +1249,14 @@ export const componentSchemas = {
             }
         },
         "required": [
+            "issuer",
             "subject",
             "displayName"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "input",
-            "publicName": "CreateBotAuthUserBody"
+            "publicName": "CreateBotAuthIdentityBody"
         }
     },
     "AuthCapability": {
@@ -1253,11 +1309,11 @@ export const componentSchemas = {
             "publicName": "AdminIdentityManagedByCliProblem"
         }
     },
-    "PatchAuthUserBody": {
+    "PatchAuthIdentityBody": {
         "type": "object",
         "properties": {
             "status": {
-                "$ref": "#/components/schemas/AuthUserStatus"
+                "$ref": "#/components/schemas/AuthIdentityStatus"
             },
             "displayName": {
                 "type": "string",
@@ -1274,7 +1330,57 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "input",
-            "publicName": "PatchAuthUserBody"
+            "publicName": "PatchAuthIdentityBody"
+        }
+    },
+    "UserEntity": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "principalId": {
+                "type": "integer"
+            },
+            "name": {
+                "type": "string",
+                "nullable": true
+            },
+            "studentId": {
+                "type": "integer",
+                "nullable": true
+            }
+        },
+        "required": [
+            "id",
+            "principalId",
+            "name",
+            "studentId"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "entity",
+            "publicName": "User",
+            "identityFields": [
+                "id"
+            ]
+        }
+    },
+    "UserPreferences": {
+        "type": "object",
+        "properties": {
+            "favoriteCurriculumId": {
+                "type": "integer",
+                "nullable": true
+            }
+        },
+        "required": [
+            "favoriteCurriculumId"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "UserPreferences"
         }
     },
     "CurriculumEntity": {
@@ -1283,7 +1389,7 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
-            "studentId": {
+            "userId": {
                 "type": "integer"
             },
             "name": {
@@ -1419,7 +1525,7 @@ export const componentSchemas = {
         },
         "required": [
             "id",
-            "studentId",
+            "userId",
             "name",
             "isFavorite",
             "selection",
@@ -1445,7 +1551,7 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
-            "studentId": {
+            "userId": {
                 "type": "integer"
             },
             "name": {
@@ -1488,7 +1594,7 @@ export const componentSchemas = {
         },
         "required": [
             "id",
-            "studentId",
+            "userId",
             "name",
             "isFavorite",
             "selection",
@@ -1577,7 +1683,7 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
-            "studentId": {
+            "userId": {
                 "type": "integer"
             },
             "name": {
@@ -1623,7 +1729,7 @@ export const componentSchemas = {
         },
         "required": [
             "id",
-            "studentId",
+            "userId",
             "name",
             "studyPeriodId",
             "studyPeriodYear",
@@ -1644,8 +1750,8 @@ export const componentSchemas = {
                 "id"
             ],
             "relations": {
-                "studentId": {
-                    "resource": "students",
+                "userId": {
+                    "resource": "users",
                     "cardinality": "one"
                 },
                 "studyPeriodId": {
@@ -1653,7 +1759,7 @@ export const componentSchemas = {
                     "cardinality": "one"
                 },
                 "curriculumId": {
-                    "resource": "curricula",
+                    "resource": "curriculums",
                     "cardinality": "one",
                     "nullable": true
                 },
@@ -2565,7 +2671,7 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
-            "studentId": {
+            "userId": {
                 "type": "integer"
             },
             "courseId": {
@@ -2609,7 +2715,7 @@ export const componentSchemas = {
         },
         "required": [
             "id",
-            "studentId",
+            "userId",
             "courseId",
             "studyPeriodId",
             "classId",
@@ -3370,9 +3476,6 @@ export const componentSchemas = {
     "CreateStudentAbsenceBody": {
         "type": "object",
         "properties": {
-            "courseAttemptId": {
-                "type": "integer"
-            },
             "classScheduleId": {
                 "type": "integer"
             },
@@ -3382,7 +3485,6 @@ export const componentSchemas = {
             }
         },
         "required": [
-            "courseAttemptId",
             "classScheduleId",
             "date"
         ],
@@ -3392,7 +3494,7 @@ export const componentSchemas = {
             "publicName": "CreateStudentAbsenceBody"
         }
     },
-    "StudentPublicProfile": {
+    "UserProfile": {
         "type": "object",
         "properties": {
             "publicId": {
@@ -3513,7 +3615,7 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "entity",
-            "publicName": "StudentPublicProfile",
+            "publicName": "UserProfile",
             "identityFields": [
                 "publicId"
             ]
@@ -3590,13 +3692,13 @@ export const componentSchemas = {
             "publicName": "StudentProfileVisibility"
         }
     },
-    "StudentPeoplePage": {
+    "UserPeoplePage": {
         "type": "object",
         "properties": {
             "data": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/StudentPublicPerson"
+                    "$ref": "#/components/schemas/UserPublicPerson"
                 }
             },
             "quantity": {
@@ -3617,10 +3719,10 @@ export const componentSchemas = {
         ],
         "x-pomi-schema": {
             "kind": "page",
-            "publicName": "StudentPeoplePage"
+            "publicName": "UserPeoplePage"
         }
     },
-    "StudentPublicPerson": {
+    "UserPublicPerson": {
         "type": "object",
         "properties": {
             "publicId": {
@@ -3733,7 +3835,7 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "entity",
-            "publicName": "StudentPublicPerson",
+            "publicName": "UserPublicPerson",
             "identityFields": [
                 "publicId"
             ],
@@ -3755,20 +3857,20 @@ export const componentSchemas = {
             }
         }
     },
-    "StudentFriendship": {
+    "UserFriendship": {
         "type": "object",
         "properties": {
             "id": {
                 "type": "integer"
             },
             "status": {
-                "$ref": "#/components/schemas/StudentFriendshipStatus"
+                "$ref": "#/components/schemas/UserFriendshipStatus"
             },
             "direction": {
-                "$ref": "#/components/schemas/StudentFriendshipDirection"
+                "$ref": "#/components/schemas/UserFriendshipDirection"
             },
             "friend": {
-                "$ref": "#/components/schemas/StudentPublicPerson"
+                "$ref": "#/components/schemas/UserPublicPerson"
             },
             "createdAt": {
                 "type": "string",
@@ -3791,7 +3893,7 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "entity",
-            "publicName": "StudentFriendship",
+            "publicName": "UserFriendship",
             "identityFields": [
                 "id"
             ],
@@ -3803,7 +3905,7 @@ export const componentSchemas = {
             }
         }
     },
-    "StudentFriendshipStatus": {
+    "UserFriendshipStatus": {
         "type": "string",
         "enum": [
             "PENDING",
@@ -3811,10 +3913,10 @@ export const componentSchemas = {
         ],
         "x-pomi-schema": {
             "kind": "value-object",
-            "publicName": "StudentFriendshipStatus"
+            "publicName": "UserFriendshipStatus"
         }
     },
-    "StudentFriendshipDirection": {
+    "UserFriendshipDirection": {
         "type": "string",
         "enum": [
             "INCOMING",
@@ -3823,7 +3925,7 @@ export const componentSchemas = {
         ],
         "x-pomi-schema": {
             "kind": "value-object",
-            "publicName": "StudentFriendshipDirection"
+            "publicName": "UserFriendshipDirection"
         }
     },
     "FeedbackReportAccepted": {
@@ -4195,7 +4297,7 @@ export const componentSchemas = {
                 "type": "string",
                 "nullable": true
             },
-            "reporterStudentId": {
+            "reporterUserId": {
                 "type": "integer",
                 "nullable": true
             },
@@ -4217,7 +4319,7 @@ export const componentSchemas = {
             "sourcePath",
             "status",
             "adminMessage",
-            "reporterStudentId",
+            "reporterUserId",
             "createdAt",
             "updatedAt"
         ],
@@ -4720,7 +4822,7 @@ export const componentSchemas = {
                     "additionalProperties": false
                 }
             },
-            "studentId": {
+            "userId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
@@ -4775,7 +4877,7 @@ export const componentSchemas = {
             "groupId",
             "joinedAt",
             "positions",
-            "studentId",
+            "userId",
             "isPublic",
             "leftAt",
             "roles",
@@ -4844,7 +4946,7 @@ export const componentSchemas = {
                     "additionalProperties": false
                 }
             },
-            "studentId": {
+            "userId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
@@ -4907,7 +5009,7 @@ export const componentSchemas = {
             "groupId",
             "joinedAt",
             "positions",
-            "studentId",
+            "userId",
             "isPublic",
             "leftAt",
             "roles",
@@ -4937,12 +5039,12 @@ export const componentSchemas = {
                 "minimum": 0,
                 "exclusiveMinimum": true
             },
-            "recipientStudentId": {
+            "recipientUserId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
             },
-            "inviterStudentId": {
+            "inviterUserId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
@@ -4974,8 +5076,8 @@ export const componentSchemas = {
         "required": [
             "id",
             "groupId",
-            "recipientStudentId",
-            "inviterStudentId",
+            "recipientUserId",
+            "inviterUserId",
             "status",
             "expiresAt",
             "createdAt",
@@ -5003,12 +5105,12 @@ export const componentSchemas = {
                 "minimum": 0,
                 "exclusiveMinimum": true
             },
-            "recipientStudentId": {
+            "recipientUserId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
             },
-            "inviterStudentId": {
+            "inviterUserId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
@@ -5052,8 +5154,8 @@ export const componentSchemas = {
         "required": [
             "id",
             "groupId",
-            "recipientStudentId",
-            "inviterStudentId",
+            "recipientUserId",
+            "inviterUserId",
             "status",
             "expiresAt",
             "createdAt",
@@ -5301,7 +5403,7 @@ export const componentSchemas = {
     "ExchangeNoticeSubscription": {
         "type": "object",
         "properties": {
-            "studentId": {
+            "userId": {
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMinimum": true
@@ -5319,7 +5421,7 @@ export const componentSchemas = {
             }
         },
         "required": [
-            "studentId",
+            "userId",
             "enabled",
             "placeIds"
         ],
@@ -5447,8 +5549,12 @@ export const componentSchemas = {
             "id": {
                 "type": "integer"
             },
+            "userId": {
+                "type": "integer"
+            },
             "ra": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^\\d{6}$"
             },
             "name": {
                 "type": "string"
@@ -5478,6 +5584,7 @@ export const componentSchemas = {
         },
         "required": [
             "id",
+            "userId",
             "ra",
             "name",
             "programId",
@@ -5566,6 +5673,10 @@ export const componentSchemas = {
     "CreateStudentBody": {
         "type": "object",
         "properties": {
+            "ra": {
+                "type": "string",
+                "pattern": "^\\d{6}$"
+            },
             "name": {
                 "type": "string"
             },
@@ -5593,6 +5704,7 @@ export const componentSchemas = {
             }
         },
         "required": [
+            "ra",
             "name"
         ],
         "additionalProperties": false,
@@ -5605,7 +5717,8 @@ export const componentSchemas = {
         "type": "object",
         "properties": {
             "ra": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^\\d{6}$"
             },
             "name": {
                 "type": "string"
@@ -5639,7 +5752,7 @@ export const componentSchemas = {
             "publicName": "PatchStudentBody"
         }
     },
-    "StudentTagInterest": {
+    "UserInterest": {
         "type": "object",
         "properties": {
             "id": {
@@ -5671,7 +5784,7 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "entity",
-            "publicName": "StudentTagInterest",
+            "publicName": "UserInterest",
             "identityFields": [
                 "id"
             ]
@@ -5680,19 +5793,23 @@ export const componentSchemas = {
 } as const
 
 export const enumValues = {
-    "StudentCapability": [
-        "STUDENT_PROFILE_READ",
-        "STUDENT_PROFILE_WRITE",
-        "STUDENT_HISTORY_READ",
-        "STUDENT_HISTORY_WRITE",
-        "STUDENT_PLANNING_READ",
-        "STUDENT_PLANNING_WRITE",
-        "STUDENT_SOCIAL_READ",
-        "STUDENT_SOCIAL_WRITE",
-        "STUDENT_FEEDBACK_READ",
-        "STUDENT_FEEDBACK_WRITE"
+    "CurrentUserEntity.kind": [
+        "HUMAN",
+        "SERVICE"
     ],
-    "AuthUserStatus": [
+    "UserCapability": [
+        "USER_PROFILE_READ",
+        "USER_PROFILE_WRITE",
+        "USER_HISTORY_READ",
+        "USER_HISTORY_WRITE",
+        "USER_PLANNING_READ",
+        "USER_PLANNING_WRITE",
+        "USER_SOCIAL_READ",
+        "USER_SOCIAL_WRITE",
+        "USER_FEEDBACK_READ",
+        "USER_FEEDBACK_WRITE"
+    ],
+    "AuthIdentityStatus": [
         "ACTIVE",
         "DISABLED"
     ],
@@ -5750,11 +5867,11 @@ export const enumValues = {
         "FRIENDS",
         "PUBLIC"
     ],
-    "StudentFriendshipStatus": [
+    "UserFriendshipStatus": [
         "PENDING",
         "ACCEPTED"
     ],
-    "StudentFriendshipDirection": [
+    "UserFriendshipDirection": [
         "INCOMING",
         "OUTGOING",
         "NONE"
@@ -5837,7 +5954,7 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "acceptStudentFriendship": {
+    "acceptUserFriendship": {
         "parameters": [],
         "filter": null
     },
@@ -5853,11 +5970,15 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "createAuthUser": {
+    "createAuthIdentity": {
         "parameters": [],
         "filter": null
     },
     "createCategory": {
+        "parameters": [],
+        "filter": null
+    },
+    "createCurriculums": {
         "parameters": [],
         "filter": null
     },
@@ -5870,48 +5991,19 @@ export const queryCapabilities = {
         "filter": null
     },
     "createGroupEvent": {
-        "parameters": [
-            {
-                "name": "groupId",
-                "required": true,
-                "description": null,
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        ],
+        "parameters": [],
         "filter": null
     },
     "createGroupInvitation": {
-        "parameters": [
-            {
-                "name": "groupId",
-                "required": true,
-                "description": null,
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        ],
+        "parameters": [],
         "filter": null
     },
     "createGroupRole": {
-        "parameters": [
-            {
-                "name": "groupId",
-                "required": true,
-                "description": null,
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        ],
+        "parameters": [],
+        "filter": null
+    },
+    "createPeriodPlans": {
+        "parameters": [],
         "filter": null
     },
     "createStudentAbsences": {
@@ -5922,23 +6014,7 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "createStudentCurricula": {
-        "parameters": [],
-        "filter": null
-    },
-    "createStudentFeedbackReport": {
-        "parameters": [],
-        "filter": null
-    },
-    "createStudentFriendship": {
-        "parameters": [],
-        "filter": null
-    },
     "createStudentHistory": {
-        "parameters": [],
-        "filter": null
-    },
-    "createStudentPeriodPlannings": {
         "parameters": [],
         "filter": null
     },
@@ -5950,11 +6026,23 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "createUserFeedbackReport": {
+        "parameters": [],
+        "filter": null
+    },
+    "createUserFriendship": {
+        "parameters": [],
+        "filter": null
+    },
     "declineGroupInvitation": {
         "parameters": [],
         "filter": null
     },
     "deleteCategory": {
+        "parameters": [],
+        "filter": null
+    },
+    "deleteCurriculums": {
         "parameters": [],
         "filter": null
     },
@@ -5966,11 +6054,11 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "deleteStudentAbsences": {
+    "deletePeriodPlans": {
         "parameters": [],
         "filter": null
     },
-    "deleteStudentAvatar": {
+    "deleteStudentAbsences": {
         "parameters": [],
         "filter": null
     },
@@ -5978,27 +6066,23 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "deleteStudentCurricula": {
-        "parameters": [],
-        "filter": null
-    },
-    "deleteStudentFriendship": {
-        "parameters": [],
-        "filter": null
-    },
-    "deleteStudentPeriodPlannings": {
-        "parameters": [],
-        "filter": null
-    },
     "deleteStudents": {
         "parameters": [],
         "filter": null
     },
-    "deleteStudentTagInterest": {
+    "deleteTag": {
         "parameters": [],
         "filter": null
     },
-    "deleteTag": {
+    "deleteUserAvatar": {
+        "parameters": [],
+        "filter": null
+    },
+    "deleteUserFriendship": {
+        "parameters": [],
+        "filter": null
+    },
+    "deleteUserInterest": {
         "parameters": [],
         "filter": null
     },
@@ -6113,6 +6197,10 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "getCurriculums": {
+        "parameters": [],
+        "filter": null
+    },
     "getExchangeNoticeSubscription": {
         "parameters": [],
         "filter": null
@@ -6129,6 +6217,10 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "getPeriodPlans": {
+        "parameters": [],
+        "filter": null
+    },
     "getProfessorEvaluation": {
         "parameters": [],
         "filter": null
@@ -6137,7 +6229,7 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "getPublicSharedPeriodPlanning": {
+    "getPublicSharedPeriodPlan": {
         "parameters": [],
         "filter": null
     },
@@ -6145,31 +6237,7 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "getStudentCurricula": {
-        "parameters": [],
-        "filter": null
-    },
-    "getStudentGroupMembership": {
-        "parameters": [],
-        "filter": null
-    },
-    "getStudentPeriodPlannings": {
-        "parameters": [],
-        "filter": null
-    },
-    "getStudentPerson": {
-        "parameters": [],
-        "filter": null
-    },
-    "getStudentPublicProfile": {
-        "parameters": [],
-        "filter": null
-    },
     "getStudents": {
-        "parameters": [],
-        "filter": null
-    },
-    "getStudentSharedPeriodPlanning": {
         "parameters": [],
         "filter": null
     },
@@ -6177,7 +6245,31 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "listAuthUsers": {
+    "getUser": {
+        "parameters": [],
+        "filter": null
+    },
+    "getUserGroupMembership": {
+        "parameters": [],
+        "filter": null
+    },
+    "getUserPerson": {
+        "parameters": [],
+        "filter": null
+    },
+    "getUserPreferences": {
+        "parameters": [],
+        "filter": null
+    },
+    "getUserProfile": {
+        "parameters": [],
+        "filter": null
+    },
+    "getUserSharedPeriodPlan": {
+        "parameters": [],
+        "filter": null
+    },
+    "listAuthIdentities": {
         "parameters": [
             {
                 "name": "page",
@@ -6632,6 +6724,66 @@ export const queryCapabilities = {
             "default": "name:asc"
         }
     },
+    "listCurriculums": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "isFavorite:desc,updatedAt:desc"
+                }
+            }
+        ],
+        "filter": null,
+        "sort": {
+            "version": 1,
+            "fields": [
+                "isFavorite",
+                "updatedAt",
+                "name"
+            ],
+            "default": "isFavorite:desc,updatedAt:desc"
+        }
+    },
     "listFeedbackReports": {
         "parameters": [
             {
@@ -6927,69 +7079,9 @@ export const queryCapabilities = {
                     ],
                     "description": "Number of items per page, or \"all\" to return every item."
                 }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Filtre por filter[groupId]=42.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "groupId": {
-                            "oneOf": [
-                                {
-                                    "minimum": 1,
-                                    "type": "integer"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "minimum": 1,
-                                            "type": "integer"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
             }
         ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "groupId"
-                    ],
-                    "schema": {
-                        "minimum": 1,
-                        "type": "integer"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        }
+        "filter": null
     },
     "listGroups": {
         "parameters": [
@@ -7065,69 +7157,9 @@ export const queryCapabilities = {
                     ],
                     "description": "Number of items per page, or \"all\" to return every item."
                 }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Filtre por filter[groupId]=42.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "groupId": {
-                            "oneOf": [
-                                {
-                                    "minimum": 1,
-                                    "type": "integer"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "minimum": 1,
-                                            "type": "integer"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
             }
         ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "groupId"
-                    ],
-                    "schema": {
-                        "minimum": 1,
-                        "type": "integer"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        }
+        "filter": null
     },
     "listManagedGroupInvitations": {
         "parameters": [
@@ -7164,69 +7196,9 @@ export const queryCapabilities = {
                     ],
                     "description": "Number of items per page, or \"all\" to return every item."
                 }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Filtre por filter[groupId]=42.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "groupId": {
-                            "oneOf": [
-                                {
-                                    "minimum": 1,
-                                    "type": "integer"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "minimum": 1,
-                                            "type": "integer"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
             }
         ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "groupId"
-                    ],
-                    "schema": {
-                        "minimum": 1,
-                        "type": "integer"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        }
+        "filter": null
     },
     "listManagedGroupMemberships": {
         "parameters": [
@@ -7263,69 +7235,9 @@ export const queryCapabilities = {
                     ],
                     "description": "Number of items per page, or \"all\" to return every item."
                 }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Filtre por filter[groupId]=42.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "groupId": {
-                            "oneOf": [
-                                {
-                                    "minimum": 1,
-                                    "type": "integer"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "minimum": 1,
-                                            "type": "integer"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
             }
         ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "groupId"
-                    ],
-                    "schema": {
-                        "minimum": 1,
-                        "type": "integer"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        }
+        "filter": null
     },
     "listPendingProfessorEvaluations": {
         "parameters": [
@@ -7474,6 +7386,68 @@ export const queryCapabilities = {
                 "professorName"
             ],
             "default": "courseCode:asc,classCode:asc,professorName:asc"
+        }
+    },
+    "listPeriodPlans": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "updatedAt:desc"
+                }
+            }
+        ],
+        "filter": null,
+        "sort": {
+            "version": 1,
+            "fields": [
+                "updatedAt",
+                "name",
+                "studyPeriodYear",
+                "studyPeriodYearPeriod",
+                "visibility"
+            ],
+            "default": "updatedAt:desc"
         }
     },
     "listProfessorEvaluationSummaries": {
@@ -7720,7 +7694,7 @@ export const queryCapabilities = {
             }
         }
     },
-    "listPublicSharedPeriodPlannings": {
+    "listPublicSharedPeriodPlans": {
         "parameters": [
             {
                 "name": "page",
@@ -7836,124 +7810,6 @@ export const queryCapabilities = {
                 "studyPeriodYear"
             ],
             "default": "updatedAt:desc"
-        }
-    },
-    "listStudentAbsences": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Structured absence filters. Use filter[courseAttemptId]=42.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "courseAttemptId": {
-                            "oneOf": [
-                                {
-                                    "type": "integer"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "type": "integer"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "type": "integer"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "date:desc"
-                }
-            }
-        ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "courseAttemptId"
-                    ],
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        },
-        "sort": {
-            "version": 1,
-            "fields": [
-                "date",
-                "courseCode",
-                "classCode",
-                "start",
-                "createdAt"
-            ],
-            "default": "date:desc"
         }
     },
     "listStudentCourseAttempts": {
@@ -8186,519 +8042,6 @@ export const queryCapabilities = {
             "default": "createdAt:desc"
         }
     },
-    "listStudentCurricula": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "isFavorite:desc,updatedAt:desc"
-                }
-            }
-        ],
-        "filter": null,
-        "sort": {
-            "version": 1,
-            "fields": [
-                "isFavorite",
-                "updatedAt",
-                "name"
-            ],
-            "default": "isFavorite:desc,updatedAt:desc"
-        }
-    },
-    "listStudentFeedbackReports": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "createdAt:desc"
-                }
-            }
-        ],
-        "filter": null,
-        "sort": {
-            "version": 1,
-            "fields": [
-                "createdAt",
-                "updatedAt",
-                "status",
-                "kind",
-                "title"
-            ],
-            "default": "createdAt:desc"
-        }
-    },
-    "listStudentFriendships": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Structured friendship filters. Use filter[status]=PENDING or filter[direction]=INCOMING.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "status": {
-                            "oneOf": [
-                                {
-                                    "enum": [
-                                        "PENDING",
-                                        "ACCEPTED"
-                                    ],
-                                    "type": "string"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "enum": [
-                                                "PENDING",
-                                                "ACCEPTED"
-                                            ],
-                                            "type": "string"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "enum": [
-                                                    "PENDING",
-                                                    "ACCEPTED"
-                                                ],
-                                                "type": "string"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        },
-                        "direction": {
-                            "oneOf": [
-                                {
-                                    "enum": [
-                                        "INCOMING",
-                                        "OUTGOING"
-                                    ],
-                                    "type": "string"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "enum": [
-                                                "INCOMING",
-                                                "OUTGOING"
-                                            ],
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "updatedAt:desc"
-                }
-            }
-        ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "status"
-                    ],
-                    "schema": {
-                        "enum": [
-                            "PENDING",
-                            "ACCEPTED"
-                        ],
-                        "type": "string"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                },
-                {
-                    "path": [
-                        "direction"
-                    ],
-                    "schema": {
-                        "enum": [
-                            "INCOMING",
-                            "OUTGOING"
-                        ],
-                        "type": "string"
-                    },
-                    "operators": [
-                        "eq"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        },
-        "sort": {
-            "version": 1,
-            "fields": [
-                "updatedAt",
-                "status"
-            ],
-            "default": "updatedAt:desc"
-        }
-    },
-    "listStudentGroupMemberships": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Filtre por filter[groupId]=42.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "groupId": {
-                            "oneOf": [
-                                {
-                                    "minimum": 1,
-                                    "type": "integer"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "minimum": 1,
-                                            "type": "integer"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
-            }
-        ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "groupId"
-                    ],
-                    "schema": {
-                        "minimum": 1,
-                        "type": "integer"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        }
-    },
-    "listStudentPeople": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 50,
-                    "description": "Number of items per page."
-                }
-            },
-            {
-                "name": "query",
-                "required": false,
-                "description": null,
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "string",
-                    "minLength": 1
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "displayName:asc"
-                }
-            }
-        ],
-        "filter": null,
-        "sort": {
-            "version": 1,
-            "fields": [
-                "displayName"
-            ],
-            "default": "displayName:asc"
-        }
-    },
-    "listStudentPeriodPlannings": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "updatedAt:desc"
-                }
-            }
-        ],
-        "filter": null,
-        "sort": {
-            "version": 1,
-            "fields": [
-                "updatedAt",
-                "name",
-                "studyPeriodYear",
-                "studyPeriodYearPeriod",
-                "visibility"
-            ],
-            "default": "updatedAt:desc"
-        }
-    },
     "listStudents": {
         "parameters": [
             {
@@ -8758,175 +8101,6 @@ export const queryCapabilities = {
                 "entryYear"
             ],
             "default": "id:asc"
-        }
-    },
-    "listStudentSharedPeriodPlannings": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 50,
-                    "description": "Number of items per page."
-                }
-            },
-            {
-                "name": "filter",
-                "required": false,
-                "description": "Structured shared planning filters. Use filter[ownerPublicId]=UUID.",
-                "style": "deepObject",
-                "explode": true,
-                "schema": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "ownerPublicId": {
-                            "oneOf": [
-                                {
-                                    "format": "uuid",
-                                    "type": "string"
-                                },
-                                {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "eq": {
-                                            "format": "uuid",
-                                            "type": "string"
-                                        },
-                                        "in": {
-                                            "items": {
-                                                "format": "uuid",
-                                                "type": "string"
-                                            },
-                                            "type": "array"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "object"
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "updatedAt:desc"
-                }
-            }
-        ],
-        "filter": {
-            "version": 1,
-            "fields": [
-                {
-                    "path": [
-                        "ownerPublicId"
-                    ],
-                    "schema": {
-                        "format": "uuid",
-                        "type": "string"
-                    },
-                    "operators": [
-                        "eq",
-                        "in"
-                    ]
-                }
-            ],
-            "constraints": {
-                "maxExpressions": 20,
-                "maxDepth": 3,
-                "maxParameters": 100
-            }
-        },
-        "sort": {
-            "version": 1,
-            "fields": [
-                "updatedAt",
-                "name",
-                "studyPeriodYear"
-            ],
-            "default": "updatedAt:desc"
-        }
-    },
-    "listStudentTagInterests": {
-        "parameters": [
-            {
-                "name": "page",
-                "required": false,
-                "description": "Page number. The first page is 1.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Page number. The first page is 1."
-                }
-            },
-            {
-                "name": "pageSize",
-                "required": false,
-                "description": "Number of items per page, or \"all\" to return every item.",
-                "style": null,
-                "explode": null,
-                "schema": {
-                    "anyOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        {
-                            "type": "string",
-                            "enum": [
-                                "all"
-                            ]
-                        }
-                    ],
-                    "description": "Number of items per page, or \"all\" to return every item."
-                }
-            },
-            {
-                "name": "sort",
-                "required": false,
-                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                "style": "form",
-                "explode": false,
-                "schema": {
-                    "type": "string",
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "example": "name:asc"
-                }
-            }
-        ],
-        "filter": null,
-        "sort": {
-            "version": 1,
-            "fields": [
-                "name"
-            ],
-            "default": "name:asc"
         }
     },
     "listTagCourses": {
@@ -9176,6 +8350,688 @@ export const queryCapabilities = {
             "default": "name:asc"
         }
     },
+    "listUserAbsences": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre pelo ID da tentativa usando eq ou in.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "courseAttemptId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "date:desc"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "courseAttemptId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        },
+        "sort": {
+            "version": 1,
+            "fields": [
+                "date",
+                "courseCode",
+                "classCode",
+                "start",
+                "createdAt"
+            ],
+            "default": "date:desc"
+        }
+    },
+    "listUserFeedbackReports": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "createdAt:desc"
+                }
+            }
+        ],
+        "filter": null,
+        "sort": {
+            "version": 1,
+            "fields": [
+                "createdAt",
+                "updatedAt",
+                "status",
+                "kind",
+                "title"
+            ],
+            "default": "createdAt:desc"
+        }
+    },
+    "listUserFriendships": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Structured friendship filters. Use filter[status]=PENDING or filter[direction]=INCOMING.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "status": {
+                            "oneOf": [
+                                {
+                                    "enum": [
+                                        "PENDING",
+                                        "ACCEPTED"
+                                    ],
+                                    "type": "string"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "enum": [
+                                                "PENDING",
+                                                "ACCEPTED"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "enum": [
+                                                    "PENDING",
+                                                    "ACCEPTED"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "direction": {
+                            "oneOf": [
+                                {
+                                    "enum": [
+                                        "INCOMING",
+                                        "OUTGOING"
+                                    ],
+                                    "type": "string"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "enum": [
+                                                "INCOMING",
+                                                "OUTGOING"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "updatedAt:desc"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "status"
+                    ],
+                    "schema": {
+                        "enum": [
+                            "PENDING",
+                            "ACCEPTED"
+                        ],
+                        "type": "string"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                },
+                {
+                    "path": [
+                        "direction"
+                    ],
+                    "schema": {
+                        "enum": [
+                            "INCOMING",
+                            "OUTGOING"
+                        ],
+                        "type": "string"
+                    },
+                    "operators": [
+                        "eq"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        },
+        "sort": {
+            "version": 1,
+            "fields": [
+                "updatedAt",
+                "status"
+            ],
+            "default": "updatedAt:desc"
+        }
+    },
+    "listUserGroupMemberships": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Filtre por filter[groupId]=42.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "groupId": {
+                            "oneOf": [
+                                {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "groupId"
+                    ],
+                    "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        }
+    },
+    "listUserInterests": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page, or \"all\" to return every item.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "all"
+                            ]
+                        }
+                    ],
+                    "description": "Number of items per page, or \"all\" to return every item."
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "name:asc"
+                }
+            }
+        ],
+        "filter": null,
+        "sort": {
+            "version": 1,
+            "fields": [
+                "name"
+            ],
+            "default": "name:asc"
+        }
+    },
+    "listUserPeople": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "description": "Number of items per page."
+                }
+            },
+            {
+                "name": "query",
+                "required": false,
+                "description": null,
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "displayName:asc"
+                }
+            }
+        ],
+        "filter": null,
+        "sort": {
+            "version": 1,
+            "fields": [
+                "displayName"
+            ],
+            "default": "displayName:asc"
+        }
+    },
+    "listUserSharedPeriodPlans": {
+        "parameters": [
+            {
+                "name": "page",
+                "required": false,
+                "description": "Page number. The first page is 1.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Page number. The first page is 1."
+                }
+            },
+            {
+                "name": "pageSize",
+                "required": false,
+                "description": "Number of items per page.",
+                "style": null,
+                "explode": null,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "description": "Number of items per page."
+                }
+            },
+            {
+                "name": "filter",
+                "required": false,
+                "description": "Structured shared planning filters. Use filter[ownerPublicId]=UUID.",
+                "style": "deepObject",
+                "explode": true,
+                "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "ownerPublicId": {
+                            "oneOf": [
+                                {
+                                    "format": "uuid",
+                                    "type": "string"
+                                },
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "eq": {
+                                            "format": "uuid",
+                                            "type": "string"
+                                        },
+                                        "in": {
+                                            "items": {
+                                                "format": "uuid",
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            {
+                "name": "sort",
+                "required": false,
+                "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                "style": "form",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "example": "updatedAt:desc"
+                }
+            }
+        ],
+        "filter": {
+            "version": 1,
+            "fields": [
+                {
+                    "path": [
+                        "ownerPublicId"
+                    ],
+                    "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "operators": [
+                        "eq",
+                        "in"
+                    ]
+                }
+            ],
+            "constraints": {
+                "maxExpressions": 20,
+                "maxDepth": 3,
+                "maxParameters": 100
+            }
+        },
+        "sort": {
+            "version": 1,
+            "fields": [
+                "updatedAt",
+                "name",
+                "studyPeriodYear"
+            ],
+            "default": "updatedAt:desc"
+        }
+    },
     "publishGroupEvent": {
         "parameters": [],
         "filter": null
@@ -9184,7 +9040,7 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "putStudentAvatar": {
+    "putUserAvatar": {
         "parameters": [],
         "filter": null
     },
@@ -9212,11 +9068,15 @@ export const queryCapabilities = {
         ],
         "filter": null
     },
-    "updateAuthUser": {
+    "updateAuthIdentity": {
         "parameters": [],
         "filter": null
     },
     "updateCategory": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateCurriculums": {
         "parameters": [],
         "filter": null
     },
@@ -9244,6 +9104,10 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
+    "updatePeriodPlans": {
+        "parameters": [],
+        "filter": null
+    },
     "updateProfessorEvaluation": {
         "parameters": [],
         "filter": null
@@ -9252,31 +9116,31 @@ export const queryCapabilities = {
         "parameters": [],
         "filter": null
     },
-    "updateStudentCurricula": {
-        "parameters": [],
-        "filter": null
-    },
-    "updateStudentGroupMembership": {
-        "parameters": [],
-        "filter": null
-    },
-    "updateStudentPeriodPlannings": {
-        "parameters": [],
-        "filter": null
-    },
-    "updateStudentPublicProfile": {
-        "parameters": [],
-        "filter": null
-    },
     "updateStudents": {
         "parameters": [],
         "filter": null
     },
-    "updateStudentTagInterest": {
+    "updateTag": {
         "parameters": [],
         "filter": null
     },
-    "updateTag": {
+    "updateUser": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateUserGroupMembership": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateUserInterest": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateUserPreferences": {
+        "parameters": [],
+        "filter": null
+    },
+    "updateUserProfile": {
         "parameters": [],
         "filter": null
     }

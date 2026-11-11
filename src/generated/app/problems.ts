@@ -169,7 +169,7 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
-    "acceptStudentFriendship": [
+    "acceptUserFriendship": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict"
@@ -186,12 +186,17 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
-    "createAuthUser": [
+    "createAuthIdentity": [
         "urn:pomi:problem:invalid-request"
     ],
     "createCategory": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:unique-constraint-conflict"
+    ],
+    "createCurriculums": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:reference-not-found",
+        "urn:pomi:problem:invalid-curriculum"
     ],
     "createFeedbackReport": [
         "urn:pomi:problem:invalid-request",
@@ -213,8 +218,14 @@ export const operationProblemTypes = {
     "createGroupRole": [
         "urn:pomi:problem:invalid-request"
     ],
+    "createPeriodPlans": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:reference-not-found",
+        "urn:pomi:problem:invalid-period-plan"
+    ],
     "createStudentAbsences": [
         "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict",
         "urn:pomi:problem:reference-not-found",
         "urn:pomi:problem:invalid-student-absence"
@@ -225,31 +236,10 @@ export const operationProblemTypes = {
         "urn:pomi:problem:reference-not-found",
         "urn:pomi:problem:invalid-student-course-attempt"
     ],
-    "createStudentCurricula": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:reference-not-found",
-        "urn:pomi:problem:invalid-curriculum"
-    ],
-    "createStudentFeedbackReport": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found",
-        "urn:pomi:problem:reference-not-found",
-        "urn:pomi:problem:invalid-feedback-report"
-    ],
-    "createStudentFriendship": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found",
-        "urn:pomi:problem:unique-constraint-conflict"
-    ],
     "createStudentHistory": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:invalid-student-history-import"
-    ],
-    "createStudentPeriodPlannings": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:reference-not-found",
-        "urn:pomi:problem:invalid-period-plan"
     ],
     "createStudents": [
         "urn:pomi:problem:invalid-request",
@@ -262,6 +252,17 @@ export const operationProblemTypes = {
         "urn:pomi:problem:unique-constraint-conflict",
         "urn:pomi:problem:reference-not-found"
     ],
+    "createUserFeedbackReport": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:reference-not-found",
+        "urn:pomi:problem:invalid-feedback-report"
+    ],
+    "createUserFriendship": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:unique-constraint-conflict"
+    ],
     "declineGroupInvitation": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
@@ -270,6 +271,10 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict"
+    ],
+    "deleteCurriculums": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
     ],
     "deleteGroupAvatar": [
         "urn:pomi:problem:invalid-request",
@@ -282,30 +287,15 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
+    "deletePeriodPlans": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
     "deleteStudentAbsences": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
-    "deleteStudentAvatar": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:unauthenticated",
-        "urn:pomi:problem:forbidden",
-        "urn:pomi:problem:resource-not-found",
-        "urn:pomi:problem:conflict"
-    ],
     "deleteStudentCourseAttempts": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "deleteStudentCurricula": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "deleteStudentFriendship": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "deleteStudentPeriodPlannings": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
@@ -314,13 +304,24 @@ export const operationProblemTypes = {
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:invalid-student-profile"
     ],
-    "deleteStudentTagInterest": [
-        "urn:pomi:problem:invalid-request"
-    ],
     "deleteTag": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict"
+    ],
+    "deleteUserAvatar": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:unauthenticated",
+        "urn:pomi:problem:forbidden",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:conflict"
+    ],
+    "deleteUserFriendship": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "deleteUserInterest": [
+        "urn:pomi:problem:invalid-request"
     ],
     "getCategory": [
         "urn:pomi:problem:invalid-request",
@@ -332,6 +333,10 @@ export const operationProblemTypes = {
     ],
     "getCurrentUser": [
         "urn:pomi:problem:invalid-request"
+    ],
+    "getCurriculums": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
     ],
     "getExchangeNoticeSubscription": [
         "urn:pomi:problem:invalid-request"
@@ -351,6 +356,10 @@ export const operationProblemTypes = {
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:service-unavailable"
     ],
+    "getPeriodPlans": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
     "getProfessorEvaluation": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:reference-not-found",
@@ -360,7 +369,7 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
-    "getPublicSharedPeriodPlanning": [
+    "getPublicSharedPeriodPlan": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
@@ -368,31 +377,7 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
-    "getStudentCurricula": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "getStudentGroupMembership": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "getStudentPeriodPlannings": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "getStudentPerson": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "getStudentPublicProfile": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
     "getStudents": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "getStudentSharedPeriodPlanning": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
@@ -400,7 +385,31 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
-    "listAuthUsers": [
+    "getUser": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "getUserGroupMembership": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "getUserPerson": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "getUserPreferences": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "getUserProfile": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "getUserSharedPeriodPlan": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "listAuthIdentities": [
         "urn:pomi:problem:invalid-request"
     ],
     "listBotGrants": [
@@ -418,6 +427,9 @@ export const operationProblemTypes = {
     "listCourseTags": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
+    ],
+    "listCurriculums": [
+        "urn:pomi:problem:invalid-request"
     ],
     "listFeedbackReports": [
         "urn:pomi:problem:invalid-request"
@@ -446,46 +458,22 @@ export const operationProblemTypes = {
     "listPendingProfessorEvaluations": [
         "urn:pomi:problem:invalid-request"
     ],
+    "listPeriodPlans": [
+        "urn:pomi:problem:invalid-request"
+    ],
     "listProfessorEvaluationSummaries": [
         "urn:pomi:problem:invalid-request"
     ],
     "listPublicGroupMemberships": [
         "urn:pomi:problem:invalid-request"
     ],
-    "listPublicSharedPeriodPlannings": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentAbsences": [
+    "listPublicSharedPeriodPlans": [
         "urn:pomi:problem:invalid-request"
     ],
     "listStudentCourseAttempts": [
         "urn:pomi:problem:invalid-request"
     ],
-    "listStudentCurricula": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentFeedbackReports": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentFriendships": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentGroupMemberships": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentPeople": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentPeriodPlannings": [
-        "urn:pomi:problem:invalid-request"
-    ],
     "listStudents": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentSharedPeriodPlannings": [
-        "urn:pomi:problem:invalid-request"
-    ],
-    "listStudentTagInterests": [
         "urn:pomi:problem:invalid-request"
     ],
     "listTagCourses": [
@@ -493,6 +481,28 @@ export const operationProblemTypes = {
         "urn:pomi:problem:resource-not-found"
     ],
     "listTags": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listUserAbsences": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "listUserFeedbackReports": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listUserFriendships": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listUserGroupMemberships": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listUserInterests": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listUserPeople": [
+        "urn:pomi:problem:invalid-request"
+    ],
+    "listUserSharedPeriodPlans": [
         "urn:pomi:problem:invalid-request"
     ],
     "publishGroupEvent": [
@@ -510,7 +520,7 @@ export const operationProblemTypes = {
         "urn:pomi:problem:media-upload-rate-limit",
         "urn:pomi:problem:service-unavailable"
     ],
-    "putStudentAvatar": [
+    "putUserAvatar": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:unauthenticated",
         "urn:pomi:problem:forbidden",
@@ -532,7 +542,7 @@ export const operationProblemTypes = {
     "unsubscribeExchangeNotices": [
         "urn:pomi:problem:invalid-request"
     ],
-    "updateAuthUser": [
+    "updateAuthIdentity": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:admin-identity-managed-by-cli",
         "urn:pomi:problem:resource-not-found"
@@ -541,6 +551,12 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict"
+    ],
+    "updateCurriculums": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:reference-not-found",
+        "urn:pomi:problem:invalid-curriculum"
     ],
     "updateExchangeNoticeSubscription": [
         "urn:pomi:problem:invalid-request",
@@ -567,6 +583,12 @@ export const operationProblemTypes = {
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found"
     ],
+    "updatePeriodPlans": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found",
+        "urn:pomi:problem:reference-not-found",
+        "urn:pomi:problem:invalid-period-plan"
+    ],
     "updateProfessorEvaluation": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:reference-not-found",
@@ -579,41 +601,37 @@ export const operationProblemTypes = {
         "urn:pomi:problem:reference-not-found",
         "urn:pomi:problem:invalid-student-course-attempt"
     ],
-    "updateStudentCurricula": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found",
-        "urn:pomi:problem:reference-not-found",
-        "urn:pomi:problem:invalid-curriculum"
-    ],
-    "updateStudentGroupMembership": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
-    "updateStudentPeriodPlannings": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found",
-        "urn:pomi:problem:reference-not-found",
-        "urn:pomi:problem:invalid-period-plan"
-    ],
-    "updateStudentPublicProfile": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:resource-not-found"
-    ],
     "updateStudents": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:reference-not-found",
         "urn:pomi:problem:invalid-student-profile"
     ],
-    "updateStudentTagInterest": [
-        "urn:pomi:problem:invalid-request",
-        "urn:pomi:problem:reference-not-found"
-    ],
     "updateTag": [
         "urn:pomi:problem:invalid-request",
         "urn:pomi:problem:resource-not-found",
         "urn:pomi:problem:unique-constraint-conflict",
         "urn:pomi:problem:reference-not-found"
+    ],
+    "updateUser": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "updateUserGroupMembership": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "updateUserInterest": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:reference-not-found"
+    ],
+    "updateUserPreferences": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
+    ],
+    "updateUserProfile": [
+        "urn:pomi:problem:invalid-request",
+        "urn:pomi:problem:resource-not-found"
     ]
 } as const
 

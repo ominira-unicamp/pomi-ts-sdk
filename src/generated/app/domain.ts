@@ -63,8 +63,14 @@ export type BotIdentity = Domain<BotIdentityTransport>
 export type BotGrantTransport = components['schemas']['BotGrantEntity']
 export type BotGrant = Domain<BotGrantTransport>
 
-export type AuthUserTransport = components['schemas']['AuthUserEntity']
-export type AuthUser = Domain<AuthUserTransport>
+export type AuthIdentityTransport = components['schemas']['AuthIdentityEntity']
+export type AuthIdentity = Domain<AuthIdentityTransport>
+
+export type UserTransport = components['schemas']['UserEntity']
+export type User = Domain<UserTransport>
+
+export type UserPreferencesTransport = components['schemas']['UserPreferences']
+export type UserPreferences = Domain<UserPreferencesTransport>
 
 export type CurriculumTransport = components['schemas']['CurriculumEntity']
 export type Curriculum = Domain<CurriculumTransport>
@@ -138,20 +144,20 @@ export type StudentHistoryImportSummary = Domain<StudentHistoryImportSummaryTran
 export type StudentAbsenceTransport = components['schemas']['StudentAbsence']
 export type StudentAbsence = Domain<StudentAbsenceTransport>
 
-export type StudentPublicProfileTransport = components['schemas']['StudentPublicProfile']
-export type StudentPublicProfile = Domain<StudentPublicProfileTransport>
+export type UserProfileTransport = components['schemas']['UserProfile']
+export type UserProfile = Domain<UserProfileTransport>
 
 export type StudentCurrentCourseTransport = components['schemas']['StudentCurrentCourse']
 export type StudentCurrentCourse = Domain<StudentCurrentCourseTransport>
 
-export type StudentPeoplePageTransport = components['schemas']['StudentPeoplePage']
-export type StudentPeoplePage = Domain<StudentPeoplePageTransport>
+export type UserPeoplePageTransport = components['schemas']['UserPeoplePage']
+export type UserPeoplePage = Domain<UserPeoplePageTransport>
 
-export type StudentPublicPersonTransport = components['schemas']['StudentPublicPerson']
-export type StudentPublicPerson = Domain<StudentPublicPersonTransport>
+export type UserPublicPersonTransport = components['schemas']['UserPublicPerson']
+export type UserPublicPerson = Domain<UserPublicPersonTransport>
 
-export type StudentFriendshipTransport = components['schemas']['StudentFriendship']
-export type StudentFriendship = Domain<StudentFriendshipTransport>
+export type UserFriendshipTransport = components['schemas']['UserFriendship']
+export type UserFriendship = Domain<UserFriendshipTransport>
 
 export type FeedbackReportAcceptedTransport = components['schemas']['FeedbackReportAccepted']
 export type FeedbackReportAccepted = Domain<FeedbackReportAcceptedTransport>
@@ -219,8 +225,8 @@ export type TagRelatedCourse = Domain<TagRelatedCourseTransport>
 export type StudentTransport = components['schemas']['StudentEntity']
 export type Student = Domain<StudentTransport>
 
-export type StudentTagInterestTransport = components['schemas']['StudentTagInterest']
-export type StudentTagInterest = Domain<StudentTagInterestTransport>
+export type UserInterestTransport = components['schemas']['UserInterest']
+export type UserInterest = Domain<UserInterestTransport>
 
 
 
@@ -287,7 +293,7 @@ export const domainModelDefinitions = {
         "schema": "CurrentUserEntity",
         "transportFields": [],
         "identityFields": [
-            "id"
+            "principalId"
         ],
         "readOnlyFields": [],
         "relations": {}
@@ -310,12 +316,28 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
-    "AuthUser": {
-        "schema": "AuthUserEntity",
+    "AuthIdentity": {
+        "schema": "AuthIdentityEntity",
         "transportFields": [],
         "identityFields": [
             "id"
         ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "User": {
+        "schema": "UserEntity",
+        "transportFields": [],
+        "identityFields": [
+            "id"
+        ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "UserPreferences": {
+        "schema": "UserPreferences",
+        "transportFields": [],
+        "identityFields": [],
         "readOnlyFields": [],
         "relations": {}
     },
@@ -345,8 +367,8 @@ export const domainModelDefinitions = {
         ],
         "readOnlyFields": [],
         "relations": {
-            "studentId": {
-                "resource": "students",
+            "userId": {
+                "resource": "users",
                 "cardinality": "one"
             },
             "studyPeriodId": {
@@ -354,7 +376,7 @@ export const domainModelDefinitions = {
                 "cardinality": "one"
             },
             "curriculumId": {
-                "resource": "curricula",
+                "resource": "curriculums",
                 "cardinality": "one",
                 "nullable": true
             },
@@ -537,8 +559,8 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
-    "StudentPublicProfile": {
-        "schema": "StudentPublicProfile",
+    "UserProfile": {
+        "schema": "UserProfile",
         "transportFields": [],
         "identityFields": [
             "publicId"
@@ -553,15 +575,15 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
-    "StudentPeoplePage": {
-        "schema": "StudentPeoplePage",
+    "UserPeoplePage": {
+        "schema": "UserPeoplePage",
         "transportFields": [],
         "identityFields": [],
         "readOnlyFields": [],
         "relations": {}
     },
-    "StudentPublicPerson": {
-        "schema": "StudentPublicPerson",
+    "UserPublicPerson": {
+        "schema": "UserPublicPerson",
         "transportFields": [],
         "identityFields": [
             "publicId"
@@ -584,8 +606,8 @@ export const domainModelDefinitions = {
             }
         }
     },
-    "StudentFriendship": {
-        "schema": "StudentFriendship",
+    "UserFriendship": {
+        "schema": "UserFriendship",
         "transportFields": [],
         "identityFields": [
             "id"
@@ -780,8 +802,8 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
-    "StudentTagInterest": {
-        "schema": "StudentTagInterest",
+    "UserInterest": {
+        "schema": "UserInterest",
         "transportFields": [],
         "identityFields": [
             "id"

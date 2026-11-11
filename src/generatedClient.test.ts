@@ -84,16 +84,19 @@ test('sends App request bodies and bearer authentication for 201 responses', asy
   )
 
   const result = await sdk.app.createStudentAbsences({
-    sid: 7,
+    userId: 7,
+    attemptId: 2,
     body: {
-      courseAttemptId: 2,
       classScheduleId: 3,
       date: '2026-08-20',
     },
   })
 
   assert.deepEqual(result, { id: 1 })
-  assert.equal(requests[0]?.url, 'https://app.example.test/student/7/absences')
+  assert.equal(
+    requests[0]?.url,
+    'https://app.example.test/users/7/course-attempts/2/absences',
+  )
   assert.equal(requests[0]?.init?.method, 'POST')
   assert.equal(
     new Headers(requests[0]?.init?.headers).get('Authorization'),
@@ -102,7 +105,6 @@ test('sends App request bodies and bearer authentication for 201 responses', asy
   assert.equal(
     requests[0]?.init?.body,
     JSON.stringify({
-      courseAttemptId: 2,
       classScheduleId: 3,
       date: '2026-08-20',
     }),
@@ -122,8 +124,8 @@ test('prefers per-call authentication context over the client token', async () =
     async () => 'client-token',
   )
 
-  await sdk.app.listStudentFeedbackReports(
-    { sid: 7 },
+  await sdk.app.listUserFeedbackReports(
+    { userId: 7 },
     { getAccessToken: async () => 'call-token' },
   )
 
@@ -136,8 +138,9 @@ test('returns undefined for documented 204 responses', async () => {
     async () => 'token',
   )
   const result = await sdk.app.replaceBotGrant({
-    botAuthUserId: 8,
-    body: { capabilities: ['STUDENT_PROFILE_READ'] },
+    userId: 7,
+    botAuthIdentityId: 8,
+    body: { capabilities: ['USER_PROFILE_READ'], authorAuthIdentityId: 9 },
   })
   assert.equal(result, undefined)
 })
@@ -154,7 +157,8 @@ test('rejects a missing required request body before fetching', async () => {
 
   await assert.rejects(
     (sdk.app.createStudentAbsences as (input: unknown) => Promise<unknown>)({
-      sid: 7,
+      userId: 7,
+      attemptId: 2,
     }),
     /requires a request body/,
   )
@@ -211,7 +215,7 @@ test('throws for missing path parameters and missing authentication', async () =
   const sdk = sdkWith(async () => new Response('{}', { status: 200 }))
   await assert.rejects(sdk.data.getCourses({} as never), TypeError)
   await assert.rejects(
-    sdk.app.listStudentAbsences({ sid: 7 }),
+    sdk.app.listUserAbsences({ userId: 7 }),
     /Authentication is required/,
   )
 })
@@ -262,16 +266,16 @@ test('maps expressive nested resources to operational requests', async () => {
     async () => 'token',
   )
 
-  await sdk.app.periodPlannings.update(7, 8, { visibility: 'PUBLIC' })
+  await sdk.app.periodPlans.update(7, 8, { visibility: 'PUBLIC' })
   await sdk.app.courseAttempts.update(7, 9, { grade: 8.5 })
 
   assert.equal(
     requests[0]?.url,
-    'https://app.example.test/student/7/period-plannings/8',
+    'https://app.example.test/users/7/period-plans/8',
   )
   assert.equal(
     requests[1]?.url,
-    'https://app.example.test/student/7/course-attempts/9',
+    'https://app.example.test/users/7/course-attempts/9',
   )
   assert.equal(
     new Headers(requests[0]?.init?.headers).get('Authorization'),
@@ -357,7 +361,7 @@ test('sends media uploads as FormData with the browser boundary', async () => {
   const form = new FormData()
   form.append('images[]', new Blob(['image'], { type: 'image/png' }), 'avatar.png')
 
-  await sdk.app.media.putStudentAvatar(7, form)
+  await sdk.app.media.putUserAvatar(7, form)
 
   assert.equal(sent?.body, form)
   assert.equal(new Headers(sent?.headers).get('Content-Type'), null)

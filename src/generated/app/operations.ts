@@ -27,9 +27,9 @@ type OperationInput<Path, Query, Header, Body, BodyRequired extends boolean> =
 export type acceptGroupInvitationInput = OperationInput<operations["acceptGroupInvitation"]['parameters']['path'], operations["acceptGroupInvitation"]['parameters']['query'], operations["acceptGroupInvitation"]['parameters']['header'], RequestBodyOf<operations["acceptGroupInvitation"]>, false>
 export type acceptGroupInvitationOutput = import('./domain.js').OwnGroupMembership
 export type acceptGroupInvitationProblem = operations["acceptGroupInvitation"]['responses'][400]['content']["application/problem+json"] | operations["acceptGroupInvitation"]['responses'][404]['content']["application/problem+json"] | operations["acceptGroupInvitation"]['responses'][500]['content']["application/problem+json"]
-export type acceptStudentFriendshipInput = OperationInput<operations["acceptStudentFriendship"]['parameters']['path'], operations["acceptStudentFriendship"]['parameters']['query'], operations["acceptStudentFriendship"]['parameters']['header'], RequestBodyOf<operations["acceptStudentFriendship"]>, false>
-export type acceptStudentFriendshipOutput = import('./domain.js').StudentFriendship
-export type acceptStudentFriendshipProblem = operations["acceptStudentFriendship"]['responses'][400]['content']["application/problem+json"] | operations["acceptStudentFriendship"]['responses'][404]['content']["application/problem+json"] | operations["acceptStudentFriendship"]['responses'][409]['content']["application/problem+json"] | operations["acceptStudentFriendship"]['responses'][500]['content']["application/problem+json"]
+export type acceptUserFriendshipInput = OperationInput<operations["acceptUserFriendship"]['parameters']['path'], operations["acceptUserFriendship"]['parameters']['query'], operations["acceptUserFriendship"]['parameters']['header'], RequestBodyOf<operations["acceptUserFriendship"]>, false>
+export type acceptUserFriendshipOutput = import('./domain.js').UserFriendship
+export type acceptUserFriendshipProblem = operations["acceptUserFriendship"]['responses'][400]['content']["application/problem+json"] | operations["acceptUserFriendship"]['responses'][404]['content']["application/problem+json"] | operations["acceptUserFriendship"]['responses'][409]['content']["application/problem+json"] | operations["acceptUserFriendship"]['responses'][500]['content']["application/problem+json"]
 export type addCourseTagInput = OperationInput<operations["addCourseTag"]['parameters']['path'], operations["addCourseTag"]['parameters']['query'], operations["addCourseTag"]['parameters']['header'], RequestBodyOf<operations["addCourseTag"]>, false>
 export type addCourseTagOutput = void
 export type addCourseTagProblem = operations["addCourseTag"]['responses'][400]['content']["application/problem+json"] | operations["addCourseTag"]['responses'][422]['content']["application/problem+json"] | operations["addCourseTag"]['responses'][500]['content']["application/problem+json"]
@@ -39,12 +39,15 @@ export type archiveGroupProblem = operations["archiveGroup"]['responses'][400]['
 export type cancelGroupEventInput = OperationInput<operations["cancelGroupEvent"]['parameters']['path'], operations["cancelGroupEvent"]['parameters']['query'], operations["cancelGroupEvent"]['parameters']['header'], RequestBodyOf<operations["cancelGroupEvent"]>, false>
 export type cancelGroupEventOutput = import('./domain.js').ManagedGroupEvent
 export type cancelGroupEventProblem = operations["cancelGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["cancelGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["cancelGroupEvent"]['responses'][500]['content']["application/problem+json"]
-export type createAuthUserInput = OperationInput<operations["createAuthUser"]['parameters']['path'], operations["createAuthUser"]['parameters']['query'], operations["createAuthUser"]['parameters']['header'], RequestBodyOf<operations["createAuthUser"]>, true>
-export type createAuthUserOutput = import('./domain.js').AuthUser
-export type createAuthUserProblem = operations["createAuthUser"]['responses'][400]['content']["application/problem+json"] | operations["createAuthUser"]['responses'][500]['content']["application/problem+json"]
+export type createAuthIdentityInput = OperationInput<operations["createAuthIdentity"]['parameters']['path'], operations["createAuthIdentity"]['parameters']['query'], operations["createAuthIdentity"]['parameters']['header'], RequestBodyOf<operations["createAuthIdentity"]>, true>
+export type createAuthIdentityOutput = import('./domain.js').AuthIdentity
+export type createAuthIdentityProblem = operations["createAuthIdentity"]['responses'][400]['content']["application/problem+json"] | operations["createAuthIdentity"]['responses'][500]['content']["application/problem+json"]
 export type createCategoryInput = OperationInput<operations["createCategory"]['parameters']['path'], operations["createCategory"]['parameters']['query'], operations["createCategory"]['parameters']['header'], RequestBodyOf<operations["createCategory"]>, true>
 export type createCategoryOutput = import('./domain.js').Category
 export type createCategoryProblem = operations["createCategory"]['responses'][400]['content']["application/problem+json"] | operations["createCategory"]['responses'][409]['content']["application/problem+json"] | operations["createCategory"]['responses'][500]['content']["application/problem+json"]
+export type createCurriculumsInput = OperationInput<operations["createCurriculums"]['parameters']['path'], operations["createCurriculums"]['parameters']['query'], operations["createCurriculums"]['parameters']['header'], RequestBodyOf<operations["createCurriculums"]>, true>
+export type createCurriculumsOutput = import('./domain.js').Curriculum
+export type createCurriculumsProblem = operations["createCurriculums"]['responses'][400]['content']["application/problem+json"] | operations["createCurriculums"]['responses'][422]['content']["application/problem+json"] | operations["createCurriculums"]['responses'][500]['content']["application/problem+json"]
 export type createFeedbackReportInput = OperationInput<operations["createFeedbackReport"]['parameters']['path'], operations["createFeedbackReport"]['parameters']['query'], operations["createFeedbackReport"]['parameters']['header'], RequestBodyOf<operations["createFeedbackReport"]>, true>
 export type createFeedbackReportOutput = import('./domain.js').FeedbackReportAccepted
 export type createFeedbackReportProblem = operations["createFeedbackReport"]['responses'][400]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][404]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][422]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][429]['content']["application/problem+json"] | operations["createFeedbackReport"]['responses'][500]['content']["application/problem+json"]
@@ -60,72 +63,69 @@ export type createGroupInvitationProblem = operations["createGroupInvitation"]['
 export type createGroupRoleInput = OperationInput<operations["createGroupRole"]['parameters']['path'], operations["createGroupRole"]['parameters']['query'], operations["createGroupRole"]['parameters']['header'], RequestBodyOf<operations["createGroupRole"]>, true>
 export type createGroupRoleOutput = import('./domain.js').GroupRole
 export type createGroupRoleProblem = operations["createGroupRole"]['responses'][400]['content']["application/problem+json"] | operations["createGroupRole"]['responses'][500]['content']["application/problem+json"]
+export type createPeriodPlansInput = OperationInput<operations["createPeriodPlans"]['parameters']['path'], operations["createPeriodPlans"]['parameters']['query'], operations["createPeriodPlans"]['parameters']['header'], RequestBodyOf<operations["createPeriodPlans"]>, true>
+export type createPeriodPlansOutput = import('./domain.js').PeriodPlanning
+export type createPeriodPlansProblem = operations["createPeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["createPeriodPlans"]['responses'][422]['content']["application/problem+json"] | operations["createPeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type createStudentAbsencesInput = OperationInput<operations["createStudentAbsences"]['parameters']['path'], operations["createStudentAbsences"]['parameters']['query'], operations["createStudentAbsences"]['parameters']['header'], RequestBodyOf<operations["createStudentAbsences"]>, true>
 export type createStudentAbsencesOutput = import('./domain.js').StudentAbsence
-export type createStudentAbsencesProblem = operations["createStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][409]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][422]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][500]['content']["application/problem+json"]
+export type createStudentAbsencesProblem = operations["createStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][404]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][409]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][422]['content']["application/problem+json"] | operations["createStudentAbsences"]['responses'][500]['content']["application/problem+json"]
 export type createStudentCourseAttemptsInput = OperationInput<operations["createStudentCourseAttempts"]['parameters']['path'], operations["createStudentCourseAttempts"]['parameters']['query'], operations["createStudentCourseAttempts"]['parameters']['header'], RequestBodyOf<operations["createStudentCourseAttempts"]>, true>
 export type createStudentCourseAttemptsOutput = import('./domain.js').StudentCourseAttempt
 export type createStudentCourseAttemptsProblem = operations["createStudentCourseAttempts"]['responses'][400]['content']["application/problem+json"] | operations["createStudentCourseAttempts"]['responses'][409]['content']["application/problem+json"] | operations["createStudentCourseAttempts"]['responses'][422]['content']["application/problem+json"] | operations["createStudentCourseAttempts"]['responses'][500]['content']["application/problem+json"]
-export type createStudentCurriculaInput = OperationInput<operations["createStudentCurricula"]['parameters']['path'], operations["createStudentCurricula"]['parameters']['query'], operations["createStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["createStudentCurricula"]>, true>
-export type createStudentCurriculaOutput = import('./domain.js').Curriculum
-export type createStudentCurriculaProblem = operations["createStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["createStudentCurricula"]['responses'][422]['content']["application/problem+json"] | operations["createStudentCurricula"]['responses'][500]['content']["application/problem+json"]
-export type createStudentFeedbackReportInput = OperationInput<operations["createStudentFeedbackReport"]['parameters']['path'], operations["createStudentFeedbackReport"]['parameters']['query'], operations["createStudentFeedbackReport"]['parameters']['header'], RequestBodyOf<operations["createStudentFeedbackReport"]>, true>
-export type createStudentFeedbackReportOutput = import('./domain.js').FeedbackReportAccepted
-export type createStudentFeedbackReportProblem = operations["createStudentFeedbackReport"]['responses'][400]['content']["application/problem+json"] | operations["createStudentFeedbackReport"]['responses'][404]['content']["application/problem+json"] | operations["createStudentFeedbackReport"]['responses'][422]['content']["application/problem+json"] | operations["createStudentFeedbackReport"]['responses'][500]['content']["application/problem+json"]
-export type createStudentFriendshipInput = OperationInput<operations["createStudentFriendship"]['parameters']['path'], operations["createStudentFriendship"]['parameters']['query'], operations["createStudentFriendship"]['parameters']['header'], RequestBodyOf<operations["createStudentFriendship"]>, true>
-export type createStudentFriendshipOutput = import('./domain.js').StudentFriendship
-export type createStudentFriendshipProblem = operations["createStudentFriendship"]['responses'][400]['content']["application/problem+json"] | operations["createStudentFriendship"]['responses'][404]['content']["application/problem+json"] | operations["createStudentFriendship"]['responses'][409]['content']["application/problem+json"] | operations["createStudentFriendship"]['responses'][500]['content']["application/problem+json"]
 export type createStudentHistoryInput = OperationInput<operations["createStudentHistory"]['parameters']['path'], operations["createStudentHistory"]['parameters']['query'], operations["createStudentHistory"]['parameters']['header'], RequestBodyOf<operations["createStudentHistory"]>, true>
 export type createStudentHistoryOutput = import('./domain.js').StudentHistoryImportSummary
 export type createStudentHistoryProblem = operations["createStudentHistory"]['responses'][400]['content']["application/problem+json"] | operations["createStudentHistory"]['responses'][404]['content']["application/problem+json"] | operations["createStudentHistory"]['responses'][422]['content']["application/problem+json"] | operations["createStudentHistory"]['responses'][500]['content']["application/problem+json"]
-export type createStudentPeriodPlanningsInput = OperationInput<operations["createStudentPeriodPlannings"]['parameters']['path'], operations["createStudentPeriodPlannings"]['parameters']['query'], operations["createStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["createStudentPeriodPlannings"]>, true>
-export type createStudentPeriodPlanningsOutput = import('./domain.js').PeriodPlanning
-export type createStudentPeriodPlanningsProblem = operations["createStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["createStudentPeriodPlannings"]['responses'][422]['content']["application/problem+json"] | operations["createStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
 export type createStudentsInput = OperationInput<operations["createStudents"]['parameters']['path'], operations["createStudents"]['parameters']['query'], operations["createStudents"]['parameters']['header'], RequestBodyOf<operations["createStudents"]>, true>
 export type createStudentsOutput = import('./domain.js').Student
 export type createStudentsProblem = operations["createStudents"]['responses'][400]['content']["application/problem+json"] | operations["createStudents"]['responses'][409]['content']["application/problem+json"] | operations["createStudents"]['responses'][422]['content']["application/problem+json"] | operations["createStudents"]['responses'][500]['content']["application/problem+json"]
 export type createTagInput = OperationInput<operations["createTag"]['parameters']['path'], operations["createTag"]['parameters']['query'], operations["createTag"]['parameters']['header'], RequestBodyOf<operations["createTag"]>, true>
 export type createTagOutput = import('./domain.js').Tag
 export type createTagProblem = operations["createTag"]['responses'][400]['content']["application/problem+json"] | operations["createTag"]['responses'][409]['content']["application/problem+json"] | operations["createTag"]['responses'][422]['content']["application/problem+json"] | operations["createTag"]['responses'][500]['content']["application/problem+json"]
+export type createUserFeedbackReportInput = OperationInput<operations["createUserFeedbackReport"]['parameters']['path'], operations["createUserFeedbackReport"]['parameters']['query'], operations["createUserFeedbackReport"]['parameters']['header'], RequestBodyOf<operations["createUserFeedbackReport"]>, true>
+export type createUserFeedbackReportOutput = import('./domain.js').FeedbackReportAccepted
+export type createUserFeedbackReportProblem = operations["createUserFeedbackReport"]['responses'][400]['content']["application/problem+json"] | operations["createUserFeedbackReport"]['responses'][404]['content']["application/problem+json"] | operations["createUserFeedbackReport"]['responses'][422]['content']["application/problem+json"] | operations["createUserFeedbackReport"]['responses'][500]['content']["application/problem+json"]
+export type createUserFriendshipInput = OperationInput<operations["createUserFriendship"]['parameters']['path'], operations["createUserFriendship"]['parameters']['query'], operations["createUserFriendship"]['parameters']['header'], RequestBodyOf<operations["createUserFriendship"]>, true>
+export type createUserFriendshipOutput = import('./domain.js').UserFriendship
+export type createUserFriendshipProblem = operations["createUserFriendship"]['responses'][400]['content']["application/problem+json"] | operations["createUserFriendship"]['responses'][404]['content']["application/problem+json"] | operations["createUserFriendship"]['responses'][409]['content']["application/problem+json"] | operations["createUserFriendship"]['responses'][500]['content']["application/problem+json"]
 export type declineGroupInvitationInput = OperationInput<operations["declineGroupInvitation"]['parameters']['path'], operations["declineGroupInvitation"]['parameters']['query'], operations["declineGroupInvitation"]['parameters']['header'], RequestBodyOf<operations["declineGroupInvitation"]>, false>
 export type declineGroupInvitationOutput = void
 export type declineGroupInvitationProblem = operations["declineGroupInvitation"]['responses'][400]['content']["application/problem+json"] | operations["declineGroupInvitation"]['responses'][404]['content']["application/problem+json"] | operations["declineGroupInvitation"]['responses'][500]['content']["application/problem+json"]
 export type deleteCategoryInput = OperationInput<operations["deleteCategory"]['parameters']['path'], operations["deleteCategory"]['parameters']['query'], operations["deleteCategory"]['parameters']['header'], RequestBodyOf<operations["deleteCategory"]>, false>
 export type deleteCategoryOutput = void
 export type deleteCategoryProblem = operations["deleteCategory"]['responses'][400]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][404]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][409]['content']["application/problem+json"] | operations["deleteCategory"]['responses'][500]['content']["application/problem+json"]
+export type deleteCurriculumsInput = OperationInput<operations["deleteCurriculums"]['parameters']['path'], operations["deleteCurriculums"]['parameters']['query'], operations["deleteCurriculums"]['parameters']['header'], RequestBodyOf<operations["deleteCurriculums"]>, false>
+export type deleteCurriculumsOutput = void
+export type deleteCurriculumsProblem = operations["deleteCurriculums"]['responses'][400]['content']["application/problem+json"] | operations["deleteCurriculums"]['responses'][404]['content']["application/problem+json"] | operations["deleteCurriculums"]['responses'][500]['content']["application/problem+json"]
 export type deleteGroupAvatarInput = OperationInput<operations["deleteGroupAvatar"]['parameters']['path'], operations["deleteGroupAvatar"]['parameters']['query'], operations["deleteGroupAvatar"]['parameters']['header'], RequestBodyOf<operations["deleteGroupAvatar"]>, false>
 export type deleteGroupAvatarOutput = void
 export type deleteGroupAvatarProblem = operations["deleteGroupAvatar"]['responses'][400]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][401]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][403]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][404]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][409]['content']["application/problem+json"] | operations["deleteGroupAvatar"]['responses'][500]['content']["application/problem+json"]
 export type deleteGroupRoleInput = OperationInput<operations["deleteGroupRole"]['parameters']['path'], operations["deleteGroupRole"]['parameters']['query'], operations["deleteGroupRole"]['parameters']['header'], RequestBodyOf<operations["deleteGroupRole"]>, false>
 export type deleteGroupRoleOutput = void
 export type deleteGroupRoleProblem = operations["deleteGroupRole"]['responses'][400]['content']["application/problem+json"] | operations["deleteGroupRole"]['responses'][404]['content']["application/problem+json"] | operations["deleteGroupRole"]['responses'][500]['content']["application/problem+json"]
+export type deletePeriodPlansInput = OperationInput<operations["deletePeriodPlans"]['parameters']['path'], operations["deletePeriodPlans"]['parameters']['query'], operations["deletePeriodPlans"]['parameters']['header'], RequestBodyOf<operations["deletePeriodPlans"]>, false>
+export type deletePeriodPlansOutput = void
+export type deletePeriodPlansProblem = operations["deletePeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["deletePeriodPlans"]['responses'][404]['content']["application/problem+json"] | operations["deletePeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type deleteStudentAbsencesInput = OperationInput<operations["deleteStudentAbsences"]['parameters']['path'], operations["deleteStudentAbsences"]['parameters']['query'], operations["deleteStudentAbsences"]['parameters']['header'], RequestBodyOf<operations["deleteStudentAbsences"]>, false>
 export type deleteStudentAbsencesOutput = void
 export type deleteStudentAbsencesProblem = operations["deleteStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentAbsences"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentAbsences"]['responses'][500]['content']["application/problem+json"]
-export type deleteStudentAvatarInput = OperationInput<operations["deleteStudentAvatar"]['parameters']['path'], operations["deleteStudentAvatar"]['parameters']['query'], operations["deleteStudentAvatar"]['parameters']['header'], RequestBodyOf<operations["deleteStudentAvatar"]>, false>
-export type deleteStudentAvatarOutput = void
-export type deleteStudentAvatarProblem = operations["deleteStudentAvatar"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][401]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][403]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][409]['content']["application/problem+json"] | operations["deleteStudentAvatar"]['responses'][500]['content']["application/problem+json"]
 export type deleteStudentCourseAttemptsInput = OperationInput<operations["deleteStudentCourseAttempts"]['parameters']['path'], operations["deleteStudentCourseAttempts"]['parameters']['query'], operations["deleteStudentCourseAttempts"]['parameters']['header'], RequestBodyOf<operations["deleteStudentCourseAttempts"]>, false>
 export type deleteStudentCourseAttemptsOutput = void
 export type deleteStudentCourseAttemptsProblem = operations["deleteStudentCourseAttempts"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentCourseAttempts"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentCourseAttempts"]['responses'][500]['content']["application/problem+json"]
-export type deleteStudentCurriculaInput = OperationInput<operations["deleteStudentCurricula"]['parameters']['path'], operations["deleteStudentCurricula"]['parameters']['query'], operations["deleteStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["deleteStudentCurricula"]>, false>
-export type deleteStudentCurriculaOutput = void
-export type deleteStudentCurriculaProblem = operations["deleteStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentCurricula"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentCurricula"]['responses'][500]['content']["application/problem+json"]
-export type deleteStudentFriendshipInput = OperationInput<operations["deleteStudentFriendship"]['parameters']['path'], operations["deleteStudentFriendship"]['parameters']['query'], operations["deleteStudentFriendship"]['parameters']['header'], RequestBodyOf<operations["deleteStudentFriendship"]>, false>
-export type deleteStudentFriendshipOutput = void
-export type deleteStudentFriendshipProblem = operations["deleteStudentFriendship"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentFriendship"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentFriendship"]['responses'][500]['content']["application/problem+json"]
-export type deleteStudentPeriodPlanningsInput = OperationInput<operations["deleteStudentPeriodPlannings"]['parameters']['path'], operations["deleteStudentPeriodPlannings"]['parameters']['query'], operations["deleteStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["deleteStudentPeriodPlannings"]>, false>
-export type deleteStudentPeriodPlanningsOutput = void
-export type deleteStudentPeriodPlanningsProblem = operations["deleteStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentPeriodPlannings"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
 export type deleteStudentsInput = OperationInput<operations["deleteStudents"]['parameters']['path'], operations["deleteStudents"]['parameters']['query'], operations["deleteStudents"]['parameters']['header'], RequestBodyOf<operations["deleteStudents"]>, true>
 export type deleteStudentsOutput = void
 export type deleteStudentsProblem = operations["deleteStudents"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudents"]['responses'][404]['content']["application/problem+json"] | operations["deleteStudents"]['responses'][422]['content']["application/problem+json"] | operations["deleteStudents"]['responses'][500]['content']["application/problem+json"]
-export type deleteStudentTagInterestInput = OperationInput<operations["deleteStudentTagInterest"]['parameters']['path'], operations["deleteStudentTagInterest"]['parameters']['query'], operations["deleteStudentTagInterest"]['parameters']['header'], RequestBodyOf<operations["deleteStudentTagInterest"]>, false>
-export type deleteStudentTagInterestOutput = void
-export type deleteStudentTagInterestProblem = operations["deleteStudentTagInterest"]['responses'][400]['content']["application/problem+json"] | operations["deleteStudentTagInterest"]['responses'][500]['content']["application/problem+json"]
 export type deleteTagInput = OperationInput<operations["deleteTag"]['parameters']['path'], operations["deleteTag"]['parameters']['query'], operations["deleteTag"]['parameters']['header'], RequestBodyOf<operations["deleteTag"]>, false>
 export type deleteTagOutput = void
 export type deleteTagProblem = operations["deleteTag"]['responses'][400]['content']["application/problem+json"] | operations["deleteTag"]['responses'][404]['content']["application/problem+json"] | operations["deleteTag"]['responses'][409]['content']["application/problem+json"] | operations["deleteTag"]['responses'][500]['content']["application/problem+json"]
+export type deleteUserAvatarInput = OperationInput<operations["deleteUserAvatar"]['parameters']['path'], operations["deleteUserAvatar"]['parameters']['query'], operations["deleteUserAvatar"]['parameters']['header'], RequestBodyOf<operations["deleteUserAvatar"]>, false>
+export type deleteUserAvatarOutput = void
+export type deleteUserAvatarProblem = operations["deleteUserAvatar"]['responses'][400]['content']["application/problem+json"] | operations["deleteUserAvatar"]['responses'][401]['content']["application/problem+json"] | operations["deleteUserAvatar"]['responses'][403]['content']["application/problem+json"] | operations["deleteUserAvatar"]['responses'][404]['content']["application/problem+json"] | operations["deleteUserAvatar"]['responses'][409]['content']["application/problem+json"] | operations["deleteUserAvatar"]['responses'][500]['content']["application/problem+json"]
+export type deleteUserFriendshipInput = OperationInput<operations["deleteUserFriendship"]['parameters']['path'], operations["deleteUserFriendship"]['parameters']['query'], operations["deleteUserFriendship"]['parameters']['header'], RequestBodyOf<operations["deleteUserFriendship"]>, false>
+export type deleteUserFriendshipOutput = void
+export type deleteUserFriendshipProblem = operations["deleteUserFriendship"]['responses'][400]['content']["application/problem+json"] | operations["deleteUserFriendship"]['responses'][404]['content']["application/problem+json"] | operations["deleteUserFriendship"]['responses'][500]['content']["application/problem+json"]
+export type deleteUserInterestInput = OperationInput<operations["deleteUserInterest"]['parameters']['path'], operations["deleteUserInterest"]['parameters']['query'], operations["deleteUserInterest"]['parameters']['header'], RequestBodyOf<operations["deleteUserInterest"]>, false>
+export type deleteUserInterestOutput = void
+export type deleteUserInterestProblem = operations["deleteUserInterest"]['responses'][400]['content']["application/problem+json"] | operations["deleteUserInterest"]['responses'][500]['content']["application/problem+json"]
 export type getCategoryInput = OperationInput<operations["getCategory"]['parameters']['path'], operations["getCategory"]['parameters']['query'], operations["getCategory"]['parameters']['header'], RequestBodyOf<operations["getCategory"]>, false>
 export type getCategoryOutput = import('./domain.js').Category
 export type getCategoryProblem = operations["getCategory"]['responses'][400]['content']["application/problem+json"] | operations["getCategory"]['responses'][404]['content']["application/problem+json"] | operations["getCategory"]['responses'][500]['content']["application/problem+json"]
@@ -135,6 +135,9 @@ export type getCourseProfessorEvaluationSummaryProblem = operations["getCoursePr
 export type getCurrentUserInput = OperationInput<operations["getCurrentUser"]['parameters']['path'], operations["getCurrentUser"]['parameters']['query'], operations["getCurrentUser"]['parameters']['header'], RequestBodyOf<operations["getCurrentUser"]>, false>
 export type getCurrentUserOutput = import('./domain.js').CurrentUser
 export type getCurrentUserProblem = operations["getCurrentUser"]['responses'][400]['content']["application/problem+json"] | operations["getCurrentUser"]['responses'][500]['content']["application/problem+json"]
+export type getCurriculumsInput = OperationInput<operations["getCurriculums"]['parameters']['path'], operations["getCurriculums"]['parameters']['query'], operations["getCurriculums"]['parameters']['header'], RequestBodyOf<operations["getCurriculums"]>, false>
+export type getCurriculumsOutput = import('./domain.js').Curriculum
+export type getCurriculumsProblem = operations["getCurriculums"]['responses'][400]['content']["application/problem+json"] | operations["getCurriculums"]['responses'][404]['content']["application/problem+json"] | operations["getCurriculums"]['responses'][500]['content']["application/problem+json"]
 export type getExchangeNoticeSubscriptionInput = OperationInput<operations["getExchangeNoticeSubscription"]['parameters']['path'], operations["getExchangeNoticeSubscription"]['parameters']['query'], operations["getExchangeNoticeSubscription"]['parameters']['header'], RequestBodyOf<operations["getExchangeNoticeSubscription"]>, false>
 export type getExchangeNoticeSubscriptionOutput = import('./domain.js').ExchangeNoticeSubscription
 export type getExchangeNoticeSubscriptionProblem = operations["getExchangeNoticeSubscription"]['responses'][400]['content']["application/problem+json"] | operations["getExchangeNoticeSubscription"]['responses'][500]['content']["application/problem+json"]
@@ -147,45 +150,48 @@ export type getGroupEventProblem = operations["getGroupEvent"]['responses'][400]
 export type getImageVariantInput = OperationInput<operations["getImageVariant"]['parameters']['path'], operations["getImageVariant"]['parameters']['query'], operations["getImageVariant"]['parameters']['header'], RequestBodyOf<operations["getImageVariant"]>, false>
 export type getImageVariantOutput = Blob
 export type getImageVariantProblem = operations["getImageVariant"]['responses'][400]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][401]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][403]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][404]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][500]['content']["application/problem+json"] | operations["getImageVariant"]['responses'][503]['content']["application/problem+json"]
+export type getPeriodPlansInput = OperationInput<operations["getPeriodPlans"]['parameters']['path'], operations["getPeriodPlans"]['parameters']['query'], operations["getPeriodPlans"]['parameters']['header'], RequestBodyOf<operations["getPeriodPlans"]>, false>
+export type getPeriodPlansOutput = import('./domain.js').PeriodPlanning
+export type getPeriodPlansProblem = operations["getPeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["getPeriodPlans"]['responses'][404]['content']["application/problem+json"] | operations["getPeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type getProfessorEvaluationInput = OperationInput<operations["getProfessorEvaluation"]['parameters']['path'], operations["getProfessorEvaluation"]['parameters']['query'], operations["getProfessorEvaluation"]['parameters']['header'], RequestBodyOf<operations["getProfessorEvaluation"]>, false>
 export type getProfessorEvaluationOutput = import('./domain.js').ProfessorEvaluationEligibility
 export type getProfessorEvaluationProblem = operations["getProfessorEvaluation"]['responses'][400]['content']["application/problem+json"] | operations["getProfessorEvaluation"]['responses'][422]['content']["application/problem+json"] | operations["getProfessorEvaluation"]['responses'][500]['content']["application/problem+json"]
 export type getPublicGroupMembershipInput = OperationInput<operations["getPublicGroupMembership"]['parameters']['path'], operations["getPublicGroupMembership"]['parameters']['query'], operations["getPublicGroupMembership"]['parameters']['header'], RequestBodyOf<operations["getPublicGroupMembership"]>, false>
 export type getPublicGroupMembershipOutput = import('./domain.js').PublicGroupMembership
 export type getPublicGroupMembershipProblem = operations["getPublicGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["getPublicGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["getPublicGroupMembership"]['responses'][500]['content']["application/problem+json"]
-export type getPublicSharedPeriodPlanningInput = OperationInput<operations["getPublicSharedPeriodPlanning"]['parameters']['path'], operations["getPublicSharedPeriodPlanning"]['parameters']['query'], operations["getPublicSharedPeriodPlanning"]['parameters']['header'], RequestBodyOf<operations["getPublicSharedPeriodPlanning"]>, false>
-export type getPublicSharedPeriodPlanningOutput = import('./domain.js').SharedPeriodPlanning
-export type getPublicSharedPeriodPlanningProblem = operations["getPublicSharedPeriodPlanning"]['responses'][400]['content']["application/problem+json"] | operations["getPublicSharedPeriodPlanning"]['responses'][404]['content']["application/problem+json"] | operations["getPublicSharedPeriodPlanning"]['responses'][500]['content']["application/problem+json"]
+export type getPublicSharedPeriodPlanInput = OperationInput<operations["getPublicSharedPeriodPlan"]['parameters']['path'], operations["getPublicSharedPeriodPlan"]['parameters']['query'], operations["getPublicSharedPeriodPlan"]['parameters']['header'], RequestBodyOf<operations["getPublicSharedPeriodPlan"]>, false>
+export type getPublicSharedPeriodPlanOutput = import('./domain.js').SharedPeriodPlanning
+export type getPublicSharedPeriodPlanProblem = operations["getPublicSharedPeriodPlan"]['responses'][400]['content']["application/problem+json"] | operations["getPublicSharedPeriodPlan"]['responses'][404]['content']["application/problem+json"] | operations["getPublicSharedPeriodPlan"]['responses'][500]['content']["application/problem+json"]
 export type getStudentCourseAttemptsInput = OperationInput<operations["getStudentCourseAttempts"]['parameters']['path'], operations["getStudentCourseAttempts"]['parameters']['query'], operations["getStudentCourseAttempts"]['parameters']['header'], RequestBodyOf<operations["getStudentCourseAttempts"]>, false>
 export type getStudentCourseAttemptsOutput = import('./domain.js').StudentCourseAttempt
 export type getStudentCourseAttemptsProblem = operations["getStudentCourseAttempts"]['responses'][400]['content']["application/problem+json"] | operations["getStudentCourseAttempts"]['responses'][404]['content']["application/problem+json"] | operations["getStudentCourseAttempts"]['responses'][500]['content']["application/problem+json"]
-export type getStudentCurriculaInput = OperationInput<operations["getStudentCurricula"]['parameters']['path'], operations["getStudentCurricula"]['parameters']['query'], operations["getStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["getStudentCurricula"]>, false>
-export type getStudentCurriculaOutput = import('./domain.js').Curriculum
-export type getStudentCurriculaProblem = operations["getStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["getStudentCurricula"]['responses'][404]['content']["application/problem+json"] | operations["getStudentCurricula"]['responses'][500]['content']["application/problem+json"]
-export type getStudentGroupMembershipInput = OperationInput<operations["getStudentGroupMembership"]['parameters']['path'], operations["getStudentGroupMembership"]['parameters']['query'], operations["getStudentGroupMembership"]['parameters']['header'], RequestBodyOf<operations["getStudentGroupMembership"]>, false>
-export type getStudentGroupMembershipOutput = import('./domain.js').OwnGroupMembership
-export type getStudentGroupMembershipProblem = operations["getStudentGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["getStudentGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["getStudentGroupMembership"]['responses'][500]['content']["application/problem+json"]
-export type getStudentPeriodPlanningsInput = OperationInput<operations["getStudentPeriodPlannings"]['parameters']['path'], operations["getStudentPeriodPlannings"]['parameters']['query'], operations["getStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["getStudentPeriodPlannings"]>, false>
-export type getStudentPeriodPlanningsOutput = import('./domain.js').PeriodPlanning
-export type getStudentPeriodPlanningsProblem = operations["getStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["getStudentPeriodPlannings"]['responses'][404]['content']["application/problem+json"] | operations["getStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
-export type getStudentPersonInput = OperationInput<operations["getStudentPerson"]['parameters']['path'], operations["getStudentPerson"]['parameters']['query'], operations["getStudentPerson"]['parameters']['header'], RequestBodyOf<operations["getStudentPerson"]>, false>
-export type getStudentPersonOutput = import('./domain.js').StudentPublicPerson
-export type getStudentPersonProblem = operations["getStudentPerson"]['responses'][400]['content']["application/problem+json"] | operations["getStudentPerson"]['responses'][404]['content']["application/problem+json"] | operations["getStudentPerson"]['responses'][500]['content']["application/problem+json"]
-export type getStudentPublicProfileInput = OperationInput<operations["getStudentPublicProfile"]['parameters']['path'], operations["getStudentPublicProfile"]['parameters']['query'], operations["getStudentPublicProfile"]['parameters']['header'], RequestBodyOf<operations["getStudentPublicProfile"]>, false>
-export type getStudentPublicProfileOutput = import('./domain.js').StudentPublicProfile
-export type getStudentPublicProfileProblem = operations["getStudentPublicProfile"]['responses'][400]['content']["application/problem+json"] | operations["getStudentPublicProfile"]['responses'][404]['content']["application/problem+json"] | operations["getStudentPublicProfile"]['responses'][500]['content']["application/problem+json"]
 export type getStudentsInput = OperationInput<operations["getStudents"]['parameters']['path'], operations["getStudents"]['parameters']['query'], operations["getStudents"]['parameters']['header'], RequestBodyOf<operations["getStudents"]>, false>
 export type getStudentsOutput = import('./domain.js').Student
 export type getStudentsProblem = operations["getStudents"]['responses'][400]['content']["application/problem+json"] | operations["getStudents"]['responses'][404]['content']["application/problem+json"] | operations["getStudents"]['responses'][500]['content']["application/problem+json"]
-export type getStudentSharedPeriodPlanningInput = OperationInput<operations["getStudentSharedPeriodPlanning"]['parameters']['path'], operations["getStudentSharedPeriodPlanning"]['parameters']['query'], operations["getStudentSharedPeriodPlanning"]['parameters']['header'], RequestBodyOf<operations["getStudentSharedPeriodPlanning"]>, false>
-export type getStudentSharedPeriodPlanningOutput = import('./domain.js').SharedPeriodPlanning
-export type getStudentSharedPeriodPlanningProblem = operations["getStudentSharedPeriodPlanning"]['responses'][400]['content']["application/problem+json"] | operations["getStudentSharedPeriodPlanning"]['responses'][404]['content']["application/problem+json"] | operations["getStudentSharedPeriodPlanning"]['responses'][500]['content']["application/problem+json"]
 export type getTagInput = OperationInput<operations["getTag"]['parameters']['path'], operations["getTag"]['parameters']['query'], operations["getTag"]['parameters']['header'], RequestBodyOf<operations["getTag"]>, false>
 export type getTagOutput = import('./domain.js').Tag
 export type getTagProblem = operations["getTag"]['responses'][400]['content']["application/problem+json"] | operations["getTag"]['responses'][404]['content']["application/problem+json"] | operations["getTag"]['responses'][500]['content']["application/problem+json"]
-export type listAuthUsersInput = OperationInput<operations["listAuthUsers"]['parameters']['path'], SortQuery<operations["listAuthUsers"]['parameters']['query'], "id" | "displayName" | "email" | "status">, operations["listAuthUsers"]['parameters']['header'], RequestBodyOf<operations["listAuthUsers"]>, false>
-export type listAuthUsersOutput = import('./domain.js').Page<import('./domain.js').AuthUser>
-export type listAuthUsersProblem = operations["listAuthUsers"]['responses'][400]['content']["application/problem+json"] | operations["listAuthUsers"]['responses'][500]['content']["application/problem+json"]
+export type getUserInput = OperationInput<operations["getUser"]['parameters']['path'], operations["getUser"]['parameters']['query'], operations["getUser"]['parameters']['header'], RequestBodyOf<operations["getUser"]>, false>
+export type getUserOutput = import('./domain.js').User
+export type getUserProblem = operations["getUser"]['responses'][400]['content']["application/problem+json"] | operations["getUser"]['responses'][404]['content']["application/problem+json"] | operations["getUser"]['responses'][500]['content']["application/problem+json"]
+export type getUserGroupMembershipInput = OperationInput<operations["getUserGroupMembership"]['parameters']['path'], operations["getUserGroupMembership"]['parameters']['query'], operations["getUserGroupMembership"]['parameters']['header'], RequestBodyOf<operations["getUserGroupMembership"]>, false>
+export type getUserGroupMembershipOutput = import('./domain.js').OwnGroupMembership
+export type getUserGroupMembershipProblem = operations["getUserGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["getUserGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["getUserGroupMembership"]['responses'][500]['content']["application/problem+json"]
+export type getUserPersonInput = OperationInput<operations["getUserPerson"]['parameters']['path'], operations["getUserPerson"]['parameters']['query'], operations["getUserPerson"]['parameters']['header'], RequestBodyOf<operations["getUserPerson"]>, false>
+export type getUserPersonOutput = import('./domain.js').UserPublicPerson
+export type getUserPersonProblem = operations["getUserPerson"]['responses'][400]['content']["application/problem+json"] | operations["getUserPerson"]['responses'][404]['content']["application/problem+json"] | operations["getUserPerson"]['responses'][500]['content']["application/problem+json"]
+export type getUserPreferencesInput = OperationInput<operations["getUserPreferences"]['parameters']['path'], operations["getUserPreferences"]['parameters']['query'], operations["getUserPreferences"]['parameters']['header'], RequestBodyOf<operations["getUserPreferences"]>, false>
+export type getUserPreferencesOutput = import('./domain.js').UserPreferences
+export type getUserPreferencesProblem = operations["getUserPreferences"]['responses'][400]['content']["application/problem+json"] | operations["getUserPreferences"]['responses'][404]['content']["application/problem+json"] | operations["getUserPreferences"]['responses'][500]['content']["application/problem+json"]
+export type getUserProfileInput = OperationInput<operations["getUserProfile"]['parameters']['path'], operations["getUserProfile"]['parameters']['query'], operations["getUserProfile"]['parameters']['header'], RequestBodyOf<operations["getUserProfile"]>, false>
+export type getUserProfileOutput = import('./domain.js').UserProfile
+export type getUserProfileProblem = operations["getUserProfile"]['responses'][400]['content']["application/problem+json"] | operations["getUserProfile"]['responses'][404]['content']["application/problem+json"] | operations["getUserProfile"]['responses'][500]['content']["application/problem+json"]
+export type getUserSharedPeriodPlanInput = OperationInput<operations["getUserSharedPeriodPlan"]['parameters']['path'], operations["getUserSharedPeriodPlan"]['parameters']['query'], operations["getUserSharedPeriodPlan"]['parameters']['header'], RequestBodyOf<operations["getUserSharedPeriodPlan"]>, false>
+export type getUserSharedPeriodPlanOutput = import('./domain.js').SharedPeriodPlanning
+export type getUserSharedPeriodPlanProblem = operations["getUserSharedPeriodPlan"]['responses'][400]['content']["application/problem+json"] | operations["getUserSharedPeriodPlan"]['responses'][404]['content']["application/problem+json"] | operations["getUserSharedPeriodPlan"]['responses'][500]['content']["application/problem+json"]
+export type listAuthIdentitiesInput = OperationInput<operations["listAuthIdentities"]['parameters']['path'], SortQuery<operations["listAuthIdentities"]['parameters']['query'], "id" | "displayName" | "email" | "status">, operations["listAuthIdentities"]['parameters']['header'], RequestBodyOf<operations["listAuthIdentities"]>, false>
+export type listAuthIdentitiesOutput = import('./domain.js').Page<import('./domain.js').AuthIdentity>
+export type listAuthIdentitiesProblem = operations["listAuthIdentities"]['responses'][400]['content']["application/problem+json"] | operations["listAuthIdentities"]['responses'][500]['content']["application/problem+json"]
 export type listBotGrantsInput = OperationInput<operations["listBotGrants"]['parameters']['path'], SortQuery<operations["listBotGrants"]['parameters']['query'], "createdAt" | "capability" | "botDisplayName">, operations["listBotGrants"]['parameters']['header'], RequestBodyOf<operations["listBotGrants"]>, false>
 export type listBotGrantsOutput = import('./domain.js').Page<import('./domain.js').BotGrant>
 export type listBotGrantsProblem = operations["listBotGrants"]['responses'][400]['content']["application/problem+json"] | operations["listBotGrants"]['responses'][500]['content']["application/problem+json"]
@@ -201,6 +207,9 @@ export type listCourseEvaluationSummariesProblem = operations["listCourseEvaluat
 export type listCourseTagsInput = OperationInput<operations["listCourseTags"]['parameters']['path'], SortQuery<operations["listCourseTags"]['parameters']['query'], "name" | "categoryId">, operations["listCourseTags"]['parameters']['header'], RequestBodyOf<operations["listCourseTags"]>, false>
 export type listCourseTagsOutput = import('./domain.js').Page<import('./domain.js').Tag>
 export type listCourseTagsProblem = operations["listCourseTags"]['responses'][400]['content']["application/problem+json"] | operations["listCourseTags"]['responses'][404]['content']["application/problem+json"] | operations["listCourseTags"]['responses'][500]['content']["application/problem+json"]
+export type listCurriculumsInput = OperationInput<operations["listCurriculums"]['parameters']['path'], SortQuery<operations["listCurriculums"]['parameters']['query'], "isFavorite" | "updatedAt" | "name">, operations["listCurriculums"]['parameters']['header'], RequestBodyOf<operations["listCurriculums"]>, false>
+export type listCurriculumsOutput = import('./domain.js').Page<import('./domain.js').CurriculumSummary>
+export type listCurriculumsProblem = operations["listCurriculums"]['responses'][400]['content']["application/problem+json"] | operations["listCurriculums"]['responses'][500]['content']["application/problem+json"]
 export type listFeedbackReportsInput = OperationInput<operations["listFeedbackReports"]['parameters']['path'], SortQuery<operations["listFeedbackReports"]['parameters']['query'], "createdAt" | "updatedAt" | "status" | "kind" | "title">, operations["listFeedbackReports"]['parameters']['header'], RequestBodyOf<operations["listFeedbackReports"]>, false>
 export type listFeedbackReportsOutput = import('./domain.js').Page<import('./domain.js').FeedbackReport>
 export type listFeedbackReportsProblem = operations["listFeedbackReports"]['responses'][400]['content']["application/problem+json"] | operations["listFeedbackReports"]['responses'][500]['content']["application/problem+json"]
@@ -228,63 +237,60 @@ export type listManagedGroupMembershipsProblem = operations["listManagedGroupMem
 export type listPendingProfessorEvaluationsInput = OperationInput<operations["listPendingProfessorEvaluations"]['parameters']['path'], SortQuery<operations["listPendingProfessorEvaluations"]['parameters']['query'], "courseCode" | "courseName" | "classCode" | "professorName">, operations["listPendingProfessorEvaluations"]['parameters']['header'], RequestBodyOf<operations["listPendingProfessorEvaluations"]>, false>
 export type listPendingProfessorEvaluationsOutput = import('./domain.js').Page<import('./domain.js').PendingProfessorEvaluation>
 export type listPendingProfessorEvaluationsProblem = operations["listPendingProfessorEvaluations"]['responses'][400]['content']["application/problem+json"] | operations["listPendingProfessorEvaluations"]['responses'][500]['content']["application/problem+json"]
+export type listPeriodPlansInput = OperationInput<operations["listPeriodPlans"]['parameters']['path'], SortQuery<operations["listPeriodPlans"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear" | "studyPeriodYearPeriod" | "visibility">, operations["listPeriodPlans"]['parameters']['header'], RequestBodyOf<operations["listPeriodPlans"]>, false>
+export type listPeriodPlansOutput = import('./domain.js').Page<import('./domain.js').PeriodPlanning>
+export type listPeriodPlansProblem = operations["listPeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["listPeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type listProfessorEvaluationSummariesInput = OperationInput<operations["listProfessorEvaluationSummaries"]['parameters']['path'], SortQuery<operations["listProfessorEvaluationSummaries"]['parameters']['query'], "professor.name" | "responseCount" | "wouldTakeAgain" | "fairness" | "clarity" | "difficulty">, operations["listProfessorEvaluationSummaries"]['parameters']['header'], RequestBodyOf<operations["listProfessorEvaluationSummaries"]>, false>
 export type listProfessorEvaluationSummariesOutput = import('./domain.js').Page<import('./domain.js').ProfessorEvaluationSummary>
 export type listProfessorEvaluationSummariesProblem = operations["listProfessorEvaluationSummaries"]['responses'][400]['content']["application/problem+json"] | operations["listProfessorEvaluationSummaries"]['responses'][500]['content']["application/problem+json"]
 export type listPublicGroupMembershipsInput = OperationInput<operations["listPublicGroupMemberships"]['parameters']['path'], operations["listPublicGroupMemberships"]['parameters']['query'], operations["listPublicGroupMemberships"]['parameters']['header'], RequestBodyOf<operations["listPublicGroupMemberships"]>, false>
 export type listPublicGroupMembershipsOutput = import('./domain.js').Page<import('./domain.js').PublicGroupMembership>
 export type listPublicGroupMembershipsProblem = operations["listPublicGroupMemberships"]['responses'][400]['content']["application/problem+json"] | operations["listPublicGroupMemberships"]['responses'][500]['content']["application/problem+json"]
-export type listPublicSharedPeriodPlanningsInput = OperationInput<operations["listPublicSharedPeriodPlannings"]['parameters']['path'], SortQuery<operations["listPublicSharedPeriodPlannings"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear">, operations["listPublicSharedPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["listPublicSharedPeriodPlannings"]>, false>
-export type listPublicSharedPeriodPlanningsOutput = import('./domain.js').Page<import('./domain.js').SharedPeriodPlanning>
-export type listPublicSharedPeriodPlanningsProblem = operations["listPublicSharedPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["listPublicSharedPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
-export type listStudentAbsencesInput = OperationInput<operations["listStudentAbsences"]['parameters']['path'], SortQuery<operations["listStudentAbsences"]['parameters']['query'], "date" | "courseCode" | "classCode" | "start" | "createdAt">, operations["listStudentAbsences"]['parameters']['header'], RequestBodyOf<operations["listStudentAbsences"]>, false>
-export type listStudentAbsencesOutput = import('./domain.js').Page<import('./domain.js').StudentAbsence>
-export type listStudentAbsencesProblem = operations["listStudentAbsences"]['responses'][400]['content']["application/problem+json"] | operations["listStudentAbsences"]['responses'][500]['content']["application/problem+json"]
+export type listPublicSharedPeriodPlansInput = OperationInput<operations["listPublicSharedPeriodPlans"]['parameters']['path'], SortQuery<operations["listPublicSharedPeriodPlans"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear">, operations["listPublicSharedPeriodPlans"]['parameters']['header'], RequestBodyOf<operations["listPublicSharedPeriodPlans"]>, false>
+export type listPublicSharedPeriodPlansOutput = import('./domain.js').Page<import('./domain.js').SharedPeriodPlanning>
+export type listPublicSharedPeriodPlansProblem = operations["listPublicSharedPeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["listPublicSharedPeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type listStudentCourseAttemptsInput = OperationInput<operations["listStudentCourseAttempts"]['parameters']['path'], SortQuery<operations["listStudentCourseAttempts"]['parameters']['query'], "createdAt" | "updatedAt" | "courseCode" | "status" | "grade">, operations["listStudentCourseAttempts"]['parameters']['header'], RequestBodyOf<operations["listStudentCourseAttempts"]>, false>
 export type listStudentCourseAttemptsOutput = import('./domain.js').Page<import('./domain.js').StudentCourseAttempt>
 export type listStudentCourseAttemptsProblem = operations["listStudentCourseAttempts"]['responses'][400]['content']["application/problem+json"] | operations["listStudentCourseAttempts"]['responses'][500]['content']["application/problem+json"]
-export type listStudentCurriculaInput = OperationInput<operations["listStudentCurricula"]['parameters']['path'], SortQuery<operations["listStudentCurricula"]['parameters']['query'], "isFavorite" | "updatedAt" | "name">, operations["listStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["listStudentCurricula"]>, false>
-export type listStudentCurriculaOutput = import('./domain.js').Page<import('./domain.js').CurriculumSummary>
-export type listStudentCurriculaProblem = operations["listStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["listStudentCurricula"]['responses'][500]['content']["application/problem+json"]
-export type listStudentFeedbackReportsInput = OperationInput<operations["listStudentFeedbackReports"]['parameters']['path'], SortQuery<operations["listStudentFeedbackReports"]['parameters']['query'], "createdAt" | "updatedAt" | "status" | "kind" | "title">, operations["listStudentFeedbackReports"]['parameters']['header'], RequestBodyOf<operations["listStudentFeedbackReports"]>, false>
-export type listStudentFeedbackReportsOutput = import('./domain.js').Page<import('./domain.js').FeedbackReport>
-export type listStudentFeedbackReportsProblem = operations["listStudentFeedbackReports"]['responses'][400]['content']["application/problem+json"] | operations["listStudentFeedbackReports"]['responses'][500]['content']["application/problem+json"]
-export type listStudentFriendshipsInput = OperationInput<operations["listStudentFriendships"]['parameters']['path'], SortQuery<operations["listStudentFriendships"]['parameters']['query'], "updatedAt" | "status">, operations["listStudentFriendships"]['parameters']['header'], RequestBodyOf<operations["listStudentFriendships"]>, false>
-export type listStudentFriendshipsOutput = import('./domain.js').Page<import('./domain.js').StudentFriendship>
-export type listStudentFriendshipsProblem = operations["listStudentFriendships"]['responses'][400]['content']["application/problem+json"] | operations["listStudentFriendships"]['responses'][500]['content']["application/problem+json"]
-export type listStudentGroupMembershipsInput = OperationInput<operations["listStudentGroupMemberships"]['parameters']['path'], operations["listStudentGroupMemberships"]['parameters']['query'], operations["listStudentGroupMemberships"]['parameters']['header'], RequestBodyOf<operations["listStudentGroupMemberships"]>, false>
-export type listStudentGroupMembershipsOutput = import('./domain.js').Page<import('./domain.js').OwnGroupMembership>
-export type listStudentGroupMembershipsProblem = operations["listStudentGroupMemberships"]['responses'][400]['content']["application/problem+json"] | operations["listStudentGroupMemberships"]['responses'][500]['content']["application/problem+json"]
-export type listStudentPeopleInput = OperationInput<operations["listStudentPeople"]['parameters']['path'], SortQuery<operations["listStudentPeople"]['parameters']['query'], "displayName">, operations["listStudentPeople"]['parameters']['header'], RequestBodyOf<operations["listStudentPeople"]>, false>
-export type listStudentPeopleOutput = import('./domain.js').Page<import('./domain.js').StudentPublicPerson>
-export type listStudentPeopleProblem = operations["listStudentPeople"]['responses'][400]['content']["application/problem+json"] | operations["listStudentPeople"]['responses'][500]['content']["application/problem+json"]
-export type listStudentPeriodPlanningsInput = OperationInput<operations["listStudentPeriodPlannings"]['parameters']['path'], SortQuery<operations["listStudentPeriodPlannings"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear" | "studyPeriodYearPeriod" | "visibility">, operations["listStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["listStudentPeriodPlannings"]>, false>
-export type listStudentPeriodPlanningsOutput = import('./domain.js').Page<import('./domain.js').PeriodPlanning>
-export type listStudentPeriodPlanningsProblem = operations["listStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["listStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
 export type listStudentsInput = OperationInput<operations["listStudents"]['parameters']['path'], SortQuery<operations["listStudents"]['parameters']['query'], "id" | "ra" | "name" | "entryYear">, operations["listStudents"]['parameters']['header'], RequestBodyOf<operations["listStudents"]>, false>
 export type listStudentsOutput = import('./domain.js').Page<import('./domain.js').Student>
 export type listStudentsProblem = operations["listStudents"]['responses'][400]['content']["application/problem+json"] | operations["listStudents"]['responses'][500]['content']["application/problem+json"]
-export type listStudentSharedPeriodPlanningsInput = OperationInput<operations["listStudentSharedPeriodPlannings"]['parameters']['path'], SortQuery<operations["listStudentSharedPeriodPlannings"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear">, operations["listStudentSharedPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["listStudentSharedPeriodPlannings"]>, false>
-export type listStudentSharedPeriodPlanningsOutput = import('./domain.js').Page<import('./domain.js').SharedPeriodPlanning>
-export type listStudentSharedPeriodPlanningsProblem = operations["listStudentSharedPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["listStudentSharedPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
-export type listStudentTagInterestsInput = OperationInput<operations["listStudentTagInterests"]['parameters']['path'], SortQuery<operations["listStudentTagInterests"]['parameters']['query'], "name">, operations["listStudentTagInterests"]['parameters']['header'], RequestBodyOf<operations["listStudentTagInterests"]>, false>
-export type listStudentTagInterestsOutput = import('./domain.js').Page<import('./domain.js').StudentTagInterest>
-export type listStudentTagInterestsProblem = operations["listStudentTagInterests"]['responses'][400]['content']["application/problem+json"] | operations["listStudentTagInterests"]['responses'][500]['content']["application/problem+json"]
 export type listTagCoursesInput = OperationInput<operations["listTagCourses"]['parameters']['path'], SortQuery<operations["listTagCourses"]['parameters']['query'], "code" | "name" | "credits">, operations["listTagCourses"]['parameters']['header'], RequestBodyOf<operations["listTagCourses"]>, false>
 export type listTagCoursesOutput = import('./domain.js').Page<import('./domain.js').TagRelatedCourse>
 export type listTagCoursesProblem = operations["listTagCourses"]['responses'][400]['content']["application/problem+json"] | operations["listTagCourses"]['responses'][404]['content']["application/problem+json"] | operations["listTagCourses"]['responses'][500]['content']["application/problem+json"]
 export type listTagsInput = OperationInput<operations["listTags"]['parameters']['path'], SortQuery<operations["listTags"]['parameters']['query'], "name" | "categoryId">, operations["listTags"]['parameters']['header'], RequestBodyOf<operations["listTags"]>, false>
 export type listTagsOutput = import('./domain.js').Page<import('./domain.js').Tag>
 export type listTagsProblem = operations["listTags"]['responses'][400]['content']["application/problem+json"] | operations["listTags"]['responses'][500]['content']["application/problem+json"]
+export type listUserAbsencesInput = OperationInput<operations["listUserAbsences"]['parameters']['path'], SortQuery<operations["listUserAbsences"]['parameters']['query'], "date" | "courseCode" | "classCode" | "start" | "createdAt">, operations["listUserAbsences"]['parameters']['header'], RequestBodyOf<operations["listUserAbsences"]>, false>
+export type listUserAbsencesOutput = import('./domain.js').Page<import('./domain.js').StudentAbsence>
+export type listUserAbsencesProblem = operations["listUserAbsences"]['responses'][400]['content']["application/problem+json"] | operations["listUserAbsences"]['responses'][404]['content']["application/problem+json"] | operations["listUserAbsences"]['responses'][500]['content']["application/problem+json"]
+export type listUserFeedbackReportsInput = OperationInput<operations["listUserFeedbackReports"]['parameters']['path'], SortQuery<operations["listUserFeedbackReports"]['parameters']['query'], "createdAt" | "updatedAt" | "status" | "kind" | "title">, operations["listUserFeedbackReports"]['parameters']['header'], RequestBodyOf<operations["listUserFeedbackReports"]>, false>
+export type listUserFeedbackReportsOutput = import('./domain.js').Page<import('./domain.js').FeedbackReport>
+export type listUserFeedbackReportsProblem = operations["listUserFeedbackReports"]['responses'][400]['content']["application/problem+json"] | operations["listUserFeedbackReports"]['responses'][500]['content']["application/problem+json"]
+export type listUserFriendshipsInput = OperationInput<operations["listUserFriendships"]['parameters']['path'], SortQuery<operations["listUserFriendships"]['parameters']['query'], "updatedAt" | "status">, operations["listUserFriendships"]['parameters']['header'], RequestBodyOf<operations["listUserFriendships"]>, false>
+export type listUserFriendshipsOutput = import('./domain.js').Page<import('./domain.js').UserFriendship>
+export type listUserFriendshipsProblem = operations["listUserFriendships"]['responses'][400]['content']["application/problem+json"] | operations["listUserFriendships"]['responses'][500]['content']["application/problem+json"]
+export type listUserGroupMembershipsInput = OperationInput<operations["listUserGroupMemberships"]['parameters']['path'], operations["listUserGroupMemberships"]['parameters']['query'], operations["listUserGroupMemberships"]['parameters']['header'], RequestBodyOf<operations["listUserGroupMemberships"]>, false>
+export type listUserGroupMembershipsOutput = import('./domain.js').Page<import('./domain.js').OwnGroupMembership>
+export type listUserGroupMembershipsProblem = operations["listUserGroupMemberships"]['responses'][400]['content']["application/problem+json"] | operations["listUserGroupMemberships"]['responses'][500]['content']["application/problem+json"]
+export type listUserInterestsInput = OperationInput<operations["listUserInterests"]['parameters']['path'], SortQuery<operations["listUserInterests"]['parameters']['query'], "name">, operations["listUserInterests"]['parameters']['header'], RequestBodyOf<operations["listUserInterests"]>, false>
+export type listUserInterestsOutput = import('./domain.js').Page<import('./domain.js').UserInterest>
+export type listUserInterestsProblem = operations["listUserInterests"]['responses'][400]['content']["application/problem+json"] | operations["listUserInterests"]['responses'][500]['content']["application/problem+json"]
+export type listUserPeopleInput = OperationInput<operations["listUserPeople"]['parameters']['path'], SortQuery<operations["listUserPeople"]['parameters']['query'], "displayName">, operations["listUserPeople"]['parameters']['header'], RequestBodyOf<operations["listUserPeople"]>, false>
+export type listUserPeopleOutput = import('./domain.js').Page<import('./domain.js').UserPublicPerson>
+export type listUserPeopleProblem = operations["listUserPeople"]['responses'][400]['content']["application/problem+json"] | operations["listUserPeople"]['responses'][500]['content']["application/problem+json"]
+export type listUserSharedPeriodPlansInput = OperationInput<operations["listUserSharedPeriodPlans"]['parameters']['path'], SortQuery<operations["listUserSharedPeriodPlans"]['parameters']['query'], "updatedAt" | "name" | "studyPeriodYear">, operations["listUserSharedPeriodPlans"]['parameters']['header'], RequestBodyOf<operations["listUserSharedPeriodPlans"]>, false>
+export type listUserSharedPeriodPlansOutput = import('./domain.js').Page<import('./domain.js').SharedPeriodPlanning>
+export type listUserSharedPeriodPlansProblem = operations["listUserSharedPeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["listUserSharedPeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type publishGroupEventInput = OperationInput<operations["publishGroupEvent"]['parameters']['path'], operations["publishGroupEvent"]['parameters']['query'], operations["publishGroupEvent"]['parameters']['header'], RequestBodyOf<operations["publishGroupEvent"]>, false>
 export type publishGroupEventOutput = import('./domain.js').ManagedGroupEvent
 export type publishGroupEventProblem = operations["publishGroupEvent"]['responses'][400]['content']["application/problem+json"] | operations["publishGroupEvent"]['responses'][404]['content']["application/problem+json"] | operations["publishGroupEvent"]['responses'][500]['content']["application/problem+json"]
 export type putGroupAvatarInput = OperationInput<operations["putGroupAvatar"]['parameters']['path'], operations["putGroupAvatar"]['parameters']['query'], operations["putGroupAvatar"]['parameters']['header'], RequestBodyOf<operations["putGroupAvatar"]>, true>
 export type putGroupAvatarOutput = operations["putGroupAvatar"]['responses'][200]['content']["application/json"]
 export type putGroupAvatarProblem = operations["putGroupAvatar"]['responses'][400]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][401]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][403]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][404]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][409]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][413]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][422]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][429]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][500]['content']["application/problem+json"] | operations["putGroupAvatar"]['responses'][503]['content']["application/problem+json"]
-export type putStudentAvatarInput = OperationInput<operations["putStudentAvatar"]['parameters']['path'], operations["putStudentAvatar"]['parameters']['query'], operations["putStudentAvatar"]['parameters']['header'], RequestBodyOf<operations["putStudentAvatar"]>, true>
-export type putStudentAvatarOutput = operations["putStudentAvatar"]['responses'][200]['content']["application/json"]
-export type putStudentAvatarProblem = operations["putStudentAvatar"]['responses'][400]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][401]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][403]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][404]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][409]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][413]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][422]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][429]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][500]['content']["application/problem+json"] | operations["putStudentAvatar"]['responses'][503]['content']["application/problem+json"]
+export type putUserAvatarInput = OperationInput<operations["putUserAvatar"]['parameters']['path'], operations["putUserAvatar"]['parameters']['query'], operations["putUserAvatar"]['parameters']['header'], RequestBodyOf<operations["putUserAvatar"]>, true>
+export type putUserAvatarOutput = operations["putUserAvatar"]['responses'][200]['content']["application/json"]
+export type putUserAvatarProblem = operations["putUserAvatar"]['responses'][400]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][401]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][403]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][404]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][409]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][413]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][422]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][429]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][500]['content']["application/problem+json"] | operations["putUserAvatar"]['responses'][503]['content']["application/problem+json"]
 export type removeCourseTagInput = OperationInput<operations["removeCourseTag"]['parameters']['path'], operations["removeCourseTag"]['parameters']['query'], operations["removeCourseTag"]['parameters']['header'], RequestBodyOf<operations["removeCourseTag"]>, false>
 export type removeCourseTagOutput = void
 export type removeCourseTagProblem = operations["removeCourseTag"]['responses'][400]['content']["application/problem+json"] | operations["removeCourseTag"]['responses'][422]['content']["application/problem+json"] | operations["removeCourseTag"]['responses'][500]['content']["application/problem+json"]
@@ -294,12 +300,15 @@ export type replaceBotGrantProblem = operations["replaceBotGrant"]['responses'][
 export type unsubscribeExchangeNoticesInput = OperationInput<operations["unsubscribeExchangeNotices"]['parameters']['path'], operations["unsubscribeExchangeNotices"]['parameters']['query'], operations["unsubscribeExchangeNotices"]['parameters']['header'], RequestBodyOf<operations["unsubscribeExchangeNotices"]>, false>
 export type unsubscribeExchangeNoticesOutput = operations["unsubscribeExchangeNotices"]['responses'][200]['content']["application/json"]
 export type unsubscribeExchangeNoticesProblem = operations["unsubscribeExchangeNotices"]['responses'][400]['content']["application/problem+json"] | operations["unsubscribeExchangeNotices"]['responses'][500]['content']["application/problem+json"]
-export type updateAuthUserInput = OperationInput<operations["updateAuthUser"]['parameters']['path'], operations["updateAuthUser"]['parameters']['query'], operations["updateAuthUser"]['parameters']['header'], RequestBodyOf<operations["updateAuthUser"]>, true>
-export type updateAuthUserOutput = import('./domain.js').AuthUser
-export type updateAuthUserProblem = operations["updateAuthUser"]['responses'][400]['content']["application/problem+json"] | operations["updateAuthUser"]['responses'][403]['content']["application/problem+json"] | operations["updateAuthUser"]['responses'][404]['content']["application/problem+json"] | operations["updateAuthUser"]['responses'][500]['content']["application/problem+json"]
+export type updateAuthIdentityInput = OperationInput<operations["updateAuthIdentity"]['parameters']['path'], operations["updateAuthIdentity"]['parameters']['query'], operations["updateAuthIdentity"]['parameters']['header'], RequestBodyOf<operations["updateAuthIdentity"]>, true>
+export type updateAuthIdentityOutput = import('./domain.js').AuthIdentity
+export type updateAuthIdentityProblem = operations["updateAuthIdentity"]['responses'][400]['content']["application/problem+json"] | operations["updateAuthIdentity"]['responses'][403]['content']["application/problem+json"] | operations["updateAuthIdentity"]['responses'][404]['content']["application/problem+json"] | operations["updateAuthIdentity"]['responses'][500]['content']["application/problem+json"]
 export type updateCategoryInput = OperationInput<operations["updateCategory"]['parameters']['path'], operations["updateCategory"]['parameters']['query'], operations["updateCategory"]['parameters']['header'], RequestBodyOf<operations["updateCategory"]>, true>
 export type updateCategoryOutput = import('./domain.js').Category
 export type updateCategoryProblem = operations["updateCategory"]['responses'][400]['content']["application/problem+json"] | operations["updateCategory"]['responses'][404]['content']["application/problem+json"] | operations["updateCategory"]['responses'][409]['content']["application/problem+json"] | operations["updateCategory"]['responses'][500]['content']["application/problem+json"]
+export type updateCurriculumsInput = OperationInput<operations["updateCurriculums"]['parameters']['path'], operations["updateCurriculums"]['parameters']['query'], operations["updateCurriculums"]['parameters']['header'], RequestBodyOf<operations["updateCurriculums"]>, true>
+export type updateCurriculumsOutput = import('./domain.js').Curriculum
+export type updateCurriculumsProblem = operations["updateCurriculums"]['responses'][400]['content']["application/problem+json"] | operations["updateCurriculums"]['responses'][404]['content']["application/problem+json"] | operations["updateCurriculums"]['responses'][422]['content']["application/problem+json"] | operations["updateCurriculums"]['responses'][500]['content']["application/problem+json"]
 export type updateExchangeNoticeSubscriptionInput = OperationInput<operations["updateExchangeNoticeSubscription"]['parameters']['path'], operations["updateExchangeNoticeSubscription"]['parameters']['query'], operations["updateExchangeNoticeSubscription"]['parameters']['header'], RequestBodyOf<operations["updateExchangeNoticeSubscription"]>, true>
 export type updateExchangeNoticeSubscriptionOutput = import('./domain.js').ExchangeNoticeSubscription
 export type updateExchangeNoticeSubscriptionProblem = operations["updateExchangeNoticeSubscription"]['responses'][400]['content']["application/problem+json"] | operations["updateExchangeNoticeSubscription"]['responses'][422]['content']["application/problem+json"] | operations["updateExchangeNoticeSubscription"]['responses'][500]['content']["application/problem+json"]
@@ -318,94 +327,100 @@ export type updateGroupRoleProblem = operations["updateGroupRole"]['responses'][
 export type updateManagedGroupMembershipInput = OperationInput<operations["updateManagedGroupMembership"]['parameters']['path'], operations["updateManagedGroupMembership"]['parameters']['query'], operations["updateManagedGroupMembership"]['parameters']['header'], RequestBodyOf<operations["updateManagedGroupMembership"]>, true>
 export type updateManagedGroupMembershipOutput = import('./domain.js').ManagedGroupMembership
 export type updateManagedGroupMembershipProblem = operations["updateManagedGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["updateManagedGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["updateManagedGroupMembership"]['responses'][500]['content']["application/problem+json"]
+export type updatePeriodPlansInput = OperationInput<operations["updatePeriodPlans"]['parameters']['path'], operations["updatePeriodPlans"]['parameters']['query'], operations["updatePeriodPlans"]['parameters']['header'], RequestBodyOf<operations["updatePeriodPlans"]>, true>
+export type updatePeriodPlansOutput = import('./domain.js').PeriodPlanning
+export type updatePeriodPlansProblem = operations["updatePeriodPlans"]['responses'][400]['content']["application/problem+json"] | operations["updatePeriodPlans"]['responses'][404]['content']["application/problem+json"] | operations["updatePeriodPlans"]['responses'][422]['content']["application/problem+json"] | operations["updatePeriodPlans"]['responses'][500]['content']["application/problem+json"]
 export type updateProfessorEvaluationInput = OperationInput<operations["updateProfessorEvaluation"]['parameters']['path'], operations["updateProfessorEvaluation"]['parameters']['query'], operations["updateProfessorEvaluation"]['parameters']['header'], RequestBodyOf<operations["updateProfessorEvaluation"]>, true>
 export type updateProfessorEvaluationOutput = import('./domain.js').ProfessorEvaluation
 export type updateProfessorEvaluationProblem = operations["updateProfessorEvaluation"]['responses'][400]['content']["application/problem+json"] | operations["updateProfessorEvaluation"]['responses'][422]['content']["application/problem+json"] | operations["updateProfessorEvaluation"]['responses'][500]['content']["application/problem+json"]
 export type updateStudentCourseAttemptsInput = OperationInput<operations["updateStudentCourseAttempts"]['parameters']['path'], operations["updateStudentCourseAttempts"]['parameters']['query'], operations["updateStudentCourseAttempts"]['parameters']['header'], RequestBodyOf<operations["updateStudentCourseAttempts"]>, true>
 export type updateStudentCourseAttemptsOutput = import('./domain.js').StudentCourseAttempt
 export type updateStudentCourseAttemptsProblem = operations["updateStudentCourseAttempts"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentCourseAttempts"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentCourseAttempts"]['responses'][409]['content']["application/problem+json"] | operations["updateStudentCourseAttempts"]['responses'][422]['content']["application/problem+json"] | operations["updateStudentCourseAttempts"]['responses'][500]['content']["application/problem+json"]
-export type updateStudentCurriculaInput = OperationInput<operations["updateStudentCurricula"]['parameters']['path'], operations["updateStudentCurricula"]['parameters']['query'], operations["updateStudentCurricula"]['parameters']['header'], RequestBodyOf<operations["updateStudentCurricula"]>, true>
-export type updateStudentCurriculaOutput = import('./domain.js').Curriculum
-export type updateStudentCurriculaProblem = operations["updateStudentCurricula"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentCurricula"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentCurricula"]['responses'][422]['content']["application/problem+json"] | operations["updateStudentCurricula"]['responses'][500]['content']["application/problem+json"]
-export type updateStudentGroupMembershipInput = OperationInput<operations["updateStudentGroupMembership"]['parameters']['path'], operations["updateStudentGroupMembership"]['parameters']['query'], operations["updateStudentGroupMembership"]['parameters']['header'], RequestBodyOf<operations["updateStudentGroupMembership"]>, true>
-export type updateStudentGroupMembershipOutput = import('./domain.js').OwnGroupMembership
-export type updateStudentGroupMembershipProblem = operations["updateStudentGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentGroupMembership"]['responses'][500]['content']["application/problem+json"]
-export type updateStudentPeriodPlanningsInput = OperationInput<operations["updateStudentPeriodPlannings"]['parameters']['path'], operations["updateStudentPeriodPlannings"]['parameters']['query'], operations["updateStudentPeriodPlannings"]['parameters']['header'], RequestBodyOf<operations["updateStudentPeriodPlannings"]>, true>
-export type updateStudentPeriodPlanningsOutput = import('./domain.js').PeriodPlanning
-export type updateStudentPeriodPlanningsProblem = operations["updateStudentPeriodPlannings"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentPeriodPlannings"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentPeriodPlannings"]['responses'][422]['content']["application/problem+json"] | operations["updateStudentPeriodPlannings"]['responses'][500]['content']["application/problem+json"]
-export type updateStudentPublicProfileInput = OperationInput<operations["updateStudentPublicProfile"]['parameters']['path'], operations["updateStudentPublicProfile"]['parameters']['query'], operations["updateStudentPublicProfile"]['parameters']['header'], RequestBodyOf<operations["updateStudentPublicProfile"]>, true>
-export type updateStudentPublicProfileOutput = import('./domain.js').StudentPublicProfile
-export type updateStudentPublicProfileProblem = operations["updateStudentPublicProfile"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentPublicProfile"]['responses'][404]['content']["application/problem+json"] | operations["updateStudentPublicProfile"]['responses'][500]['content']["application/problem+json"]
 export type updateStudentsInput = OperationInput<operations["updateStudents"]['parameters']['path'], operations["updateStudents"]['parameters']['query'], operations["updateStudents"]['parameters']['header'], RequestBodyOf<operations["updateStudents"]>, true>
 export type updateStudentsOutput = import('./domain.js').Student
 export type updateStudentsProblem = operations["updateStudents"]['responses'][400]['content']["application/problem+json"] | operations["updateStudents"]['responses'][404]['content']["application/problem+json"] | operations["updateStudents"]['responses'][422]['content']["application/problem+json"] | operations["updateStudents"]['responses'][500]['content']["application/problem+json"]
-export type updateStudentTagInterestInput = OperationInput<operations["updateStudentTagInterest"]['parameters']['path'], operations["updateStudentTagInterest"]['parameters']['query'], operations["updateStudentTagInterest"]['parameters']['header'], RequestBodyOf<operations["updateStudentTagInterest"]>, false>
-export type updateStudentTagInterestOutput = void
-export type updateStudentTagInterestProblem = operations["updateStudentTagInterest"]['responses'][400]['content']["application/problem+json"] | operations["updateStudentTagInterest"]['responses'][422]['content']["application/problem+json"] | operations["updateStudentTagInterest"]['responses'][500]['content']["application/problem+json"]
 export type updateTagInput = OperationInput<operations["updateTag"]['parameters']['path'], operations["updateTag"]['parameters']['query'], operations["updateTag"]['parameters']['header'], RequestBodyOf<operations["updateTag"]>, true>
 export type updateTagOutput = import('./domain.js').Tag
 export type updateTagProblem = operations["updateTag"]['responses'][400]['content']["application/problem+json"] | operations["updateTag"]['responses'][404]['content']["application/problem+json"] | operations["updateTag"]['responses'][409]['content']["application/problem+json"] | operations["updateTag"]['responses'][422]['content']["application/problem+json"] | operations["updateTag"]['responses'][500]['content']["application/problem+json"]
+export type updateUserInput = OperationInput<operations["updateUser"]['parameters']['path'], operations["updateUser"]['parameters']['query'], operations["updateUser"]['parameters']['header'], RequestBodyOf<operations["updateUser"]>, true>
+export type updateUserOutput = import('./domain.js').User
+export type updateUserProblem = operations["updateUser"]['responses'][400]['content']["application/problem+json"] | operations["updateUser"]['responses'][404]['content']["application/problem+json"] | operations["updateUser"]['responses'][500]['content']["application/problem+json"]
+export type updateUserGroupMembershipInput = OperationInput<operations["updateUserGroupMembership"]['parameters']['path'], operations["updateUserGroupMembership"]['parameters']['query'], operations["updateUserGroupMembership"]['parameters']['header'], RequestBodyOf<operations["updateUserGroupMembership"]>, true>
+export type updateUserGroupMembershipOutput = import('./domain.js').OwnGroupMembership
+export type updateUserGroupMembershipProblem = operations["updateUserGroupMembership"]['responses'][400]['content']["application/problem+json"] | operations["updateUserGroupMembership"]['responses'][404]['content']["application/problem+json"] | operations["updateUserGroupMembership"]['responses'][500]['content']["application/problem+json"]
+export type updateUserInterestInput = OperationInput<operations["updateUserInterest"]['parameters']['path'], operations["updateUserInterest"]['parameters']['query'], operations["updateUserInterest"]['parameters']['header'], RequestBodyOf<operations["updateUserInterest"]>, false>
+export type updateUserInterestOutput = void
+export type updateUserInterestProblem = operations["updateUserInterest"]['responses'][400]['content']["application/problem+json"] | operations["updateUserInterest"]['responses'][422]['content']["application/problem+json"] | operations["updateUserInterest"]['responses'][500]['content']["application/problem+json"]
+export type updateUserPreferencesInput = OperationInput<operations["updateUserPreferences"]['parameters']['path'], operations["updateUserPreferences"]['parameters']['query'], operations["updateUserPreferences"]['parameters']['header'], RequestBodyOf<operations["updateUserPreferences"]>, true>
+export type updateUserPreferencesOutput = import('./domain.js').UserPreferences
+export type updateUserPreferencesProblem = operations["updateUserPreferences"]['responses'][400]['content']["application/problem+json"] | operations["updateUserPreferences"]['responses'][404]['content']["application/problem+json"] | operations["updateUserPreferences"]['responses'][500]['content']["application/problem+json"]
+export type updateUserProfileInput = OperationInput<operations["updateUserProfile"]['parameters']['path'], operations["updateUserProfile"]['parameters']['query'], operations["updateUserProfile"]['parameters']['header'], RequestBodyOf<operations["updateUserProfile"]>, true>
+export type updateUserProfileOutput = import('./domain.js').UserProfile
+export type updateUserProfileProblem = operations["updateUserProfile"]['responses'][400]['content']["application/problem+json"] | operations["updateUserProfile"]['responses'][404]['content']["application/problem+json"] | operations["updateUserProfile"]['responses'][500]['content']["application/problem+json"]
 
 export interface OperationInputs {
     acceptGroupInvitation: acceptGroupInvitationInput
-    acceptStudentFriendship: acceptStudentFriendshipInput
+    acceptUserFriendship: acceptUserFriendshipInput
     addCourseTag: addCourseTagInput
     archiveGroup: archiveGroupInput
     cancelGroupEvent: cancelGroupEventInput
-    createAuthUser: createAuthUserInput
+    createAuthIdentity: createAuthIdentityInput
     createCategory: createCategoryInput
+    createCurriculums: createCurriculumsInput
     createFeedbackReport: createFeedbackReportInput
     createGroup: createGroupInput
     createGroupEvent: createGroupEventInput
     createGroupInvitation: createGroupInvitationInput
     createGroupRole: createGroupRoleInput
+    createPeriodPlans: createPeriodPlansInput
     createStudentAbsences: createStudentAbsencesInput
     createStudentCourseAttempts: createStudentCourseAttemptsInput
-    createStudentCurricula: createStudentCurriculaInput
-    createStudentFeedbackReport: createStudentFeedbackReportInput
-    createStudentFriendship: createStudentFriendshipInput
     createStudentHistory: createStudentHistoryInput
-    createStudentPeriodPlannings: createStudentPeriodPlanningsInput
     createStudents: createStudentsInput
     createTag: createTagInput
+    createUserFeedbackReport: createUserFeedbackReportInput
+    createUserFriendship: createUserFriendshipInput
     declineGroupInvitation: declineGroupInvitationInput
     deleteCategory: deleteCategoryInput
+    deleteCurriculums: deleteCurriculumsInput
     deleteGroupAvatar: deleteGroupAvatarInput
     deleteGroupRole: deleteGroupRoleInput
+    deletePeriodPlans: deletePeriodPlansInput
     deleteStudentAbsences: deleteStudentAbsencesInput
-    deleteStudentAvatar: deleteStudentAvatarInput
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsInput
-    deleteStudentCurricula: deleteStudentCurriculaInput
-    deleteStudentFriendship: deleteStudentFriendshipInput
-    deleteStudentPeriodPlannings: deleteStudentPeriodPlanningsInput
     deleteStudents: deleteStudentsInput
-    deleteStudentTagInterest: deleteStudentTagInterestInput
     deleteTag: deleteTagInput
+    deleteUserAvatar: deleteUserAvatarInput
+    deleteUserFriendship: deleteUserFriendshipInput
+    deleteUserInterest: deleteUserInterestInput
     getCategory: getCategoryInput
     getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryInput
     getCurrentUser: getCurrentUserInput
+    getCurriculums: getCurriculumsInput
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionInput
     getGroup: getGroupInput
     getGroupEvent: getGroupEventInput
     getImageVariant: getImageVariantInput
+    getPeriodPlans: getPeriodPlansInput
     getProfessorEvaluation: getProfessorEvaluationInput
     getPublicGroupMembership: getPublicGroupMembershipInput
-    getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningInput
+    getPublicSharedPeriodPlan: getPublicSharedPeriodPlanInput
     getStudentCourseAttempts: getStudentCourseAttemptsInput
-    getStudentCurricula: getStudentCurriculaInput
-    getStudentGroupMembership: getStudentGroupMembershipInput
-    getStudentPeriodPlannings: getStudentPeriodPlanningsInput
-    getStudentPerson: getStudentPersonInput
-    getStudentPublicProfile: getStudentPublicProfileInput
     getStudents: getStudentsInput
-    getStudentSharedPeriodPlanning: getStudentSharedPeriodPlanningInput
     getTag: getTagInput
-    listAuthUsers: listAuthUsersInput
+    getUser: getUserInput
+    getUserGroupMembership: getUserGroupMembershipInput
+    getUserPerson: getUserPersonInput
+    getUserPreferences: getUserPreferencesInput
+    getUserProfile: getUserProfileInput
+    getUserSharedPeriodPlan: getUserSharedPeriodPlanInput
+    listAuthIdentities: listAuthIdentitiesInput
     listBotGrants: listBotGrantsInput
     listBots: listBotsInput
     listCategories: listCategoriesInput
     listCourseEvaluationSummaries: listCourseEvaluationSummariesInput
     listCourseTags: listCourseTagsInput
+    listCurriculums: listCurriculumsInput
     listFeedbackReports: listFeedbackReportsInput
     listGroupEvents: listGroupEventsInput
     listGroupInvitations: listGroupInvitationsInput
@@ -415,107 +430,111 @@ export interface OperationInputs {
     listManagedGroupInvitations: listManagedGroupInvitationsInput
     listManagedGroupMemberships: listManagedGroupMembershipsInput
     listPendingProfessorEvaluations: listPendingProfessorEvaluationsInput
+    listPeriodPlans: listPeriodPlansInput
     listProfessorEvaluationSummaries: listProfessorEvaluationSummariesInput
     listPublicGroupMemberships: listPublicGroupMembershipsInput
-    listPublicSharedPeriodPlannings: listPublicSharedPeriodPlanningsInput
-    listStudentAbsences: listStudentAbsencesInput
+    listPublicSharedPeriodPlans: listPublicSharedPeriodPlansInput
     listStudentCourseAttempts: listStudentCourseAttemptsInput
-    listStudentCurricula: listStudentCurriculaInput
-    listStudentFeedbackReports: listStudentFeedbackReportsInput
-    listStudentFriendships: listStudentFriendshipsInput
-    listStudentGroupMemberships: listStudentGroupMembershipsInput
-    listStudentPeople: listStudentPeopleInput
-    listStudentPeriodPlannings: listStudentPeriodPlanningsInput
     listStudents: listStudentsInput
-    listStudentSharedPeriodPlannings: listStudentSharedPeriodPlanningsInput
-    listStudentTagInterests: listStudentTagInterestsInput
     listTagCourses: listTagCoursesInput
     listTags: listTagsInput
+    listUserAbsences: listUserAbsencesInput
+    listUserFeedbackReports: listUserFeedbackReportsInput
+    listUserFriendships: listUserFriendshipsInput
+    listUserGroupMemberships: listUserGroupMembershipsInput
+    listUserInterests: listUserInterestsInput
+    listUserPeople: listUserPeopleInput
+    listUserSharedPeriodPlans: listUserSharedPeriodPlansInput
     publishGroupEvent: publishGroupEventInput
     putGroupAvatar: putGroupAvatarInput
-    putStudentAvatar: putStudentAvatarInput
+    putUserAvatar: putUserAvatarInput
     removeCourseTag: removeCourseTagInput
     replaceBotGrant: replaceBotGrantInput
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesInput
-    updateAuthUser: updateAuthUserInput
+    updateAuthIdentity: updateAuthIdentityInput
     updateCategory: updateCategoryInput
+    updateCurriculums: updateCurriculumsInput
     updateExchangeNoticeSubscription: updateExchangeNoticeSubscriptionInput
     updateFeedbackReport: updateFeedbackReportInput
     updateGroup: updateGroupInput
     updateGroupEvent: updateGroupEventInput
     updateGroupRole: updateGroupRoleInput
     updateManagedGroupMembership: updateManagedGroupMembershipInput
+    updatePeriodPlans: updatePeriodPlansInput
     updateProfessorEvaluation: updateProfessorEvaluationInput
     updateStudentCourseAttempts: updateStudentCourseAttemptsInput
-    updateStudentCurricula: updateStudentCurriculaInput
-    updateStudentGroupMembership: updateStudentGroupMembershipInput
-    updateStudentPeriodPlannings: updateStudentPeriodPlanningsInput
-    updateStudentPublicProfile: updateStudentPublicProfileInput
     updateStudents: updateStudentsInput
-    updateStudentTagInterest: updateStudentTagInterestInput
     updateTag: updateTagInput
+    updateUser: updateUserInput
+    updateUserGroupMembership: updateUserGroupMembershipInput
+    updateUserInterest: updateUserInterestInput
+    updateUserPreferences: updateUserPreferencesInput
+    updateUserProfile: updateUserProfileInput
 }
 
 export interface OperationOutputs {
     acceptGroupInvitation: acceptGroupInvitationOutput
-    acceptStudentFriendship: acceptStudentFriendshipOutput
+    acceptUserFriendship: acceptUserFriendshipOutput
     addCourseTag: addCourseTagOutput
     archiveGroup: archiveGroupOutput
     cancelGroupEvent: cancelGroupEventOutput
-    createAuthUser: createAuthUserOutput
+    createAuthIdentity: createAuthIdentityOutput
     createCategory: createCategoryOutput
+    createCurriculums: createCurriculumsOutput
     createFeedbackReport: createFeedbackReportOutput
     createGroup: createGroupOutput
     createGroupEvent: createGroupEventOutput
     createGroupInvitation: createGroupInvitationOutput
     createGroupRole: createGroupRoleOutput
+    createPeriodPlans: createPeriodPlansOutput
     createStudentAbsences: createStudentAbsencesOutput
     createStudentCourseAttempts: createStudentCourseAttemptsOutput
-    createStudentCurricula: createStudentCurriculaOutput
-    createStudentFeedbackReport: createStudentFeedbackReportOutput
-    createStudentFriendship: createStudentFriendshipOutput
     createStudentHistory: createStudentHistoryOutput
-    createStudentPeriodPlannings: createStudentPeriodPlanningsOutput
     createStudents: createStudentsOutput
     createTag: createTagOutput
+    createUserFeedbackReport: createUserFeedbackReportOutput
+    createUserFriendship: createUserFriendshipOutput
     declineGroupInvitation: declineGroupInvitationOutput
     deleteCategory: deleteCategoryOutput
+    deleteCurriculums: deleteCurriculumsOutput
     deleteGroupAvatar: deleteGroupAvatarOutput
     deleteGroupRole: deleteGroupRoleOutput
+    deletePeriodPlans: deletePeriodPlansOutput
     deleteStudentAbsences: deleteStudentAbsencesOutput
-    deleteStudentAvatar: deleteStudentAvatarOutput
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsOutput
-    deleteStudentCurricula: deleteStudentCurriculaOutput
-    deleteStudentFriendship: deleteStudentFriendshipOutput
-    deleteStudentPeriodPlannings: deleteStudentPeriodPlanningsOutput
     deleteStudents: deleteStudentsOutput
-    deleteStudentTagInterest: deleteStudentTagInterestOutput
     deleteTag: deleteTagOutput
+    deleteUserAvatar: deleteUserAvatarOutput
+    deleteUserFriendship: deleteUserFriendshipOutput
+    deleteUserInterest: deleteUserInterestOutput
     getCategory: getCategoryOutput
     getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryOutput
     getCurrentUser: getCurrentUserOutput
+    getCurriculums: getCurriculumsOutput
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionOutput
     getGroup: getGroupOutput
     getGroupEvent: getGroupEventOutput
     getImageVariant: getImageVariantOutput
+    getPeriodPlans: getPeriodPlansOutput
     getProfessorEvaluation: getProfessorEvaluationOutput
     getPublicGroupMembership: getPublicGroupMembershipOutput
-    getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningOutput
+    getPublicSharedPeriodPlan: getPublicSharedPeriodPlanOutput
     getStudentCourseAttempts: getStudentCourseAttemptsOutput
-    getStudentCurricula: getStudentCurriculaOutput
-    getStudentGroupMembership: getStudentGroupMembershipOutput
-    getStudentPeriodPlannings: getStudentPeriodPlanningsOutput
-    getStudentPerson: getStudentPersonOutput
-    getStudentPublicProfile: getStudentPublicProfileOutput
     getStudents: getStudentsOutput
-    getStudentSharedPeriodPlanning: getStudentSharedPeriodPlanningOutput
     getTag: getTagOutput
-    listAuthUsers: listAuthUsersOutput
+    getUser: getUserOutput
+    getUserGroupMembership: getUserGroupMembershipOutput
+    getUserPerson: getUserPersonOutput
+    getUserPreferences: getUserPreferencesOutput
+    getUserProfile: getUserProfileOutput
+    getUserSharedPeriodPlan: getUserSharedPeriodPlanOutput
+    listAuthIdentities: listAuthIdentitiesOutput
     listBotGrants: listBotGrantsOutput
     listBots: listBotsOutput
     listCategories: listCategoriesOutput
     listCourseEvaluationSummaries: listCourseEvaluationSummariesOutput
     listCourseTags: listCourseTagsOutput
+    listCurriculums: listCurriculumsOutput
     listFeedbackReports: listFeedbackReportsOutput
     listGroupEvents: listGroupEventsOutput
     listGroupInvitations: listGroupInvitationsOutput
@@ -525,107 +544,111 @@ export interface OperationOutputs {
     listManagedGroupInvitations: listManagedGroupInvitationsOutput
     listManagedGroupMemberships: listManagedGroupMembershipsOutput
     listPendingProfessorEvaluations: listPendingProfessorEvaluationsOutput
+    listPeriodPlans: listPeriodPlansOutput
     listProfessorEvaluationSummaries: listProfessorEvaluationSummariesOutput
     listPublicGroupMemberships: listPublicGroupMembershipsOutput
-    listPublicSharedPeriodPlannings: listPublicSharedPeriodPlanningsOutput
-    listStudentAbsences: listStudentAbsencesOutput
+    listPublicSharedPeriodPlans: listPublicSharedPeriodPlansOutput
     listStudentCourseAttempts: listStudentCourseAttemptsOutput
-    listStudentCurricula: listStudentCurriculaOutput
-    listStudentFeedbackReports: listStudentFeedbackReportsOutput
-    listStudentFriendships: listStudentFriendshipsOutput
-    listStudentGroupMemberships: listStudentGroupMembershipsOutput
-    listStudentPeople: listStudentPeopleOutput
-    listStudentPeriodPlannings: listStudentPeriodPlanningsOutput
     listStudents: listStudentsOutput
-    listStudentSharedPeriodPlannings: listStudentSharedPeriodPlanningsOutput
-    listStudentTagInterests: listStudentTagInterestsOutput
     listTagCourses: listTagCoursesOutput
     listTags: listTagsOutput
+    listUserAbsences: listUserAbsencesOutput
+    listUserFeedbackReports: listUserFeedbackReportsOutput
+    listUserFriendships: listUserFriendshipsOutput
+    listUserGroupMemberships: listUserGroupMembershipsOutput
+    listUserInterests: listUserInterestsOutput
+    listUserPeople: listUserPeopleOutput
+    listUserSharedPeriodPlans: listUserSharedPeriodPlansOutput
     publishGroupEvent: publishGroupEventOutput
     putGroupAvatar: putGroupAvatarOutput
-    putStudentAvatar: putStudentAvatarOutput
+    putUserAvatar: putUserAvatarOutput
     removeCourseTag: removeCourseTagOutput
     replaceBotGrant: replaceBotGrantOutput
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesOutput
-    updateAuthUser: updateAuthUserOutput
+    updateAuthIdentity: updateAuthIdentityOutput
     updateCategory: updateCategoryOutput
+    updateCurriculums: updateCurriculumsOutput
     updateExchangeNoticeSubscription: updateExchangeNoticeSubscriptionOutput
     updateFeedbackReport: updateFeedbackReportOutput
     updateGroup: updateGroupOutput
     updateGroupEvent: updateGroupEventOutput
     updateGroupRole: updateGroupRoleOutput
     updateManagedGroupMembership: updateManagedGroupMembershipOutput
+    updatePeriodPlans: updatePeriodPlansOutput
     updateProfessorEvaluation: updateProfessorEvaluationOutput
     updateStudentCourseAttempts: updateStudentCourseAttemptsOutput
-    updateStudentCurricula: updateStudentCurriculaOutput
-    updateStudentGroupMembership: updateStudentGroupMembershipOutput
-    updateStudentPeriodPlannings: updateStudentPeriodPlanningsOutput
-    updateStudentPublicProfile: updateStudentPublicProfileOutput
     updateStudents: updateStudentsOutput
-    updateStudentTagInterest: updateStudentTagInterestOutput
     updateTag: updateTagOutput
+    updateUser: updateUserOutput
+    updateUserGroupMembership: updateUserGroupMembershipOutput
+    updateUserInterest: updateUserInterestOutput
+    updateUserPreferences: updateUserPreferencesOutput
+    updateUserProfile: updateUserProfileOutput
 }
 
 export interface OperationProblems {
     acceptGroupInvitation: acceptGroupInvitationProblem
-    acceptStudentFriendship: acceptStudentFriendshipProblem
+    acceptUserFriendship: acceptUserFriendshipProblem
     addCourseTag: addCourseTagProblem
     archiveGroup: archiveGroupProblem
     cancelGroupEvent: cancelGroupEventProblem
-    createAuthUser: createAuthUserProblem
+    createAuthIdentity: createAuthIdentityProblem
     createCategory: createCategoryProblem
+    createCurriculums: createCurriculumsProblem
     createFeedbackReport: createFeedbackReportProblem
     createGroup: createGroupProblem
     createGroupEvent: createGroupEventProblem
     createGroupInvitation: createGroupInvitationProblem
     createGroupRole: createGroupRoleProblem
+    createPeriodPlans: createPeriodPlansProblem
     createStudentAbsences: createStudentAbsencesProblem
     createStudentCourseAttempts: createStudentCourseAttemptsProblem
-    createStudentCurricula: createStudentCurriculaProblem
-    createStudentFeedbackReport: createStudentFeedbackReportProblem
-    createStudentFriendship: createStudentFriendshipProblem
     createStudentHistory: createStudentHistoryProblem
-    createStudentPeriodPlannings: createStudentPeriodPlanningsProblem
     createStudents: createStudentsProblem
     createTag: createTagProblem
+    createUserFeedbackReport: createUserFeedbackReportProblem
+    createUserFriendship: createUserFriendshipProblem
     declineGroupInvitation: declineGroupInvitationProblem
     deleteCategory: deleteCategoryProblem
+    deleteCurriculums: deleteCurriculumsProblem
     deleteGroupAvatar: deleteGroupAvatarProblem
     deleteGroupRole: deleteGroupRoleProblem
+    deletePeriodPlans: deletePeriodPlansProblem
     deleteStudentAbsences: deleteStudentAbsencesProblem
-    deleteStudentAvatar: deleteStudentAvatarProblem
     deleteStudentCourseAttempts: deleteStudentCourseAttemptsProblem
-    deleteStudentCurricula: deleteStudentCurriculaProblem
-    deleteStudentFriendship: deleteStudentFriendshipProblem
-    deleteStudentPeriodPlannings: deleteStudentPeriodPlanningsProblem
     deleteStudents: deleteStudentsProblem
-    deleteStudentTagInterest: deleteStudentTagInterestProblem
     deleteTag: deleteTagProblem
+    deleteUserAvatar: deleteUserAvatarProblem
+    deleteUserFriendship: deleteUserFriendshipProblem
+    deleteUserInterest: deleteUserInterestProblem
     getCategory: getCategoryProblem
     getCourseProfessorEvaluationSummary: getCourseProfessorEvaluationSummaryProblem
     getCurrentUser: getCurrentUserProblem
+    getCurriculums: getCurriculumsProblem
     getExchangeNoticeSubscription: getExchangeNoticeSubscriptionProblem
     getGroup: getGroupProblem
     getGroupEvent: getGroupEventProblem
     getImageVariant: getImageVariantProblem
+    getPeriodPlans: getPeriodPlansProblem
     getProfessorEvaluation: getProfessorEvaluationProblem
     getPublicGroupMembership: getPublicGroupMembershipProblem
-    getPublicSharedPeriodPlanning: getPublicSharedPeriodPlanningProblem
+    getPublicSharedPeriodPlan: getPublicSharedPeriodPlanProblem
     getStudentCourseAttempts: getStudentCourseAttemptsProblem
-    getStudentCurricula: getStudentCurriculaProblem
-    getStudentGroupMembership: getStudentGroupMembershipProblem
-    getStudentPeriodPlannings: getStudentPeriodPlanningsProblem
-    getStudentPerson: getStudentPersonProblem
-    getStudentPublicProfile: getStudentPublicProfileProblem
     getStudents: getStudentsProblem
-    getStudentSharedPeriodPlanning: getStudentSharedPeriodPlanningProblem
     getTag: getTagProblem
-    listAuthUsers: listAuthUsersProblem
+    getUser: getUserProblem
+    getUserGroupMembership: getUserGroupMembershipProblem
+    getUserPerson: getUserPersonProblem
+    getUserPreferences: getUserPreferencesProblem
+    getUserProfile: getUserProfileProblem
+    getUserSharedPeriodPlan: getUserSharedPeriodPlanProblem
+    listAuthIdentities: listAuthIdentitiesProblem
     listBotGrants: listBotGrantsProblem
     listBots: listBotsProblem
     listCategories: listCategoriesProblem
     listCourseEvaluationSummaries: listCourseEvaluationSummariesProblem
     listCourseTags: listCourseTagsProblem
+    listCurriculums: listCurriculumsProblem
     listFeedbackReports: listFeedbackReportsProblem
     listGroupEvents: listGroupEventsProblem
     listGroupInvitations: listGroupInvitationsProblem
@@ -635,45 +658,46 @@ export interface OperationProblems {
     listManagedGroupInvitations: listManagedGroupInvitationsProblem
     listManagedGroupMemberships: listManagedGroupMembershipsProblem
     listPendingProfessorEvaluations: listPendingProfessorEvaluationsProblem
+    listPeriodPlans: listPeriodPlansProblem
     listProfessorEvaluationSummaries: listProfessorEvaluationSummariesProblem
     listPublicGroupMemberships: listPublicGroupMembershipsProblem
-    listPublicSharedPeriodPlannings: listPublicSharedPeriodPlanningsProblem
-    listStudentAbsences: listStudentAbsencesProblem
+    listPublicSharedPeriodPlans: listPublicSharedPeriodPlansProblem
     listStudentCourseAttempts: listStudentCourseAttemptsProblem
-    listStudentCurricula: listStudentCurriculaProblem
-    listStudentFeedbackReports: listStudentFeedbackReportsProblem
-    listStudentFriendships: listStudentFriendshipsProblem
-    listStudentGroupMemberships: listStudentGroupMembershipsProblem
-    listStudentPeople: listStudentPeopleProblem
-    listStudentPeriodPlannings: listStudentPeriodPlanningsProblem
     listStudents: listStudentsProblem
-    listStudentSharedPeriodPlannings: listStudentSharedPeriodPlanningsProblem
-    listStudentTagInterests: listStudentTagInterestsProblem
     listTagCourses: listTagCoursesProblem
     listTags: listTagsProblem
+    listUserAbsences: listUserAbsencesProblem
+    listUserFeedbackReports: listUserFeedbackReportsProblem
+    listUserFriendships: listUserFriendshipsProblem
+    listUserGroupMemberships: listUserGroupMembershipsProblem
+    listUserInterests: listUserInterestsProblem
+    listUserPeople: listUserPeopleProblem
+    listUserSharedPeriodPlans: listUserSharedPeriodPlansProblem
     publishGroupEvent: publishGroupEventProblem
     putGroupAvatar: putGroupAvatarProblem
-    putStudentAvatar: putStudentAvatarProblem
+    putUserAvatar: putUserAvatarProblem
     removeCourseTag: removeCourseTagProblem
     replaceBotGrant: replaceBotGrantProblem
     unsubscribeExchangeNotices: unsubscribeExchangeNoticesProblem
-    updateAuthUser: updateAuthUserProblem
+    updateAuthIdentity: updateAuthIdentityProblem
     updateCategory: updateCategoryProblem
+    updateCurriculums: updateCurriculumsProblem
     updateExchangeNoticeSubscription: updateExchangeNoticeSubscriptionProblem
     updateFeedbackReport: updateFeedbackReportProblem
     updateGroup: updateGroupProblem
     updateGroupEvent: updateGroupEventProblem
     updateGroupRole: updateGroupRoleProblem
     updateManagedGroupMembership: updateManagedGroupMembershipProblem
+    updatePeriodPlans: updatePeriodPlansProblem
     updateProfessorEvaluation: updateProfessorEvaluationProblem
     updateStudentCourseAttempts: updateStudentCourseAttemptsProblem
-    updateStudentCurricula: updateStudentCurriculaProblem
-    updateStudentGroupMembership: updateStudentGroupMembershipProblem
-    updateStudentPeriodPlannings: updateStudentPeriodPlanningsProblem
-    updateStudentPublicProfile: updateStudentPublicProfileProblem
     updateStudents: updateStudentsProblem
-    updateStudentTagInterest: updateStudentTagInterestProblem
     updateTag: updateTagProblem
+    updateUser: updateUserProblem
+    updateUserGroupMembership: updateUserGroupMembershipProblem
+    updateUserInterest: updateUserInterestProblem
+    updateUserPreferences: updateUserPreferencesProblem
+    updateUserProfile: updateUserProfileProblem
 }
 
 export const operationDefinitions = {
@@ -681,7 +705,7 @@ export const operationDefinitions = {
         "operationId": "acceptGroupInvitation",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/group-invitations/{id}/accept",
+        "path": "/users/{userId}/group-invitations/{id}/accept",
         "authentication": "required",
         "tags": [
             "groups"
@@ -690,7 +714,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "id"
         ],
         "queryParameters": [],
@@ -764,26 +788,26 @@ export const operationDefinitions = {
             "method": "acceptGroupInvitation",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "id": "id"
             }
         },
         "pagination": null
     },
-    "acceptStudentFriendship": {
-        "operationId": "acceptStudentFriendship",
+    "acceptUserFriendship": {
+        "operationId": "acceptUserFriendship",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/friendships/{id}/accept",
+        "path": "/users/{userId}/friendships/{id}/accept",
         "authentication": "required",
         "tags": [
             "student-social"
         ],
-        "summary": "acceptStudentFriendship",
+        "summary": "acceptUserFriendship",
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "id"
         ],
         "queryParameters": [],
@@ -798,7 +822,7 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/json",
                         "schema": {
-                            "$ref": "#/components/schemas/StudentFriendship"
+                            "$ref": "#/components/schemas/UserFriendship"
                         }
                     }
                 ],
@@ -868,11 +892,11 @@ export const operationDefinitions = {
             "filter": null
         },
         "sdk": {
-            "resource": "studentSocial",
+            "resource": "userSocial",
             "method": "acceptFriendship",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "id": "friendshipId"
             }
         },
@@ -968,7 +992,7 @@ export const operationDefinitions = {
         "operationId": "archiveGroup",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/groups/{id}/archive",
+        "path": "/users/{userId}/groups/{groupId}/archive",
         "authentication": "required",
         "tags": [
             "groups"
@@ -977,8 +1001,8 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "id",
-            "sid"
+            "groupId",
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -1044,8 +1068,8 @@ export const operationDefinitions = {
             "method": "archive",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "groupId"
+                "userId": "userId",
+                "groupId": "groupId"
             }
         },
         "pagination": null
@@ -1054,7 +1078,7 @@ export const operationDefinitions = {
         "operationId": "cancelGroupEvent",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/group-events/{id}/cancel",
+        "path": "/users/{userId}/groups/{groupId}/events/{eventId}/cancel",
         "authentication": "required",
         "tags": [
             "groups"
@@ -1063,8 +1087,9 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId",
+            "eventId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -1137,22 +1162,23 @@ export const operationDefinitions = {
             "method": "cancelGroupEvent",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
+                "userId": "userId",
+                "groupId": "groupId",
+                "eventId": "eventId"
             }
         },
         "pagination": null
     },
-    "createAuthUser": {
-        "operationId": "createAuthUser",
+    "createAuthIdentity": {
+        "operationId": "createAuthIdentity",
         "target": "app",
         "method": "POST",
-        "path": "/admin/auth-users",
+        "path": "/admin/auth-identities",
         "authentication": "required",
         "tags": [
-            "auth-users"
+            "auth-identities"
         ],
-        "summary": "Create AuthUser",
+        "summary": "Create AuthIdentity",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -1163,7 +1189,7 @@ export const operationDefinitions = {
             "required": true,
             "contentType": "application/json",
             "schema": {
-                "$ref": "#/components/schemas/CreateBotAuthUserBody"
+                "$ref": "#/components/schemas/CreateBotAuthIdentityBody"
             }
         },
         "responses": [
@@ -1174,7 +1200,7 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/json",
                         "schema": {
-                            "$ref": "#/components/schemas/AuthUserEntity"
+                            "$ref": "#/components/schemas/AuthIdentityEntity"
                         }
                     }
                 ],
@@ -1214,7 +1240,7 @@ export const operationDefinitions = {
             "filter": null
         },
         "sdk": {
-            "resource": "authUsers",
+            "resource": "authIdentities",
             "method": "create",
             "action": "create"
         },
@@ -1322,947 +1348,20 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
-    "createFeedbackReport": {
-        "operationId": "createFeedbackReport",
+    "createCurriculums": {
+        "operationId": "createCurriculums",
         "target": "app",
         "method": "POST",
-        "path": "/feedback-reports",
-        "authentication": "public",
-        "tags": [
-            "feedback-reports"
-        ],
-        "summary": "Create FeedbackReport",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "$ref": "#/components/schemas/CreateFeedbackReportBody"
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/FeedbackReportAccepted"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/InvalidFeedbackReportProblem"
-                                }
-                            ],
-                            "discriminator": {
-                                "propertyName": "type",
-                                "mapping": {
-                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
-                                    "urn:pomi:problem:invalid-feedback-report": "#/components/schemas/InvalidFeedbackReportProblem"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found",
-                    "urn:pomi:problem:invalid-feedback-report"
-                ]
-            },
-            {
-                "status": 429,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/FeedbackRateLimitProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:feedback-rate-limit"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "feedbackReports",
-            "method": "create",
-            "action": "create"
-        },
-        "pagination": null
-    },
-    "createGroup": {
-        "operationId": "createGroup",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/groups",
+        "path": "/users/{userId}/curriculums",
         "authentication": "required",
         "tags": [
-            "groups"
+            "curriculums"
         ],
-        "summary": "Create Group",
+        "summary": "Create Curriculums",
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 160
-                    },
-                    "description": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "contacts": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 40
-                                },
-                                "label": {
-                                    "type": "string",
-                                    "nullable": true,
-                                    "maxLength": 80
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 320
-                                },
-                                "sortOrder": {
-                                    "type": "integer"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "value"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "externalLinks": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "label": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 80
-                                },
-                                "url": {
-                                    "type": "string",
-                                    "maxLength": 2048,
-                                    "format": "uri"
-                                },
-                                "sortOrder": {
-                                    "type": "integer"
-                                }
-                            },
-                            "required": [
-                                "label",
-                                "url"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "tagIds": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer",
-                            "minimum": 0,
-                            "exclusiveMinimum": true
-                        }
-                    }
-                },
-                "required": [
-                    "name"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/Group"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "groups",
-            "method": "create",
-            "action": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createGroupEvent": {
-        "operationId": "createGroupEvent",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/group-events",
-        "authentication": "required",
-        "tags": [
-            "groups"
-        ],
-        "summary": "Create GroupEvent",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "groupId"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 160
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "startsAt": {
-                        "type": "string",
-                        "nullable": true,
-                        "format": "date-time"
-                    },
-                    "endsAt": {
-                        "type": "string",
-                        "nullable": true,
-                        "format": "date-time"
-                    },
-                    "location": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 320
-                    },
-                    "tagIds": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer",
-                            "minimum": 0,
-                            "exclusiveMinimum": true
-                        }
-                    }
-                },
-                "required": [
-                    "name",
-                    "description"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ManagedGroupEvent"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "groupId",
-                    "required": true,
-                    "description": null,
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer"
-                    }
-                }
-            ],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "groupCommunity",
-            "method": "createGroupEvent",
-            "action": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createGroupInvitation": {
-        "operationId": "createGroupInvitation",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/group-invitations",
-        "authentication": "required",
-        "tags": [
-            "groups"
-        ],
-        "summary": "Create GroupInvitation",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "groupId"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "recipientPublicId": {
-                        "type": "string",
-                        "format": "uuid"
-                    }
-                },
-                "required": [
-                    "recipientPublicId"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/GroupInvitation"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "groupId",
-                    "required": true,
-                    "description": null,
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer"
-                    }
-                }
-            ],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "groupCommunity",
-            "method": "createGroupInvitation",
-            "action": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createGroupRole": {
-        "operationId": "createGroupRole",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/group-roles",
-        "authentication": "required",
-        "tags": [
-            "groups"
-        ],
-        "summary": "Create GroupRole",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "groupId"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 80
-                    },
-                    "permissions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "GROUP_EDIT",
-                                "GROUP_TAG_MANAGE",
-                                "MEMBER_MANAGE",
-                                "ROLE_MANAGE",
-                                "EVENT_CREATE",
-                                "EVENT_EDIT",
-                                "EVENT_PUBLISH"
-                            ]
-                        }
-                    }
-                },
-                "required": [
-                    "name"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/GroupRole"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "groupId",
-                    "required": true,
-                    "description": null,
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer"
-                    }
-                }
-            ],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "groupCommunity",
-            "method": "createGroupRole",
-            "action": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createStudentAbsences": {
-        "operationId": "createStudentAbsences",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/absences",
-        "authentication": "required",
-        "tags": [
-            "student-absences"
-        ],
-        "summary": "Create StudentAbsences",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "$ref": "#/components/schemas/CreateStudentAbsenceBody"
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/StudentAbsence"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 409,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/UniqueConstraintConflictProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:unique-constraint-conflict"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/InvalidStudentAbsenceProblem"
-                                }
-                            ],
-                            "discriminator": {
-                                "propertyName": "type",
-                                "mapping": {
-                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
-                                    "urn:pomi:problem:invalid-student-absence": "#/components/schemas/InvalidStudentAbsenceProblem"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found",
-                    "urn:pomi:problem:invalid-student-absence"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentAbsences",
-            "method": "create",
-            "action": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createStudentCourseAttempts": {
-        "operationId": "createStudentCourseAttempts",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/course-attempts",
-        "authentication": "required",
-        "tags": [
-            "student-course-attempts"
-        ],
-        "summary": "Create StudentCourseAttempts",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "$ref": "#/components/schemas/CreateStudentCourseAttemptInput"
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/StudentCourseAttempt"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 409,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/UniqueConstraintConflictProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:unique-constraint-conflict"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/InvalidStudentCourseAttemptProblem"
-                                }
-                            ],
-                            "discriminator": {
-                                "propertyName": "type",
-                                "mapping": {
-                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
-                                    "urn:pomi:problem:invalid-student-course-attempt": "#/components/schemas/InvalidStudentCourseAttemptProblem"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found",
-                    "urn:pomi:problem:invalid-student-course-attempt"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "courseAttempts",
-            "action": "create",
-            "method": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createStudentCurricula": {
-        "operationId": "createStudentCurricula",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/curricula",
-        "authentication": "required",
-        "tags": [
-            "curricula"
-        ],
-        "summary": "Create StudentCurricula",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -2454,30 +1553,28 @@ export const operationDefinitions = {
             "filter": null
         },
         "sdk": {
-            "resource": "curricula",
+            "resource": "curriculums",
             "method": "create",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             }
         },
         "pagination": null
     },
-    "createStudentFeedbackReport": {
-        "operationId": "createStudentFeedbackReport",
+    "createFeedbackReport": {
+        "operationId": "createFeedbackReport",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/feedback-reports",
-        "authentication": "required",
+        "path": "/feedback-reports",
+        "authentication": "public",
         "tags": [
             "feedback-reports"
         ],
-        "summary": "Create StudentFeedbackReport",
+        "summary": "Create FeedbackReport",
         "description": null,
         "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
+        "pathParameters": [],
         "queryParameters": [],
         "headerParameters": [],
         "cookieParameters": [],
@@ -2563,6 +1660,21 @@ export const operationDefinitions = {
                 ]
             },
             {
+                "status": 429,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/FeedbackRateLimitProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:feedback-rate-limit"
+                ]
+            },
+            {
                 "status": 500,
                 "success": false,
                 "contents": [
@@ -2582,28 +1694,25 @@ export const operationDefinitions = {
         },
         "sdk": {
             "resource": "feedbackReports",
-            "method": "createForStudent",
-            "action": "create",
-            "pathParameters": {
-                "sid": "studentId"
-            }
+            "method": "create",
+            "action": "create"
         },
         "pagination": null
     },
-    "createStudentFriendship": {
-        "operationId": "createStudentFriendship",
+    "createGroup": {
+        "operationId": "createGroup",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/friendships",
+        "path": "/users/{userId}/groups",
         "authentication": "required",
         "tags": [
-            "student-social"
+            "groups"
         ],
-        "summary": "Create StudentFriendship",
+        "summary": "Create Group",
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -2614,13 +1723,83 @@ export const operationDefinitions = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "targetPublicId": {
+                    "name": {
                         "type": "string",
-                        "format": "uuid"
+                        "minLength": 1,
+                        "maxLength": 160
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 40
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "maxLength": 80
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 320
+                                },
+                                "sortOrder": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "value"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "externalLinks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "label": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 80
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 2048,
+                                    "format": "uri"
+                                },
+                                "sortOrder": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "label",
+                                "url"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "tagIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
                     }
                 },
                 "required": [
-                    "targetPublicId"
+                    "name"
                 ],
                 "additionalProperties": false
             }
@@ -2633,7 +1812,543 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/json",
                         "schema": {
-                            "$ref": "#/components/schemas/StudentFriendship"
+                            "$ref": "#/components/schemas/Group"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groups",
+            "method": "create",
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "createGroupEvent": {
+        "operationId": "createGroupEvent",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/groups/{groupId}/events",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create GroupEvent",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "groupId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "startsAt": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "date-time"
+                    },
+                    "endsAt": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "date-time"
+                    },
+                    "location": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 320
+                    },
+                    "tagIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "description"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManagedGroupEvent"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "createGroupEvent",
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId",
+                "groupId": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "createGroupInvitation": {
+        "operationId": "createGroupInvitation",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/groups/{groupId}/invitations",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create GroupInvitation",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "groupId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "recipientPublicId": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                },
+                "required": [
+                    "recipientPublicId"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupInvitation"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "createGroupInvitation",
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId",
+                "groupId": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "createGroupRole": {
+        "operationId": "createGroupRole",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/groups/{groupId}/roles",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Create GroupRole",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "groupId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                    },
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "GROUP_EDIT",
+                                "GROUP_TAG_MANAGE",
+                                "MEMBER_MANAGE",
+                                "ROLE_MANAGE",
+                                "EVENT_CREATE",
+                                "EVENT_EDIT",
+                                "EVENT_PUBLISH"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupRole"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "createGroupRole",
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId",
+                "groupId": "groupId"
+            }
+        },
+        "pagination": null
+    },
+    "createPeriodPlans": {
+        "operationId": "createPeriodPlans",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/period-plans",
+        "authentication": "required",
+        "tags": [
+            "period-plans"
+        ],
+        "summary": "Create PeriodPlans",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "$ref": "#/components/schemas/CreatePeriodPlanningInput"
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/PeriodPlanningEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/InvalidPeriodPlanProblem"
+                                }
+                            ],
+                            "discriminator": {
+                                "propertyName": "type",
+                                "mapping": {
+                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
+                                    "urn:pomi:problem:invalid-period-plan": "#/components/schemas/InvalidPeriodPlanProblem"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found",
+                    "urn:pomi:problem:invalid-period-plan"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "periodPlans",
+            "action": "create",
+            "method": "create",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "createStudentAbsences": {
+        "operationId": "createStudentAbsences",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/course-attempts/{attemptId}/absences",
+        "authentication": "required",
+        "tags": [
+            "student-absences"
+        ],
+        "summary": "Create StudentAbsences",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "attemptId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "$ref": "#/components/schemas/CreateStudentAbsenceBody"
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/StudentAbsence"
                         }
                     }
                 ],
@@ -2685,6 +2400,36 @@ export const operationDefinitions = {
                 ]
             },
             {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/InvalidStudentAbsenceProblem"
+                                }
+                            ],
+                            "discriminator": {
+                                "propertyName": "type",
+                                "mapping": {
+                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
+                                    "urn:pomi:problem:invalid-student-absence": "#/components/schemas/InvalidStudentAbsenceProblem"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found",
+                    "urn:pomi:problem:invalid-student-absence"
+                ]
+            },
+            {
                 "status": 500,
                 "success": false,
                 "contents": [
@@ -2703,11 +2448,139 @@ export const operationDefinitions = {
             "filter": null
         },
         "sdk": {
-            "resource": "studentSocial",
-            "method": "createFriendship",
+            "resource": "studentAbsences",
+            "method": "create",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId",
+                "attemptId": "courseAttemptId"
+            }
+        },
+        "pagination": null
+    },
+    "createStudentCourseAttempts": {
+        "operationId": "createStudentCourseAttempts",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/course-attempts",
+        "authentication": "required",
+        "tags": [
+            "student-course-attempts"
+        ],
+        "summary": "Create StudentCourseAttempts",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "$ref": "#/components/schemas/CreateStudentCourseAttemptInput"
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/StudentCourseAttempt"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UniqueConstraintConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unique-constraint-conflict"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/InvalidStudentCourseAttemptProblem"
+                                }
+                            ],
+                            "discriminator": {
+                                "propertyName": "type",
+                                "mapping": {
+                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
+                                    "urn:pomi:problem:invalid-student-course-attempt": "#/components/schemas/InvalidStudentCourseAttemptProblem"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found",
+                    "urn:pomi:problem:invalid-student-course-attempt"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "courseAttempts",
+            "action": "create",
+            "method": "create",
+            "pathParameters": {
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -2716,7 +2589,7 @@ export const operationDefinitions = {
         "operationId": "createStudentHistory",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/course-history",
+        "path": "/users/{userId}/course-history",
         "authentication": "required",
         "tags": [
             "student-course-history"
@@ -2725,7 +2598,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -2819,119 +2692,7 @@ export const operationDefinitions = {
             "method": "create",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "createStudentPeriodPlannings": {
-        "operationId": "createStudentPeriodPlannings",
-        "target": "app",
-        "method": "POST",
-        "path": "/student/{sid}/period-plannings",
-        "authentication": "required",
-        "tags": [
-            "period-plannings"
-        ],
-        "summary": "Create StudentPeriodPlannings",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "$ref": "#/components/schemas/CreatePeriodPlanningInput"
-            }
-        },
-        "responses": [
-            {
-                "status": 201,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/PeriodPlanningEntity"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/InvalidPeriodPlanProblem"
-                                }
-                            ],
-                            "discriminator": {
-                                "propertyName": "type",
-                                "mapping": {
-                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
-                                    "urn:pomi:problem:invalid-period-plan": "#/components/schemas/InvalidPeriodPlanProblem"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found",
-                    "urn:pomi:problem:invalid-period-plan"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "periodPlannings",
-            "action": "create",
-            "method": "create",
-            "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -2940,7 +2701,7 @@ export const operationDefinitions = {
         "operationId": "createStudents",
         "target": "app",
         "method": "POST",
-        "path": "/students",
+        "path": "/users/{userId}/student",
         "authentication": "required",
         "tags": [
             "students"
@@ -2948,7 +2709,9 @@ export const operationDefinitions = {
         "summary": "Create Students",
         "description": null,
         "deprecated": false,
-        "pathParameters": [],
+        "pathParameters": [
+            "userId"
+        ],
         "queryParameters": [],
         "headerParameters": [],
         "cookieParameters": [],
@@ -3067,7 +2830,10 @@ export const operationDefinitions = {
         "sdk": {
             "resource": "students",
             "method": "create",
-            "action": "create"
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId"
+            }
         },
         "pagination": null
     },
@@ -3201,11 +2967,260 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "createUserFeedbackReport": {
+        "operationId": "createUserFeedbackReport",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/feedback-reports",
+        "authentication": "required",
+        "tags": [
+            "feedback-reports"
+        ],
+        "summary": "Create UserFeedbackReport",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "$ref": "#/components/schemas/CreateFeedbackReportBody"
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/FeedbackReportAccepted"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/InvalidFeedbackReportProblem"
+                                }
+                            ],
+                            "discriminator": {
+                                "propertyName": "type",
+                                "mapping": {
+                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
+                                    "urn:pomi:problem:invalid-feedback-report": "#/components/schemas/InvalidFeedbackReportProblem"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found",
+                    "urn:pomi:problem:invalid-feedback-report"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "feedbackReports",
+            "method": "createForUser",
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "createUserFriendship": {
+        "operationId": "createUserFriendship",
+        "target": "app",
+        "method": "POST",
+        "path": "/users/{userId}/friendships",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "Create UserFriendship",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "targetPublicId": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                },
+                "required": [
+                    "targetPublicId"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 201,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserFriendship"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UniqueConstraintConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unique-constraint-conflict"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userSocial",
+            "method": "createFriendship",
+            "action": "create",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
     "declineGroupInvitation": {
         "operationId": "declineGroupInvitation",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/group-invitations/{id}/decline",
+        "path": "/users/{userId}/group-invitations/{id}/decline",
         "authentication": "required",
         "tags": [
             "groups"
@@ -3214,7 +3229,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "id"
         ],
         "queryParameters": [],
@@ -3281,7 +3296,7 @@ export const operationDefinitions = {
             "method": "declineGroupInvitation",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "id": "id"
             }
         },
@@ -3386,11 +3401,97 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "deleteCurriculums": {
+        "operationId": "deleteCurriculums",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/users/{userId}/curriculums/{id}",
+        "authentication": "required",
+        "tags": [
+            "curriculums"
+        ],
+        "summary": "Delete Curriculums",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "curriculums",
+            "method": "delete",
+            "action": "delete",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "curriculumId"
+            }
+        },
+        "pagination": null
+    },
     "deleteGroupAvatar": {
         "operationId": "deleteGroupAvatar",
         "target": "app",
         "method": "DELETE",
-        "path": "/student/{sid}/groups/{id}/avatar",
+        "path": "/users/{userId}/groups/{groupId}/avatar",
         "authentication": "required",
         "tags": [
             "media"
@@ -3399,8 +3500,8 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -3509,8 +3610,8 @@ export const operationDefinitions = {
         "sdk": {
             "resource": "media",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "groupId"
+                "userId": "userId",
+                "groupId": "groupId"
             },
             "method": "deleteGroupAvatar",
             "action": "delete"
@@ -3521,7 +3622,7 @@ export const operationDefinitions = {
         "operationId": "deleteGroupRole",
         "target": "app",
         "method": "DELETE",
-        "path": "/student/{sid}/group-roles/{id}",
+        "path": "/users/{userId}/groups/{groupId}/roles/{roleId}",
         "authentication": "required",
         "tags": [
             "groups"
@@ -3530,8 +3631,9 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId",
+            "roleId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -3597,8 +3699,95 @@ export const operationDefinitions = {
             "method": "deleteGroupRole",
             "action": "delete",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
+                "userId": "userId",
+                "groupId": "groupId",
+                "roleId": "roleId"
+            }
+        },
+        "pagination": null
+    },
+    "deletePeriodPlans": {
+        "operationId": "deletePeriodPlans",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/users/{userId}/period-plans/{id}",
+        "authentication": "required",
+        "tags": [
+            "period-plans"
+        ],
+        "summary": "Delete PeriodPlans",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "periodPlans",
+            "action": "delete",
+            "method": "delete",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "periodPlanningId"
             }
         },
         "pagination": null
@@ -3607,7 +3796,7 @@ export const operationDefinitions = {
         "operationId": "deleteStudentAbsences",
         "target": "app",
         "method": "DELETE",
-        "path": "/student/{sid}/absences/{id}",
+        "path": "/users/{userId}/course-attempts/{attemptId}/absences/{id}",
         "authentication": "required",
         "tags": [
             "student-absences"
@@ -3616,7 +3805,8 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
+            "attemptId",
             "id"
         ],
         "queryParameters": [],
@@ -3683,138 +3873,10 @@ export const operationDefinitions = {
             "method": "delete",
             "action": "delete",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
+                "attemptId": "courseAttemptId",
                 "id": "studentAbsenceId"
             }
-        },
-        "pagination": null
-    },
-    "deleteStudentAvatar": {
-        "operationId": "deleteStudentAvatar",
-        "target": "app",
-        "method": "DELETE",
-        "path": "/student/{sid}/avatar",
-        "authentication": "required",
-        "tags": [
-            "media"
-        ],
-        "summary": "Delete StudentAvatar",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 204,
-                "success": true,
-                "contents": [],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 401,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/UnauthenticatedProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:unauthenticated"
-                ]
-            },
-            {
-                "status": 403,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ForbiddenProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:forbidden"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 409,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ConflictProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:conflict"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "media",
-            "pathParameters": {
-                "sid": "studentId"
-            },
-            "method": "deleteStudentAvatar",
-            "action": "delete"
         },
         "pagination": null
     },
@@ -3822,7 +3884,7 @@ export const operationDefinitions = {
         "operationId": "deleteStudentCourseAttempts",
         "target": "app",
         "method": "DELETE",
-        "path": "/student/{sid}/course-attempts/{id}",
+        "path": "/users/{userId}/course-attempts/{id}",
         "authentication": "required",
         "tags": [
             "student-course-attempts"
@@ -3831,7 +3893,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "id"
         ],
         "queryParameters": [],
@@ -3898,266 +3960,8 @@ export const operationDefinitions = {
             "action": "delete",
             "method": "delete",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "id": "courseAttemptId"
-            }
-        },
-        "pagination": null
-    },
-    "deleteStudentCurricula": {
-        "operationId": "deleteStudentCurricula",
-        "target": "app",
-        "method": "DELETE",
-        "path": "/student/{sid}/curricula/{id}",
-        "authentication": "required",
-        "tags": [
-            "curricula"
-        ],
-        "summary": "Delete StudentCurricula",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 204,
-                "success": true,
-                "contents": [],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "curricula",
-            "method": "delete",
-            "action": "delete",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "curriculumId"
-            }
-        },
-        "pagination": null
-    },
-    "deleteStudentFriendship": {
-        "operationId": "deleteStudentFriendship",
-        "target": "app",
-        "method": "DELETE",
-        "path": "/student/{sid}/friendships/{id}",
-        "authentication": "required",
-        "tags": [
-            "student-social"
-        ],
-        "summary": "Delete StudentFriendship",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 204,
-                "success": true,
-                "contents": [],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentSocial",
-            "method": "removeFriendship",
-            "action": "delete",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "friendshipId"
-            }
-        },
-        "pagination": null
-    },
-    "deleteStudentPeriodPlannings": {
-        "operationId": "deleteStudentPeriodPlannings",
-        "target": "app",
-        "method": "DELETE",
-        "path": "/student/{sid}/period-plannings/{id}",
-        "authentication": "required",
-        "tags": [
-            "period-plannings"
-        ],
-        "summary": "Delete StudentPeriodPlannings",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 204,
-                "success": true,
-                "contents": [],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "periodPlannings",
-            "action": "delete",
-            "method": "delete",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "periodPlanningId"
             }
         },
         "pagination": null
@@ -4166,7 +3970,7 @@ export const operationDefinitions = {
         "operationId": "deleteStudents",
         "target": "app",
         "method": "DELETE",
-        "path": "/students/{id}",
+        "path": "/users/{userId}/student",
         "authentication": "required",
         "tags": [
             "students"
@@ -4175,7 +3979,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "id"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -4272,78 +4076,7 @@ export const operationDefinitions = {
             "method": "delete",
             "action": "delete",
             "pathParameters": {
-                "id": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "deleteStudentTagInterest": {
-        "operationId": "deleteStudentTagInterest",
-        "target": "app",
-        "method": "DELETE",
-        "path": "/student/{sid}/tag-interests/{tagId}",
-        "authentication": "required",
-        "tags": [
-            "student-tag-interests"
-        ],
-        "summary": "Delete StudentTagInterest",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "tagId"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 204,
-                "success": true,
-                "contents": [],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentTagInterests",
-            "method": "delete",
-            "action": "delete",
-            "pathParameters": {
-                "sid": "studentId",
-                "tagId": "tagId"
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -4443,6 +4176,292 @@ export const operationDefinitions = {
             "action": "delete",
             "pathParameters": {
                 "id": "tagId"
+            }
+        },
+        "pagination": null
+    },
+    "deleteUserAvatar": {
+        "operationId": "deleteUserAvatar",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/users/{userId}/avatar",
+        "authentication": "required",
+        "tags": [
+            "media"
+        ],
+        "summary": "Delete UserAvatar",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 401,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UnauthenticatedProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:unauthenticated"
+                ]
+            },
+            {
+                "status": 403,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ForbiddenProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:forbidden"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 409,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ConflictProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:conflict"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "media",
+            "pathParameters": {
+                "userId": "userId"
+            },
+            "method": "deleteUserAvatar",
+            "action": "delete"
+        },
+        "pagination": null
+    },
+    "deleteUserFriendship": {
+        "operationId": "deleteUserFriendship",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/users/{userId}/friendships/{id}",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "Delete UserFriendship",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userSocial",
+            "method": "removeFriendship",
+            "action": "delete",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "friendshipId"
+            }
+        },
+        "pagination": null
+    },
+    "deleteUserInterest": {
+        "operationId": "deleteUserInterest",
+        "target": "app",
+        "method": "DELETE",
+        "path": "/users/{userId}/interests/{tagId}",
+        "authentication": "required",
+        "tags": [
+            "student-tag-interests"
+        ],
+        "summary": "Delete UserInterest",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "tagId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userInterests",
+            "method": "delete",
+            "action": "delete",
+            "pathParameters": {
+                "userId": "userId",
+                "tagId": "tagId"
             }
         },
         "pagination": null
@@ -4796,11 +4815,104 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "getCurriculums": {
+        "operationId": "getCurriculums",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/curriculums/{id}",
+        "authentication": "required",
+        "tags": [
+            "curriculums"
+        ],
+        "summary": "Get Curriculums",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/CurriculumEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "curriculums",
+            "method": "get",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "curriculumId"
+            }
+        },
+        "pagination": null
+    },
     "getExchangeNoticeSubscription": {
         "operationId": "getExchangeNoticeSubscription",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/exchange-notice-subscription",
+        "path": "/users/{userId}/exchange-notice-subscription",
         "authentication": "required",
         "tags": [
             "exchange-notice-subscriptions"
@@ -4809,7 +4921,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -4867,7 +4979,7 @@ export const operationDefinitions = {
             "method": "get",
             "action": "get",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -4876,7 +4988,7 @@ export const operationDefinitions = {
         "operationId": "getGroup",
         "target": "app",
         "method": "GET",
-        "path": "/groups/{id}",
+        "path": "/groups/{groupId}",
         "authentication": "public",
         "tags": [
             "groups"
@@ -4885,7 +4997,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "id"
+            "groupId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -4958,7 +5070,7 @@ export const operationDefinitions = {
             "method": "get",
             "action": "get",
             "pathParameters": {
-                "id": "groupId"
+                "groupId": "groupId"
             }
         },
         "pagination": null
@@ -5193,11 +5305,104 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "getPeriodPlans": {
+        "operationId": "getPeriodPlans",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/period-plans/{id}",
+        "authentication": "required",
+        "tags": [
+            "period-plans"
+        ],
+        "summary": "Get PeriodPlans",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/PeriodPlanningEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "periodPlans",
+            "action": "get",
+            "method": "get",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "periodPlanningId"
+            }
+        },
+        "pagination": null
+    },
     "getProfessorEvaluation": {
         "operationId": "getProfessorEvaluation",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/classes/{classId}/professors/{professorId}/evaluation",
+        "path": "/users/{userId}/classes/{classId}/professors/{professorId}/evaluation",
         "authentication": "required",
         "tags": [
             "professor-evaluations"
@@ -5206,7 +5411,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "classId",
             "professorId"
         ],
@@ -5296,7 +5501,7 @@ export const operationDefinitions = {
             "method": "get",
             "action": "get",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "classId": "classId",
                 "professorId": "professorId"
             }
@@ -5394,16 +5599,16 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
-    "getPublicSharedPeriodPlanning": {
-        "operationId": "getPublicSharedPeriodPlanning",
+    "getPublicSharedPeriodPlan": {
+        "operationId": "getPublicSharedPeriodPlan",
         "target": "app",
         "method": "GET",
-        "path": "/shared-period-plannings/{shareId}",
+        "path": "/shared-period-plans/{shareId}",
         "authentication": "public",
         "tags": [
-            "shared-period-plannings"
+            "shared-period-plans"
         ],
-        "summary": "Get PublicSharedPeriodPlanning",
+        "summary": "Get PublicSharedPeriodPlan",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -5476,7 +5681,7 @@ export const operationDefinitions = {
             "filter": null
         },
         "sdk": {
-            "resource": "sharedPeriodPlannings",
+            "resource": "sharedPeriodPlans",
             "method": "getPublic",
             "action": "get",
             "pathParameters": {
@@ -5489,7 +5694,7 @@ export const operationDefinitions = {
         "operationId": "getStudentCourseAttempts",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/course-attempts/{id}",
+        "path": "/users/{userId}/course-attempts/{id}",
         "authentication": "required",
         "tags": [
             "student-course-attempts"
@@ -5498,7 +5703,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "id"
         ],
         "queryParameters": [],
@@ -5572,471 +5777,8 @@ export const operationDefinitions = {
             "action": "get",
             "method": "get",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "id": "courseAttemptId"
-            }
-        },
-        "pagination": null
-    },
-    "getStudentCurricula": {
-        "operationId": "getStudentCurricula",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/curricula/{id}",
-        "authentication": "required",
-        "tags": [
-            "curricula"
-        ],
-        "summary": "Get StudentCurricula",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/CurriculumEntity"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "curricula",
-            "method": "get",
-            "action": "get",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "curriculumId"
-            }
-        },
-        "pagination": null
-    },
-    "getStudentGroupMembership": {
-        "operationId": "getStudentGroupMembership",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/group-memberships/{id}",
-        "authentication": "required",
-        "tags": [
-            "groups"
-        ],
-        "summary": "Get StudentGroupMembership",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/OwnGroupMembership"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "groupCommunity",
-            "method": "getStudentGroupMembership",
-            "action": "get",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
-            }
-        },
-        "pagination": null
-    },
-    "getStudentPeriodPlannings": {
-        "operationId": "getStudentPeriodPlannings",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/period-plannings/{id}",
-        "authentication": "required",
-        "tags": [
-            "period-plannings"
-        ],
-        "summary": "Get StudentPeriodPlannings",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/PeriodPlanningEntity"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "periodPlannings",
-            "action": "get",
-            "method": "get",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "periodPlanningId"
-            }
-        },
-        "pagination": null
-    },
-    "getStudentPerson": {
-        "operationId": "getStudentPerson",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/people/{publicId}",
-        "authentication": "required",
-        "tags": [
-            "student-social"
-        ],
-        "summary": "Get StudentPerson",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "publicId"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/StudentPublicPerson"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentSocial",
-            "method": "getPerson",
-            "action": "get",
-            "pathParameters": {
-                "sid": "studentId",
-                "publicId": "publicId"
-            }
-        },
-        "pagination": null
-    },
-    "getStudentPublicProfile": {
-        "operationId": "getStudentPublicProfile",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/public-profile",
-        "authentication": "required",
-        "tags": [
-            "student-social"
-        ],
-        "summary": "Get StudentPublicProfile",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/StudentPublicProfile"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentSocial",
-            "method": "getProfile",
-            "action": "get",
-            "pathParameters": {
-                "sid": "studentId"
             }
         },
         "pagination": null
@@ -6045,7 +5787,7 @@ export const operationDefinitions = {
         "operationId": "getStudents",
         "target": "app",
         "method": "GET",
-        "path": "/students/{id}",
+        "path": "/users/{userId}/student",
         "authentication": "required",
         "tags": [
             "students"
@@ -6054,7 +5796,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "id"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -6127,100 +5869,7 @@ export const operationDefinitions = {
             "method": "get",
             "action": "get",
             "pathParameters": {
-                "id": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "getStudentSharedPeriodPlanning": {
-        "operationId": "getStudentSharedPeriodPlanning",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/shared-period-plannings/{shareId}",
-        "authentication": "required",
-        "tags": [
-            "shared-period-plannings"
-        ],
-        "summary": "Get StudentSharedPeriodPlanning",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "shareId"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/SharedPeriodPlanning"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "sharedPeriodPlannings",
-            "method": "getForStudent",
-            "action": "get",
-            "pathParameters": {
-                "sid": "studentId",
-                "shareId": "shareId"
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -6316,16 +5965,568 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
-    "listAuthUsers": {
-        "operationId": "listAuthUsers",
+    "getUser": {
+        "operationId": "getUser",
         "target": "app",
         "method": "GET",
-        "path": "/admin/auth-users",
+        "path": "/users/{userId}",
         "authentication": "required",
         "tags": [
-            "auth-users"
+            "users"
         ],
-        "summary": "List AuthUsers",
+        "summary": "Get User",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "users",
+            "method": "get",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "getUserGroupMembership": {
+        "operationId": "getUserGroupMembership",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/group-memberships/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Get UserGroupMembership",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/OwnGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "getUserGroupMembership",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
+    "getUserPerson": {
+        "operationId": "getUserPerson",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/people/{publicId}",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "Get UserPerson",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "publicId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserPublicPerson"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userSocial",
+            "method": "getPerson",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId",
+                "publicId": "publicId"
+            }
+        },
+        "pagination": null
+    },
+    "getUserPreferences": {
+        "operationId": "getUserPreferences",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/preferences",
+        "authentication": "required",
+        "tags": [
+            "users"
+        ],
+        "summary": "Get UserPreferences",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserPreferences"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userPreferences",
+            "method": "get",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "getUserProfile": {
+        "operationId": "getUserProfile",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/profile",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "Get UserProfile",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserProfile"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userSocial",
+            "method": "getProfile",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "getUserSharedPeriodPlan": {
+        "operationId": "getUserSharedPeriodPlan",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/shared-period-plans/{shareId}",
+        "authentication": "required",
+        "tags": [
+            "shared-period-plans"
+        ],
+        "summary": "Get UserSharedPeriodPlan",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "shareId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/SharedPeriodPlanning"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "sharedPeriodPlans",
+            "method": "getForUser",
+            "action": "get",
+            "pathParameters": {
+                "userId": "userId",
+                "shareId": "shareId"
+            }
+        },
+        "pagination": null
+    },
+    "listAuthIdentities": {
+        "operationId": "listAuthIdentities",
+        "target": "app",
+        "method": "GET",
+        "path": "/admin/auth-identities",
+        "authentication": "required",
+        "tags": [
+            "auth-identities"
+        ],
+        "summary": "List AuthIdentities",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -6350,7 +6551,7 @@ export const operationDefinitions = {
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/AuthUserEntity"
+                                        "$ref": "#/components/schemas/AuthIdentityEntity"
                                     }
                                 },
                                 "quantity": {
@@ -6465,7 +6666,7 @@ export const operationDefinitions = {
             }
         },
         "sdk": {
-            "resource": "authUsers",
+            "resource": "authIdentities",
             "method": "list",
             "action": "list"
         },
@@ -6479,7 +6680,7 @@ export const operationDefinitions = {
         "operationId": "listBotGrants",
         "target": "app",
         "method": "GET",
-        "path": "/me/bot-grants",
+        "path": "/users/{userId}/bot-grants",
         "authentication": "required",
         "tags": [
             "bot-grants"
@@ -6487,7 +6688,9 @@ export const operationDefinitions = {
         "summary": "List BotGrants",
         "description": null,
         "deprecated": false,
-        "pathParameters": [],
+        "pathParameters": [
+            "userId"
+        ],
         "queryParameters": [
             "page",
             "pageSize",
@@ -6624,6 +6827,9 @@ export const operationDefinitions = {
         },
         "sdk": {
             "resource": "botGrants",
+            "pathParameters": {
+                "userId": "userId"
+            },
             "method": "list",
             "action": "list"
         },
@@ -7357,6 +7563,169 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
+    "listCurriculums": {
+        "operationId": "listCurriculums",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/curriculums",
+        "authentication": "required",
+        "tags": [
+            "curriculums"
+        ],
+        "summary": "List Curriculums",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CurriculumSummaryEntity"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "isFavorite:desc,updatedAt:desc"
+                    }
+                }
+            ],
+            "filter": null,
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "isFavorite",
+                    "updatedAt",
+                    "name"
+                ],
+                "default": "isFavorite:desc,updatedAt:desc"
+            }
+        },
+        "sdk": {
+            "resource": "curriculums",
+            "method": "list",
+            "action": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
     "listFeedbackReports": {
         "operationId": "listFeedbackReports",
         "target": "app",
@@ -7719,7 +8088,7 @@ export const operationDefinitions = {
         "operationId": "listGroupInvitations",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/group-invitations",
+        "path": "/users/{userId}/group-invitations",
         "authentication": "required",
         "tags": [
             "groups"
@@ -7728,7 +8097,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [
             "page",
@@ -7908,7 +8277,7 @@ export const operationDefinitions = {
             "method": "listGroupInvitations",
             "action": "list",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             }
         },
         "pagination": {
@@ -7921,7 +8290,7 @@ export const operationDefinitions = {
         "operationId": "listGroupRoles",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/group-roles",
+        "path": "/users/{userId}/groups/{groupId}/roles",
         "authentication": "required",
         "tags": [
             "groups"
@@ -7930,12 +8299,12 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId",
+            "groupId"
         ],
         "queryParameters": [
             "page",
-            "pageSize",
-            "filter"
+            "pageSize"
         ],
         "headerParameters": [],
         "cookieParameters": [],
@@ -8041,76 +8410,17 @@ export const operationDefinitions = {
                         ],
                         "description": "Number of items per page, or \"all\" to return every item."
                     }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Filtre por filter[groupId]=42.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "groupId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
                 }
             ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "groupId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            }
+            "filter": null
         },
         "sdk": {
             "resource": "groupCommunity",
             "method": "listGroupRoles",
             "action": "list",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId",
+                "groupId": "groupId"
             }
         },
         "pagination": {
@@ -8259,7 +8569,7 @@ export const operationDefinitions = {
         "operationId": "listManagedGroupEvents",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/managed-group-events",
+        "path": "/users/{userId}/groups/{groupId}/events",
         "authentication": "required",
         "tags": [
             "groups"
@@ -8268,12 +8578,12 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId",
+            "groupId"
         ],
         "queryParameters": [
             "page",
-            "pageSize",
-            "filter"
+            "pageSize"
         ],
         "headerParameters": [],
         "cookieParameters": [],
@@ -8379,76 +8689,17 @@ export const operationDefinitions = {
                         ],
                         "description": "Number of items per page, or \"all\" to return every item."
                     }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Filtre por filter[groupId]=42.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "groupId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
                 }
             ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "groupId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            }
+            "filter": null
         },
         "sdk": {
             "resource": "groupCommunity",
             "method": "listManagedGroupEvents",
             "action": "list",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId",
+                "groupId": "groupId"
             }
         },
         "pagination": {
@@ -8461,7 +8712,7 @@ export const operationDefinitions = {
         "operationId": "listManagedGroupInvitations",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/managed-group-invitations",
+        "path": "/users/{userId}/groups/{groupId}/invitations",
         "authentication": "required",
         "tags": [
             "groups"
@@ -8470,12 +8721,12 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId",
+            "groupId"
         ],
         "queryParameters": [
             "page",
-            "pageSize",
-            "filter"
+            "pageSize"
         ],
         "headerParameters": [],
         "cookieParameters": [],
@@ -8581,76 +8832,17 @@ export const operationDefinitions = {
                         ],
                         "description": "Number of items per page, or \"all\" to return every item."
                     }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Filtre por filter[groupId]=42.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "groupId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
                 }
             ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "groupId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            }
+            "filter": null
         },
         "sdk": {
             "resource": "groupCommunity",
             "method": "listManagedGroupInvitations",
             "action": "list",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId",
+                "groupId": "groupId"
             }
         },
         "pagination": {
@@ -8663,7 +8855,7 @@ export const operationDefinitions = {
         "operationId": "listManagedGroupMemberships",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/managed-group-memberships",
+        "path": "/users/{userId}/groups/{groupId}/memberships",
         "authentication": "required",
         "tags": [
             "groups"
@@ -8672,12 +8864,12 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId",
+            "groupId"
         ],
         "queryParameters": [
             "page",
-            "pageSize",
-            "filter"
+            "pageSize"
         ],
         "headerParameters": [],
         "cookieParameters": [],
@@ -8783,76 +8975,17 @@ export const operationDefinitions = {
                         ],
                         "description": "Number of items per page, or \"all\" to return every item."
                     }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Filtre por filter[groupId]=42.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "groupId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
                 }
             ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "groupId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            }
+            "filter": null
         },
         "sdk": {
             "resource": "groupCommunity",
             "method": "listManagedGroupMemberships",
             "action": "list",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId",
+                "groupId": "groupId"
             }
         },
         "pagination": {
@@ -8865,7 +8998,7 @@ export const operationDefinitions = {
         "operationId": "listPendingProfessorEvaluations",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/professor-evaluations/pending",
+        "path": "/users/{userId}/professor-evaluations/pending",
         "authentication": "required",
         "tags": [
             "professor-evaluations"
@@ -8874,7 +9007,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [
             "page",
@@ -9105,7 +9238,172 @@ export const operationDefinitions = {
             "method": "listPending",
             "action": "list",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listPeriodPlans": {
+        "operationId": "listPeriodPlans",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/period-plans",
+        "authentication": "required",
+        "tags": [
+            "period-plans"
+        ],
+        "summary": "List PeriodPlans",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PeriodPlanningEntity"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "updatedAt:desc"
+                    }
+                }
+            ],
+            "filter": null,
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "updatedAt",
+                    "name",
+                    "studyPeriodYear",
+                    "studyPeriodYearPeriod",
+                    "visibility"
+                ],
+                "default": "updatedAt:desc"
+            }
+        },
+        "sdk": {
+            "resource": "periodPlans",
+            "action": "list",
+            "method": "list",
+            "pathParameters": {
+                "userId": "userId"
             }
         },
         "pagination": {
@@ -9533,16 +9831,16 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
-    "listPublicSharedPeriodPlannings": {
-        "operationId": "listPublicSharedPeriodPlannings",
+    "listPublicSharedPeriodPlans": {
+        "operationId": "listPublicSharedPeriodPlans",
         "target": "app",
         "method": "GET",
-        "path": "/shared-period-plannings",
+        "path": "/shared-period-plans",
         "authentication": "public",
         "tags": [
-            "shared-period-plannings"
+            "shared-period-plans"
         ],
-        "summary": "List PublicSharedPeriodPlannings",
+        "summary": "List PublicSharedPeriodPlans",
         "description": null,
         "deprecated": false,
         "pathParameters": [],
@@ -9718,7 +10016,7 @@ export const operationDefinitions = {
             }
         },
         "sdk": {
-            "resource": "sharedPeriodPlannings",
+            "resource": "sharedPeriodPlans",
             "action": "list",
             "method": "list"
         },
@@ -9729,233 +10027,11 @@ export const operationDefinitions = {
             "allowAll": false
         }
     },
-    "listStudentAbsences": {
-        "operationId": "listStudentAbsences",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/absences",
-        "authentication": "required",
-        "tags": [
-            "student-absences"
-        ],
-        "summary": "List StudentAbsences",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "filter",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/StudentAbsence"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Structured absence filters. Use filter[courseAttemptId]=42.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "courseAttemptId": {
-                                "oneOf": [
-                                    {
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "date:desc"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "courseAttemptId"
-                        ],
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            },
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "date",
-                    "courseCode",
-                    "classCode",
-                    "start",
-                    "createdAt"
-                ],
-                "default": "date:desc"
-            }
-        },
-        "sdk": {
-            "resource": "studentAbsences",
-            "method": "list",
-            "action": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
     "listStudentCourseAttempts": {
         "operationId": "listStudentCourseAttempts",
         "target": "app",
         "method": "GET",
-        "path": "/student/{sid}/course-attempts",
+        "path": "/users/{userId}/course-attempts",
         "authentication": "required",
         "tags": [
             "student-course-attempts"
@@ -9964,7 +10040,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [
             "page",
@@ -10276,1118 +10352,7 @@ export const operationDefinitions = {
             "action": "list",
             "method": "list",
             "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
-    "listStudentCurricula": {
-        "operationId": "listStudentCurricula",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/curricula",
-        "authentication": "required",
-        "tags": [
-            "curricula"
-        ],
-        "summary": "List StudentCurricula",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/CurriculumSummaryEntity"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "isFavorite:desc,updatedAt:desc"
-                    }
-                }
-            ],
-            "filter": null,
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "isFavorite",
-                    "updatedAt",
-                    "name"
-                ],
-                "default": "isFavorite:desc,updatedAt:desc"
-            }
-        },
-        "sdk": {
-            "resource": "curricula",
-            "method": "list",
-            "action": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
-    "listStudentFeedbackReports": {
-        "operationId": "listStudentFeedbackReports",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/feedback-reports",
-        "authentication": "required",
-        "tags": [
-            "feedback-reports"
-        ],
-        "summary": "List StudentFeedbackReports",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/FeedbackReport"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "createdAt:desc"
-                    }
-                }
-            ],
-            "filter": null,
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "createdAt",
-                    "updatedAt",
-                    "status",
-                    "kind",
-                    "title"
-                ],
-                "default": "createdAt:desc"
-            }
-        },
-        "sdk": {
-            "resource": "feedbackReports",
-            "method": "listForStudent",
-            "action": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
-    "listStudentFriendships": {
-        "operationId": "listStudentFriendships",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/friendships",
-        "authentication": "required",
-        "tags": [
-            "student-social"
-        ],
-        "summary": "List StudentFriendships",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "filter",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/StudentFriendship"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Structured friendship filters. Use filter[status]=PENDING or filter[direction]=INCOMING.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "status": {
-                                "oneOf": [
-                                    {
-                                        "enum": [
-                                            "PENDING",
-                                            "ACCEPTED"
-                                        ],
-                                        "type": "string"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "enum": [
-                                                    "PENDING",
-                                                    "ACCEPTED"
-                                                ],
-                                                "type": "string"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "enum": [
-                                                        "PENDING",
-                                                        "ACCEPTED"
-                                                    ],
-                                                    "type": "string"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            },
-                            "direction": {
-                                "oneOf": [
-                                    {
-                                        "enum": [
-                                            "INCOMING",
-                                            "OUTGOING"
-                                        ],
-                                        "type": "string"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "enum": [
-                                                    "INCOMING",
-                                                    "OUTGOING"
-                                                ],
-                                                "type": "string"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "updatedAt:desc"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "status"
-                        ],
-                        "schema": {
-                            "enum": [
-                                "PENDING",
-                                "ACCEPTED"
-                            ],
-                            "type": "string"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    },
-                    {
-                        "path": [
-                            "direction"
-                        ],
-                        "schema": {
-                            "enum": [
-                                "INCOMING",
-                                "OUTGOING"
-                            ],
-                            "type": "string"
-                        },
-                        "operators": [
-                            "eq"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            },
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "updatedAt",
-                    "status"
-                ],
-                "default": "updatedAt:desc"
-            }
-        },
-        "sdk": {
-            "resource": "studentSocial",
-            "method": "listFriendships",
-            "action": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
-    "listStudentGroupMemberships": {
-        "operationId": "listStudentGroupMemberships",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/group-memberships",
-        "authentication": "required",
-        "tags": [
-            "groups"
-        ],
-        "summary": "List StudentGroupMemberships",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "filter"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/OwnGroupMembership"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Filtre por filter[groupId]=42.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "groupId": {
-                                "oneOf": [
-                                    {
-                                        "minimum": 1,
-                                        "type": "integer"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "minimum": 1,
-                                                "type": "integer"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "minimum": 1,
-                                                    "type": "integer"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "groupId"
-                        ],
-                        "schema": {
-                            "minimum": 1,
-                            "type": "integer"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            }
-        },
-        "sdk": {
-            "resource": "groupCommunity",
-            "method": "listStudentGroupMemberships",
-            "action": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
-    "listStudentPeople": {
-        "operationId": "listStudentPeople",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/people",
-        "authentication": "required",
-        "tags": [
-            "student-social"
-        ],
-        "summary": "List StudentPeople",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "query",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/StudentPeoplePage"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 50,
-                        "description": "Number of items per page."
-                    }
-                },
-                {
-                    "name": "query",
-                    "required": false,
-                    "description": null,
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "string",
-                        "minLength": 1
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "displayName:asc"
-                    }
-                }
-            ],
-            "filter": null,
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "displayName"
-                ],
-                "default": "displayName:asc"
-            }
-        },
-        "sdk": {
-            "resource": "studentPeople",
-            "action": "list",
-            "method": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "page",
-            "defaultPageSize": 20,
-            "maxPageSize": 50,
-            "allowAll": false
-        }
-    },
-    "listStudentPeriodPlannings": {
-        "operationId": "listStudentPeriodPlannings",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/period-plannings",
-        "authentication": "required",
-        "tags": [
-            "period-plannings"
-        ],
-        "summary": "List StudentPeriodPlannings",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/PeriodPlanningEntity"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "updatedAt:desc"
-                    }
-                }
-            ],
-            "filter": null,
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "updatedAt",
-                    "name",
-                    "studyPeriodYear",
-                    "studyPeriodYearPeriod",
-                    "visibility"
-                ],
-                "default": "updatedAt:desc"
-            }
-        },
-        "sdk": {
-            "resource": "periodPlannings",
-            "action": "list",
-            "method": "list",
-            "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             }
         },
         "pagination": {
@@ -11400,7 +10365,7 @@ export const operationDefinitions = {
         "operationId": "listStudents",
         "target": "app",
         "method": "GET",
-        "path": "/students",
+        "path": "/admin/students",
         "authentication": "required",
         "tags": [
             "students"
@@ -11548,360 +10513,6 @@ export const operationDefinitions = {
             "resource": "students",
             "method": "list",
             "action": "list"
-        },
-        "pagination": {
-            "defaultMode": "all",
-            "defaultPageSize": 20,
-            "allowAll": true
-        }
-    },
-    "listStudentSharedPeriodPlannings": {
-        "operationId": "listStudentSharedPeriodPlannings",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/shared-period-plannings",
-        "authentication": "required",
-        "tags": [
-            "shared-period-plannings"
-        ],
-        "summary": "List StudentSharedPeriodPlannings",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "filter",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/SharedPeriodPlanningPage"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 50,
-                        "description": "Number of items per page."
-                    }
-                },
-                {
-                    "name": "filter",
-                    "required": false,
-                    "description": "Structured shared planning filters. Use filter[ownerPublicId]=UUID.",
-                    "style": "deepObject",
-                    "explode": true,
-                    "schema": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "ownerPublicId": {
-                                "oneOf": [
-                                    {
-                                        "format": "uuid",
-                                        "type": "string"
-                                    },
-                                    {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "eq": {
-                                                "format": "uuid",
-                                                "type": "string"
-                                            },
-                                            "in": {
-                                                "items": {
-                                                    "format": "uuid",
-                                                    "type": "string"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "updatedAt:desc"
-                    }
-                }
-            ],
-            "filter": {
-                "version": 1,
-                "fields": [
-                    {
-                        "path": [
-                            "ownerPublicId"
-                        ],
-                        "schema": {
-                            "format": "uuid",
-                            "type": "string"
-                        },
-                        "operators": [
-                            "eq",
-                            "in"
-                        ]
-                    }
-                ],
-                "constraints": {
-                    "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
-                }
-            },
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "updatedAt",
-                    "name",
-                    "studyPeriodYear"
-                ],
-                "default": "updatedAt:desc"
-            }
-        },
-        "sdk": {
-            "resource": "studentSharedPeriodPlannings",
-            "action": "list",
-            "method": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
-        },
-        "pagination": {
-            "defaultMode": "page",
-            "defaultPageSize": 20,
-            "maxPageSize": 50,
-            "allowAll": false
-        }
-    },
-    "listStudentTagInterests": {
-        "operationId": "listStudentTagInterests",
-        "target": "app",
-        "method": "GET",
-        "path": "/student/{sid}/tag-interests",
-        "authentication": "required",
-        "tags": [
-            "student-tag-interests"
-        ],
-        "summary": "List StudentTagInterests",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [
-            "page",
-            "pageSize",
-            "sort"
-        ],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/StudentTagInterest"
-                                    }
-                                },
-                                "quantity": {
-                                    "type": "integer"
-                                },
-                                "total": {
-                                    "type": "integer"
-                                },
-                                "links": {
-                                    "$ref": "#/components/schemas/PaginationLinks"
-                                }
-                            },
-                            "required": [
-                                "data",
-                                "quantity",
-                                "total",
-                                "links"
-                            ]
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [
-                {
-                    "name": "page",
-                    "required": false,
-                    "description": "Page number. The first page is 1.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "description": "Page number. The first page is 1."
-                    }
-                },
-                {
-                    "name": "pageSize",
-                    "required": false,
-                    "description": "Number of items per page, or \"all\" to return every item.",
-                    "style": null,
-                    "explode": null,
-                    "schema": {
-                        "anyOf": [
-                            {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "all"
-                                ]
-                            }
-                        ],
-                        "description": "Number of items per page, or \"all\" to return every item."
-                    }
-                },
-                {
-                    "name": "sort",
-                    "required": false,
-                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                    "style": "form",
-                    "explode": false,
-                    "schema": {
-                        "type": "string",
-                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
-                        "example": "name:asc"
-                    }
-                }
-            ],
-            "filter": null,
-            "sort": {
-                "version": 1,
-                "fields": [
-                    "name"
-                ],
-                "default": "name:asc"
-            }
-        },
-        "sdk": {
-            "resource": "studentTagInterests",
-            "method": "list",
-            "action": "list",
-            "pathParameters": {
-                "sid": "studentId"
-            }
         },
         "pagination": {
             "defaultMode": "all",
@@ -12373,11 +10984,1389 @@ export const operationDefinitions = {
             "allowAll": true
         }
     },
+    "listUserAbsences": {
+        "operationId": "listUserAbsences",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/absences",
+        "authentication": "required",
+        "tags": [
+            "student-absences"
+        ],
+        "summary": "List UserAbsences",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StudentAbsence"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre pelo ID da tentativa usando eq ou in.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "courseAttemptId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "date:desc"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "courseAttemptId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            },
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "date",
+                    "courseCode",
+                    "classCode",
+                    "start",
+                    "createdAt"
+                ],
+                "default": "date:desc"
+            }
+        },
+        "sdk": {
+            "resource": "studentAbsences",
+            "method": "list",
+            "action": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listUserFeedbackReports": {
+        "operationId": "listUserFeedbackReports",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/feedback-reports",
+        "authentication": "required",
+        "tags": [
+            "feedback-reports"
+        ],
+        "summary": "List UserFeedbackReports",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/FeedbackReport"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "createdAt:desc"
+                    }
+                }
+            ],
+            "filter": null,
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "createdAt",
+                    "updatedAt",
+                    "status",
+                    "kind",
+                    "title"
+                ],
+                "default": "createdAt:desc"
+            }
+        },
+        "sdk": {
+            "resource": "feedbackReports",
+            "method": "listForUser",
+            "action": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listUserFriendships": {
+        "operationId": "listUserFriendships",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/friendships",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "List UserFriendships",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserFriendship"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Structured friendship filters. Use filter[status]=PENDING or filter[direction]=INCOMING.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "status": {
+                                "oneOf": [
+                                    {
+                                        "enum": [
+                                            "PENDING",
+                                            "ACCEPTED"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "enum": [
+                                                    "PENDING",
+                                                    "ACCEPTED"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "enum": [
+                                                        "PENDING",
+                                                        "ACCEPTED"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "direction": {
+                                "oneOf": [
+                                    {
+                                        "enum": [
+                                            "INCOMING",
+                                            "OUTGOING"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "enum": [
+                                                    "INCOMING",
+                                                    "OUTGOING"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "updatedAt:desc"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "status"
+                        ],
+                        "schema": {
+                            "enum": [
+                                "PENDING",
+                                "ACCEPTED"
+                            ],
+                            "type": "string"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "direction"
+                        ],
+                        "schema": {
+                            "enum": [
+                                "INCOMING",
+                                "OUTGOING"
+                            ],
+                            "type": "string"
+                        },
+                        "operators": [
+                            "eq"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            },
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "updatedAt",
+                    "status"
+                ],
+                "default": "updatedAt:desc"
+            }
+        },
+        "sdk": {
+            "resource": "userSocial",
+            "method": "listFriendships",
+            "action": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listUserGroupMemberships": {
+        "operationId": "listUserGroupMemberships",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/group-memberships",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "List UserGroupMemberships",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OwnGroupMembership"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Filtre por filter[groupId]=42.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "groupId": {
+                                "oneOf": [
+                                    {
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "minimum": 1,
+                                                "type": "integer"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "groupId"
+                        ],
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            }
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "listUserGroupMemberships",
+            "action": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listUserInterests": {
+        "operationId": "listUserInterests",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/interests",
+        "authentication": "required",
+        "tags": [
+            "student-tag-interests"
+        ],
+        "summary": "List UserInterests",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserInterest"
+                                    }
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "links": {
+                                    "$ref": "#/components/schemas/PaginationLinks"
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "quantity",
+                                "total",
+                                "links"
+                            ]
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page, or \"all\" to return every item.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "all"
+                                ]
+                            }
+                        ],
+                        "description": "Number of items per page, or \"all\" to return every item."
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "name:asc"
+                    }
+                }
+            ],
+            "filter": null,
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "name"
+                ],
+                "default": "name:asc"
+            }
+        },
+        "sdk": {
+            "resource": "userInterests",
+            "method": "list",
+            "action": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "all",
+            "defaultPageSize": 20,
+            "allowAll": true
+        }
+    },
+    "listUserPeople": {
+        "operationId": "listUserPeople",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/people",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "List UserPeople",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "query",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserPeoplePage"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 50,
+                        "description": "Number of items per page."
+                    }
+                },
+                {
+                    "name": "query",
+                    "required": false,
+                    "description": null,
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "displayName:asc"
+                    }
+                }
+            ],
+            "filter": null,
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "displayName"
+                ],
+                "default": "displayName:asc"
+            }
+        },
+        "sdk": {
+            "resource": "userPeople",
+            "action": "list",
+            "method": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "page",
+            "defaultPageSize": 20,
+            "maxPageSize": 50,
+            "allowAll": false
+        }
+    },
+    "listUserSharedPeriodPlans": {
+        "operationId": "listUserSharedPeriodPlans",
+        "target": "app",
+        "method": "GET",
+        "path": "/users/{userId}/shared-period-plans",
+        "authentication": "required",
+        "tags": [
+            "shared-period-plans"
+        ],
+        "summary": "List UserSharedPeriodPlans",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [
+            "page",
+            "pageSize",
+            "filter",
+            "sort"
+        ],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/SharedPeriodPlanningPage"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [
+                {
+                    "name": "page",
+                    "required": false,
+                    "description": "Page number. The first page is 1.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Page number. The first page is 1."
+                    }
+                },
+                {
+                    "name": "pageSize",
+                    "required": false,
+                    "description": "Number of items per page.",
+                    "style": null,
+                    "explode": null,
+                    "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 50,
+                        "description": "Number of items per page."
+                    }
+                },
+                {
+                    "name": "filter",
+                    "required": false,
+                    "description": "Structured shared planning filters. Use filter[ownerPublicId]=UUID.",
+                    "style": "deepObject",
+                    "explode": true,
+                    "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "ownerPublicId": {
+                                "oneOf": [
+                                    {
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "eq": {
+                                                "format": "uuid",
+                                                "type": "string"
+                                            },
+                                            "in": {
+                                                "items": {
+                                                    "format": "uuid",
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                {
+                    "name": "sort",
+                    "required": false,
+                    "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                    "style": "form",
+                    "explode": false,
+                    "schema": {
+                        "type": "string",
+                        "description": "Ordered comma-separated field:direction terms. Earlier terms have higher priority.",
+                        "example": "updatedAt:desc"
+                    }
+                }
+            ],
+            "filter": {
+                "version": 1,
+                "fields": [
+                    {
+                        "path": [
+                            "ownerPublicId"
+                        ],
+                        "schema": {
+                            "format": "uuid",
+                            "type": "string"
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    }
+                ],
+                "constraints": {
+                    "maxExpressions": 20,
+                    "maxDepth": 3,
+                    "maxParameters": 100
+                }
+            },
+            "sort": {
+                "version": 1,
+                "fields": [
+                    "updatedAt",
+                    "name",
+                    "studyPeriodYear"
+                ],
+                "default": "updatedAt:desc"
+            }
+        },
+        "sdk": {
+            "resource": "userSharedPeriodPlans",
+            "action": "list",
+            "method": "list",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": {
+            "defaultMode": "page",
+            "defaultPageSize": 20,
+            "maxPageSize": 50,
+            "allowAll": false
+        }
+    },
     "publishGroupEvent": {
         "operationId": "publishGroupEvent",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/group-events/{id}/publish",
+        "path": "/users/{userId}/groups/{groupId}/events/{eventId}/publish",
         "authentication": "required",
         "tags": [
             "groups"
@@ -12386,8 +12375,9 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId",
+            "eventId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -12460,8 +12450,9 @@ export const operationDefinitions = {
             "method": "publishGroupEvent",
             "action": "create",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
+                "userId": "userId",
+                "groupId": "groupId",
+                "eventId": "eventId"
             }
         },
         "pagination": null
@@ -12470,7 +12461,7 @@ export const operationDefinitions = {
         "operationId": "putGroupAvatar",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/groups/{id}/avatar",
+        "path": "/users/{userId}/groups/{groupId}/avatar",
         "authentication": "required",
         "tags": [
             "media"
@@ -12479,8 +12470,8 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -12685,28 +12676,28 @@ export const operationDefinitions = {
         "sdk": {
             "resource": "media",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "groupId"
+                "userId": "userId",
+                "groupId": "groupId"
             },
             "method": "putGroupAvatar",
             "action": "create"
         },
         "pagination": null
     },
-    "putStudentAvatar": {
-        "operationId": "putStudentAvatar",
+    "putUserAvatar": {
+        "operationId": "putUserAvatar",
         "target": "app",
         "method": "POST",
-        "path": "/student/{sid}/avatar",
+        "path": "/users/{userId}/avatar",
         "authentication": "required",
         "tags": [
             "media"
         ],
-        "summary": "putStudentAvatar",
+        "summary": "putUserAvatar",
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -12911,9 +12902,9 @@ export const operationDefinitions = {
         "sdk": {
             "resource": "media",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             },
-            "method": "putStudentAvatar",
+            "method": "putUserAvatar",
             "action": "create"
         },
         "pagination": null
@@ -13008,7 +12999,7 @@ export const operationDefinitions = {
         "operationId": "replaceBotGrant",
         "target": "app",
         "method": "PUT",
-        "path": "/me/bot-grants/{botAuthUserId}",
+        "path": "/users/{userId}/bot-grants/{botAuthIdentityId}",
         "authentication": "required",
         "tags": [
             "bot-grants"
@@ -13017,7 +13008,8 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "botAuthUserId"
+            "userId",
+            "botAuthIdentityId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -13089,7 +13081,8 @@ export const operationDefinitions = {
             "method": "replace",
             "action": "update",
             "pathParameters": {
-                "botAuthUserId": "botAuthUserId"
+                "userId": "userId",
+                "botAuthIdentityId": "botAuthIdentityId"
             }
         },
         "pagination": null
@@ -13098,7 +13091,7 @@ export const operationDefinitions = {
         "operationId": "unsubscribeExchangeNotices",
         "target": "app",
         "method": "POST",
-        "path": "/exchange-notice-subscriptions/unsubscribe",
+        "path": "/users/{userId}/exchange-notice-subscription/unsubscribe",
         "authentication": "public",
         "tags": [
             "exchange-notice-subscriptions"
@@ -13106,7 +13099,9 @@ export const operationDefinitions = {
         "summary": "unsubscribeExchangeNotices",
         "description": null,
         "deprecated": false,
-        "pathParameters": [],
+        "pathParameters": [
+            "userId"
+        ],
         "queryParameters": [
             "token"
         ],
@@ -13187,20 +13182,23 @@ export const operationDefinitions = {
         "sdk": {
             "resource": "exchangeNoticeSubscriptions",
             "method": "unsubscribe",
-            "action": "update"
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId"
+            }
         },
         "pagination": null
     },
-    "updateAuthUser": {
-        "operationId": "updateAuthUser",
+    "updateAuthIdentity": {
+        "operationId": "updateAuthIdentity",
         "target": "app",
         "method": "PATCH",
-        "path": "/admin/auth-users/{id}",
+        "path": "/admin/auth-identities/{id}",
         "authentication": "required",
         "tags": [
-            "auth-users"
+            "auth-identities"
         ],
-        "summary": "Update AuthUser",
+        "summary": "Update AuthIdentity",
         "description": null,
         "deprecated": false,
         "pathParameters": [
@@ -13213,7 +13211,7 @@ export const operationDefinitions = {
             "required": true,
             "contentType": "application/json",
             "schema": {
-                "$ref": "#/components/schemas/PatchAuthUserBody"
+                "$ref": "#/components/schemas/PatchAuthIdentityBody"
             }
         },
         "responses": [
@@ -13224,7 +13222,7 @@ export const operationDefinitions = {
                     {
                         "contentType": "application/json",
                         "schema": {
-                            "$ref": "#/components/schemas/AuthUserEntity"
+                            "$ref": "#/components/schemas/AuthIdentityEntity"
                         }
                     }
                 ],
@@ -13294,11 +13292,11 @@ export const operationDefinitions = {
             "filter": null
         },
         "sdk": {
-            "resource": "authUsers",
+            "resource": "authIdentities",
             "method": "update",
             "action": "update",
             "pathParameters": {
-                "id": "authUserId"
+                "id": "authIdentityId"
             }
         },
         "pagination": null
@@ -13425,11 +13423,290 @@ export const operationDefinitions = {
         },
         "pagination": null
     },
+    "updateCurriculums": {
+        "operationId": "updateCurriculums",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/users/{userId}/curriculums/{id}",
+        "authentication": "required",
+        "tags": [
+            "curriculums"
+        ],
+        "summary": "Update Curriculums",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "isFavorite": {
+                        "type": "boolean"
+                    },
+                    "selection": {
+                        "type": "object",
+                        "properties": {
+                            "catalogProgramId": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "catalogProgramVariantId": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "languageId": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "planningStart": {
+                        "type": "object",
+                        "nullable": true,
+                        "properties": {
+                            "year": {
+                                "type": "integer"
+                            },
+                            "semester": {
+                                "anyOf": [
+                                    {
+                                        "type": "number",
+                                        "enum": [
+                                            1
+                                        ]
+                                    },
+                                    {
+                                        "type": "number",
+                                        "enum": [
+                                            2
+                                        ]
+                                    }
+                                ]
+                            },
+                            "semesterNumber": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "exclusiveMinimum": true
+                            }
+                        },
+                        "required": [
+                            "year",
+                            "semester",
+                            "semesterNumber"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "currentPeriodId": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "periods": {
+                        "type": "object",
+                        "properties": {
+                            "add": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "position": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "exclusiveMinimum": true
+                                        }
+                                    },
+                                    "required": [
+                                        "position"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "update": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "position": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "exclusiveMinimum": true
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "position"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "courses": {
+                        "type": "object",
+                        "properties": {
+                            "upsert": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "courseId": {
+                                            "type": "integer"
+                                        },
+                                        "periodId": {
+                                            "type": "integer",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "required": [
+                                        "courseId",
+                                        "periodId"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            },
+                            "remove": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/CurriculumEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/InvalidCurriculumProblem"
+                                }
+                            ],
+                            "discriminator": {
+                                "propertyName": "type",
+                                "mapping": {
+                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
+                                    "urn:pomi:problem:invalid-curriculum": "#/components/schemas/InvalidCurriculumProblem"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found",
+                    "urn:pomi:problem:invalid-curriculum"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "curriculums",
+            "method": "update",
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "curriculumId"
+            }
+        },
+        "pagination": null
+    },
     "updateExchangeNoticeSubscription": {
         "operationId": "updateExchangeNoticeSubscription",
         "target": "app",
         "method": "PATCH",
-        "path": "/student/{sid}/exchange-notice-subscription",
+        "path": "/users/{userId}/exchange-notice-subscription",
         "authentication": "required",
         "tags": [
             "exchange-notice-subscriptions"
@@ -13438,7 +13715,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -13517,7 +13794,7 @@ export const operationDefinitions = {
             "method": "update",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId"
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -13623,7 +13900,7 @@ export const operationDefinitions = {
         "operationId": "updateGroup",
         "target": "app",
         "method": "PATCH",
-        "path": "/student/{sid}/groups/{id}",
+        "path": "/users/{userId}/groups/{groupId}",
         "authentication": "required",
         "tags": [
             "groups"
@@ -13632,8 +13909,8 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "id",
-            "sid"
+            "groupId",
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -13911,8 +14188,8 @@ export const operationDefinitions = {
             "method": "update",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "groupId"
+                "userId": "userId",
+                "groupId": "groupId"
             }
         },
         "pagination": null
@@ -13921,7 +14198,7 @@ export const operationDefinitions = {
         "operationId": "updateGroupEvent",
         "target": "app",
         "method": "PATCH",
-        "path": "/student/{sid}/group-events/{id}",
+        "path": "/users/{userId}/groups/{groupId}/events/{eventId}",
         "authentication": "required",
         "tags": [
             "groups"
@@ -13930,8 +14207,9 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId",
+            "eventId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -14058,8 +14336,9 @@ export const operationDefinitions = {
             "method": "updateGroupEvent",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
+                "userId": "userId",
+                "groupId": "groupId",
+                "eventId": "eventId"
             }
         },
         "pagination": null
@@ -14068,7 +14347,7 @@ export const operationDefinitions = {
         "operationId": "updateGroupRole",
         "target": "app",
         "method": "PATCH",
-        "path": "/student/{sid}/group-roles/{id}",
+        "path": "/users/{userId}/groups/{groupId}/roles/{roleId}",
         "authentication": "required",
         "tags": [
             "groups"
@@ -14077,8 +14356,9 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId",
+            "roleId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -14201,8 +14481,9 @@ export const operationDefinitions = {
             "method": "updateGroupRole",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
+                "userId": "userId",
+                "groupId": "groupId",
+                "roleId": "roleId"
             }
         },
         "pagination": null
@@ -14211,7 +14492,7 @@ export const operationDefinitions = {
         "operationId": "updateManagedGroupMembership",
         "target": "app",
         "method": "PATCH",
-        "path": "/student/{sid}/managed-group-memberships/{id}",
+        "path": "/users/{userId}/groups/{groupId}/memberships/{membershipId}",
         "authentication": "required",
         "tags": [
             "groups"
@@ -14220,8 +14501,9 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
-            "id"
+            "userId",
+            "groupId",
+            "membershipId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -14407,8 +14689,138 @@ export const operationDefinitions = {
             "method": "updateManagedGroupMembership",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
+                "userId": "userId",
+                "groupId": "groupId",
+                "membershipId": "membershipId"
+            }
+        },
+        "pagination": null
+    },
+    "updatePeriodPlans": {
+        "operationId": "updatePeriodPlans",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/users/{userId}/period-plans/{id}",
+        "authentication": "required",
+        "tags": [
+            "period-plans"
+        ],
+        "summary": "Update PeriodPlans",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "$ref": "#/components/schemas/UpdatePeriodPlanningInput"
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/PeriodPlanningEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/InvalidPeriodPlanProblem"
+                                }
+                            ],
+                            "discriminator": {
+                                "propertyName": "type",
+                                "mapping": {
+                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
+                                    "urn:pomi:problem:invalid-period-plan": "#/components/schemas/InvalidPeriodPlanProblem"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found",
+                    "urn:pomi:problem:invalid-period-plan"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "periodPlans",
+            "action": "update",
+            "method": "update",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "periodPlanningId"
             }
         },
         "pagination": null
@@ -14417,7 +14829,7 @@ export const operationDefinitions = {
         "operationId": "updateProfessorEvaluation",
         "target": "app",
         "method": "PUT",
-        "path": "/student/{sid}/classes/{classId}/professors/{professorId}/evaluation",
+        "path": "/users/{userId}/classes/{classId}/professors/{professorId}/evaluation",
         "authentication": "required",
         "tags": [
             "professor-evaluations"
@@ -14426,7 +14838,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "classId",
             "professorId"
         ],
@@ -14522,7 +14934,7 @@ export const operationDefinitions = {
             "method": "update",
             "action": "update",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "classId": "classId",
                 "professorId": "professorId"
             }
@@ -14533,7 +14945,7 @@ export const operationDefinitions = {
         "operationId": "updateStudentCourseAttempts",
         "target": "app",
         "method": "PATCH",
-        "path": "/student/{sid}/course-attempts/{id}",
+        "path": "/users/{userId}/course-attempts/{id}",
         "authentication": "required",
         "tags": [
             "student-course-attempts"
@@ -14542,7 +14954,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "sid",
+            "userId",
             "id"
         ],
         "queryParameters": [],
@@ -14667,641 +15079,8 @@ export const operationDefinitions = {
             "action": "update",
             "method": "update",
             "pathParameters": {
-                "sid": "studentId",
+                "userId": "userId",
                 "id": "courseAttemptId"
-            }
-        },
-        "pagination": null
-    },
-    "updateStudentCurricula": {
-        "operationId": "updateStudentCurricula",
-        "target": "app",
-        "method": "PATCH",
-        "path": "/student/{sid}/curricula/{id}",
-        "authentication": "required",
-        "tags": [
-            "curricula"
-        ],
-        "summary": "Update StudentCurricula",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "isFavorite": {
-                        "type": "boolean"
-                    },
-                    "selection": {
-                        "type": "object",
-                        "properties": {
-                            "catalogProgramId": {
-                                "type": "integer",
-                                "nullable": true
-                            },
-                            "catalogProgramVariantId": {
-                                "type": "integer",
-                                "nullable": true
-                            },
-                            "languageId": {
-                                "type": "integer",
-                                "nullable": true
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "planningStart": {
-                        "type": "object",
-                        "nullable": true,
-                        "properties": {
-                            "year": {
-                                "type": "integer"
-                            },
-                            "semester": {
-                                "anyOf": [
-                                    {
-                                        "type": "number",
-                                        "enum": [
-                                            1
-                                        ]
-                                    },
-                                    {
-                                        "type": "number",
-                                        "enum": [
-                                            2
-                                        ]
-                                    }
-                                ]
-                            },
-                            "semesterNumber": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "exclusiveMinimum": true
-                            }
-                        },
-                        "required": [
-                            "year",
-                            "semester",
-                            "semesterNumber"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "currentPeriodId": {
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "periods": {
-                        "type": "object",
-                        "properties": {
-                            "add": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "position": {
-                                            "type": "integer",
-                                            "minimum": 0,
-                                            "exclusiveMinimum": true
-                                        }
-                                    },
-                                    "required": [
-                                        "position"
-                                    ],
-                                    "additionalProperties": false
-                                }
-                            },
-                            "update": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer"
-                                        },
-                                        "position": {
-                                            "type": "integer",
-                                            "minimum": 0,
-                                            "exclusiveMinimum": true
-                                        }
-                                    },
-                                    "required": [
-                                        "id",
-                                        "position"
-                                    ],
-                                    "additionalProperties": false
-                                }
-                            },
-                            "remove": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "courses": {
-                        "type": "object",
-                        "properties": {
-                            "upsert": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "courseId": {
-                                            "type": "integer"
-                                        },
-                                        "periodId": {
-                                            "type": "integer",
-                                            "nullable": true
-                                        }
-                                    },
-                                    "required": [
-                                        "courseId",
-                                        "periodId"
-                                    ],
-                                    "additionalProperties": false
-                                }
-                            },
-                            "remove": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            }
-                        },
-                        "additionalProperties": false
-                    }
-                },
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/CurriculumEntity"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/InvalidCurriculumProblem"
-                                }
-                            ],
-                            "discriminator": {
-                                "propertyName": "type",
-                                "mapping": {
-                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
-                                    "urn:pomi:problem:invalid-curriculum": "#/components/schemas/InvalidCurriculumProblem"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found",
-                    "urn:pomi:problem:invalid-curriculum"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "curricula",
-            "method": "update",
-            "action": "update",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "curriculumId"
-            }
-        },
-        "pagination": null
-    },
-    "updateStudentGroupMembership": {
-        "operationId": "updateStudentGroupMembership",
-        "target": "app",
-        "method": "PATCH",
-        "path": "/student/{sid}/group-memberships/{id}",
-        "authentication": "required",
-        "tags": [
-            "groups"
-        ],
-        "summary": "Update StudentGroupMembership",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "isPublic": {
-                        "type": "boolean"
-                    }
-                },
-                "required": [
-                    "isPublic"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/OwnGroupMembership"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "groupCommunity",
-            "method": "updateStudentGroupMembership",
-            "action": "update",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "id"
-            }
-        },
-        "pagination": null
-    },
-    "updateStudentPeriodPlannings": {
-        "operationId": "updateStudentPeriodPlannings",
-        "target": "app",
-        "method": "PATCH",
-        "path": "/student/{sid}/period-plannings/{id}",
-        "authentication": "required",
-        "tags": [
-            "period-plannings"
-        ],
-        "summary": "Update StudentPeriodPlannings",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "id"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "$ref": "#/components/schemas/UpdatePeriodPlanningInput"
-            }
-        },
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/PeriodPlanningEntity"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/InvalidPeriodPlanProblem"
-                                }
-                            ],
-                            "discriminator": {
-                                "propertyName": "type",
-                                "mapping": {
-                                    "urn:pomi:problem:reference-not-found": "#/components/schemas/ReferenceNotFoundProblem",
-                                    "urn:pomi:problem:invalid-period-plan": "#/components/schemas/InvalidPeriodPlanProblem"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found",
-                    "urn:pomi:problem:invalid-period-plan"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "periodPlannings",
-            "action": "update",
-            "method": "update",
-            "pathParameters": {
-                "sid": "studentId",
-                "id": "periodPlanningId"
-            }
-        },
-        "pagination": null
-    },
-    "updateStudentPublicProfile": {
-        "operationId": "updateStudentPublicProfile",
-        "target": "app",
-        "method": "PATCH",
-        "path": "/student/{sid}/public-profile",
-        "authentication": "required",
-        "tags": [
-            "student-social"
-        ],
-        "summary": "Update StudentPublicProfile",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": {
-            "required": true,
-            "contentType": "application/json",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "enabled": {
-                        "type": "boolean"
-                    },
-                    "displayName": {
-                        "type": "string",
-                        "nullable": true,
-                        "minLength": 1,
-                        "maxLength": 80
-                    },
-                    "bio": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 280
-                    },
-                    "currentCoursesVisibility": {
-                        "$ref": "#/components/schemas/StudentProfileVisibility"
-                    }
-                },
-                "additionalProperties": false
-            }
-        },
-        "responses": [
-            {
-                "status": 200,
-                "success": true,
-                "contents": [
-                    {
-                        "contentType": "application/json",
-                        "schema": {
-                            "$ref": "#/components/schemas/StudentPublicProfile"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 404,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:resource-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentSocial",
-            "method": "updateProfile",
-            "action": "update",
-            "pathParameters": {
-                "sid": "studentId"
             }
         },
         "pagination": null
@@ -15310,7 +15089,7 @@ export const operationDefinitions = {
         "operationId": "updateStudents",
         "target": "app",
         "method": "PATCH",
-        "path": "/students/{id}",
+        "path": "/users/{userId}/student",
         "authentication": "required",
         "tags": [
             "students"
@@ -15319,7 +15098,7 @@ export const operationDefinitions = {
         "description": null,
         "deprecated": false,
         "pathParameters": [
-            "id"
+            "userId"
         ],
         "queryParameters": [],
         "headerParameters": [],
@@ -15428,93 +15207,7 @@ export const operationDefinitions = {
             "method": "update",
             "action": "update",
             "pathParameters": {
-                "id": "studentId"
-            }
-        },
-        "pagination": null
-    },
-    "updateStudentTagInterest": {
-        "operationId": "updateStudentTagInterest",
-        "target": "app",
-        "method": "PUT",
-        "path": "/student/{sid}/tag-interests/{tagId}",
-        "authentication": "required",
-        "tags": [
-            "student-tag-interests"
-        ],
-        "summary": "Update StudentTagInterest",
-        "description": null,
-        "deprecated": false,
-        "pathParameters": [
-            "sid",
-            "tagId"
-        ],
-        "queryParameters": [],
-        "headerParameters": [],
-        "cookieParameters": [],
-        "requestBody": null,
-        "responses": [
-            {
-                "status": 204,
-                "success": true,
-                "contents": [],
-                "problemTypes": []
-            },
-            {
-                "status": 400,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/InvalidRequestProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:invalid-request"
-                ]
-            },
-            {
-                "status": 422,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ReferenceNotFoundProblem"
-                        }
-                    }
-                ],
-                "problemTypes": [
-                    "urn:pomi:problem:reference-not-found"
-                ]
-            },
-            {
-                "status": 500,
-                "success": false,
-                "contents": [
-                    {
-                        "contentType": "application/problem+json",
-                        "schema": {
-                            "$ref": "#/components/schemas/ServerErrorProblem"
-                        }
-                    }
-                ],
-                "problemTypes": []
-            }
-        ],
-        "query": {
-            "parameters": [],
-            "filter": null
-        },
-        "sdk": {
-            "resource": "studentTagInterests",
-            "method": "update",
-            "action": "update",
-            "pathParameters": {
-                "sid": "studentId",
-                "tagId": "tagId"
+                "userId": "userId"
             }
         },
         "pagination": null
@@ -15665,6 +15358,523 @@ export const operationDefinitions = {
             "action": "update",
             "pathParameters": {
                 "id": "tagId"
+            }
+        },
+        "pagination": null
+    },
+    "updateUser": {
+        "operationId": "updateUser",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/users/{userId}",
+        "authentication": "required",
+        "tags": [
+            "users"
+        ],
+        "summary": "Update User",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "nullable": true,
+                        "minLength": 1,
+                        "maxLength": 200
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserEntity"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "users",
+            "method": "update",
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "updateUserGroupMembership": {
+        "operationId": "updateUserGroupMembership",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/users/{userId}/group-memberships/{id}",
+        "authentication": "required",
+        "tags": [
+            "groups"
+        ],
+        "summary": "Update UserGroupMembership",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "id"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "isPublic": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "isPublic"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/OwnGroupMembership"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "groupCommunity",
+            "method": "updateUserGroupMembership",
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId",
+                "id": "id"
+            }
+        },
+        "pagination": null
+    },
+    "updateUserInterest": {
+        "operationId": "updateUserInterest",
+        "target": "app",
+        "method": "PUT",
+        "path": "/users/{userId}/interests/{tagId}",
+        "authentication": "required",
+        "tags": [
+            "student-tag-interests"
+        ],
+        "summary": "Update UserInterest",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId",
+            "tagId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": null,
+        "responses": [
+            {
+                "status": 204,
+                "success": true,
+                "contents": [],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 422,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReferenceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:reference-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userInterests",
+            "method": "update",
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId",
+                "tagId": "tagId"
+            }
+        },
+        "pagination": null
+    },
+    "updateUserPreferences": {
+        "operationId": "updateUserPreferences",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/users/{userId}/preferences",
+        "authentication": "required",
+        "tags": [
+            "users"
+        ],
+        "summary": "Update UserPreferences",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "$ref": "#/components/schemas/UserPreferences"
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserPreferences"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userPreferences",
+            "method": "update",
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId"
+            }
+        },
+        "pagination": null
+    },
+    "updateUserProfile": {
+        "operationId": "updateUserProfile",
+        "target": "app",
+        "method": "PATCH",
+        "path": "/users/{userId}/profile",
+        "authentication": "required",
+        "tags": [
+            "student-social"
+        ],
+        "summary": "Update UserProfile",
+        "description": null,
+        "deprecated": false,
+        "pathParameters": [
+            "userId"
+        ],
+        "queryParameters": [],
+        "headerParameters": [],
+        "cookieParameters": [],
+        "requestBody": {
+            "required": true,
+            "contentType": "application/json",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": true,
+                        "minLength": 1,
+                        "maxLength": 80
+                    },
+                    "bio": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 280
+                    },
+                    "currentCoursesVisibility": {
+                        "$ref": "#/components/schemas/StudentProfileVisibility"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "responses": [
+            {
+                "status": 200,
+                "success": true,
+                "contents": [
+                    {
+                        "contentType": "application/json",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserProfile"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            },
+            {
+                "status": 400,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/InvalidRequestProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:invalid-request"
+                ]
+            },
+            {
+                "status": 404,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ResourceNotFoundProblem"
+                        }
+                    }
+                ],
+                "problemTypes": [
+                    "urn:pomi:problem:resource-not-found"
+                ]
+            },
+            {
+                "status": 500,
+                "success": false,
+                "contents": [
+                    {
+                        "contentType": "application/problem+json",
+                        "schema": {
+                            "$ref": "#/components/schemas/ServerErrorProblem"
+                        }
+                    }
+                ],
+                "problemTypes": []
+            }
+        ],
+        "query": {
+            "parameters": [],
+            "filter": null
+        },
+        "sdk": {
+            "resource": "userSocial",
+            "method": "updateProfile",
+            "action": "update",
+            "pathParameters": {
+                "userId": "userId"
             }
         },
         "pagination": null
