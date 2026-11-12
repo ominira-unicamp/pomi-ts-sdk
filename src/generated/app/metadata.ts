@@ -4040,7 +4040,15 @@ export const componentSchemas = {
             "course-situation",
             "agenda",
             "social",
-            "academic-data"
+            "academic-data",
+            "courses",
+            "disciplines",
+            "profile",
+            "groups",
+            "events",
+            "tags",
+            "exchange",
+            "feedback"
         ],
         "x-pomi-schema": {
             "kind": "value-object",
@@ -5739,7 +5747,15 @@ export const enumValues = {
         "course-situation",
         "agenda",
         "social",
-        "academic-data"
+        "academic-data",
+        "courses",
+        "disciplines",
+        "profile",
+        "groups",
+        "events",
+        "tags",
+        "exchange",
+        "feedback"
     ],
     "FeedbackAcademicResourceType": [
         "COURSE",

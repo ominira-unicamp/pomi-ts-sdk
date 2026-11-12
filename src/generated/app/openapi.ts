@@ -2169,7 +2169,7 @@ export interface components {
             key: components["schemas"]["FeedbackFeatureKey"];
         };
 
-        FeedbackFeatureKey: "home" | "curriculum-planner" | "semester-planner" | "course-situation" | "agenda" | "social" | "academic-data";
+        FeedbackFeatureKey: "home" | "curriculum-planner" | "semester-planner" | "course-situation" | "agenda" | "social" | "academic-data" | "courses" | "disciplines" | "profile" | "groups" | "events" | "tags" | "exchange" | "feedback";
         AcademicResourceFeedbackReportTarget: {
 
             type: "ACADEMIC_RESOURCE";

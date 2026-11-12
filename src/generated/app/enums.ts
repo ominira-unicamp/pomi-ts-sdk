@@ -46,7 +46,7 @@ export type UserFriendshipDirection = (typeof userFriendshipDirectionValues)[num
 export const feedbackKindValues = ["BUG", "SUGGESTION", "DATA_ISSUE"] as const
 export type FeedbackKind = (typeof feedbackKindValues)[number]
 
-export const feedbackFeatureKeyValues = ["home", "curriculum-planner", "semester-planner", "course-situation", "agenda", "social", "academic-data"] as const
+export const feedbackFeatureKeyValues = ["home", "curriculum-planner", "semester-planner", "course-situation", "agenda", "social", "academic-data", "courses", "disciplines", "profile", "groups", "events", "tags", "exchange", "feedback"] as const
 export type FeedbackFeatureKey = (typeof feedbackFeatureKeyValues)[number]
 
 export const feedbackAcademicResourceTypeValues = ["COURSE", "CATALOG_COURSE", "CATALOG_PROGRAM", "CURRICULUM_SUGGESTION", "CLASS", "CLASS_SCHEDULE", "STUDY_PERIOD", "DAILY_MENU", "CALENDAR_EVENT"] as const
