@@ -5947,7 +5947,7 @@ export const operationDefinitions = {
                 {
                     "name": "filter",
                     "required": false,
-                    "description": "Structured course filters. Use bracket notation such as filter[credits][gte]=4.",
+                    "description": "Filtros de disciplinas. Predicados some/none agrupam condições do mesmo item; todos os filtros são combinados com E.",
                     "style": "deepObject",
                     "explode": true,
                     "schema": {
@@ -6129,6 +6129,1590 @@ export const operationDefinitions = {
                                     }
                                 },
                                 "type": "object"
+                            },
+                            "latestCatalogCourse": {
+                                "type": "object",
+                                "properties": {
+                                    "isNull": {
+                                        "type": "boolean"
+                                    },
+                                    "catalogYear": {
+                                        "anyOf": [
+                                            {
+                                                "type": "integer"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "eq": {
+                                                        "type": "integer"
+                                                    },
+                                                    "ne": {
+                                                        "type": "integer"
+                                                    },
+                                                    "in": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "notIn": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "gt": {
+                                                        "type": "integer"
+                                                    },
+                                                    "gte": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lt": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lte": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1
+                                            }
+                                        ]
+                                    },
+                                    "offeringPeriod": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "ALL_PERIODS",
+                                                    "ODD_PERIODS",
+                                                    "EVEN_PERIODS",
+                                                    "UNIT_DISCRETION"
+                                                ]
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "eq": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "ALL_PERIODS",
+                                                            "ODD_PERIODS",
+                                                            "EVEN_PERIODS",
+                                                            "UNIT_DISCRETION"
+                                                        ]
+                                                    },
+                                                    "ne": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "ALL_PERIODS",
+                                                            "ODD_PERIODS",
+                                                            "EVEN_PERIODS",
+                                                            "UNIT_DISCRETION"
+                                                        ]
+                                                    },
+                                                    "in": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "ALL_PERIODS",
+                                                                "ODD_PERIODS",
+                                                                "EVEN_PERIODS",
+                                                                "UNIT_DISCRETION"
+                                                            ]
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "notIn": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "ALL_PERIODS",
+                                                                "ODD_PERIODS",
+                                                                "EVEN_PERIODS",
+                                                                "UNIT_DISCRETION"
+                                                            ]
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "isNull": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1
+                                            }
+                                        ]
+                                    },
+                                    "evaluation": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "GRADE_AND_ATTENDANCE",
+                                                    "ATTENDANCE",
+                                                    "CONCEPT"
+                                                ]
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "eq": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "GRADE_AND_ATTENDANCE",
+                                                            "ATTENDANCE",
+                                                            "CONCEPT"
+                                                        ]
+                                                    },
+                                                    "ne": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "GRADE_AND_ATTENDANCE",
+                                                            "ATTENDANCE",
+                                                            "CONCEPT"
+                                                        ]
+                                                    },
+                                                    "in": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "GRADE_AND_ATTENDANCE",
+                                                                "ATTENDANCE",
+                                                                "CONCEPT"
+                                                            ]
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "notIn": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "GRADE_AND_ATTENDANCE",
+                                                                "ATTENDANCE",
+                                                                "CONCEPT"
+                                                            ]
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "isNull": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1
+                                            }
+                                        ]
+                                    },
+                                    "finalExam": {
+                                        "anyOf": [
+                                            {
+                                                "type": "boolean"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "eq": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "isNull": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1
+                                            }
+                                        ]
+                                    },
+                                    "minimumAttendancePercent": {
+                                        "anyOf": [
+                                            {
+                                                "type": "integer",
+                                                "minimum": 0,
+                                                "maximum": 100
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "eq": {
+                                                        "type": "integer",
+                                                        "minimum": 0,
+                                                        "maximum": 100
+                                                    },
+                                                    "ne": {
+                                                        "type": "integer",
+                                                        "minimum": 0,
+                                                        "maximum": 100
+                                                    },
+                                                    "in": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer",
+                                                            "minimum": 0,
+                                                            "maximum": 100
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "notIn": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer",
+                                                            "minimum": 0,
+                                                            "maximum": 100
+                                                        },
+                                                        "minItems": 1,
+                                                        "maxItems": 100
+                                                    },
+                                                    "gt": {
+                                                        "type": "integer",
+                                                        "minimum": 0,
+                                                        "maximum": 100
+                                                    },
+                                                    "gte": {
+                                                        "type": "integer",
+                                                        "minimum": 0,
+                                                        "maximum": 100
+                                                    },
+                                                    "lt": {
+                                                        "type": "integer",
+                                                        "minimum": 0,
+                                                        "maximum": 100
+                                                    },
+                                                    "lte": {
+                                                        "type": "integer",
+                                                        "minimum": 0,
+                                                        "maximum": 100
+                                                    },
+                                                    "isNull": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1
+                                            }
+                                        ]
+                                    },
+                                    "workload": {
+                                        "type": "object",
+                                        "properties": {
+                                            "theoreticalHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "practicalHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "laboratoryHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "guidedActivityHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "distanceHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "guidedExtensionHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "practicalExtensionHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "weeklyClassHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            },
+                                            "classroomHours": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 0
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "gt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "gte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lt": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "lte": {
+                                                                "type": "integer",
+                                                                "minimum": 0
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "coordinator": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "integer",
+                                                        "minimum": 1
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "eq": {
+                                                                "type": "integer",
+                                                                "minimum": 1
+                                                            },
+                                                            "ne": {
+                                                                "type": "integer",
+                                                                "minimum": 1
+                                                            },
+                                                            "in": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 1
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "notIn": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "integer",
+                                                                    "minimum": 1
+                                                                },
+                                                                "minItems": 1,
+                                                                "maxItems": 100
+                                                            },
+                                                            "isNull": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "minProperties": 1
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "id"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    "name": {
+                                        "type": "object",
+                                        "properties": {
+                                            "contains": {
+                                                "type": "string",
+                                                "minLength": 1
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1
+                                    },
+                                    "syllabus": {
+                                        "type": "object",
+                                        "properties": {
+                                            "contains": {
+                                                "type": "string",
+                                                "minLength": 1
+                                            },
+                                            "isNull": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1
+                                    },
+                                    "bibliography": {
+                                        "type": "object",
+                                        "properties": {
+                                            "contains": {
+                                                "type": "string",
+                                                "minLength": 1
+                                            },
+                                            "isNull": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1
+                                    },
+                                    "hasPrerequisites": {
+                                        "anyOf": [
+                                            {
+                                                "type": "boolean"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "eq": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1
+                                            }
+                                        ]
+                                    },
+                                    "prerequisites": {
+                                        "type": "object",
+                                        "properties": {
+                                            "some": {
+                                                "type": "array",
+                                                "items": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "course": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "courseId": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "type": "integer",
+                                                                                    "minimum": 1
+                                                                                },
+                                                                                {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "eq": {
+                                                                                            "type": "integer",
+                                                                                            "minimum": 1
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "type": "array",
+                                                                                            "items": {
+                                                                                                "type": "integer",
+                                                                                                "minimum": 1
+                                                                                            },
+                                                                                            "minItems": 1,
+                                                                                            "maxItems": 100
+                                                                                        }
+                                                                                    },
+                                                                                    "additionalProperties": false,
+                                                                                    "minProperties": 1
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        "courseCode": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "type": "string",
+                                                                                    "minLength": 1
+                                                                                },
+                                                                                {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "eq": {
+                                                                                            "type": "string",
+                                                                                            "minLength": 1
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "type": "array",
+                                                                                            "items": {
+                                                                                                "type": "string",
+                                                                                                "minLength": 1
+                                                                                            },
+                                                                                            "minItems": 1,
+                                                                                            "maxItems": 100
+                                                                                        }
+                                                                                    },
+                                                                                    "additionalProperties": false,
+                                                                                    "minProperties": 1
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        "fulfillment": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "type": "string",
+                                                                                    "enum": [
+                                                                                        "FULL",
+                                                                                        "PARTIAL"
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "eq": {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "FULL",
+                                                                                                "PARTIAL"
+                                                                                            ]
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "type": "array",
+                                                                                            "items": {
+                                                                                                "type": "string",
+                                                                                                "enum": [
+                                                                                                    "FULL",
+                                                                                                    "PARTIAL"
+                                                                                                ]
+                                                                                            },
+                                                                                            "minItems": 1,
+                                                                                            "maxItems": 100
+                                                                                        }
+                                                                                    },
+                                                                                    "additionalProperties": false,
+                                                                                    "minProperties": 1
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "additionalProperties": false
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "course"
+                                                            ],
+                                                            "additionalProperties": false
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "specialRequirement": {
+                                                                    "anyOf": [
+                                                                        {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "anyOf": [
+                                                                                        {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "AUTHORIZATION"
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "eq": {
+                                                                                                    "type": "string",
+                                                                                                    "enum": [
+                                                                                                        "AUTHORIZATION"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "in": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string",
+                                                                                                        "enum": [
+                                                                                                            "AUTHORIZATION"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "minItems": 1,
+                                                                                                    "maxItems": 100
+                                                                                                }
+                                                                                            },
+                                                                                            "additionalProperties": false,
+                                                                                            "minProperties": 1
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "type"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                        },
+                                                                        {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "anyOf": [
+                                                                                        {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "PROGRESSION_COEFFICIENT"
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "eq": {
+                                                                                                    "type": "string",
+                                                                                                    "enum": [
+                                                                                                        "PROGRESSION_COEFFICIENT"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "in": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string",
+                                                                                                        "enum": [
+                                                                                                            "PROGRESSION_COEFFICIENT"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "minItems": 1,
+                                                                                                    "maxItems": 100
+                                                                                                }
+                                                                                            },
+                                                                                            "additionalProperties": false,
+                                                                                            "minProperties": 1
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                "progressionCoefficient": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "value": {
+                                                                                            "anyOf": [
+                                                                                                {
+                                                                                                    "type": "integer",
+                                                                                                    "minimum": 0,
+                                                                                                    "maximum": 100
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "object",
+                                                                                                    "properties": {
+                                                                                                        "eq": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "in": {
+                                                                                                            "type": "array",
+                                                                                                            "items": {
+                                                                                                                "type": "integer",
+                                                                                                                "minimum": 0,
+                                                                                                                "maximum": 100
+                                                                                                            },
+                                                                                                            "minItems": 1,
+                                                                                                            "maxItems": 100
+                                                                                                        },
+                                                                                                        "gt": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "gte": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "lt": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "lte": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "additionalProperties": false,
+                                                                                                    "minProperties": 1
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    "required": [
+                                                                                        "value"
+                                                                                    ],
+                                                                                    "additionalProperties": false
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "type"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                        },
+                                                                        {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "anyOf": [
+                                                                                        {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "AUTHORIZATION",
+                                                                                                "PROGRESSION_COEFFICIENT"
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "eq": {
+                                                                                                    "type": "string",
+                                                                                                    "enum": [
+                                                                                                        "AUTHORIZATION",
+                                                                                                        "PROGRESSION_COEFFICIENT"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "in": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string",
+                                                                                                        "enum": [
+                                                                                                            "AUTHORIZATION",
+                                                                                                            "PROGRESSION_COEFFICIENT"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "minItems": 1,
+                                                                                                    "maxItems": 100
+                                                                                                }
+                                                                                            },
+                                                                                            "additionalProperties": false,
+                                                                                            "minProperties": 1
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "type"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "specialRequirement"
+                                                            ],
+                                                            "additionalProperties": false
+                                                        }
+                                                    ]
+                                                },
+                                                "minItems": 1,
+                                                "maxItems": 20
+                                            },
+                                            "none": {
+                                                "type": "array",
+                                                "items": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "course": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "courseId": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "type": "integer",
+                                                                                    "minimum": 1
+                                                                                },
+                                                                                {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "eq": {
+                                                                                            "type": "integer",
+                                                                                            "minimum": 1
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "type": "array",
+                                                                                            "items": {
+                                                                                                "type": "integer",
+                                                                                                "minimum": 1
+                                                                                            },
+                                                                                            "minItems": 1,
+                                                                                            "maxItems": 100
+                                                                                        }
+                                                                                    },
+                                                                                    "additionalProperties": false,
+                                                                                    "minProperties": 1
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        "courseCode": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "type": "string",
+                                                                                    "minLength": 1
+                                                                                },
+                                                                                {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "eq": {
+                                                                                            "type": "string",
+                                                                                            "minLength": 1
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "type": "array",
+                                                                                            "items": {
+                                                                                                "type": "string",
+                                                                                                "minLength": 1
+                                                                                            },
+                                                                                            "minItems": 1,
+                                                                                            "maxItems": 100
+                                                                                        }
+                                                                                    },
+                                                                                    "additionalProperties": false,
+                                                                                    "minProperties": 1
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        "fulfillment": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "type": "string",
+                                                                                    "enum": [
+                                                                                        "FULL",
+                                                                                        "PARTIAL"
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "eq": {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "FULL",
+                                                                                                "PARTIAL"
+                                                                                            ]
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "type": "array",
+                                                                                            "items": {
+                                                                                                "type": "string",
+                                                                                                "enum": [
+                                                                                                    "FULL",
+                                                                                                    "PARTIAL"
+                                                                                                ]
+                                                                                            },
+                                                                                            "minItems": 1,
+                                                                                            "maxItems": 100
+                                                                                        }
+                                                                                    },
+                                                                                    "additionalProperties": false,
+                                                                                    "minProperties": 1
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "additionalProperties": false
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "course"
+                                                            ],
+                                                            "additionalProperties": false
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "specialRequirement": {
+                                                                    "anyOf": [
+                                                                        {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "anyOf": [
+                                                                                        {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "AUTHORIZATION"
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "eq": {
+                                                                                                    "type": "string",
+                                                                                                    "enum": [
+                                                                                                        "AUTHORIZATION"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "in": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string",
+                                                                                                        "enum": [
+                                                                                                            "AUTHORIZATION"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "minItems": 1,
+                                                                                                    "maxItems": 100
+                                                                                                }
+                                                                                            },
+                                                                                            "additionalProperties": false,
+                                                                                            "minProperties": 1
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "type"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                        },
+                                                                        {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "anyOf": [
+                                                                                        {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "PROGRESSION_COEFFICIENT"
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "eq": {
+                                                                                                    "type": "string",
+                                                                                                    "enum": [
+                                                                                                        "PROGRESSION_COEFFICIENT"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "in": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string",
+                                                                                                        "enum": [
+                                                                                                            "PROGRESSION_COEFFICIENT"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "minItems": 1,
+                                                                                                    "maxItems": 100
+                                                                                                }
+                                                                                            },
+                                                                                            "additionalProperties": false,
+                                                                                            "minProperties": 1
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                "progressionCoefficient": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "value": {
+                                                                                            "anyOf": [
+                                                                                                {
+                                                                                                    "type": "integer",
+                                                                                                    "minimum": 0,
+                                                                                                    "maximum": 100
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "object",
+                                                                                                    "properties": {
+                                                                                                        "eq": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "in": {
+                                                                                                            "type": "array",
+                                                                                                            "items": {
+                                                                                                                "type": "integer",
+                                                                                                                "minimum": 0,
+                                                                                                                "maximum": 100
+                                                                                                            },
+                                                                                                            "minItems": 1,
+                                                                                                            "maxItems": 100
+                                                                                                        },
+                                                                                                        "gt": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "gte": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "lt": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        },
+                                                                                                        "lte": {
+                                                                                                            "type": "integer",
+                                                                                                            "minimum": 0,
+                                                                                                            "maximum": 100
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "additionalProperties": false,
+                                                                                                    "minProperties": 1
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    "required": [
+                                                                                        "value"
+                                                                                    ],
+                                                                                    "additionalProperties": false
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "type"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                        },
+                                                                        {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "anyOf": [
+                                                                                        {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                                "AUTHORIZATION",
+                                                                                                "PROGRESSION_COEFFICIENT"
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "eq": {
+                                                                                                    "type": "string",
+                                                                                                    "enum": [
+                                                                                                        "AUTHORIZATION",
+                                                                                                        "PROGRESSION_COEFFICIENT"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "in": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string",
+                                                                                                        "enum": [
+                                                                                                            "AUTHORIZATION",
+                                                                                                            "PROGRESSION_COEFFICIENT"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "minItems": 1,
+                                                                                                    "maxItems": 100
+                                                                                                }
+                                                                                            },
+                                                                                            "additionalProperties": false,
+                                                                                            "minProperties": 1
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "type"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "specialRequirement"
+                                                            ],
+                                                            "additionalProperties": false
+                                                        }
+                                                    ]
+                                                },
+                                                "minItems": 1,
+                                                "maxItems": 20
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "additionalProperties": false
                             }
                         },
                         "type": "object"
@@ -6234,12 +7818,607 @@ export const operationDefinitions = {
                             "eq",
                             "in"
                         ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse"
+                        ],
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "operators": [
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "catalogYear"
+                        ],
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "offeringPeriod"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ALL_PERIODS",
+                                "ODD_PERIODS",
+                                "EVEN_PERIODS",
+                                "UNIT_DISCRETION"
+                            ]
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "evaluation"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "GRADE_AND_ATTENDANCE",
+                                "ATTENDANCE",
+                                "CONCEPT"
+                            ]
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "finalExam"
+                        ],
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "operators": [
+                            "eq",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "minimumAttendancePercent"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "theoreticalHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "practicalHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "laboratoryHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "guidedActivityHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "distanceHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "guidedExtensionHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "practicalExtensionHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "weeklyClassHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "workload",
+                            "classroomHours"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "coordinator",
+                            "id"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "operators": [
+                            "eq",
+                            "ne",
+                            "in",
+                            "notIn",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "name"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "operators": [
+                            "contains"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "syllabus"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "operators": [
+                            "contains",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "bibliography"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "operators": [
+                            "contains",
+                            "isNull"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "hasPrerequisites"
+                        ],
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "operators": [
+                            "eq"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "some",
+                            "*",
+                            "course",
+                            "courseId"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "some",
+                            "*",
+                            "course",
+                            "courseCode"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "some",
+                            "*",
+                            "course",
+                            "fulfillment"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FULL",
+                                "PARTIAL"
+                            ]
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "some",
+                            "*",
+                            "specialRequirement",
+                            "type"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "AUTHORIZATION",
+                                "PROGRESSION_COEFFICIENT"
+                            ]
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "some",
+                            "*",
+                            "specialRequirement",
+                            "progressionCoefficient",
+                            "value"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "operators": [
+                            "eq",
+                            "in",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "none",
+                            "*",
+                            "course",
+                            "courseId"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "none",
+                            "*",
+                            "course",
+                            "courseCode"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "none",
+                            "*",
+                            "course",
+                            "fulfillment"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FULL",
+                                "PARTIAL"
+                            ]
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "none",
+                            "*",
+                            "specialRequirement",
+                            "type"
+                        ],
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "AUTHORIZATION",
+                                "PROGRESSION_COEFFICIENT"
+                            ]
+                        },
+                        "operators": [
+                            "eq",
+                            "in"
+                        ]
+                    },
+                    {
+                        "path": [
+                            "latestCatalogCourse",
+                            "prerequisites",
+                            "none",
+                            "*",
+                            "specialRequirement",
+                            "progressionCoefficient",
+                            "value"
+                        ],
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "operators": [
+                            "eq",
+                            "in",
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte"
+                        ]
                     }
                 ],
                 "constraints": {
                     "maxExpressions": 20,
-                    "maxDepth": 3,
-                    "maxParameters": 100
+                    "maxDepth": 8,
+                    "maxParameters": 100,
+                    "maxPredicates": 20
+                },
+                "collections": {
+                    "path": [
+                        "latestCatalogCourse",
+                        "prerequisites"
+                    ],
+                    "quantifiers": [
+                        "some",
+                        "none"
+                    ],
+                    "indexed": true,
+                    "sameItem": true,
+                    "combination": "and"
                 }
             },
             "sort": {

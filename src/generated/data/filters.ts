@@ -787,12 +787,607 @@ export const filterCapabilities = {
                     "eq",
                     "in"
                 ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse"
+                ],
+                "schema": {
+                    "type": "boolean"
+                },
+                "operators": [
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "catalogYear"
+                ],
+                "schema": {
+                    "type": "integer"
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "offeringPeriod"
+                ],
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "ALL_PERIODS",
+                        "ODD_PERIODS",
+                        "EVEN_PERIODS",
+                        "UNIT_DISCRETION"
+                    ]
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "evaluation"
+                ],
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "GRADE_AND_ATTENDANCE",
+                        "ATTENDANCE",
+                        "CONCEPT"
+                    ]
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "finalExam"
+                ],
+                "schema": {
+                    "type": "boolean"
+                },
+                "operators": [
+                    "eq",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "minimumAttendancePercent"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "theoreticalHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "practicalHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "laboratoryHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "guidedActivityHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "distanceHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "guidedExtensionHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "practicalExtensionHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "weeklyClassHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "workload",
+                    "classroomHours"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "coordinator",
+                    "id"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "operators": [
+                    "eq",
+                    "ne",
+                    "in",
+                    "notIn",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "name"
+                ],
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "operators": [
+                    "contains"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "syllabus"
+                ],
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "operators": [
+                    "contains",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "bibliography"
+                ],
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "operators": [
+                    "contains",
+                    "isNull"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "hasPrerequisites"
+                ],
+                "schema": {
+                    "type": "boolean"
+                },
+                "operators": [
+                    "eq"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "some",
+                    "*",
+                    "course",
+                    "courseId"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "some",
+                    "*",
+                    "course",
+                    "courseCode"
+                ],
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "some",
+                    "*",
+                    "course",
+                    "fulfillment"
+                ],
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "FULL",
+                        "PARTIAL"
+                    ]
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "some",
+                    "*",
+                    "specialRequirement",
+                    "type"
+                ],
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "AUTHORIZATION",
+                        "PROGRESSION_COEFFICIENT"
+                    ]
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "some",
+                    "*",
+                    "specialRequirement",
+                    "progressionCoefficient",
+                    "value"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "operators": [
+                    "eq",
+                    "in",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "none",
+                    "*",
+                    "course",
+                    "courseId"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "none",
+                    "*",
+                    "course",
+                    "courseCode"
+                ],
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "none",
+                    "*",
+                    "course",
+                    "fulfillment"
+                ],
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "FULL",
+                        "PARTIAL"
+                    ]
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "none",
+                    "*",
+                    "specialRequirement",
+                    "type"
+                ],
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "AUTHORIZATION",
+                        "PROGRESSION_COEFFICIENT"
+                    ]
+                },
+                "operators": [
+                    "eq",
+                    "in"
+                ]
+            },
+            {
+                "path": [
+                    "latestCatalogCourse",
+                    "prerequisites",
+                    "none",
+                    "*",
+                    "specialRequirement",
+                    "progressionCoefficient",
+                    "value"
+                ],
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "operators": [
+                    "eq",
+                    "in",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte"
+                ]
             }
         ],
         "constraints": {
             "maxExpressions": 20,
-            "maxDepth": 3,
-            "maxParameters": 100
+            "maxDepth": 8,
+            "maxParameters": 100,
+            "maxPredicates": 20
+        },
+        "collections": {
+            "path": [
+                "latestCatalogCourse",
+                "prerequisites"
+            ],
+            "quantifiers": [
+                "some",
+                "none"
+            ],
+            "indexed": true,
+            "sameItem": true,
+            "combination": "and"
         }
     },
     "listCurriculumSuggestions": {

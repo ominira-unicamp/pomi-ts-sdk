@@ -1714,6 +1714,272 @@ export interface operations {
                             in?: number[];
                         };
                     };
+                    latestCatalogCourse?: {
+                        isNull?: boolean;
+                        catalogYear?: number | {
+                            eq?: number;
+                            ne?: number;
+                            in?: number[];
+                            notIn?: number[];
+                            gt?: number;
+                            gte?: number;
+                            lt?: number;
+                            lte?: number;
+                        };
+                        offeringPeriod?: ("ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION") | {
+
+                            eq?: "ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION";
+
+                            ne?: "ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION";
+                            in?: ("ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION")[];
+                            notIn?: ("ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION")[];
+                            isNull?: boolean;
+                        };
+                        evaluation?: ("GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT") | {
+
+                            eq?: "GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT";
+
+                            ne?: "GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT";
+                            in?: ("GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT")[];
+                            notIn?: ("GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT")[];
+                            isNull?: boolean;
+                        };
+                        finalExam?: boolean | {
+                            eq?: boolean;
+                            isNull?: boolean;
+                        };
+                        minimumAttendancePercent?: number | {
+                            eq?: number;
+                            ne?: number;
+                            in?: number[];
+                            notIn?: number[];
+                            gt?: number;
+                            gte?: number;
+                            lt?: number;
+                            lte?: number;
+                            isNull?: boolean;
+                        };
+                        workload?: {
+                            theoreticalHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            practicalHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            laboratoryHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            guidedActivityHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            distanceHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            guidedExtensionHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            practicalExtensionHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            weeklyClassHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                            classroomHours?: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                gt?: number;
+                                gte?: number;
+                                lt?: number;
+                                lte?: number;
+                                isNull?: boolean;
+                            };
+                        };
+                        coordinator?: {
+                            id: number | {
+                                eq?: number;
+                                ne?: number;
+                                in?: number[];
+                                notIn?: number[];
+                                isNull?: boolean;
+                            };
+                        };
+                        name?: {
+                            contains?: string;
+                        };
+                        syllabus?: {
+                            contains?: string;
+                            isNull?: boolean;
+                        };
+                        bibliography?: {
+                            contains?: string;
+                            isNull?: boolean;
+                        };
+                        hasPrerequisites?: boolean | {
+                            eq?: boolean;
+                        };
+                        prerequisites?: {
+                            some?: ({
+                                course: {
+                                    courseId?: number | {
+                                        eq?: number;
+                                        in?: number[];
+                                    };
+                                    courseCode?: string | {
+                                        eq?: string;
+                                        in?: string[];
+                                    };
+                                    fulfillment?: ("FULL" | "PARTIAL") | {
+
+                                        eq?: "FULL" | "PARTIAL";
+                                        in?: ("FULL" | "PARTIAL")[];
+                                    };
+                                };
+                            } | {
+                                specialRequirement: {
+                                    type: "AUTHORIZATION" | {
+
+                                        eq?: "AUTHORIZATION";
+                                        in?: "AUTHORIZATION"[];
+                                    };
+                                } | {
+                                    type: "PROGRESSION_COEFFICIENT" | {
+
+                                        eq?: "PROGRESSION_COEFFICIENT";
+                                        in?: "PROGRESSION_COEFFICIENT"[];
+                                    };
+                                    progressionCoefficient?: {
+                                        value: number | {
+                                            eq?: number;
+                                            in?: number[];
+                                            gt?: number;
+                                            gte?: number;
+                                            lt?: number;
+                                            lte?: number;
+                                        };
+                                    };
+                                } | {
+                                    type: ("AUTHORIZATION" | "PROGRESSION_COEFFICIENT") | {
+
+                                        eq?: "AUTHORIZATION" | "PROGRESSION_COEFFICIENT";
+                                        in?: ("AUTHORIZATION" | "PROGRESSION_COEFFICIENT")[];
+                                    };
+                                };
+                            })[];
+                            none?: ({
+                                course: {
+                                    courseId?: number | {
+                                        eq?: number;
+                                        in?: number[];
+                                    };
+                                    courseCode?: string | {
+                                        eq?: string;
+                                        in?: string[];
+                                    };
+                                    fulfillment?: ("FULL" | "PARTIAL") | {
+
+                                        eq?: "FULL" | "PARTIAL";
+                                        in?: ("FULL" | "PARTIAL")[];
+                                    };
+                                };
+                            } | {
+                                specialRequirement: {
+                                    type: "AUTHORIZATION" | {
+
+                                        eq?: "AUTHORIZATION";
+                                        in?: "AUTHORIZATION"[];
+                                    };
+                                } | {
+                                    type: "PROGRESSION_COEFFICIENT" | {
+
+                                        eq?: "PROGRESSION_COEFFICIENT";
+                                        in?: "PROGRESSION_COEFFICIENT"[];
+                                    };
+                                    progressionCoefficient?: {
+                                        value: number | {
+                                            eq?: number;
+                                            in?: number[];
+                                            gt?: number;
+                                            gte?: number;
+                                            lt?: number;
+                                            lte?: number;
+                                        };
+                                    };
+                                } | {
+                                    type: ("AUTHORIZATION" | "PROGRESSION_COEFFICIENT") | {
+
+                                        eq?: "AUTHORIZATION" | "PROGRESSION_COEFFICIENT";
+                                        in?: ("AUTHORIZATION" | "PROGRESSION_COEFFICIENT")[];
+                                    };
+                                };
+                            })[];
+                        };
+                    };
                 };
 
                 sort?: string;

@@ -10,7 +10,11 @@ function appendValue(
 ) {
   if (value === undefined || value === null) return
   if (Array.isArray(value)) {
-    for (const item of value) appendValue(parameters, name, item)
+    const indexed = value.some(
+      (item) => item !== null && typeof item === 'object',
+    )
+    for (const [index, item] of value.entries())
+      appendValue(parameters, indexed ? `${name}[${index}]` : name, item)
     return
   }
   if (typeof value === 'object') {
