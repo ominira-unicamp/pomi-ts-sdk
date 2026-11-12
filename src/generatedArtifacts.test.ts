@@ -103,6 +103,8 @@ type AssertFalse<Value extends false> = Value
 type DomainTypeAssertions = [
   Assert<Equal<listCoursesOutput['data'][number], Course>>,
   Assert<Equal<getCoursesOutput, Course>>,
+  Assert<Equal<Course['latestCatalogCourse'], CatalogCourse | null>>,
+  AssertFalse<{} extends Pick<Course, 'latestCatalogCourse'> ? true : false>,
   Assert<Equal<listClassSchedulesOutput['data'][number], ClassSchedule>>,
   Assert<Equal<getClassSchedulesOutput, ClassSchedule>>,
   Assert<Equal<listUnitsOutput['data'][number], Unit>>,

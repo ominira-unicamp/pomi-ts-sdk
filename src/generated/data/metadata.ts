@@ -333,6 +333,200 @@ export const componentSchemas = {
                 "minLength": 1,
                 "description": "Sigla da unidade responsável, quando conhecida.",
                 "example": "IC"
+            },
+            "latestCatalogCourse": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Identificador da representação da disciplina no catálogo.",
+                        "example": 7322025
+                    },
+                    "catalogId": {
+                        "type": "integer",
+                        "description": "Identificador do catálogo acadêmico.",
+                        "example": 2025
+                    },
+                    "catalogYear": {
+                        "type": "integer",
+                        "description": "Ano de vigência do catálogo.",
+                        "example": 2025
+                    },
+                    "courseId": {
+                        "type": "integer",
+                        "description": "Identificador da disciplina normalizada relacionada.",
+                        "example": 732
+                    },
+                    "code": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Código institucional da disciplina nesse catálogo.",
+                        "example": "MC732"
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Nome publicado para a disciplina nesse catálogo.",
+                        "example": "Programação Concorrente"
+                    },
+                    "credits": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Quantidade de créditos no contexto do catálogo.",
+                        "example": 4
+                    },
+                    "coordinator": {
+                        "type": "object",
+                        "nullable": true,
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "workload": {
+                        "type": "object",
+                        "properties": {
+                            "theoreticalHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "practicalHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "laboratoryHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "guidedActivityHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "distanceHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "guidedExtensionHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "practicalExtensionHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "weeks": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "weeklyClassHours": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "classroomHours": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        },
+                        "required": [
+                            "theoreticalHours",
+                            "practicalHours",
+                            "laboratoryHours",
+                            "guidedActivityHours",
+                            "distanceHours",
+                            "guidedExtensionHours",
+                            "practicalExtensionHours",
+                            "weeks",
+                            "weeklyClassHours",
+                            "classroomHours"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "offeringPeriod": {
+                        "$ref": "#/components/schemas/CourseOfferingPeriod"
+                    },
+                    "evaluation": {
+                        "$ref": "#/components/schemas/CourseEvaluationMode"
+                    },
+                    "finalExam": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "minimumAttendancePercent": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "syllabus": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "bibliography": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sourceUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "prerequisites": {
+                        "type": "object",
+                        "properties": {
+                            "any": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "all": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CatalogCoursePrerequisiteItem"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "all"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "required": [
+                            "any"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "id",
+                    "catalogId",
+                    "catalogYear",
+                    "courseId",
+                    "code",
+                    "name",
+                    "credits",
+                    "coordinator",
+                    "workload",
+                    "offeringPeriod",
+                    "evaluation",
+                    "finalExam",
+                    "minimumAttendancePercent",
+                    "syllabus",
+                    "bibliography",
+                    "sourceUrl",
+                    "prerequisites"
+                ],
+                "additionalProperties": false,
+                "description": "Representação da disciplina no catálogo de maior ano associado a ela, ou null quando não há catálogo associado. Independe do filtro catalogYear e não indica vigência ou oferta atual."
             }
         },
         "required": [
@@ -342,7 +536,8 @@ export const componentSchemas = {
             "credits",
             "prefix",
             "unitId",
-            "unitCode"
+            "unitCode",
+            "latestCatalogCourse"
         ],
         "additionalProperties": false,
         "x-pomi-schema": {
@@ -351,6 +546,213 @@ export const componentSchemas = {
             "identityFields": [
                 "id"
             ]
+        }
+    },
+    "CourseOfferingPeriod": {
+        "type": "string",
+        "nullable": true,
+        "enum": [
+            "ALL_PERIODS",
+            "ODD_PERIODS",
+            "EVEN_PERIODS",
+            "UNIT_DISCRETION",
+            null
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CourseOfferingPeriod"
+        }
+    },
+    "CourseEvaluationMode": {
+        "type": "string",
+        "nullable": true,
+        "enum": [
+            "GRADE_AND_ATTENDANCE",
+            "ATTENDANCE",
+            "CONCEPT",
+            null
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CourseEvaluationMode"
+        }
+    },
+    "CatalogCoursePrerequisiteItem": {
+        "oneOf": [
+            {
+                "$ref": "#/components/schemas/CourseCatalogCoursePrerequisite"
+            },
+            {
+                "$ref": "#/components/schemas/SpecialRequirementCatalogCoursePrerequisite"
+            }
+        ],
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "COURSE": "#/components/schemas/CourseCatalogCoursePrerequisite",
+                "SPECIAL_REQUIREMENT": "#/components/schemas/SpecialRequirementCatalogCoursePrerequisite"
+            }
+        },
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CatalogCoursePrerequisiteItem"
+        }
+    },
+    "CourseCatalogCoursePrerequisite": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "COURSE"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "course": {
+                "$ref": "#/components/schemas/CatalogCoursePrerequisiteCourseDetails"
+            }
+        },
+        "required": [
+            "type",
+            "course"
+        ],
+        "x-pomi-schema": {
+            "kind": "variant",
+            "publicName": "CourseCatalogCoursePrerequisite"
+        }
+    },
+    "CatalogCoursePrerequisiteCourseDetails": {
+        "type": "object",
+        "properties": {
+            "courseId": {
+                "type": "integer",
+                "nullable": true
+            },
+            "fulfillment": {
+                "$ref": "#/components/schemas/CatalogCoursePrerequisiteFulfillment"
+            }
+        },
+        "required": [
+            "courseId",
+            "fulfillment"
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CatalogCoursePrerequisiteCourseDetails"
+        }
+    },
+    "CatalogCoursePrerequisiteFulfillment": {
+        "type": "string",
+        "enum": [
+            "FULL",
+            "PARTIAL"
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CatalogCoursePrerequisiteFulfillment"
+        }
+    },
+    "SpecialRequirementCatalogCoursePrerequisite": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "SPECIAL_REQUIREMENT"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "specialRequirement": {
+                "$ref": "#/components/schemas/CatalogCourseSpecialRequirement"
+            }
+        },
+        "required": [
+            "type",
+            "specialRequirement"
+        ],
+        "x-pomi-schema": {
+            "kind": "variant",
+            "publicName": "SpecialRequirementCatalogCoursePrerequisite"
+        }
+    },
+    "CatalogCourseSpecialRequirement": {
+        "oneOf": [
+            {
+                "$ref": "#/components/schemas/AuthorizationSpecialRequirement"
+            },
+            {
+                "$ref": "#/components/schemas/ProgressionCoefficientSpecialRequirement"
+            }
+        ],
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "AUTHORIZATION": "#/components/schemas/AuthorizationSpecialRequirement",
+                "PROGRESSION_COEFFICIENT": "#/components/schemas/ProgressionCoefficientSpecialRequirement"
+            }
+        },
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CatalogCourseSpecialRequirement"
+        }
+    },
+    "AuthorizationSpecialRequirement": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "AUTHORIZATION"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            }
+        },
+        "required": [
+            "type"
+        ],
+        "x-pomi-schema": {
+            "kind": "variant",
+            "publicName": "AuthorizationSpecialRequirement"
+        }
+    },
+    "ProgressionCoefficientSpecialRequirement": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "PROGRESSION_COEFFICIENT"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "progressionCoefficient": {
+                "$ref": "#/components/schemas/ProgressionCoefficientSpecialRequirementDetails"
+            }
+        },
+        "required": [
+            "type",
+            "progressionCoefficient"
+        ],
+        "x-pomi-schema": {
+            "kind": "variant",
+            "publicName": "ProgressionCoefficientSpecialRequirement"
+        }
+    },
+    "ProgressionCoefficientSpecialRequirementDetails": {
+        "type": "object",
+        "properties": {
+            "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+            }
+        },
+        "required": [
+            "value"
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "ProgressionCoefficientSpecialRequirementDetails"
         }
     },
     "PageCourses": {
@@ -1427,213 +1829,6 @@ export const componentSchemas = {
             "identityFields": [
                 "id"
             ]
-        }
-    },
-    "CourseOfferingPeriod": {
-        "type": "string",
-        "nullable": true,
-        "enum": [
-            "ALL_PERIODS",
-            "ODD_PERIODS",
-            "EVEN_PERIODS",
-            "UNIT_DISCRETION",
-            null
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CourseOfferingPeriod"
-        }
-    },
-    "CourseEvaluationMode": {
-        "type": "string",
-        "nullable": true,
-        "enum": [
-            "GRADE_AND_ATTENDANCE",
-            "ATTENDANCE",
-            "CONCEPT",
-            null
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CourseEvaluationMode"
-        }
-    },
-    "CatalogCoursePrerequisiteItem": {
-        "oneOf": [
-            {
-                "$ref": "#/components/schemas/CourseCatalogCoursePrerequisite"
-            },
-            {
-                "$ref": "#/components/schemas/SpecialRequirementCatalogCoursePrerequisite"
-            }
-        ],
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "COURSE": "#/components/schemas/CourseCatalogCoursePrerequisite",
-                "SPECIAL_REQUIREMENT": "#/components/schemas/SpecialRequirementCatalogCoursePrerequisite"
-            }
-        },
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CatalogCoursePrerequisiteItem"
-        }
-    },
-    "CourseCatalogCoursePrerequisite": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "COURSE"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "course": {
-                "$ref": "#/components/schemas/CatalogCoursePrerequisiteCourseDetails"
-            }
-        },
-        "required": [
-            "type",
-            "course"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "CourseCatalogCoursePrerequisite"
-        }
-    },
-    "CatalogCoursePrerequisiteCourseDetails": {
-        "type": "object",
-        "properties": {
-            "courseId": {
-                "type": "integer",
-                "nullable": true
-            },
-            "fulfillment": {
-                "$ref": "#/components/schemas/CatalogCoursePrerequisiteFulfillment"
-            }
-        },
-        "required": [
-            "courseId",
-            "fulfillment"
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CatalogCoursePrerequisiteCourseDetails"
-        }
-    },
-    "CatalogCoursePrerequisiteFulfillment": {
-        "type": "string",
-        "enum": [
-            "FULL",
-            "PARTIAL"
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CatalogCoursePrerequisiteFulfillment"
-        }
-    },
-    "SpecialRequirementCatalogCoursePrerequisite": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "SPECIAL_REQUIREMENT"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "specialRequirement": {
-                "$ref": "#/components/schemas/CatalogCourseSpecialRequirement"
-            }
-        },
-        "required": [
-            "type",
-            "specialRequirement"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "SpecialRequirementCatalogCoursePrerequisite"
-        }
-    },
-    "CatalogCourseSpecialRequirement": {
-        "oneOf": [
-            {
-                "$ref": "#/components/schemas/AuthorizationSpecialRequirement"
-            },
-            {
-                "$ref": "#/components/schemas/ProgressionCoefficientSpecialRequirement"
-            }
-        ],
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "AUTHORIZATION": "#/components/schemas/AuthorizationSpecialRequirement",
-                "PROGRESSION_COEFFICIENT": "#/components/schemas/ProgressionCoefficientSpecialRequirement"
-            }
-        },
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CatalogCourseSpecialRequirement"
-        }
-    },
-    "AuthorizationSpecialRequirement": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "AUTHORIZATION"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            }
-        },
-        "required": [
-            "type"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "AuthorizationSpecialRequirement"
-        }
-    },
-    "ProgressionCoefficientSpecialRequirement": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "PROGRESSION_COEFFICIENT"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "progressionCoefficient": {
-                "$ref": "#/components/schemas/ProgressionCoefficientSpecialRequirementDetails"
-            }
-        },
-        "required": [
-            "type",
-            "progressionCoefficient"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "ProgressionCoefficientSpecialRequirement"
-        }
-    },
-    "ProgressionCoefficientSpecialRequirementDetails": {
-        "type": "object",
-        "properties": {
-            "value": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 100
-            }
-        },
-        "required": [
-            "value"
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "ProgressionCoefficientSpecialRequirementDetails"
         }
     },
     "CoordinatorEntity": {

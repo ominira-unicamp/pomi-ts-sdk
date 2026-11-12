@@ -935,6 +935,85 @@ export interface components {
             unitId: number | null;
 
             unitCode: string | null;
+
+            latestCatalogCourse: {
+
+                id: number;
+
+                catalogId: number;
+
+                catalogYear: number;
+
+                courseId: number;
+
+                code: string;
+
+                name: string;
+
+                credits: number;
+                coordinator: {
+                    id: number;
+                    name: string;
+                } | null;
+                workload: {
+                    theoreticalHours: number | null;
+                    practicalHours: number | null;
+                    laboratoryHours: number | null;
+                    guidedActivityHours: number | null;
+                    distanceHours: number | null;
+                    guidedExtensionHours: number | null;
+                    practicalExtensionHours: number | null;
+                    weeks: number | null;
+                    weeklyClassHours: number | null;
+                    classroomHours: number | null;
+                };
+                offeringPeriod: components["schemas"]["CourseOfferingPeriod"];
+                evaluation: components["schemas"]["CourseEvaluationMode"];
+                finalExam: boolean | null;
+                minimumAttendancePercent: number | null;
+                syllabus: string | null;
+                bibliography: string | null;
+                sourceUrl: string | null;
+                prerequisites: {
+                    any: {
+                        all: components["schemas"]["CatalogCoursePrerequisiteItem"][];
+                    }[];
+                };
+            } | null;
+        };
+
+        CourseOfferingPeriod: "ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION" | null;
+
+        CourseEvaluationMode: "GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT" | null;
+        CatalogCoursePrerequisiteItem: components["schemas"]["CourseCatalogCoursePrerequisite"] | components["schemas"]["SpecialRequirementCatalogCoursePrerequisite"];
+        CourseCatalogCoursePrerequisite: {
+
+            type: "COURSE";
+            course: components["schemas"]["CatalogCoursePrerequisiteCourseDetails"];
+        };
+        CatalogCoursePrerequisiteCourseDetails: {
+            courseId: number | null;
+            fulfillment: components["schemas"]["CatalogCoursePrerequisiteFulfillment"];
+        };
+
+        CatalogCoursePrerequisiteFulfillment: "FULL" | "PARTIAL";
+        SpecialRequirementCatalogCoursePrerequisite: {
+
+            type: "SPECIAL_REQUIREMENT";
+            specialRequirement: components["schemas"]["CatalogCourseSpecialRequirement"];
+        };
+        CatalogCourseSpecialRequirement: components["schemas"]["AuthorizationSpecialRequirement"] | components["schemas"]["ProgressionCoefficientSpecialRequirement"];
+        AuthorizationSpecialRequirement: {
+
+            type: "AUTHORIZATION";
+        };
+        ProgressionCoefficientSpecialRequirement: {
+
+            type: "PROGRESSION_COEFFICIENT";
+            progressionCoefficient: components["schemas"]["ProgressionCoefficientSpecialRequirementDetails"];
+        };
+        ProgressionCoefficientSpecialRequirementDetails: {
+            value: number;
         };
         PageCourses: {
             data: components["schemas"]["CourseEntity"][];
@@ -1143,40 +1222,6 @@ export interface components {
                     all: components["schemas"]["CatalogCoursePrerequisiteItem"][];
                 }[];
             };
-        };
-
-        CourseOfferingPeriod: "ALL_PERIODS" | "ODD_PERIODS" | "EVEN_PERIODS" | "UNIT_DISCRETION" | null;
-
-        CourseEvaluationMode: "GRADE_AND_ATTENDANCE" | "ATTENDANCE" | "CONCEPT" | null;
-        CatalogCoursePrerequisiteItem: components["schemas"]["CourseCatalogCoursePrerequisite"] | components["schemas"]["SpecialRequirementCatalogCoursePrerequisite"];
-        CourseCatalogCoursePrerequisite: {
-
-            type: "COURSE";
-            course: components["schemas"]["CatalogCoursePrerequisiteCourseDetails"];
-        };
-        CatalogCoursePrerequisiteCourseDetails: {
-            courseId: number | null;
-            fulfillment: components["schemas"]["CatalogCoursePrerequisiteFulfillment"];
-        };
-
-        CatalogCoursePrerequisiteFulfillment: "FULL" | "PARTIAL";
-        SpecialRequirementCatalogCoursePrerequisite: {
-
-            type: "SPECIAL_REQUIREMENT";
-            specialRequirement: components["schemas"]["CatalogCourseSpecialRequirement"];
-        };
-        CatalogCourseSpecialRequirement: components["schemas"]["AuthorizationSpecialRequirement"] | components["schemas"]["ProgressionCoefficientSpecialRequirement"];
-        AuthorizationSpecialRequirement: {
-
-            type: "AUTHORIZATION";
-        };
-        ProgressionCoefficientSpecialRequirement: {
-
-            type: "PROGRESSION_COEFFICIENT";
-            progressionCoefficient: components["schemas"]["ProgressionCoefficientSpecialRequirementDetails"];
-        };
-        ProgressionCoefficientSpecialRequirementDetails: {
-            value: number;
         };
         CoordinatorEntity: {
             id: number;

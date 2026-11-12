@@ -36,6 +36,30 @@ export type Unit = Domain<UnitTransport>
 export type CourseTransport = components['schemas']['CourseEntity']
 export type Course = Domain<CourseTransport>
 
+export type CatalogCoursePrerequisiteItemTransport = components['schemas']['CatalogCoursePrerequisiteItem']
+export type CatalogCoursePrerequisiteItem = Domain<CatalogCoursePrerequisiteItemTransport>
+
+export type CourseCatalogCoursePrerequisiteTransport = components['schemas']['CourseCatalogCoursePrerequisite']
+export type CourseCatalogCoursePrerequisite = Domain<CourseCatalogCoursePrerequisiteTransport>
+
+export type CatalogCoursePrerequisiteCourseDetailsTransport = components['schemas']['CatalogCoursePrerequisiteCourseDetails']
+export type CatalogCoursePrerequisiteCourseDetails = Domain<CatalogCoursePrerequisiteCourseDetailsTransport>
+
+export type SpecialRequirementCatalogCoursePrerequisiteTransport = components['schemas']['SpecialRequirementCatalogCoursePrerequisite']
+export type SpecialRequirementCatalogCoursePrerequisite = Domain<SpecialRequirementCatalogCoursePrerequisiteTransport>
+
+export type CatalogCourseSpecialRequirementTransport = components['schemas']['CatalogCourseSpecialRequirement']
+export type CatalogCourseSpecialRequirement = Domain<CatalogCourseSpecialRequirementTransport>
+
+export type AuthorizationSpecialRequirementTransport = components['schemas']['AuthorizationSpecialRequirement']
+export type AuthorizationSpecialRequirement = Domain<AuthorizationSpecialRequirementTransport>
+
+export type ProgressionCoefficientSpecialRequirementTransport = components['schemas']['ProgressionCoefficientSpecialRequirement']
+export type ProgressionCoefficientSpecialRequirement = Domain<ProgressionCoefficientSpecialRequirementTransport>
+
+export type ProgressionCoefficientSpecialRequirementDetailsTransport = components['schemas']['ProgressionCoefficientSpecialRequirementDetails']
+export type ProgressionCoefficientSpecialRequirementDetails = Domain<ProgressionCoefficientSpecialRequirementDetailsTransport>
+
 export type PageCoursesTransport = components['schemas']['PageCourses']
 export type PageCourses = Domain<PageCoursesTransport>
 
@@ -113,30 +137,6 @@ export type Catalog = Domain<CatalogTransport>
 
 export type CatalogCourseTransport = components['schemas']['CatalogCourseEntity']
 export type CatalogCourse = Domain<CatalogCourseTransport>
-
-export type CatalogCoursePrerequisiteItemTransport = components['schemas']['CatalogCoursePrerequisiteItem']
-export type CatalogCoursePrerequisiteItem = Domain<CatalogCoursePrerequisiteItemTransport>
-
-export type CourseCatalogCoursePrerequisiteTransport = components['schemas']['CourseCatalogCoursePrerequisite']
-export type CourseCatalogCoursePrerequisite = Domain<CourseCatalogCoursePrerequisiteTransport>
-
-export type CatalogCoursePrerequisiteCourseDetailsTransport = components['schemas']['CatalogCoursePrerequisiteCourseDetails']
-export type CatalogCoursePrerequisiteCourseDetails = Domain<CatalogCoursePrerequisiteCourseDetailsTransport>
-
-export type SpecialRequirementCatalogCoursePrerequisiteTransport = components['schemas']['SpecialRequirementCatalogCoursePrerequisite']
-export type SpecialRequirementCatalogCoursePrerequisite = Domain<SpecialRequirementCatalogCoursePrerequisiteTransport>
-
-export type CatalogCourseSpecialRequirementTransport = components['schemas']['CatalogCourseSpecialRequirement']
-export type CatalogCourseSpecialRequirement = Domain<CatalogCourseSpecialRequirementTransport>
-
-export type AuthorizationSpecialRequirementTransport = components['schemas']['AuthorizationSpecialRequirement']
-export type AuthorizationSpecialRequirement = Domain<AuthorizationSpecialRequirementTransport>
-
-export type ProgressionCoefficientSpecialRequirementTransport = components['schemas']['ProgressionCoefficientSpecialRequirement']
-export type ProgressionCoefficientSpecialRequirement = Domain<ProgressionCoefficientSpecialRequirementTransport>
-
-export type ProgressionCoefficientSpecialRequirementDetailsTransport = components['schemas']['ProgressionCoefficientSpecialRequirementDetails']
-export type ProgressionCoefficientSpecialRequirementDetails = Domain<ProgressionCoefficientSpecialRequirementDetailsTransport>
 
 export type CoordinatorTransport = components['schemas']['CoordinatorEntity']
 export type Coordinator = Domain<CoordinatorTransport>
@@ -252,6 +252,62 @@ export const domainModelDefinitions = {
         "identityFields": [
             "id"
         ],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CatalogCoursePrerequisiteItem": {
+        "schema": "CatalogCoursePrerequisiteItem",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CourseCatalogCoursePrerequisite": {
+        "schema": "CourseCatalogCoursePrerequisite",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CatalogCoursePrerequisiteCourseDetails": {
+        "schema": "CatalogCoursePrerequisiteCourseDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SpecialRequirementCatalogCoursePrerequisite": {
+        "schema": "SpecialRequirementCatalogCoursePrerequisite",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "CatalogCourseSpecialRequirement": {
+        "schema": "CatalogCourseSpecialRequirement",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "AuthorizationSpecialRequirement": {
+        "schema": "AuthorizationSpecialRequirement",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProgressionCoefficientSpecialRequirement": {
+        "schema": "ProgressionCoefficientSpecialRequirement",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "ProgressionCoefficientSpecialRequirementDetails": {
+        "schema": "ProgressionCoefficientSpecialRequirementDetails",
+        "transportFields": [],
+        "identityFields": [],
         "readOnlyFields": [],
         "relations": {}
     },
@@ -452,62 +508,6 @@ export const domainModelDefinitions = {
         "identityFields": [
             "id"
         ],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "CatalogCoursePrerequisiteItem": {
-        "schema": "CatalogCoursePrerequisiteItem",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "CourseCatalogCoursePrerequisite": {
-        "schema": "CourseCatalogCoursePrerequisite",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "CatalogCoursePrerequisiteCourseDetails": {
-        "schema": "CatalogCoursePrerequisiteCourseDetails",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "SpecialRequirementCatalogCoursePrerequisite": {
-        "schema": "SpecialRequirementCatalogCoursePrerequisite",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "CatalogCourseSpecialRequirement": {
-        "schema": "CatalogCourseSpecialRequirement",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "AuthorizationSpecialRequirement": {
-        "schema": "AuthorizationSpecialRequirement",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "ProgressionCoefficientSpecialRequirement": {
-        "schema": "ProgressionCoefficientSpecialRequirement",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "ProgressionCoefficientSpecialRequirementDetails": {
-        "schema": "ProgressionCoefficientSpecialRequirementDetails",
-        "transportFields": [],
-        "identityFields": [],
         "readOnlyFields": [],
         "relations": {}
     },
