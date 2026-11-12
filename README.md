@@ -239,3 +239,10 @@ Para publicar uma nova versão:
 5. acompanhe o workflow `Publish package` e aprove o ambiente `npm`, caso ele exija revisão.
 
 `release:verify` rejeita tags que não correspondam à versão declarada. Antes do envio ao npm, `prepublishOnly` executa novamente a validação completa.
+
+### Guia de planejamento de semestre
+
+`PlanningGuide` retorna `mode`, `curriculum`, `program` e `manualCourseIds`.
+Currículo e programa podem coexistir; `mode` determina a visualização preferida.
+Nas atualizações, omitir uma configuração preserva seu valor e enviar `null`
+a remove explicitamente. As respostas usam `null` para configurações ausentes.

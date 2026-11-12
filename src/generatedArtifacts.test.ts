@@ -70,10 +70,7 @@ import type {
 } from './generated/data/domain.js'
 import type {
   Category,
-  CurriculumPlanningGuide,
-  NonePlanningGuide,
   PlanningGuide,
-  ProgramPlanningGuide,
   FeedbackReportTarget,
   GeneralFeedbackReportTarget,
   FeatureFeedbackReportTarget,
@@ -136,6 +133,7 @@ type DomainTypeAssertions = [
     >
   >,
   Assert<Equal<listUserPeopleOutput['data'][number], UserPublicPerson>>,
+  AssertFalse<unknown extends PlanningGuide['curriculum'] ? true : false>,
   AssertFalse<'_paths' extends keyof Course ? true : false>,
   AssertFalse<'_paths' extends keyof ClassSchedule ? true : false>,
   AssertFalse<'_paths' extends keyof BlockSet ? true : false>,
@@ -147,8 +145,8 @@ type DomainTypeAssertions = [
   >,
   Assert<
     Equal<
-      PlanningGuide,
-      NonePlanningGuide | ProgramPlanningGuide | CurriculumPlanningGuide
+      PlanningGuide['mode'],
+      'NONE' | 'PROGRAM' | 'CURRICULUM'
     >
   >,
   Assert<

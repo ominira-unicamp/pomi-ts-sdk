@@ -1,4 +1,152 @@
 export const componentSchemas = {
+    "SavedCurriculumPlanningGuide": {
+        "type": "object",
+        "properties": {
+            "source": {
+                "type": "string",
+                "enum": [
+                    "SAVED"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "saved": {
+                "$ref": "#/components/schemas/SavedCurriculumPlanningGuideDetails"
+            }
+        },
+        "required": [
+            "source",
+            "saved"
+        ],
+        "x-pomi-schema": {
+            "kind": "variant",
+            "publicName": "SavedCurriculumPlanningGuide"
+        }
+    },
+    "SavedCurriculumPlanningGuideDetails": {
+        "type": "object",
+        "properties": {
+            "curriculumId": {
+                "type": "integer"
+            }
+        },
+        "required": [
+            "curriculumId"
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "SavedCurriculumPlanningGuideDetails"
+        }
+    },
+    "SuggestionCurriculumPlanningGuide": {
+        "type": "object",
+        "properties": {
+            "source": {
+                "type": "string",
+                "enum": [
+                    "SUGGESTION"
+                ],
+                "description": "discriminator enum property added by openapi-typescript"
+            },
+            "suggestion": {
+                "$ref": "#/components/schemas/SuggestionCurriculumPlanningGuideDetails"
+            }
+        },
+        "required": [
+            "source",
+            "suggestion"
+        ],
+        "x-pomi-schema": {
+            "kind": "variant",
+            "publicName": "SuggestionCurriculumPlanningGuide"
+        }
+    },
+    "SuggestionCurriculumPlanningGuideDetails": {
+        "type": "object",
+        "properties": {
+            "suggestionId": {
+                "type": "integer"
+            },
+            "catalogProgramId": {
+                "type": "integer"
+            }
+        },
+        "required": [
+            "suggestionId",
+            "catalogProgramId"
+        ],
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "SuggestionCurriculumPlanningGuideDetails"
+        }
+    },
+    "SavedCurriculumPlanningGuideInput": {
+        "type": "object",
+        "properties": {
+            "source": {
+                "type": "string",
+                "enum": [
+                    "SAVED"
+                ]
+            },
+            "saved": {
+                "type": "object",
+                "properties": {
+                    "curriculumId": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "curriculumId"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "required": [
+            "source",
+            "saved"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "input",
+            "publicName": "SavedCurriculumPlanningGuideInput"
+        }
+    },
+    "SuggestionCurriculumPlanningGuideInput": {
+        "type": "object",
+        "properties": {
+            "source": {
+                "type": "string",
+                "enum": [
+                    "SUGGESTION"
+                ]
+            },
+            "suggestion": {
+                "type": "object",
+                "properties": {
+                    "suggestionId": {
+                        "type": "integer"
+                    },
+                    "catalogProgramId": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "suggestionId",
+                    "catalogProgramId"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "required": [
+            "source",
+            "suggestion"
+        ],
+        "additionalProperties": false,
+        "x-pomi-schema": {
+            "kind": "input",
+            "publicName": "SuggestionCurriculumPlanningGuideInput"
+        }
+    },
     "InvalidRequestProblem": {
         "type": "object",
         "properties": {
@@ -1796,71 +1944,24 @@ export const componentSchemas = {
         }
     },
     "PlanningGuide": {
-        "oneOf": [
-            {
-                "$ref": "#/components/schemas/NonePlanningGuide"
-            },
-            {
-                "$ref": "#/components/schemas/ProgramPlanningGuide"
-            },
-            {
-                "$ref": "#/components/schemas/CurriculumPlanningGuide"
-            }
-        ],
-        "discriminator": {
-            "propertyName": "mode",
-            "mapping": {
-                "NONE": "#/components/schemas/NonePlanningGuide",
-                "PROGRAM": "#/components/schemas/ProgramPlanningGuide",
-                "CURRICULUM": "#/components/schemas/CurriculumPlanningGuide"
-            }
-        },
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "PlanningGuide"
-        }
-    },
-    "NonePlanningGuide": {
         "type": "object",
         "properties": {
             "mode": {
                 "type": "string",
                 "enum": [
-                    "NONE"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
+                    "NONE",
+                    "PROGRAM",
+                    "CURRICULUM"
+                ]
             },
             "manualCourseIds": {
                 "type": "array",
                 "items": {
                     "type": "integer"
                 }
-            }
-        },
-        "required": [
-            "mode",
-            "manualCourseIds"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "NonePlanningGuide"
-        }
-    },
-    "ProgramPlanningGuide": {
-        "type": "object",
-        "properties": {
-            "mode": {
-                "type": "string",
-                "enum": [
-                    "PROGRAM"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
             },
-            "manualCourseIds": {
-                "type": "array",
-                "items": {
-                    "type": "integer"
-                }
+            "curriculum": {
+                "$ref": "#/components/schemas/CurriculumPlanningGuideDetails"
             },
             "program": {
                 "$ref": "#/components/schemas/ProgramPlanningGuideDetails"
@@ -1869,15 +1970,40 @@ export const componentSchemas = {
         "required": [
             "mode",
             "manualCourseIds",
+            "curriculum",
             "program"
         ],
         "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "ProgramPlanningGuide"
+            "kind": "value-object",
+            "publicName": "PlanningGuide"
         }
+    },
+    "CurriculumPlanningGuideDetails": {
+        "type": "object",
+        "discriminator": {
+            "propertyName": "source",
+            "mapping": {
+                "SAVED": "#/components/schemas/SavedCurriculumPlanningGuide",
+                "SUGGESTION": "#/components/schemas/SuggestionCurriculumPlanningGuide"
+            }
+        },
+        "x-pomi-schema": {
+            "kind": "value-object",
+            "publicName": "CurriculumPlanningGuideDetails"
+        },
+        "nullable": true,
+        "oneOf": [
+            {
+                "$ref": "#/components/schemas/SavedCurriculumPlanningGuide"
+            },
+            {
+                "$ref": "#/components/schemas/SuggestionCurriculumPlanningGuide"
+            }
+        ]
     },
     "ProgramPlanningGuideDetails": {
         "type": "object",
+        "nullable": true,
         "properties": {
             "catalogProgramId": {
                 "type": "integer"
@@ -1898,137 +2024,6 @@ export const componentSchemas = {
         "x-pomi-schema": {
             "kind": "value-object",
             "publicName": "ProgramPlanningGuideDetails"
-        }
-    },
-    "CurriculumPlanningGuide": {
-        "type": "object",
-        "properties": {
-            "mode": {
-                "type": "string",
-                "enum": [
-                    "CURRICULUM"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "manualCourseIds": {
-                "type": "array",
-                "items": {
-                    "type": "integer"
-                }
-            },
-            "curriculum": {
-                "$ref": "#/components/schemas/CurriculumPlanningGuideDetails"
-            }
-        },
-        "required": [
-            "mode",
-            "manualCourseIds",
-            "curriculum"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "CurriculumPlanningGuide"
-        }
-    },
-    "CurriculumPlanningGuideDetails": {
-        "oneOf": [
-            {
-                "$ref": "#/components/schemas/SavedCurriculumPlanningGuide"
-            },
-            {
-                "$ref": "#/components/schemas/SuggestionCurriculumPlanningGuide"
-            }
-        ],
-        "discriminator": {
-            "propertyName": "source",
-            "mapping": {
-                "SAVED": "#/components/schemas/SavedCurriculumPlanningGuide",
-                "SUGGESTION": "#/components/schemas/SuggestionCurriculumPlanningGuide"
-            }
-        },
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "CurriculumPlanningGuideDetails"
-        }
-    },
-    "SavedCurriculumPlanningGuide": {
-        "type": "object",
-        "properties": {
-            "source": {
-                "type": "string",
-                "enum": [
-                    "SAVED"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "saved": {
-                "$ref": "#/components/schemas/SavedCurriculumPlanningGuideDetails"
-            }
-        },
-        "required": [
-            "source",
-            "saved"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "SavedCurriculumPlanningGuide"
-        }
-    },
-    "SavedCurriculumPlanningGuideDetails": {
-        "type": "object",
-        "properties": {
-            "curriculumId": {
-                "type": "integer"
-            }
-        },
-        "required": [
-            "curriculumId"
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "SavedCurriculumPlanningGuideDetails"
-        }
-    },
-    "SuggestionCurriculumPlanningGuide": {
-        "type": "object",
-        "properties": {
-            "source": {
-                "type": "string",
-                "enum": [
-                    "SUGGESTION"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "suggestion": {
-                "$ref": "#/components/schemas/SuggestionCurriculumPlanningGuideDetails"
-            }
-        },
-        "required": [
-            "source",
-            "suggestion"
-        ],
-        "x-pomi-schema": {
-            "kind": "variant",
-            "publicName": "SuggestionCurriculumPlanningGuide"
-        }
-    },
-    "SuggestionCurriculumPlanningGuideDetails": {
-        "type": "object",
-        "properties": {
-            "suggestionId": {
-                "type": "integer"
-            },
-            "catalogProgramId": {
-                "type": "integer"
-            }
-        },
-        "required": [
-            "suggestionId",
-            "catalogProgramId"
-        ],
-        "x-pomi-schema": {
-            "kind": "value-object",
-            "publicName": "SuggestionCurriculumPlanningGuideDetails"
         }
     },
     "PeriodPlanningClass": {
@@ -2271,45 +2266,36 @@ export const componentSchemas = {
         }
     },
     "PlanningGuideInput": {
-        "oneOf": [
-            {
-                "$ref": "#/components/schemas/NonePlanningGuideInput"
-            },
-            {
-                "$ref": "#/components/schemas/ProgramPlanningGuideInput"
-            },
-            {
-                "$ref": "#/components/schemas/CurriculumPlanningGuideInput"
-            }
-        ],
-        "discriminator": {
-            "propertyName": "mode",
-            "mapping": {
-                "NONE": "#/components/schemas/NonePlanningGuideInput",
-                "PROGRAM": "#/components/schemas/ProgramPlanningGuideInput",
-                "CURRICULUM": "#/components/schemas/CurriculumPlanningGuideInput"
-            }
-        },
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "PlanningGuideInput"
-        }
-    },
-    "NonePlanningGuideInput": {
         "type": "object",
         "properties": {
             "mode": {
                 "type": "string",
                 "enum": [
-                    "NONE"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
+                    "NONE",
+                    "PROGRAM",
+                    "CURRICULUM"
+                ]
             },
             "manualCourseIds": {
                 "type": "array",
                 "items": {
                     "type": "integer"
                 }
+            },
+            "curriculum": {
+                "type": "object",
+                "nullable": true,
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/SavedCurriculumPlanningGuideInput"
+                    },
+                    {
+                        "$ref": "#/components/schemas/SuggestionCurriculumPlanningGuideInput"
+                    }
+                ]
+            },
+            "program": {
+                "$ref": "#/components/schemas/ProgramPlanningGuideInputDetails"
             }
         },
         "required": [
@@ -2319,42 +2305,12 @@ export const componentSchemas = {
         "additionalProperties": false,
         "x-pomi-schema": {
             "kind": "input",
-            "publicName": "NonePlanningGuideInput"
-        }
-    },
-    "ProgramPlanningGuideInput": {
-        "type": "object",
-        "properties": {
-            "mode": {
-                "type": "string",
-                "enum": [
-                    "PROGRAM"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "manualCourseIds": {
-                "type": "array",
-                "items": {
-                    "type": "integer"
-                }
-            },
-            "program": {
-                "$ref": "#/components/schemas/ProgramPlanningGuideInputDetails"
-            }
-        },
-        "required": [
-            "mode",
-            "manualCourseIds",
-            "program"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "ProgramPlanningGuideInput"
+            "publicName": "PlanningGuideInput"
         }
     },
     "ProgramPlanningGuideInputDetails": {
         "type": "object",
+        "nullable": true,
         "properties": {
             "catalogProgramId": {
                 "type": "integer"
@@ -2376,121 +2332,6 @@ export const componentSchemas = {
         "x-pomi-schema": {
             "kind": "input",
             "publicName": "ProgramPlanningGuideInputDetails"
-        }
-    },
-    "CurriculumPlanningGuideInput": {
-        "type": "object",
-        "properties": {
-            "mode": {
-                "type": "string",
-                "enum": [
-                    "CURRICULUM"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "manualCourseIds": {
-                "type": "array",
-                "items": {
-                    "type": "integer"
-                }
-            },
-            "curriculum": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/SavedCurriculumPlanningGuideInput"
-                    },
-                    {
-                        "$ref": "#/components/schemas/SuggestionCurriculumPlanningGuideInput"
-                    }
-                ],
-                "discriminator": {
-                    "propertyName": "source",
-                    "mapping": {
-                        "SAVED": "#/components/schemas/SavedCurriculumPlanningGuideInput",
-                        "SUGGESTION": "#/components/schemas/SuggestionCurriculumPlanningGuideInput"
-                    }
-                }
-            }
-        },
-        "required": [
-            "mode",
-            "manualCourseIds",
-            "curriculum"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "CurriculumPlanningGuideInput"
-        }
-    },
-    "SavedCurriculumPlanningGuideInput": {
-        "type": "object",
-        "properties": {
-            "source": {
-                "type": "string",
-                "enum": [
-                    "SAVED"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "saved": {
-                "type": "object",
-                "properties": {
-                    "curriculumId": {
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "curriculumId"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "required": [
-            "source",
-            "saved"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "SavedCurriculumPlanningGuideInput"
-        }
-    },
-    "SuggestionCurriculumPlanningGuideInput": {
-        "type": "object",
-        "properties": {
-            "source": {
-                "type": "string",
-                "enum": [
-                    "SUGGESTION"
-                ],
-                "description": "discriminator enum property added by openapi-typescript"
-            },
-            "suggestion": {
-                "type": "object",
-                "properties": {
-                    "suggestionId": {
-                        "type": "integer"
-                    },
-                    "catalogProgramId": {
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "suggestionId",
-                    "catalogProgramId"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "required": [
-            "source",
-            "suggestion"
-        ],
-        "additionalProperties": false,
-        "x-pomi-schema": {
-            "kind": "input",
-            "publicName": "SuggestionCurriculumPlanningGuideInput"
         }
     },
     "UpdatePeriodPlanningInput": {
@@ -5824,6 +5665,11 @@ export const enumValues = {
         "FRIENDS",
         "PUBLIC"
     ],
+    "PlanningGuide.mode": [
+        "NONE",
+        "PROGRAM",
+        "CURRICULUM"
+    ],
     "DayOfWeek": [
         "MONDAY",
         "TUESDAY",
@@ -5832,6 +5678,11 @@ export const enumValues = {
         "FRIDAY",
         "SATURDAY",
         "SUNDAY"
+    ],
+    "PlanningGuideInput.mode": [
+        "NONE",
+        "PROGRAM",
+        "CURRICULUM"
     ],
     "SharedPlanningVisibility": [
         "FRIENDS",

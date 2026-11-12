@@ -1330,6 +1330,38 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        SavedCurriculumPlanningGuide: {
+
+            source: "SAVED";
+            saved: components["schemas"]["SavedCurriculumPlanningGuideDetails"];
+        };
+        SavedCurriculumPlanningGuideDetails: {
+            curriculumId: number;
+        };
+        SuggestionCurriculumPlanningGuide: {
+
+            source: "SUGGESTION";
+            suggestion: components["schemas"]["SuggestionCurriculumPlanningGuideDetails"];
+        };
+        SuggestionCurriculumPlanningGuideDetails: {
+            suggestionId: number;
+            catalogProgramId: number;
+        };
+        SavedCurriculumPlanningGuideInput: {
+
+            source: "SAVED";
+            saved: {
+                curriculumId: number;
+            };
+        };
+        SuggestionCurriculumPlanningGuideInput: {
+
+            source: "SUGGESTION";
+            suggestion: {
+                suggestionId: number;
+                catalogProgramId: number;
+            };
+        };
         InvalidRequestProblem: {
 
             type: "urn:pomi:problem:invalid-request";
@@ -1715,47 +1747,19 @@ export interface components {
         YearPeriod: "SUMMER" | "FIRST_SEMESTER" | "WINTER" | "SECOND_SEMESTER";
 
         PlanningVisibility: "PRIVATE" | "FRIENDS" | "PUBLIC";
-        PlanningGuide: components["schemas"]["NonePlanningGuide"] | components["schemas"]["ProgramPlanningGuide"] | components["schemas"]["CurriculumPlanningGuide"];
-        NonePlanningGuide: {
+        PlanningGuide: {
 
-            mode: "NONE";
+            mode: "NONE" | "PROGRAM" | "CURRICULUM";
             manualCourseIds: number[];
-        };
-        ProgramPlanningGuide: {
-
-            mode: "PROGRAM";
-            manualCourseIds: number[];
+            curriculum: components["schemas"]["CurriculumPlanningGuideDetails"];
             program: components["schemas"]["ProgramPlanningGuideDetails"];
         };
+        CurriculumPlanningGuideDetails: (components["schemas"]["SavedCurriculumPlanningGuide"] | components["schemas"]["SuggestionCurriculumPlanningGuide"]) | null;
         ProgramPlanningGuideDetails: {
             catalogProgramId: number;
             catalogProgramVariantId: number;
             languageId: number | null;
-        };
-        CurriculumPlanningGuide: {
-
-            mode: "CURRICULUM";
-            manualCourseIds: number[];
-            curriculum: components["schemas"]["CurriculumPlanningGuideDetails"];
-        };
-        CurriculumPlanningGuideDetails: components["schemas"]["SavedCurriculumPlanningGuide"] | components["schemas"]["SuggestionCurriculumPlanningGuide"];
-        SavedCurriculumPlanningGuide: {
-
-            source: "SAVED";
-            saved: components["schemas"]["SavedCurriculumPlanningGuideDetails"];
-        };
-        SavedCurriculumPlanningGuideDetails: {
-            curriculumId: number;
-        };
-        SuggestionCurriculumPlanningGuide: {
-
-            source: "SUGGESTION";
-            suggestion: components["schemas"]["SuggestionCurriculumPlanningGuideDetails"];
-        };
-        SuggestionCurriculumPlanningGuideDetails: {
-            suggestionId: number;
-            catalogProgramId: number;
-        };
+        } | null;
         PeriodPlanningClass: {
             id: number;
             code: string;
@@ -1805,44 +1809,18 @@ export interface components {
             guide?: components["schemas"]["PlanningGuideInput"];
             classes: number[];
         };
-        PlanningGuideInput: components["schemas"]["NonePlanningGuideInput"] | components["schemas"]["ProgramPlanningGuideInput"] | components["schemas"]["CurriculumPlanningGuideInput"];
-        NonePlanningGuideInput: {
+        PlanningGuideInput: {
 
-            mode: "NONE";
+            mode: "NONE" | "PROGRAM" | "CURRICULUM";
             manualCourseIds: number[];
-        };
-        ProgramPlanningGuideInput: {
-
-            mode: "PROGRAM";
-            manualCourseIds: number[];
-            program: components["schemas"]["ProgramPlanningGuideInputDetails"];
+            curriculum?: (components["schemas"]["SavedCurriculumPlanningGuideInput"] | components["schemas"]["SuggestionCurriculumPlanningGuideInput"]) | null;
+            program?: components["schemas"]["ProgramPlanningGuideInputDetails"];
         };
         ProgramPlanningGuideInputDetails: {
             catalogProgramId: number;
             catalogProgramVariantId: number;
             languageId: number | null;
-        };
-        CurriculumPlanningGuideInput: {
-
-            mode: "CURRICULUM";
-            manualCourseIds: number[];
-            curriculum: components["schemas"]["SavedCurriculumPlanningGuideInput"] | components["schemas"]["SuggestionCurriculumPlanningGuideInput"];
-        };
-        SavedCurriculumPlanningGuideInput: {
-
-            source: "SAVED";
-            saved: {
-                curriculumId: number;
-            };
-        };
-        SuggestionCurriculumPlanningGuideInput: {
-
-            source: "SUGGESTION";
-            suggestion: {
-                suggestionId: number;
-                catalogProgramId: number;
-            };
-        };
+        } | null;
         UpdatePeriodPlanningInput: {
             name?: string;
             visibility?: components["schemas"]["PlanningVisibility"];

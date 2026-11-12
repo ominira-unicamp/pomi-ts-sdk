@@ -30,6 +30,18 @@ export type Page<T> = {
 export type DomainComponentSchemaName = keyof components['schemas']
 export type Component<Name extends DomainComponentSchemaName> = Domain<components['schemas'][Name]>
 
+export type SavedCurriculumPlanningGuideTransport = components['schemas']['SavedCurriculumPlanningGuide']
+export type SavedCurriculumPlanningGuide = Domain<SavedCurriculumPlanningGuideTransport>
+
+export type SavedCurriculumPlanningGuideDetailsTransport = components['schemas']['SavedCurriculumPlanningGuideDetails']
+export type SavedCurriculumPlanningGuideDetails = Domain<SavedCurriculumPlanningGuideDetailsTransport>
+
+export type SuggestionCurriculumPlanningGuideTransport = components['schemas']['SuggestionCurriculumPlanningGuide']
+export type SuggestionCurriculumPlanningGuide = Domain<SuggestionCurriculumPlanningGuideTransport>
+
+export type SuggestionCurriculumPlanningGuideDetailsTransport = components['schemas']['SuggestionCurriculumPlanningGuideDetails']
+export type SuggestionCurriculumPlanningGuideDetails = Domain<SuggestionCurriculumPlanningGuideDetailsTransport>
+
 export type PageProfessorEvaluationSummariesTransport = components['schemas']['PageProfessorEvaluationSummaries']
 export type PageProfessorEvaluationSummaries = Domain<PageProfessorEvaluationSummariesTransport>
 
@@ -84,32 +96,11 @@ export type PeriodPlanning = Domain<PeriodPlanningTransport>
 export type PlanningGuideTransport = components['schemas']['PlanningGuide']
 export type PlanningGuide = Domain<PlanningGuideTransport>
 
-export type NonePlanningGuideTransport = components['schemas']['NonePlanningGuide']
-export type NonePlanningGuide = Domain<NonePlanningGuideTransport>
-
-export type ProgramPlanningGuideTransport = components['schemas']['ProgramPlanningGuide']
-export type ProgramPlanningGuide = Domain<ProgramPlanningGuideTransport>
-
-export type ProgramPlanningGuideDetailsTransport = components['schemas']['ProgramPlanningGuideDetails']
-export type ProgramPlanningGuideDetails = Domain<ProgramPlanningGuideDetailsTransport>
-
-export type CurriculumPlanningGuideTransport = components['schemas']['CurriculumPlanningGuide']
-export type CurriculumPlanningGuide = Domain<CurriculumPlanningGuideTransport>
-
 export type CurriculumPlanningGuideDetailsTransport = components['schemas']['CurriculumPlanningGuideDetails']
 export type CurriculumPlanningGuideDetails = Domain<CurriculumPlanningGuideDetailsTransport>
 
-export type SavedCurriculumPlanningGuideTransport = components['schemas']['SavedCurriculumPlanningGuide']
-export type SavedCurriculumPlanningGuide = Domain<SavedCurriculumPlanningGuideTransport>
-
-export type SavedCurriculumPlanningGuideDetailsTransport = components['schemas']['SavedCurriculumPlanningGuideDetails']
-export type SavedCurriculumPlanningGuideDetails = Domain<SavedCurriculumPlanningGuideDetailsTransport>
-
-export type SuggestionCurriculumPlanningGuideTransport = components['schemas']['SuggestionCurriculumPlanningGuide']
-export type SuggestionCurriculumPlanningGuide = Domain<SuggestionCurriculumPlanningGuideTransport>
-
-export type SuggestionCurriculumPlanningGuideDetailsTransport = components['schemas']['SuggestionCurriculumPlanningGuideDetails']
-export type SuggestionCurriculumPlanningGuideDetails = Domain<SuggestionCurriculumPlanningGuideDetailsTransport>
+export type ProgramPlanningGuideDetailsTransport = components['schemas']['ProgramPlanningGuideDetails']
+export type ProgramPlanningGuideDetails = Domain<ProgramPlanningGuideDetailsTransport>
 
 export type PeriodPlanningClassTransport = components['schemas']['PeriodPlanningClass']
 export type PeriodPlanningClass = Domain<PeriodPlanningClassTransport>
@@ -231,6 +222,34 @@ export type UserInterest = Domain<UserInterestTransport>
 
 
 export const domainModelDefinitions = {
+    "SavedCurriculumPlanningGuide": {
+        "schema": "SavedCurriculumPlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SavedCurriculumPlanningGuideDetails": {
+        "schema": "SavedCurriculumPlanningGuideDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SuggestionCurriculumPlanningGuide": {
+        "schema": "SuggestionCurriculumPlanningGuide",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
+    "SuggestionCurriculumPlanningGuideDetails": {
+        "schema": "SuggestionCurriculumPlanningGuideDetails",
+        "transportFields": [],
+        "identityFields": [],
+        "readOnlyFields": [],
+        "relations": {}
+    },
     "PageProfessorEvaluationSummaries": {
         "schema": "PageProfessorEvaluationSummaries",
         "transportFields": [],
@@ -393,34 +412,6 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
-    "NonePlanningGuide": {
-        "schema": "NonePlanningGuide",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "ProgramPlanningGuide": {
-        "schema": "ProgramPlanningGuide",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "ProgramPlanningGuideDetails": {
-        "schema": "ProgramPlanningGuideDetails",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "CurriculumPlanningGuide": {
-        "schema": "CurriculumPlanningGuide",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
     "CurriculumPlanningGuideDetails": {
         "schema": "CurriculumPlanningGuideDetails",
         "transportFields": [],
@@ -428,29 +419,8 @@ export const domainModelDefinitions = {
         "readOnlyFields": [],
         "relations": {}
     },
-    "SavedCurriculumPlanningGuide": {
-        "schema": "SavedCurriculumPlanningGuide",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "SavedCurriculumPlanningGuideDetails": {
-        "schema": "SavedCurriculumPlanningGuideDetails",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "SuggestionCurriculumPlanningGuide": {
-        "schema": "SuggestionCurriculumPlanningGuide",
-        "transportFields": [],
-        "identityFields": [],
-        "readOnlyFields": [],
-        "relations": {}
-    },
-    "SuggestionCurriculumPlanningGuideDetails": {
-        "schema": "SuggestionCurriculumPlanningGuideDetails",
+    "ProgramPlanningGuideDetails": {
+        "schema": "ProgramPlanningGuideDetails",
         "transportFields": [],
         "identityFields": [],
         "readOnlyFields": [],
